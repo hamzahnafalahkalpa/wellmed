@@ -1,0 +1,34 @@
+frankenphp:
+  # Jalankan Laravel pakai php artisan serve
+  document_root: public
+
+  # Aktifkan preload file (opsional untuk performa)
+  preload:
+    enabled: true
+    file: bootstrap/preload.php
+
+  # Aktifkan worker mode (lebih cepat)
+  worker:
+    enabled: true
+    max_requests: 1000
+    keep_alive: true
+
+  # Aktifkan CORS dev untuk Vite (ganti localhost jika berbeda)
+  cors:
+    allow_origin: "http://localhost:5173"
+    allow_methods:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+      - OPTIONS
+    allow_headers:
+      - Content-Type
+      - Authorization
+      - X-Requested-With
+    allow_credentials: true
+
+  # Jika pakai HTTPS lokal dan Vite (optional)
+  # tls:
+  #   certificate: /path/to/localhost.crt
+  #   private_key: /path/to/localhost.key
