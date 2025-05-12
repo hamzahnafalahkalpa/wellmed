@@ -1,0 +1,69 @@
+{
+    "name": "projects/klinik",
+    "autoload": {
+        "psr-4": {
+            "Projects\\Klinik\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Hamzah Nur Alfalah",
+            "email": "hamzahnafalah@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Projects\\Klinik\\Providers\\KlinikServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "hanafalah/laravel-support": "1.x-dev as 1.0",
+        "hanafalah/api-helper": "1.x-dev as 1.0",
+        "hanafalah/laravel-feature": "1.x-dev as 1.0",
+        "hanafalah/laravel-has-props": "1.x-dev as 1.0",
+        "hanafalah/laravel-package-generator": "1.x-dev as 1.0",
+        "hanafalah/laravel-permission": "1.x-dev as 1.0",
+        "hanafalah/laravel-stub": "1.x-dev as 1.0",
+        "hanafalah/microtenant": "1.x-dev as 1.0",
+        "hanafalah/module-encoding": "1.x-dev as 1.0",
+        "hanafalah/module-regional": "1.x-dev as 1.0",
+        "hanafalah/module-user": "1.x-dev as 1.0",
+        "hanafalah/module-workspace": "1.x-dev as 1.0",
+        "hanafalah/module-patient": "1.x-dev as 1.0",
+        "hanafalah/module-agent": "1.x-dev as 1.0",
+        "hanafalah/module-employee": "1.x-dev as 1.0",
+        "hanafalah/module-funding": "1.x-dev as 1.0",
+        "hanafalah/module-lab-radiology": "1.x-dev as 1.0",
+        "hanafalah/module-medic-service": "1.x-dev as 1.0",
+        "hanafalah/module-medical-treatment": "1.x-dev as 1.0",
+        "hanafalah/module-organization": "1.x-dev as 1.0",
+        "hanafalah/module-payer": "1.x-dev as 1.0",
+        "hanafalah/module-people": "1.x-dev as 1.0",
+        "hanafalah/module-profession": "1.x-dev as 1.0",
+        "hanafalah/module-service": "1.x-dev as 1.0",
+        "hanafalah/module-summary": "1.x-dev as 1.0",
+        "hanafalah/module-transaction": "1.x-dev as 1.0",
+        "hanafalah/module-treatment": "1.x-dev as 1.0",
+        "hanafalah/module-warehouse": "1.x-dev as 1.0",
+        "hanafalah/module-class-room": "1.x-dev as 1.0",
+        "hanafalah/module-mcu": "1.x-dev as 1.0",
+        "hanafalah/module-item": "1.x-dev as 1.0",
+        "hanafalah/module-medical-item": "1.x-dev as 1.0",
+        "hanafalah/module-examination": "1.x-dev as 1.0",
+        "hanafalah/module-procurement": "1.x-dev as 1.0",
+        "hanafalah/module-medical-procurement": "1.x-dev as 1.0",
+        "hanafalah/module-disease": "1.x-dev as 1.0",
+        "hanafalah/module-informed-consent": "1.x-dev as 1.0",
+        "hanafalah/module-icd": "1.x-dev as 1.0",
+        "hanafalah/module-anatomy": "1.x-dev as 1.0",
+        "hanafalah/module-physical-examination": "1.x-dev as 1.0",
+        "hanafalah/module-opname-stock": "1.x-dev as 1.0",
+        "hanafalah/module-distribution": "1.x-dev as 1.0",
+        "hanafalah/module-pharmacy": "1.x-dev as 1.0"
+    }
+}
