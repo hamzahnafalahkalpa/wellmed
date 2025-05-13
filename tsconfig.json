@@ -123,6 +123,21 @@
         "resources/js/**/*.ts",
         "resources/js/**/*.d.ts",
         "resources/js/**/*.tsx", 
-        "resources/js/**/*.vue"
+        "resources/js/**/*.vue",
+
+        "app/Projects/klinik/src/Resources/js/**/*.ts",
+        "app/Projects/klinik/src/Resources/js/**/*.d.ts",
+        "app/Projects/klinik/src/Resources/js/**/*.tsx",
+        "app/Projects/klinik/src/Resources/js/**/*.vue",
+        
+        "app/Groups/**/src/Resources/js/**/*.ts",
+        "app/Groups/**/src/Resources/js/**/*.d.ts",
+        "app/Groups/**/src/Resources/js/**/*.tsx",
+        "app/Groups/**/src/Resources/js/**/*.vue",
+
+        "app/Tenants/**/src/Resources/js/**/*.ts",
+        "app/Tenants/**/src/Resources/js/**/*.d.ts",
+        "app/Tenants/**/src/Resources/js/**/*.tsx",
+        "app/Tenants/**/src/Resources/js/**/*.vue",
     ]
 }

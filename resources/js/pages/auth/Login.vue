@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import AuthBase from '@/layouts/AuthLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
+import { login } from '@/services/authService';
 
 defineProps<{
     status?: string;
@@ -20,10 +21,26 @@ const form = useForm({
     remember: false,
 });
 
-const submit = () => {
-    form.post(route('login'), {
-        onFinish: () => form.reset('password'),
-    });
+const submit = async () => {
+    form.clearErrors();
+    form.processing = true;
+
+    try {
+        const response = await login({
+            email: form.email,
+            password: form.password,
+            remember: form.remember,
+        });
+
+        // Redirect setelah login sukses
+        window.location.href = '/dashboard';
+    } catch (e: any) {
+        form.setError('email', e?.errors?.email?.[0] || '');
+        form.setError('password', e?.errors?.password?.[0] || '');
+    } finally {
+        form.processing = false;
+        form.reset('password');
+    }
 };
 </script>
 
@@ -33,6 +50,12 @@ const submit = () => {
 
         <div v-if="status" class="mb-4 text-center text-sm font-medium text-green-600">
             {{ status }}
+        </div>
+
+        <div class="relative mb-[30px] w-full h-fit z-20">
+            <div class="relative w-[200px] h-[100px] translate-x-[-50%] left-[50%] mt-[20px] sm:mt-[-20px]" style="left:calc(50% - 10px)">
+                <div class="image bg-no-repeat bg-center bg-contain w-full h-full filter brightness-0" :style="{ backgroundImage: `url(/assets/images/logo.png)` }"></div>
+            </div>
         </div>
 
         <form @submit.prevent="submit" class="flex flex-col gap-6">
@@ -84,10 +107,10 @@ const submit = () => {
                 </Button>
             </div>
 
-            <div class="text-center text-sm text-muted-foreground">
+            <!-- <div class="text-center text-sm text-muted-foreground">
                 Don't have an account?
                 <TextLink :href="route('register')" :tabindex="5">Sign up</TextLink>
-            </div>
+            </div> -->
         </form>
     </AuthBase>
 </template>

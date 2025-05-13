@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-abstract class Controller
+use Hanafalah\LaravelSupport\Controllers\BaseController;
+
+abstract class Controller extends BaseController
 {
     //
 }

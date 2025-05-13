@@ -7,6 +7,7 @@ use Hanafalah\ApiHelper\{
     Encryptions,
     Validators
 };
+use Hanafalah\ModuleUser\Models\User\User;
 
 return [
     'commands' => [
@@ -31,8 +32,8 @@ return [
         // this is the setup for authentication user,
         // it can have more than one key, the system will do loop check
         // and the password for credential password
-        'model'     => App\Models\User::class,
-        'keys'      => ['name'],
+        'model'     => User::class,
+        'keys'      => ['username'],
         'password'  => 'password'
     ],
 
@@ -43,7 +44,7 @@ return [
      *
      * @see https://tools.ietf.org/html/rfc7518#section-3.1
      */
-    'encryption_method' => 'RS256',
+    'encryption_method' => 'HAS256',
     'libs' => [
         'model' => 'Models',
         'contract' => 'Contracts',

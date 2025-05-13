@@ -98,5 +98,9 @@ return [
         // 'hanafalah/jurnal-laravel'              => ['repository' => 'micro-tenant/jurnal-laravel'],
         'hanafalah/module-distribution'         => ['repository' =>'micro-tenant/module-distribution'],
         'hanafalah/module-pharmacy'             => ['repository' =>'micro-tenant/module-pharmacy'],
+        'hanafalah/module-rencana-anggaran'     => ['repository' =>'micro-tenant/module-rencana-anggaran'],
+        'hanafalah/module-event'                => ['repository' =>'micro-tenant/module-event'],
+        "hanafalah/module-manufacture"          => ['repository' =>'micro-tenant/module-manufacture'],
+        "hanafalah/module-handwriting"          => ['repository' =>'micro-tenant/module-handwriting'],
     ]
 ];
