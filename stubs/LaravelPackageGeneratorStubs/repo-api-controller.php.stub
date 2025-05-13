@@ -1,0 +1,7 @@
+<?php
+
+namespace {{NAMESPACE}}\{{controller_namespace}}\API;
+
+use App\Http\Controllers\ApiController as ControllersApiController;
+
+class ApiController extends ControllersApiController{}

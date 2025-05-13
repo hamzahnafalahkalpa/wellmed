@@ -1,0 +1,10 @@
+<?php
+
+namespace {{NAMESPACE}};
+
+use {{NAMESPACE}}\{{contract_namespace}}\{{CLASS_BASENAME}} as Contracts{{CLASS_BASENAME}};
+use {{NAMESPACE}}\{{support_namespace}}\Base{{CLASS_BASENAME}};
+
+class {{CLASS_BASENAME}} extends Base{{CLASS_BASENAME}} implements Contracts{{CLASS_BASENAME}} {
+    const LOWER_CLASS_NAME = "{{SNAKE_LOWER_CLASS_BASENAME}}";
+}

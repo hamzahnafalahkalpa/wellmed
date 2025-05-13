@@ -38,15 +38,21 @@ class GroupInitialKlinikServiceProvider extends GroupInitialKlinikEnvironment
         $kernel->pushMiddleware(PayloadMonitoring::class);
         // codes that will be run after the package booted
         $this->app->booted(function(){
+            $model   = Facades\GroupInitialKlinik::myModel($this->TenantModel()->find(GroupInitialKlinik::ID));
+            $this->deferredProviders($model);
+
+            tenancy()->initialize(GroupInitialKlinik::ID);
+            $tenant = tenancy()->tenant;
+            $tenant->save();
+
+            $config_name = Str::kebab($model->name); 
+
             $this->registers([
                 '*',
                 'Config' => function() {
                     $this->__config_group_initial_klinik = config('group-initial-klinik');
                 },
-                'Provider' => function() {
-                    $model = Facades\GroupInitialKlinik::myModel($this->WorkspaceModel()->find(GroupInitialKlinik::ID));
-                    if (!isset($model)) throw new Exception('GroupInitialKlinik Model not found');
-                    $config_name = Str::kebab($model->name);
+                'Provider' => function() use ($model,$config_name){
                     $this->bootedRegisters($model->packages, $config_name, __DIR__.'/../'.$this->__config_group_initial_klinik['libs']['migration'] ?? 'Migrations');
                     $this->registerOverideConfig($config_name,__DIR__.'/../'.$this->__config_group_initial_klinik['libs']['config']);
                 },

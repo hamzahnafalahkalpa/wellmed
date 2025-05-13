@@ -1,0 +1,102 @@
+<?php
+
+use Hanafalah\KlinikStarterpack\{
+    Models,
+    Commands,
+    Contracts
+};
+
+return [
+    "namespace"     => "Hanafalah\KlinikStarterpack",
+    "paths"         => [
+        "local_path"   => "repositories",
+        "base_path"    => __DIR__.'\\..\\'
+    ],
+    'app' => [
+        'contracts' => [
+        ],
+    ],
+    'commands'  => [
+        Commands\SeedCommand::class,
+        Commands\MigrateCommand::class,
+        Commands\InstallMakeCommand::class,
+        Commands\InstallSubmoduleCommand::class,
+    ],
+    'libs' => [
+        'asset' => '../assets',
+        'config' => '../assets/config',
+        'migration' => '../assets/database/migrations',
+        'model' => 'Models',
+        'controller' => 'Controllers',
+        'provider' => 'Providers',
+        'contract' => 'Contracts',
+        'concern' => 'Concerns',
+        'command' => 'Commands',
+        'route' => 'Routes',
+        'import' => 'Imports',
+        'data' => 'Data',
+        'resource' => 'Resources',
+        'seeder' => 'Database/Seeders',
+        'middleware' => 'Middleware',
+        'request' => 'Requests',
+        'support' => 'Supports',
+        'schema' => 'Schemas',
+        'facade' => 'Facades',
+    ],
+    'database' => [
+        'models' => [
+        ]
+    ],
+    "provider" => "Hanafalah\KlinikStarterpack\\Providers\\KlinikStarterpackServiceProvider",
+    'packages'  => [
+        'hanafalah/api-helper'                  => ['repository' =>'micro-tenant/api-helper'],
+        'hanafalah/laravel-feature'             => ['repository' =>'micro-tenant/laravel-feature'],
+        'hanafalah/laravel-has-props'           => ['repository' =>'micro-tenant/laravel-has-props'],
+        'hanafalah/laravel-package-generator'   => ['repository' =>'micro-tenant/laravel-package-generator'],
+        'hanafalah/laravel-permission'          => ['repository' =>'micro-tenant/laravel-permission'],
+        'hanafalah/laravel-stub'                => ['repository' =>'micro-tenant/laravel-stub'],
+        'hanafalah/laravel-support'             => ['repository' =>'micro-tenant/laravel-support'],
+        'hanafalah/microtenant'                 => ['repository' =>'micro-tenant/microtenant'],
+        'hanafalah/module-encoding'             => ['repository' =>'micro-tenant/module-encoding'],
+        'hanafalah/module-regional'             => ['repository' =>'micro-tenant/module-regional'],
+        'hanafalah/module-user'                 => ['repository' =>'micro-tenant/module-user'],
+        'hanafalah/module-workspace'            => ['repository' =>'micro-tenant/module-workspace'],
+        'hanafalah/module-patient'              => ['repository' =>'micro-tenant/module-patient'],
+        'hanafalah/laravel-support'             => ['repository' =>'micro-tenant/laravel-support'],
+        'hanafalah/module-agent'                => ['repository' =>'micro-tenant/module-agent'],
+        'hanafalah/module-employee'             => ['repository' =>'micro-tenant/module-employee'],
+        'hanafalah/module-funding'              => ['repository' =>'micro-tenant/module-funding'],
+        'hanafalah/module-lab-radiology'        => ['repository' =>'micro-tenant/module-lab-radiology'],
+        'hanafalah/module-medic-service'        => ['repository' =>'micro-tenant/module-medic-service'],
+        'hanafalah/module-medical-treatment'    => ['repository' =>'micro-tenant/module-medical-treatment'],
+        'hanafalah/module-organization'         => ['repository' =>'micro-tenant/module-organization'],
+        'hanafalah/module-patient'              => ['repository' =>'micro-tenant/module-patient'],
+        'hanafalah/module-payer'                => ['repository' =>'micro-tenant/module-payer'],
+        'hanafalah/module-people'               => ['repository' =>'micro-tenant/module-people'],
+        'hanafalah/module-profession'           => ['repository' =>'micro-tenant/module-profession'],
+        'hanafalah/module-regional'             => ['repository' =>'micro-tenant/module-regional'],
+        'hanafalah/module-service'              => ['repository' =>'micro-tenant/module-service'],
+        'hanafalah/module-summary'              => ['repository' =>'micro-tenant/module-summary'],
+        'hanafalah/module-transaction'          => ['repository' =>'micro-tenant/module-transaction'],
+        'hanafalah/module-treatment'            => ['repository' =>'micro-tenant/module-treatment'],
+        'hanafalah/module-warehouse'            => ['repository' =>'micro-tenant/module-warehouse'],
+        'hanafalah/module-workspace'            => ['repository' =>'micro-tenant/module-workspace'],
+        'hanafalah/module-class-room'           => ['repository' =>'micro-tenant/module-class-room'],
+        'hanafalah/module-mcu'                  => ['repository' =>'micro-tenant/module-mcu'],
+        'hanafalah/module-item'                 => ['repository' =>'micro-tenant/module-item'],
+        'hanafalah/module-medical-item'         => ['repository' =>'micro-tenant/module-medical-item'],
+        'hanafalah/module-examination'          => ['repository' =>'micro-tenant/module-examination'],
+        'hanafalah/module-procurement'          => ['repository' =>'micro-tenant/module-procurement'],
+        'hanafalah/module-medical-procurement'  => ['repository' =>'micro-tenant/module-medical-procurement'],
+        'hanafalah/module-disease'              => ['repository' =>'micro-tenant/module-disease'],
+        'hanafalah/module-informed-consent'     => ['repository' =>'micro-tenant/module-informed-consent'],
+        'hanafalah/module-icd'                  => ['repository' =>'micro-tenant/module-icd'],
+        'hanafalah/module-anatomy'              => ['repository' =>'micro-tenant/module-anatomy'],
+        'hanafalah/module-physical-examination' => ['repository' =>'micro-tenant/module-physical-examination'],
+        'hanafalah/module-opname-stock'         => ['repository' =>'micro-tenant/module-opname-stock'],
+        // 'hanafalah/module-appointment'          => ['repository' => 'micro-tenant/module-appointment'],
+        // 'hanafalah/jurnal-laravel'              => ['repository' => 'micro-tenant/jurnal-laravel'],
+        'hanafalah/module-distribution'         => ['repository' =>'micro-tenant/module-distribution'],
+        'hanafalah/module-pharmacy'             => ['repository' =>'micro-tenant/module-pharmacy'],
+    ]
+];

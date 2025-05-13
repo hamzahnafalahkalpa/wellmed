@@ -1,0 +1,36 @@
+<?php
+
+namespace {{NAMESPACE}}\{{schema_namespace}};
+
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use {{NAMESPACE}}\{
+    Supports\Base{{CLASS_BASENAME}}
+};
+use {{NAMESPACE}}\{{contract_namespace}}\{{schema_namespace}}\{{SCHEMA_NAME}} as Contracts{{SCHEMA_NAME}};
+use {{NAMESPACE}}\{{contract_namespace}}\Data\{{SCHEMA_NAME}}Data;
+
+class {{SCHEMA_NAME}} extends Base{{CLASS_BASENAME}} implements Contracts{{SCHEMA_NAME}}
+{
+    protected string $__entity = '{{SCHEMA_NAME}}';
+    public static ${{SNAKE_LOWER_SCHEMA_NAME}}_model;
+
+    protected array $__cache = [
+        'index' => [
+            'name'     => '{{SNAKE_LOWER_SCHEMA_NAME}}',
+            'tags'     => ['{{SNAKE_LOWER_SCHEMA_NAME}}', '{{SNAKE_LOWER_SCHEMA_NAME}}-index'],
+            'duration' => 24 * 60
+        ]
+    ];
+
+    public function prepareStore{{SCHEMA_NAME}}({{SCHEMA_NAME}}Data ${{SNAKE_LOWER_SCHEMA_NAME}}_dto): Model{
+        ${{SNAKE_LOWER_SCHEMA_NAME}} = $this->usingEntity()->updateOrCreate([
+                        'id' => ${{SNAKE_LOWER_SCHEMA_NAME}}_dto->id ?? null
+                    ], [
+                        'name' => ${{SNAKE_LOWER_SCHEMA_NAME}}_dto->name
+                    ]);
+        $this->fillingProps(${{SNAKE_LOWER_SCHEMA_NAME}},${{SNAKE_LOWER_SCHEMA_NAME}}_dto->props);
+        ${{SNAKE_LOWER_SCHEMA_NAME}}->save();
+        return static::${{SNAKE_LOWER_SCHEMA_NAME}}_model = ${{SNAKE_LOWER_SCHEMA_NAME}};
+    }
+}

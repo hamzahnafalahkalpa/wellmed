@@ -1,0 +1,37 @@
+<?php
+
+namespace {{NAMESPACE}};
+
+use Illuminate\Database\Eloquent\Model;
+use Hanafalah\LaravelSupport\{
+    Concerns\Support\HasRepository,
+    Supports\PackageManagement,
+    Events as SupportEvents
+};
+use {{NAMESPACE}}\{{contract_namespace}}\{{CLASS_BASENAME}} as Contracts{{CLASS_BASENAME}};
+
+class {{CLASS_BASENAME}} extends PackageManagement implements Contracts{{CLASS_BASENAME}}{
+    use Supports\LocalPath,HasRepository;
+
+    const LOWER_CLASS_NAME = "{{SNAKE_LOWER_CLASS_BASENAME}}";
+    const SERVICE_TYPE     = "tenant";
+    const ID               = "{{MAIN_ID}}";
+
+    public ?Model $model;
+
+    public function events(){
+        return [
+            SupportEvents\InitializingEvent::class => [
+                
+            ],
+            SupportEvents\EventInitialized::class  => [],
+            SupportEvents\EndingEvent::class       => [],
+            SupportEvents\EventEnded::class        => [],
+            //ADD MORE EVENTS
+        ];
+    }
+
+    protected function dir(): string{
+        return __DIR__;
+    }
+}

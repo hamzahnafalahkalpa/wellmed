@@ -1,0 +1,23 @@
+<?php
+
+namespace {{NAMESPACE}}\{{data_namespace}};
+
+use Hanafalah\LaravelSupport\Supports\Data;
+use {{NAMESPACE}}\{{contract_namespace}}\{{data_namespace}}\{{DATA_NAME}}Data as Data{{DATA_NAME}}Data;
+use Spatie\LaravelData\Attributes\MapInputName;
+use Spatie\LaravelData\Attributes\MapName;
+
+class {{DATA_NAME}}Data extends Data implements Data{{DATA_NAME}}Data
+{
+    #[MapInputName('id')]
+    #[MapName('id')]
+    public mixed $id = null;
+
+    #[MapInputName('name')]
+    #[MapName('name')]
+    public string $name;
+
+    #[MapInputName('props')]
+    #[MapName('props')]
+    public ?array $props = null;
+}

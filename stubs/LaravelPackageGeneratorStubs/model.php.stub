@@ -1,0 +1,48 @@
+<?php
+
+namespace {{NAMESPACE}}\{{model_namespace}};
+
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Hanafalah\LaravelHasProps\Concerns\HasProps;
+use Hanafalah\LaravelSupport\Models\BaseModel;
+use {{NAMESPACE}}\{{resource_namespace}}\{{MODEL_NAME}}\{
+    View{{MODEL_NAME}},
+    Show{{MODEL_NAME}}
+};
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
+
+class {{MODEL_NAME}} extends BaseModel
+{
+    use HasUlids, HasProps, SoftDeletes;
+    
+    public $incrementing  = false;
+    protected $keyType    = 'string';
+    protected $primaryKey = 'id';
+    public $list = {{LIST}};
+
+    protected $casts = [
+        'name' => 'string'
+    ];
+
+    {{BOOTED_SECTION}}
+
+    public function viewUsingRelation(): array{
+        return [];
+    }
+
+    public function showUsingRelation(): array{
+        return [];
+    }
+
+    public function getViewResource(){
+        return View{{MODEL_NAME}}::class;
+    }
+
+    public function getShowResource(){
+        return Show{{MODEL_NAME}}::class;
+    }
+
+    {{SCOPE_SECTION}}
+
+    {{EIGER_SECTION}}
+}

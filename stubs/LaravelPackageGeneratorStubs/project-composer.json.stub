@@ -1,0 +1,27 @@
+{
+    "name": "{{SNAKE_NAMESPACE}}",
+    "autoload": {
+        "psr-4": {
+            "{{FIRST_NAMESPACE}}\\{{CLASS_BASENAME}}\\": "src/"
+        },
+        "files":[
+            "src/helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "{{AUTHOR_NAME}}",
+            "email": "{{AUTHOR_EMAIL}}"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "{{FIRST_NAMESPACE}}\\{{CLASS_BASENAME}}\\{{provider_namespace}}\\{{CLASS_BASENAME}}ServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "hanafalah/laravel-support": "1.x-dev as 1.0"
+    }
+}

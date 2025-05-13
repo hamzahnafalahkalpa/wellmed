@@ -1,0 +1,23 @@
+<?php
+
+namespace {{NAMESPACE}}\{{support_namespace}};
+
+use Hanafalah\LaravelSupport\Supports\PackageManagement;
+
+class Base{{CLASS_BASENAME}} extends PackageManagement
+{
+    /** @var array */
+    protected $__{{SNAKE_LOWER_CLASS_BASENAME}}_config = [];
+
+    /**
+     * A description of the entire PHP function.
+     *
+     * @param Container $app The Container instance
+     * @throws Exception description of exception
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->setConfig('{{SNAKE_LOWER_CLASS_BASENAME}}', $this->__{{SNAKE_LOWER_CLASS_BASENAME}}_config);
+    }
+}

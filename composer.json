@@ -15,7 +15,8 @@
         "laravel/octane": "^2.9",
         "laravel/tinker": "^2.10.1",
         "tightenco/ziggy": "^2.4",
-        "hanafalah/puskesmas-starterpack": "1.x-dev as 1.0"
+        "hanafalah/klinik-starterpack": "1.x-dev as 1.0",
+        "hanafalah/microtenant": "1.x-dev as 1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -83,6 +84,85 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": {
+        "hanafalah/klinik-starterpack": {
+            "type": "path",
+            "url": "repositories/klinik-starterpack",
+            "optimize": {
+                "symlink": true
+            }
+        },
+        "hanafalah/laravel-support": {
+            "type": "path",
+            "url": "repositories/laravel-support",
+            "optimize": {
+                "symlink": true
+            }
+        },
+        "hanafalah/microtenant": {
+            "type": "path",
+            "url": "repositories/microtenant",
+            "optimize": {
+                "symlink": true
+            }
+        },
+        "hanafalah/api-helper": {
+            "type": "path",
+            "url": "repositories/api-helper",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/laravel-feature": {
+            "type": "path",
+            "url": "repositories/laravel-feature",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-user": {
+            "type": "path",
+            "url": "repositories/module-user",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-regional": {
+            "type": "path",
+            "url": "repositories/module-regional",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-workspace": {
+            "type": "path",
+            "url": "repositories/module-workspace",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/laravel-permission": {
+            "type": "path",
+            "url": "repositories/laravel-permission",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/laravel-package-generator": {
+            "type": "path",
+            "url": "repositories/laravel-package-generator",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-encoding": {
+            "type": "path",
+            "url": "repositories/module-encoding",
+            "options": {
+                "symlink": true
+            }
+        }
+    }
 }

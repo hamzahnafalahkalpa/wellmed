@@ -1,0 +1,16 @@
+<?php
+
+namespace {{NAMESPACE}}\{{facade}};
+
+class {{CLASS_BASENAME}} extends \Illuminate\Support\Facades\Facade
+{
+  /**
+   * Get the registered name of the component.
+   *
+   * @return string
+   */
+  protected static function getFacadeAccessor()
+  {
+    return \{{NAMESPACE}}\{{contract_namespace}}\{{CLASS_BASENAME}}::class;
+  }
+}

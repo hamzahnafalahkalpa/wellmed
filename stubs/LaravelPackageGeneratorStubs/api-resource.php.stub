@@ -1,0 +1,7 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use {{NAMESPACE}}\{{controller_namespace}}\API\{{CONTROLLER_NAME}}\{{CONTROLLER_NAME}}Controller;
+
+Route::apiResource('{{SNAKE_CONTROLLER_NAME}}', {{CONTROLLER_NAME}}Controller::class)
+    ->parameters(['{{SNAKE_CONTROLLER_NAME}}' => 'id']);

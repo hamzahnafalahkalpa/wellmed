@@ -1,0 +1,30 @@
+<?php
+
+namespace {{NAMESPACE}}\{{provider_namespace}};
+
+use Illuminate\Support\ServiceProvider;
+use {{NAMESPACE}}\{{command_namespace}};
+
+class CommandServiceProvider extends ServiceProvider
+{
+    protected $__commands = [
+        {{command_namespace}}\MigrateCommand::class,
+        {{command_namespace}}\SeedCommand::class,
+        {{command_namespace}}\InstallMakeCommand::class
+    ];
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->commands(config('{{SNAKE_CLASS_BASENAME}}.commands', $this->__commands));
+    }
+
+    public function provides()
+    {
+        return $this->__commands;
+    }
+}

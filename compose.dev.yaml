@@ -10,7 +10,7 @@ services:
         GID: ${GID:-1000}
     entrypoint: php artisan octane:frankenphp --port=80 --workers=1 --max-requests=1
     ports:
-      - 8002:80
+      - "8002:80"
     volumes:
       - ./:/app
     networks:
@@ -20,6 +20,27 @@ services:
     depends_on:
       - postgres
       - redis
+
+  # frankenphp:
+  #   container_name: klinik
+  #   image: laravel-klinik-app
+  #   build:
+  #     context: .
+  #     args:
+  #       UID: ${UID:-1000}
+  #       GID: ${GID:-1000}
+  #   entrypoint: php artisan octane:frankenphp --port=80 --workers=1 --max-requests=1
+  #   ports:
+  #     - 8002:80
+  #   volumes:
+  #     - ./:/app
+  #   networks:
+  #     - klinik-project
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - postgres
+  #     - redis
 
   vite:
       container_name: vite
@@ -89,7 +110,7 @@ services:
     environment:
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_DATABASE}
+      # POSTGRES_DB: ${DB_DATABASE}
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql # Menambahkan init.sql  

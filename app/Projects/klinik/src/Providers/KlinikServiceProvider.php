@@ -41,7 +41,7 @@ class KlinikServiceProvider extends KlinikEnvironment
         $this->app->booted(function(){
             $model   = Facades\Klinik::myModel($this->TenantModel()->find(Klinik::ID));
             $this->deferredProviders($model);
-
+            
             tenancy()->initialize(Klinik::ID);
             $tenant = tenancy()->tenant;
             $tenant->save();

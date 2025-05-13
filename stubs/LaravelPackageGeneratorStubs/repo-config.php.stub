@@ -1,0 +1,30 @@
+<?php
+
+use {{NAMESPACE}}\{
+    {{model_namespace}},
+    {{command_namespace}},
+    {{contract_namespace}}
+};
+
+return [
+    "namespace"     => "{{NAMESPACE}}",
+    "paths"         => [
+        "local_path"   => "{{LOCAL_PATH}}",
+        "base_path"    => __DIR__.'\\..\\'
+    ],
+    'app' => [
+        'contracts' => [
+        ],
+    ],
+    'commands'  => [
+        Commands\SeedCommand::class,
+        Commands\MigrateCommand::class,
+        Commands\InstallMakeCommand::class
+    ],
+    'libs' => {{LIBS}},
+    'database' => [
+        'models' => [
+        ]
+    ],
+    "provider" => "{{NAMESPACE}}\\{{provider_namespace}}\\{{CLASS_BASENAME}}ServiceProvider"
+];

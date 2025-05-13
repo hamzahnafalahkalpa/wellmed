@@ -1,132 +1,144 @@
 [submodule "repositories/laravel-support"]
 	path = repositories/laravel-support
-	url = https://gitlab.com/micro-tenant/laravel-support.git
+	url = git@gitlab.com:micro-tenant/laravel-support.git
 [submodule "repositories/microtenant"]
 	path = repositories/microtenant
-	url = https://gitlab.com/micro-tenant/microtenant.git
+	url = git@gitlab.com:micro-tenant/microtenant.git
 [submodule "repositories/laravel-permission"]
 	path = repositories/laravel-permission
-	url = https://gitlab.com/micro-tenant/laravel-permission.git
+	url = git@gitlab.com:micro-tenant/laravel-permission.git
 [submodule "repositories/laravel-package-generator"]
 	path = repositories/laravel-package-generator
-	url = https://gitlab.com/micro-tenant/laravel-package-generator.git
+	url = git@gitlab.com:micro-tenant/laravel-package-generator.git
 [submodule "repositories/laravel-feature"]
 	path = repositories/laravel-feature
-	url = https://gitlab.com/micro-tenant/laravel-feature.git
+	url = git@gitlab.com:micro-tenant/laravel-feature.git
 [submodule "repositories/api-helper"]
 	path = repositories/api-helper
-	url = https://gitlab.com/micro-tenant/api-helper.git
+	url = git@gitlab.com:micro-tenant/api-helper.git
 [submodule "repositories/laravel-stub"]
 	path = repositories/laravel-stub
-	url = https://gitlab.com/micro-tenant/laravel-stub.git
+	url = git@gitlab.com:micro-tenant/laravel-stub.git
 [submodule "repositories/laravel-has-props"]
 	path = repositories/laravel-has-props
-	url = https://gitlab.com/micro-tenant/laravel-has-props.git
+	url = git@gitlab.com:micro-tenant/laravel-has-props.git
 [submodule "repositories/module-workspace"]
 	path = repositories/module-workspace
-	url = https://gitlab.com/micro-tenant/module-workspace.git
+	url = git@gitlab.com:micro-tenant/module-workspace.git
 [submodule "repositories/module-warehouse"]
 	path = repositories/module-warehouse
-	url = https://gitlab.com/micro-tenant/module-warehouse.git
+	url = git@gitlab.com:micro-tenant/module-warehouse.git
 [submodule "repositories/module-regional"]
 	path = repositories/module-regional
-	url = https://gitlab.com/micro-tenant/module-regional.git
+	url = git@gitlab.com:micro-tenant/module-regional.git
 [submodule "repositories/module-user"]
 	path = repositories/module-user
-	url = https://gitlab.com/micro-tenant/module-user.git
+	url = git@gitlab.com:micro-tenant/module-user.git
 [submodule "repositories/module-encoding"]
 	path = repositories/module-encoding
-	url = https://gitlab.com/micro-tenant/module-encoding.git
+	url = git@gitlab.com:micro-tenant/module-encoding.git
 [submodule "repositories/klinik-starterpack"]
 	path = repositories/klinik-starterpack
-	url = https://gitlab.com/bundling-features/klinik-starterpack.git
+	url = git@gitlab.com:bundling-features/klinik-starterpack.git
 [submodule "repositories/module-patient"]
 	path = repositories/module-patient
-	url = https://gitlab.com/micro-tenant/module-patient.git
+	url = git@gitlab.com:micro-tenant/module-patient.git
 [submodule "repositories/module-agent"]
 	path = repositories/module-agent
-	url = https://gitlab.com/micro-tenant/module-agent.git
+	url = git@gitlab.com:micro-tenant/module-agent.git
 [submodule "repositories/module-employee"]
 	path = repositories/module-employee
-	url = https://gitlab.com/micro-tenant/module-employee.git
+	url = git@gitlab.com:micro-tenant/module-employee.git
 [submodule "repositories/module-funding"]
 	path = repositories/module-funding
-	url = https://gitlab.com/micro-tenant/module-funding.git
+	url = git@gitlab.com:micro-tenant/module-funding.git
 [submodule "repositories/module-lab-radiology"]
 	path = repositories/module-lab-radiology
-	url = https://gitlab.com/micro-tenant/module-lab-radiology.git
+	url = git@gitlab.com:micro-tenant/module-lab-radiology.git
 [submodule "repositories/module-medic-service"]
 	path = repositories/module-medic-service
-	url = https://gitlab.com/micro-tenant/module-medic-service.git
+	url = git@gitlab.com:micro-tenant/module-medic-service.git
 [submodule "repositories/module-medical-treatment"]
 	path = repositories/module-medical-treatment
-	url = https://gitlab.com/micro-tenant/module-medical-treatment.git
+	url = git@gitlab.com:micro-tenant/module-medical-treatment.git
 [submodule "repositories/module-organization"]
 	path = repositories/module-organization
-	url = https://gitlab.com/micro-tenant/module-organization.git
+	url = git@gitlab.com:micro-tenant/module-organization.git
 [submodule "repositories/module-payer"]
 	path = repositories/module-payer
-	url = https://gitlab.com/micro-tenant/module-payer.git
+	url = git@gitlab.com:micro-tenant/module-payer.git
 [submodule "repositories/module-people"]
 	path = repositories/module-people
-	url = https://gitlab.com/micro-tenant/module-people.git
+	url = git@gitlab.com:micro-tenant/module-people.git
 [submodule "repositories/module-profession"]
 	path = repositories/module-profession
-	url = https://gitlab.com/micro-tenant/module-profession.git
+	url = git@gitlab.com:micro-tenant/module-profession.git
 [submodule "repositories/module-service"]
 	path = repositories/module-service
-	url = https://gitlab.com/micro-tenant/module-service.git
+	url = git@gitlab.com:micro-tenant/module-service.git
 [submodule "repositories/module-summary"]
 	path = repositories/module-summary
-	url = https://gitlab.com/micro-tenant/module-summary.git
+	url = git@gitlab.com:micro-tenant/module-summary.git
 [submodule "repositories/module-transaction"]
 	path = repositories/module-transaction
-	url = https://gitlab.com/micro-tenant/module-transaction.git
+	url = git@gitlab.com:micro-tenant/module-transaction.git
 [submodule "repositories/module-treatment"]
 	path = repositories/module-treatment
-	url = https://gitlab.com/micro-tenant/module-treatment.git
+	url = git@gitlab.com:micro-tenant/module-treatment.git
 [submodule "repositories/module-class-room"]
 	path = repositories/module-class-room
-	url = https://gitlab.com/micro-tenant/module-class-room.git
+	url = git@gitlab.com:micro-tenant/module-class-room.git
 [submodule "repositories/module-mcu"]
 	path = repositories/module-mcu
-	url = https://gitlab.com/micro-tenant/module-mcu.git
+	url = git@gitlab.com:micro-tenant/module-mcu.git
 [submodule "repositories/module-item"]
 	path = repositories/module-item
-	url = https://gitlab.com/micro-tenant/module-item.git
+	url = git@gitlab.com:micro-tenant/module-item.git
 [submodule "repositories/module-medical-item"]
 	path = repositories/module-medical-item
-	url = https://gitlab.com/micro-tenant/module-medical-item.git
+	url = git@gitlab.com:micro-tenant/module-medical-item.git
 [submodule "repositories/module-examination"]
 	path = repositories/module-examination
-	url = https://gitlab.com/micro-tenant/module-examination.git
+	url = git@gitlab.com:micro-tenant/module-examination.git
 [submodule "repositories/module-procurement"]
 	path = repositories/module-procurement
-	url = https://gitlab.com/micro-tenant/module-procurement.git
+	url = git@gitlab.com:micro-tenant/module-procurement.git
 [submodule "repositories/module-medical-procurement"]
 	path = repositories/module-medical-procurement
-	url = https://gitlab.com/micro-tenant/module-medical-procurement.git
+	url = git@gitlab.com:micro-tenant/module-medical-procurement.git
 [submodule "repositories/module-disease"]
 	path = repositories/module-disease
-	url = https://gitlab.com/micro-tenant/module-disease.git
+	url = git@gitlab.com:micro-tenant/module-disease.git
 [submodule "repositories/module-informed-consent"]
 	path = repositories/module-informed-consent
-	url = https://gitlab.com/micro-tenant/module-informed-consent.git
+	url = git@gitlab.com:micro-tenant/module-informed-consent.git
 [submodule "repositories/module-icd"]
 	path = repositories/module-icd
-	url = https://gitlab.com/micro-tenant/module-icd.git
+	url = git@gitlab.com:micro-tenant/module-icd.git
 [submodule "repositories/module-anatomy"]
 	path = repositories/module-anatomy
-	url = https://gitlab.com/micro-tenant/module-anatomy.git
+	url = git@gitlab.com:micro-tenant/module-anatomy.git
 [submodule "repositories/module-physical-examination"]
 	path = repositories/module-physical-examination
-	url = https://gitlab.com/micro-tenant/module-physical-examination.git
+	url = git@gitlab.com:micro-tenant/module-physical-examination.git
 [submodule "repositories/module-opname-stock"]
 	path = repositories/module-opname-stock
-	url = https://gitlab.com/micro-tenant/module-opname-stock.git
+	url = git@gitlab.com:micro-tenant/module-opname-stock.git
 [submodule "repositories/module-distribution"]
 	path = repositories/module-distribution
-	url = https://gitlab.com/micro-tenant/module-distribution.git
+	url = git@gitlab.com:micro-tenant/module-distribution.git
 [submodule "repositories/module-pharmacy"]
 	path = repositories/module-pharmacy
-	url = https://gitlab.com/micro-tenant/module-pharmacy.git
+	url = git@gitlab.com:micro-tenant/module-pharmacy.git
+[submodule "app/Tenants/tenant-klinik"]
+	path = app/Tenants/tenant-klinik
+	url = git@gitlab.com:micro-tenant/tenant-klinik.git
+[submodule "repositories/module-tax"]
+	path = repositories/module-tax
+	url = git@gitlab.com:micro-tenant/module-tax.git
+[submodule "app/Projects/klinik"]
+	path = app/Projects/klinik
+	url = git@gitlab.com:micro-tenant/initial-klinik.git
+[submodule "app/Groups/group-initial-klinik"]
+	path = app/Groups/group-initial-klinik
+	url = git@gitlab.com:micro-tenant/group-initial-klinik.git

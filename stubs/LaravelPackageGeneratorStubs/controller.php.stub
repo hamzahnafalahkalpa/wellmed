@@ -1,0 +1,29 @@
+<?php
+
+namespace {{NAMESPACE}}\{{controller_namespace}}\API\{{CONTROLLER_NAME}};
+
+use {{NAMESPACE}}\{{contract_namespace}}\{{schema_namespace}}\{{CONTROLLER_NAME}};
+use {{NAMESPACE}}\{{controller_namespace}}\API\ApiController;
+use {{NAMESPACE}}\{{request_namespace}}\API\{{CONTROLLER_NAME}}\{
+    ViewRequest, StoreRequest, DeleteRequest
+};
+
+class {{CONTROLLER_NAME}}Controller extends ApiController{
+    public function __construct(
+        protected {{CONTROLLER_NAME}} $__{{LOWER_CONTROLLER_NAME}}_schema
+    ){
+        parent::__construct();
+    }
+
+    public function index(ViewRequest $request){
+        return $this->__{{LOWER_CONTROLLER_NAME}}_schema->view{{CONTROLLER_NAME}}List();
+    }
+
+    public function store(StoreRequest $request){
+        return $this->__{{LOWER_CONTROLLER_NAME}}_schema->store{{CONTROLLER_NAME}}();
+    }
+
+    public function destroy(DeleteRequest $request){
+        return $this->__{{LOWER_CONTROLLER_NAME}}_schema->delete{{CONTROLLER_NAME}}();
+    }
+}
