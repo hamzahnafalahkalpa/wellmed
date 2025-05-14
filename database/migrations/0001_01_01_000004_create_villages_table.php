@@ -38,14 +38,15 @@ return new class extends Migration
                 $table->id();
                 $table->string('code', 100)->nullable(true);
                 $table->string('name', 100)->nullable(false);
-                $table->foreignIdFor($province::class)->nullable(false)->index()
+                $table->foreignIdFor($province::class)->nullable()->index()
                     ->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-                $table->foreignIdFor($district::class)->nullable(false)->index()
+                $table->foreignIdFor($district::class)->nullable()->index()
                     ->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-                $table->foreignIdFor($subdistrict::class)->nullable(false)->index()
+                $table->foreignIdFor($subdistrict::class)->nullable()->index()
                     ->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->string('latitude', 50)->nullable();
                 $table->string('longitude', 50)->nullable();
+                $table->string('pos_code', 50)->nullable();
                 $table->json('props')->nullable();
             });
         }

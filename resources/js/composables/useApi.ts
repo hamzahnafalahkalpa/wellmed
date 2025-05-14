@@ -1,4 +1,6 @@
 import jwtEncode from 'jwt-encode';
+import { useCsrf } from './useCsrf';
+import { ref } from 'vue';
 
 const SECRET = 'YXYlGIbJ65VGjQnETWXoOiCvqpXg7PJu';
 
@@ -7,22 +9,27 @@ export async function api<T = any>(
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET',
   data?: Record<string, any>
 ): Promise<T> {
-  const payload = {
-    iat: Math.floor(Date.now() / 1000),
-    data: {
-      username: 'admin',
-      password: 'password',
-    },
-  };
+  const loading = ref(false);
+  const csrfToken = useCsrf();
+
 
   const token = jwtEncode(payload, SECRET, 'HS256');
 
   const headers: HeadersInit = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
+    'X-CSRF-TOKEN': csrfToken.value,
     appcode: '2',
     Authorization: `Bearer ${token}`,
+
   };
+
+  const handleError = async (response: Response) => {
+      const errorData = await response.json().catch(() => null);
+      const message = errorData?.meta?.message || response.statusText || 'An unexpected error occurred';
+      console.error('API Error:', message);
+  };
+
 
   const response = await fetch(url, {
     method,

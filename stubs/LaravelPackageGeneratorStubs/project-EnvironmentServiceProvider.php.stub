@@ -9,7 +9,7 @@ abstract class {{CLASS_BASENAME}}Environment extends BaseServiceProvider{
     protected $__config_{{SNAKE_LOWER_CLASS_BASENAME}} = [];
     protected string $__lower_package_name;
     protected string $__config_base_path      = '/../Config';
-    protected string $__migration_base_path   = '/../assets/database/migrations';
+    protected string $__migration_base_path   = '/../{{database_namespace}}';
     protected string $__migration_target_path = '';
 
     public function __construct(Container $app) {

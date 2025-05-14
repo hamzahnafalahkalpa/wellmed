@@ -34,7 +34,8 @@ return new class extends Migration
                 $table->id();
                 $table->string('code', 100)->nullable(true);
                 $table->string('name', 100)->nullable(false);
-                $table->foreignIdFor($province::class)->nullable(false)->index()
+                $table->char('type', 2)->nullable();
+                $table->foreignIdFor($province::class)->nullable()->index()
                     ->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->string('latitude', 50)->nullable();
                 $table->string('longitude', 50)->nullable();

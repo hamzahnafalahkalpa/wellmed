@@ -35,6 +35,7 @@ return [
         ],
         'model_connections' => [
             "central"        => [],
+            "central_app"    => [],
             "central_tenant" => []
         ],
         'connections' => [

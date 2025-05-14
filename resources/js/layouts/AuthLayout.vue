@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import AuthLayout from '@/layouts/auth/AuthSimpleLayout.vue';
-// import background from '@/assets/images/background.jpg';
 import { Head, Link } from '@inertiajs/vue3';
 
 defineProps<{
@@ -9,53 +7,9 @@ defineProps<{
 }>();
 </script>
 
-<!-- <template>
-    <AuthLayout :title="title" :description="description">
-        <slot />
-    </AuthLayout>
-    
-</template> -->
-
-<!-- <script setup>
-   import InputLabel from '@/Components/InputLabel.vue';
-   import PrimaryButton from '@/Components/PrimaryButton.vue';
-   import TextInput from '@/Components/TextInput.vue';
-   import InputError from '@/Components/InputError.vue';
-   import Checkbox from '@/Components/Checkbox.vue';
-   import { Link } from '@inertiajs/vue3';
-</script>
-
 <style>
    .parallelogram {
-      background-color: #ccc;
-      overflow: hidden;
-   }
-
-   .parallelogram .image {
-      transform: skew(20deg);
-      width: 80vw;
-      height: 100vh;
-      background-size: cover;
-      filter: grayscale(100%);
-      position: relative;
-      left: -30%
-   }
-
-   .login-container::before{
-      content : "";
-      position: fixed;
-      top: 0px;
-      left: 0px;
-      background-color: rgba(0,0,0,.2);
-      width: 100vw;
-      height: 100vh;
-      z-index: 40;
-   }
-</style>-->
-
-<style>
-   .parallelogram {
-      background-color: #ccc;
+      background-color: var(--foreground);
       overflow: hidden;
    }
 
@@ -103,7 +57,7 @@ defineProps<{
             </div>
          </div>
          <div class="min-h-screen relative w-full z-40">
-            <div class="hidden 2xl:block animate-fade animate-ease-linear absolute p-20 w-1/2 h-[50vh] rounded-lg translate-x-[-50%] translate-y-[-50%] left-[50%] top-[40%]">
+            <div class="hidden 2xl:block animate-fade animate-ease-linear absolute p-20 w-1/2 h-[50vh] rounded-lg -translate-x-1/2 -translate-y-1/2 left-[50%] top-[40%]">
                <div class="animate-fade-right animate-ease-in text-5xl w-[500px] absolute p-2.5 px-10 rounded-[30px] font-semibold left-[10%] top-[200px]">
                   <blockquote class="bl-lg text-5xl text-primary text-shadow">
                      Stay Healthy, Stay Happy!

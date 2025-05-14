@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ApiAccessController extends EnvironmentController{
     public function store(StoreRequest $request){
+        $request->authenticate();
+        $request->session()->regenerate();
+
+        
+
         $token = $this->generateToken();
         $user  = $this->getUser();
         $response = $this->retransform($user, function ($user) use ($token) {

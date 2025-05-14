@@ -3,8 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Hanafalah\UserManagement\Models\UserReference;
 use Hanafalah\MicroTenant\Models\Tenant\Tenant;
+use Hanafalah\ModuleUser\Models\User\UserReference;
 
 return new class extends Migration
 {

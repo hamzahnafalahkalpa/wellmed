@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Hanafalah\LaravelSupport\Concerns\NowYouSeeMe;
-use Hanafalah\LaravelSupport\Models\Relation\ModelHasRelation;
+use Hanafalah\MicroTenant\Models\Relation\CentralModelHasRelation;
 
 return new class extends Migration {
     use NowYouSeeMe;
@@ -13,7 +13,7 @@ return new class extends Migration {
 
     public function __construct()
     {
-        $this->__table = app(config('database.models.ModelHasRelation', ModelHasRelation::class));
+        $this->__table = app(config('database.models.CentralModelHasRelation', CentralModelHasRelation::class));
     }
 
     /**

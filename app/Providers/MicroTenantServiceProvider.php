@@ -87,8 +87,9 @@ class MicroTenantServiceProvider extends ServiceProvider
             Events\BootstrappingTenancy::class => [],
             Events\TenancyBootstrapped::class => [
                 function(){
-                    MicroTenant::reconfigDatabase(tenancy()->tenant);
-                    MicroTenant::overrideStoragePath(tenancy()->tenant->name);
+                    MicroTenant::tenantImpersonate(tenancy()->tenant);
+                    // MicroTenant::reconfigDatabase(tenancy()->tenant);
+                    // MicroTenant::overrideStoragePath(tenancy()->tenant->name);
                     // $tenant = tenancy()->tenant;
                     // $connection_path = "database.connections.{$tenant->getConnectionName()}";
                     // config([

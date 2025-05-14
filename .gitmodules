@@ -154,3 +154,12 @@
 [submodule "repositories/module-handwriting"]
 	path = repositories/module-handwriting
 	url = https://gitlab.com/micro-tenant/module-handwriting.git
+[submodule "repositories/module-support"]
+	path = repositories/module-support
+	url = https://gitlab.com/micro-tenant/module-support.git
+[submodule "repositories/module-card-identity"]
+	path = repositories/module-card-identity
+	url = https://gitlab.com/micro-tenant/module-card-identity.git
+[submodule "repositories/module-payment"]
+	path = repositories/module-payment
+	url = https://gitlab.com/micro-tenant/module-payment.git
