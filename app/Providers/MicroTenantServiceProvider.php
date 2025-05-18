@@ -70,13 +70,7 @@ class MicroTenantServiceProvider extends ServiceProvider
             // Tenancy events
             Events\InitializingTenancy::class => [],
             Events\TenancyInitialized::class => [
-                Listeners\BootstrapTenancy::class,   
-                function(){
-                    $tenant = tenancy()->tenant;
-                    if ($tenant->reference_type == app(config('database.models.Workspace'))->getMorphClass()){
-                        config()->set('app.client_timezone', $tenant->reference->timezone ?? 'Asia/Jakarta');
-                    }
-                }             
+                Listeners\BootstrapTenancy::class         
             ],
 
             Events\EndingTenancy::class => [],
@@ -87,7 +81,16 @@ class MicroTenantServiceProvider extends ServiceProvider
             Events\BootstrappingTenancy::class => [],
             Events\TenancyBootstrapped::class => [
                 function(){
-                    MicroTenant::tenantImpersonate(tenancy()->tenant);
+                    $tenant = tenancy()->tenant;
+                    $microtenant = MicroTenant::getMicroTenant();
+                    if (isset($microtenant) && $tenant->getKey() !== $microtenant->tenant->model->getKey()){
+                        MicroTenant::tenantImpersonate($tenant);
+                    }
+
+                    $workspace = app(config('database.models.Workspace'));
+                    if ($tenant->reference_type == $workspace->getMorphClass()){
+                        config()->set('app.client_timezone', $tenant->reference->timezone ?? 'Asia/Jakarta');
+                    }
                     // MicroTenant::reconfigDatabase(tenancy()->tenant);
                     // MicroTenant::overrideStoragePath(tenancy()->tenant->name);
                     // $tenant = tenancy()->tenant;

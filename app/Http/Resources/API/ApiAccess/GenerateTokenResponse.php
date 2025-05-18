@@ -25,22 +25,38 @@ class GenerateTokenResponse extends ApiResource
                 'user_reference' => $this->relationValidation('userReference',function(){
                     $userReference = $this->userReference;
                     return [
+                        'id'             => $userReference->id,
                         'uuid'           => $userReference->uuid,
-                        'reference_id'   => $userReference->reference_id,
-                        'reference_type' => $userReference->reference_type,
-                        'reference'      => $userReference->relationValidation('reference',function() use ($userReference){
-                            $reference = $userReference->reference;
-                            return $reference->toViewApi();
-                        }),
-                        'workspace'    => $userReference->relationValidation('workspace',function() use ($userReference){
-                            $workspace = $userReference->workspace;
-                            return $workspace->toShowApi();
+                        'tenant'    => $userReference->relationValidation('tenant',function() use ($userReference){
+                            $tenant = $userReference->tenant;
+                            return [
+                                'id'        => $tenant->id,
+                                'name'      => $tenant->name,
+                                'workspace' => $tenant->relationValidation('reference',function() use ($tenant){
+                                    $reference = $tenant->reference;
+                                    return [
+                                        'id'   => $reference->id,
+                                        'uuid' => $reference->uuid,
+                                        'name' => $reference->name
+                                    ];
+                                }),
+                                'domain'    => $tenant->relationValidation('domain',function() use ($tenant){
+                                    $domain = $tenant->domain;
+                                    return [
+                                        'id'   => $domain->id,
+                                        'name' => $domain->name
+                                    ];
+                                })
+                            ];
                         }),
                         'role' => $userReference->prop_role,
                         'roles' => $userReference->relationValidation('roles',function() use ($userReference){
                             $roles = $userReference->roles;
                             return $roles->transform(function($role) use ($userReference){
-                                return $role->toViewApi();
+                                return [
+                                    'id'   => $role->id,
+                                    'name' => $role->name
+                                ];
                             });
                         })
                     ];

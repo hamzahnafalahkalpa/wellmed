@@ -29,7 +29,7 @@ return new class extends Migration
             Schema::create($table_name, function (Blueprint $table) {
                 $user = app(config('database.models.User', User::class));
 
-                $table->id();
+                $table->ulid('id')->primary();
                 $table->string('uuid', 255)->unique()->nullable(false);
                 $table->string('reference_type', 50)->nullable(false);
                 $table->string('reference_id', 36)->nullable(false);

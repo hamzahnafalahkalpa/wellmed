@@ -35,24 +35,19 @@ createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob<DefineComponent>('./pages/**/*.vue')),
     setup({ el, App, props, plugin }) {
+        const pinia = createPinia();
+        const head = createHead();
+
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .use(pinia)
+            .use(head)
+            .use(TippyPlugin)
+            .component('Popper', Popper)
+            .component('QuillEditor', QuillEditor)
+            .component('VueDatePicker', VueDatePicker)
             .mount(el);
-
-        const pinia = createPinia();
-        App.use(pinia);
-
-                // Vue Meta (Head Management)
-        const head = createHead();
-        App.use(head);
-
-        App.use(TippyPlugin);
-
-        App.component('Popper', Popper);
-        App.component('QuillEditor', QuillEditor);
-        App.component('VueDatePicker', VueDatePicker);
-
     },
     progress: {
         color: '#4B5563',

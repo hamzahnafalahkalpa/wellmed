@@ -37,14 +37,22 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
         [$message, $author] = str(Inspiring::quotes()->random())->explode('-');
 
         return [
             ...parent::share($request),
-            'name' => config('app.name'),
-            'quote' => ['message' => trim($message), 'author' => trim($author)],
-            'auth' => [
+            'name'   => config('app.name'),
+            'csrf_token' => csrf_token(),
+            'quote'  => [
+                'message' => trim($message), 
+                'author' => trim($author)
+            ],
+            'auth'   => [
                 'user' => $request->user(),
+                'session' => $_SESSION ?? []
             ],
             'ziggy' => [
                 ...(new Ziggy)->toArray(),

@@ -1,35 +1,30 @@
-import jwtEncode from 'jwt-encode';
 import { useCsrf } from './useCsrf';
 import { ref } from 'vue';
-
-const SECRET = 'YXYlGIbJ65VGjQnETWXoOiCvqpXg7PJu';
+import { usePage } from '@inertiajs/vue3';
 
 export async function api<T = any>(
   url: string,
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET',
-  data?: Record<string, any>
+  data?: Record<string, any>,
+  customHeaders: Record<string, string> = {}
 ): Promise<T> {
   const loading = ref(false);
   const csrfToken = useCsrf();
+  const page = usePage();
 
+  // Ambil token dari Inertia props dulu, fallback ke localStorage
+  const token: string | null = page?.props?.auth?.session?.token || localStorage.getItem('auth_token');
+  console.log(token);
 
-  const token = jwtEncode(payload, SECRET, 'HS256');
-
+  
   const headers: HeadersInit = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
     'X-CSRF-TOKEN': csrfToken.value,
     appcode: '2',
-    Authorization: `Bearer ${token}`,
-
+    ...customHeaders,
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
   };
-
-  const handleError = async (response: Response) => {
-      const errorData = await response.json().catch(() => null);
-      const message = errorData?.meta?.message || response.statusText || 'An unexpected error occurred';
-      console.error('API Error:', message);
-  };
-
 
   const response = await fetch(url, {
     method,
@@ -41,9 +36,8 @@ export async function api<T = any>(
 
   const { meta, data: responseData } = result;
 
-if (!meta.success) {
+  if (!meta.success) {
     if (meta.code === 201) {
-      // Langsung redirect ke login
       window.location.href = '/login';
       return Promise.reject({
         code: 201,
@@ -51,7 +45,7 @@ if (!meta.success) {
       });
     }
 
-    // Lempar error lainnya
+    console.error('API Error:', meta.messages);
     throw {
       code: meta.code,
       messages: meta.messages,

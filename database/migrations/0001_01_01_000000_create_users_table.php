@@ -22,9 +22,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('users')) {
-            Schema::create('users', function (Blueprint $table) {
-                $table->id();
+        $table_name = $this->__table->getTable();
+        if (!Schema::hasTable($table_name)) {
+            Schema::create($table_name, function (Blueprint $table) {
+                $table->ulid('id')->primary();
                 $table->string('username')->unique();
                 $table->string('email')->unique();
                 $table->timestamp('email_verified_at')->nullable();
@@ -43,7 +44,7 @@ return new class extends Migration
             if (!Schema::hasTable('sessions')) {
                 Schema::create('sessions', function (Blueprint $table) {
                     $table->string('id')->primary();
-                    $table->foreignId('user_id')->nullable()->index();
+                    $table->foreignIdFor($this->__table::class)->nullable()->index();
                     $table->string('ip_address', 45)->nullable();
                     $table->text('user_agent')->nullable();
                     $table->longText('payload');

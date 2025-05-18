@@ -2,10 +2,13 @@
 
 use App\Http\Middleware\HandleAppearance;
 use App\Http\Middleware\HandleInertiaRequests;
+use Hanafalah\LaravelSupport\Response;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
+use Hanafalah\LaravelSupport\Middlewares\LaravelSupportResponse;
+use Hanafalah\LaravelSupport\Middlewares\PayloadMonitoring;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -22,7 +25,9 @@ return Application::configure(basePath: dirname(__DIR__))
             HandleInertiaRequests::class,
             AddLinkHeadersForPreloadedAssets::class,
         ]);
+        $middleware->prepend(PayloadMonitoring::class);
+        $middleware->prepend(LaravelSupportResponse::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        (new Response)->exceptionRespond($exceptions);
     })->create();

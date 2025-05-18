@@ -2,7 +2,6 @@
 
 use Hanafalah\ApiHelper\{
     Commands,
-    Models,
     Middlewares,
     Encryptions,
     Validators
@@ -44,7 +43,7 @@ return [
      *
      * @see https://tools.ietf.org/html/rfc7518#section-3.1
      */
-    'encryption_method' => 'HAS256',
+    'encryption_method' => 'HS256',
     'libs' => [
         'model' => 'Models',
         'contract' => 'Contracts',

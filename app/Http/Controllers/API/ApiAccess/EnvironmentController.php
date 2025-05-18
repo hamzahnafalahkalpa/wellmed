@@ -18,6 +18,7 @@ class EnvironmentController extends ApiController{
     protected function generateToken(){
         $token = ApiAccess::generateToken(function($api_access){
             $this->__user = $api_access->getUser();
+            $this->__user = $this->UserModel()->findOrFail($this->__user->getKey());
         });
         return $token;
     }
@@ -26,7 +27,10 @@ class EnvironmentController extends ApiController{
         $this->__user->load([
             'userReference'=>function($query){
                 $query->with([
-                    'reference','roles','workspace'
+                    'roles',
+                    'tenant'   => function($query){
+                        $query->with(['domain','reference']);
+                    }
                 ]);
             }
         ]);
