@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests\Auth;
 
+use Firebase\JWT\JWT;
+use Hanafalah\ApiHelper\Facades\ApiAccess;
+use Hanafalah\MicroTenant\Facades\MicroTenant;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +43,6 @@ class LoginRequest extends FormRequest
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
-
         if (! Auth::attempt($this->only('username', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
@@ -49,10 +51,29 @@ class LoginRequest extends FormRequest
             ]);
         }
 
-        $user = Auth::user();
-        $user = app(config('database.models.User'))->findOrFail($user->id);
-        $token = $user->createToken('auth_token')->plainTextToken;
-        $_SESSION['token'] = $token;
+        $secretKey = 'YXYlGIbJ65VGjQnETWXoOiCvqpXg7PJu';
+        $payload = [
+            'data' => [
+                'username' => request()->username,
+                'password' => request()->password,
+            ]
+        ];
+
+        $jwt = JWT::encode($payload, $secretKey, 'HS256');
+
+        request()->merge([
+            'AppCode' => 2
+        ]);
+
+        $token = ApiAccess::init($jwt)->generateToken(function($api_access){
+            $user = $api_access->getUser();
+            $_SESSION['user']   = $user;
+            $_SESSION['tenant'] = $user->userReference->tenant;
+        });
+        $_SESSION['token']  = $token;
+        // $user = Auth::user();
+        // $user = app(config('database.models.User'))->findOrFail($user->id);
+        // $token = $user->createToken('access-token')->plainTextToken;
 
         RateLimiter::clear($this->throttleKey());
     }

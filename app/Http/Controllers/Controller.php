@@ -8,7 +8,7 @@ abstract class Controller extends BaseController
 {
     public function __construct()
     {
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) session_start();
     }
     //
 }

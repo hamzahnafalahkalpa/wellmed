@@ -5,10 +5,10 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return redirect()->route('login');
-    // return Inertia::render('Welcome');
 })->name('home');   
 
-Route::get('dashboard', function () {
+// Route::get('/{tenant}/dashboard', function () {
+Route::get("dashboard", function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 

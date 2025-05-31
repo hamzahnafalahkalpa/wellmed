@@ -5,10 +5,10 @@ use App\Http\Middleware\HandleInertiaRequests;
 use Hanafalah\LaravelSupport\Response;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
-use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
 use Hanafalah\LaravelSupport\Middlewares\LaravelSupportResponse;
 use Hanafalah\LaravelSupport\Middlewares\PayloadMonitoring;
+use Illuminate\Foundation\Configuration\Middleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(

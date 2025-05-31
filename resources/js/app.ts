@@ -2,7 +2,6 @@ import '../css/app.css';
 
 import { createInertiaApp } from '@inertiajs/vue3';
 import { createHead } from '@vueuse/head';
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
 import { ZiggyVue } from 'ziggy-js';
@@ -14,9 +13,15 @@ import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
-// import '@/assets/css/app.css';
+import { routeWithTenant } from '@/utils/routeWithTenant';
 
-// Extend ImportMeta interface for Vite...
+// setelah app dibuat, pasang global ke window
+// window.routeWithTenant = routeWithTenant;
+import { globMap } from './globMap';
+import { loadComponent } from '@/utils/loadComponent';
+
+const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+
 declare module 'vite/client' {
     interface ImportMetaEnv {
         readonly VITE_APP_NAME: string;
@@ -29,16 +34,34 @@ declare module 'vite/client' {
     }
 }
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+function loadPagesByHost(hostAndPath: string, host: string): Record<string, () => Promise<DefineComponent>> {
+  return {
+    ...(globMap[hostAndPath] ?? {}),
+    ...(globMap[host] ?? {}),
+    ...import.meta.glob<DefineComponent>('./pages/**/*.vue'),
+  };
+}
+
+const host = window.location.host;
+const path = window.location.pathname.split('/')[1];
+const hostAndPath = path ? `${host}/${path}` : host;
+
+const pages = loadPagesByHost(hostAndPath,host);
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
-    resolve: (name) => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob<DefineComponent>('./pages/**/*.vue')),
+    resolve: (name) => {
+        const match = Object.entries(pages).find(([key]) => key.includes(`${name}.vue`));
+        if (!match) {
+            throw new Error(`Page not found: ${name}`);
+        }
+        return loadComponent(match[1]); // <- penting!
+    },
     setup({ el, App, props, plugin }) {
         const pinia = createPinia();
         const head = createHead();
 
-        createApp({ render: () => h(App, props) })
+        const app = createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
             .use(pinia)
@@ -46,8 +69,15 @@ createInertiaApp({
             .use(TippyPlugin)
             .component('Popper', Popper)
             .component('QuillEditor', QuillEditor)
-            .component('VueDatePicker', VueDatePicker)
-            .mount(el);
+            .component('VueDatePicker', VueDatePicker);
+
+        // Daftarkan routeWithTenant sebagai global property di Vue app
+        app.config.globalProperties.routeWithTenant = routeWithTenant;
+
+        // Mount app
+        app.mount(el);
+
+        window.routeWithTenant = routeWithTenant;
     },
     progress: {
         color: '#4B5563',
