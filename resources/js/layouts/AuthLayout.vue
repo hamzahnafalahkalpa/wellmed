@@ -57,19 +57,19 @@ defineProps<{
             </div>
          </div>
          <div class="min-h-screen relative w-full z-40">
-            <div class="hidden 2xl:block animate-fade animate-ease-linear absolute p-20 w-1/2 h-[50vh] rounded-lg -translate-x-1/2 -translate-y-1/2 left-[50%] top-[40%]">
-               <div class="animate-fade-right animate-ease-in text-5xl w-[500px] absolute p-2.5 px-10 rounded-[30px] font-semibold left-[10%] top-[200px]">
+            <div class="hidden 2xl:block animate-fade animate-ease-linear absolute p-20 w-1/2 h-[50vh] rounded-lg -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+               <div class="animate-fade-right animate-ease-in text-5xl w-[500px] absolute p-2.5 px-10 rounded-[30px] font-semibold left-[10%] -translate-y-1/2 top-1/2">
                   <blockquote class="bl-lg text-5xl text-primary text-shadow">
                      Stay Healthy, Stay Happy!
                   </blockquote>
                   <br>
-                  <blockquote class="text-2xl text-secondary text-shadow">
+                  <blockquote class="text-2xl text-primary/80 text-shadow">
                      Health is not valued until sickness comes.
                   </blockquote>
                </div>
             </div>
             <div class="animate-fade-down">
-               <div class="p-2 sm:p-0 w-full h-screen sm:h-auto xl:w-1/2 2xl:w-[30%] xl:translate-x-[-50%] xl:-translate-y-1/2 top-0 xl:top-[50vh] xl:left-[60vw] 2xl:left-[70vw] relative rounded-lg">
+               <div class="p-2 sm:p-0 w-full h-screen sm:h-auto xl:w-1/2 2xl:w-[30%] xl:-translate-x-1/2 xl:-translate-y-1/2 top-0 xl:top-[50vh] xl:left-[60vw] 2xl:left-[70vw] relative rounded-lg">
                   <slot />
                </div>
             </div>

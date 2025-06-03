@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
+import { createApp, App, ref, onMounted, onBeforeUnmount, watch } from 'vue';
 import TabulatorFilter from './TabulatorFilter.vue';
 import {TabulatorFull as Tabulator} from 'tabulator-tables';
 import { Select } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 interface Props {
   id ?: string | null;
@@ -11,6 +12,16 @@ interface Props {
   columns: any[];
   usingFilter: boolean;
   options ?: Record<string, any> | null;
+}
+
+interface RowData {
+  id: number;
+  name: string;
+  [key: string]: any;
+}
+
+interface HTMLElementWithApp extends HTMLElement {
+  _vueApp?: App<Element>;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -47,6 +58,21 @@ const mergedOptions = {
   width: '100%',
   data: props.data,
   columns: props.columns,
+  rowFormatter: function(row){
+      let cell = row.getCell("actions");
+      if(!cell) return;
+
+      const el = cell.getElement();
+
+      // Cek kalau belum ada Vue mounted
+      if(!el._vueApp){
+          // Mount Vue component ke cell element
+          const app = Vue.createApp(MyActionButtons, { rowData: row.getData() });
+          app.mount(el);
+          el._vueApp = app;
+      }
+  },
+
   ...props.options,
 };
 

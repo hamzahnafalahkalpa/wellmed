@@ -87,6 +87,7 @@
         "vue-flatpickr-component": "^12.0.0",
         "vue-height-collapsible": "^0.1.1",
         "vue-simple-range-slider": "^1.1.0",
+        "vue-sonner": "^2.0.0",
         "vue3-apexcharts": "^1.8.0",
         "vue3-easymde": "^1.0.1",
         "vue3-form-wizard": "^0.2.4",

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue'
-import { cn } from '@/lib/utils'
 import { Primitive, type PrimitiveProps } from 'reka-ui'
+import { cn } from '@/lib/utils'
 import { type ButtonVariants, buttonVariants } from '.'
 
 interface Props extends PrimitiveProps {
@@ -20,9 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
     data-slot="button"
     :as="as"
     :as-child="asChild"
-    :class="cn(
-      buttonVariants({ variant, size }), props.class
-    )"
+    :class="cn(buttonVariants({ variant, size }), props.class)"
   >
     <slot />
   </Primitive>

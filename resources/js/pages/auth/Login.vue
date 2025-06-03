@@ -8,7 +8,6 @@ import { Label } from '@/components/ui/label';
 import AuthBase from '@/layouts/AuthLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
-import { login } from '@/services/authService';
 
 defineProps<{
     status?: string;
@@ -37,7 +36,7 @@ const submit = () => {
         </div>
 
         <div class="relative mb-[30px] w-full h-fit z-20">
-            <div class="relative w-[200px] h-[100px] translate-x-[-50%] left-[50%] mt-[20px] sm:mt-[-20px]" style="left:calc(50% - 10px)">
+            <div class="relative w-[200px] h-[100px] -translate-x-1/2 left-1/2 mt-[20px] sm:mt-[-20px]" style="left:calc(50% - 10px)">
                 <div class="image bg-no-repeat bg-center bg-contain w-full h-full filter brightness-0" :style="{ backgroundImage: `url(/assets/images/logo.png)` }"></div>
             </div>
         </div>
@@ -55,6 +54,7 @@ const submit = () => {
                         autocomplete="username"
                         v-model="form.username"
                         placeholder="Username"
+                        class="h-10"
                     />
                     <InputError :message="form.errors.username" />
                 </div>
@@ -74,6 +74,7 @@ const submit = () => {
                         autocomplete="current-password"
                         v-model="form.password"
                         placeholder="Password"
+                        class="h-10"
                     />
                     <InputError :message="form.errors.password" />
                 </div>
