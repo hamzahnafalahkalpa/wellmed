@@ -136,9 +136,6 @@
 [submodule "repositories/module-tax"]
 	path = repositories/module-tax
 	url = https://gitlab.com/micro-tenant/module-tax.git
-[submodule "app/Projects/klinik"]
-	path = app/Projects/klinik
-	url = https://gitlab.com/micro-tenant/klinik.git
 [submodule "app/Groups/group-initial-klinik"]
 	path = app/Groups/group-initial-klinik
 	url = https://gitlab.com/micro-tenant/group-initial-klinik.git
@@ -163,3 +160,6 @@
 [submodule "repositories/module-payment"]
 	path = repositories/module-payment
 	url = https://gitlab.com/micro-tenant/module-payment.git
+[submodule "app/Projects/klinik"]
+	path = app/Projects/klinik
+	url = https://gitlab.com/micro-tenant/initial-klinik.git

@@ -34,12 +34,6 @@ return new class extends Migration
                 $table->string('longitude', 50)->nullable();
                 $table->json('props')->nullable();
             });
-
-            $provinces = include(__DIR__ . '/data/provinces.php');
-            $province_model = app(config('database.models.Province'));
-            foreach ($provinces as $province) {
-                $province_model->updateOrCreate($province);
-            }
         }
     }
 

@@ -5,7 +5,7 @@ use Hanafalah\MicroTenant\Commands as Commands;
 return [
     'enabled'      => true,
     'monolith'     => false,
-    'dev_mode'     => false,
+    'dev_mode'     => true,
     'login_schema' => null,
     'application'  => [
         /**
@@ -34,9 +34,34 @@ return [
             //
         ],
         'model_connections' => [
-            "central"        => [],
-            "central_app"    => [],
-            "central_tenant" => []
+            "central"        => [
+                "ApiAccess",
+                "Cache",
+                "CacheLock",
+                "Country",
+                "District",
+                "Domain",
+                "FailedJob",
+                "JobBatch",
+                "Job",
+                "PasswordResetToken",
+                "PayloadMonitoring",
+                "PersonalAccessToken",
+                "Province",
+                "Subdistrict",
+                "Tenant",
+                "UserReference",
+                "User",
+                "Village",
+                "Workspace"
+            ],
+            "central_app"    => [
+                "Encoding",
+                "MasterFeature",
+                "ModelHasFeature"
+            ],
+            "central_tenant" => [
+            ]
         ],
         'connections' => [
             //THIS SETUP DEFAULT FOR MYSQL
@@ -139,6 +164,7 @@ return [
                     'observer'        => ['type' => 'dir','path' => 'Observers', 'generate' => true, 'stub' => null, 'files' => []],
                     'policy'          => ['type' => 'dir','path' => 'Policies', 'generate' => true, 'stub' => null, 'files' => []],
                     'job'             => ['type' => 'dir','path' => 'Jobs', 'generate' => false, 'stub' => null, 'files' => []],
+                    'transformer'     => ['type' => 'dir','path' => 'Transformers', 'generate' => true, 'stub' => null, 'files'=>[]],
                     'resource'        => ['type' => 'dir','path' => 'Resources', 'generate' => false, 'stub' => null, 'files' => []],
                     'seeder'          => ['type' => 'dir','path' => 'Database/Seeders', 'generate' => true, 'stub' => null, 'files' => []],
                     'middleware'      => ['type' => 'dir','path' => 'Middleware', 'generate' => true, 'stub' => null, 'files' => []],
@@ -194,6 +220,7 @@ return [
                     'observer'        => ['type' => 'dir','path' => 'Observers', 'generate' => true, 'stub' => null, 'files' => []],
                     'policy'          => ['type' => 'dir','path' => 'Policies', 'generate' => true, 'stub' => null, 'files' => []],
                     'job'             => ['type' => 'dir','path' => 'Jobs', 'generate' => false, 'stub' => null, 'files' => []],
+                    'transformer'     => ['type' => 'dir','path' => 'Transformers', 'generate' => true, 'stub' => null, 'files'=>[]],
                     'resource'        => ['type' => 'dir','path' => 'Resources', 'generate' => false, 'stub' => null, 'files' => []],
                     'seeder'          => ['type' => 'dir','path' => 'Database/Seeders', 'generate' => true, 'stub' => null, 'files' => []],
                     'middleware'      => ['type' => 'dir','path' => 'Middleware', 'generate' => true, 'stub' => null, 'files' => []],

@@ -31,12 +31,6 @@ return new class extends Migration
                 $table->string('country_code', 20)->nullable(false);
                 $table->string('name')->nullable(false);
             });
-
-            $countries = include_once(__DIR__ . '/data/countries.php');
-            $country_model = app(config('database.models.Country'));
-            foreach ($countries as $country) {
-                $country_model->updateOrCreate($country);
-            }
         }
     }
 

@@ -28,11 +28,11 @@ return [
                     'CommandServiceProvider' => ['generate' => true, 'stub' => 'CommandServiceProvider.php.stub'],
                     'RouteServiceProvider'   => ['generate' => true, 'stub' => 'RouteServiceProvider.php.stub']
                 ]],
-                'contract'        => ['type' => 'dir','path' => 'Contracts', 'generate' => true, 'stub' => null, 'files' => [
+                'contract'           => ['type' => 'dir','path' => 'Contracts', 'generate' => true, 'stub' => null, 'files' => [
                     '{{CLASS_BASENAME}}'  => ['type' => 'file','path' => '', 'generate' => true, 'stub' => 'main-contract.php.stub'],
                 ]],
-                'concern'           => ['type' => 'dir','path' => 'Concerns', 'generate' => true, 'stub' => null, 'files'=>[]],
-                'command'           => ['type' => 'dir','path' => 'Commands', 'generate' => true, 'stub' => null, 'files'=>[
+                'concern'            => ['type' => 'dir','path' => 'Concerns', 'generate' => true, 'stub' => null, 'files'=>[]],
+                'command'            => ['type' => 'dir','path' => 'Commands', 'generate' => true, 'stub' => null, 'files'=>[
                     'SeedCommand'    => ['generate' => true, 'stub' => 'SeedCommand.php.stub'],
                     'MigrateCommand' => ['generate' => true, 'stub' => 'MigrateCommand.php.stub'],
                     'InstallMakeCommand' => ['generate' => true, 'stub' => 'InstallMakeCommand.php.stub'],
