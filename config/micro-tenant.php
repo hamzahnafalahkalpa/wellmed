@@ -1,11 +1,10 @@
 <?php
 
-use Hanafalah\MicroTenant\Models as MicroTenantModels;
 use Hanafalah\MicroTenant\Commands as Commands;
 
 return [
     'enabled'      => true,
-    'monolith'     => true,
+    'monolith'     => false,
     'dev_mode'     => false,
     'login_schema' => null,
     'application'  => [

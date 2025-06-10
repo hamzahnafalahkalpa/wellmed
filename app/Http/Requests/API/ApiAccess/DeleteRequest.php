@@ -27,4 +27,17 @@ class DeleteRequest extends FormRequest
             'uuid' => ['required',$this->uuidValidation('UserReference')]
         ];
     }
+
+    /**
+     * Custom message for validation
+     * 
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'uuid.required' => 'UUID wajib dikirim sebagai parameter',
+            'uuid.exists'   => 'UUID tidak ditemukan di database',
+        ];
+    }
 }

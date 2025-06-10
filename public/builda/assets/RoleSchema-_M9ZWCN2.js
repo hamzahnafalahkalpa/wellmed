@@ -1,0 +1,1 @@
+import{l as a,o as e,a as r,s as o,n as s}from"./index-BWPUmTLK.js";const i=a(()=>e({id:s().optional().nullable(),name:o({required_error:"Nama role harus diisi",invalid_type_error:"Nama role harus berupa string"}),childs:r(l).optional()})),l=i;export{l as R};

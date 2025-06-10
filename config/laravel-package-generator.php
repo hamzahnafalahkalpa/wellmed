@@ -47,6 +47,7 @@ return [
                 'data'              => ['type' => 'dir','path' => 'Data', 'generate' => true, 'stub' => null, 'files' => []],
                 'policy'            => ['type' => 'dir','path' => 'Policies', 'generate' => false, 'stub' => null, 'files'=>[]],
                 'job'               => ['type' => 'dir','path' => 'Jobs', 'generate' => false, 'stub' => null, 'files'=>[]],
+                'transformer'       => ['type' => 'dir','path' => 'Transformers', 'generate' => true, 'stub' => null, 'files'=>[]],
                 'resource'          => ['type' => 'dir','path' => 'Resources', 'generate' => true, 'stub' => null, 'files'=>[]],
                 'seeder'            => ['type' => 'dir','path' => 'Database/Seeders', 'generate' => true, 'stub' => null, 'files'=>[
                     'DatabaseSeeder' => ['generate' => true, 'stub' => 'DatabaseSeeder.php.stub'],
@@ -111,6 +112,7 @@ return [
                 'data'            => ['type' => 'dir','path' => 'Data', 'generate' => true, 'stub' => null, 'files' => []],
                 'policy'          => ['type' => 'dir','path' => 'Policies', 'generate' => true, 'stub' => null, 'files' => []],
                 'job'             => ['type' => 'dir','path' => 'Jobs', 'generate' => false, 'stub' => null, 'files' => []],
+                'transformer'       => ['type' => 'dir','path' => 'Transformers', 'generate' => true, 'stub' => null, 'files'=>[]],
                 'resource'        => ['type' => 'dir','path' => 'Resources', 'generate' => true, 'stub' => null, 'files' => []],
                 'seeder'          => ['type' => 'dir','path' => 'Database/Seeders', 'generate' => true, 'stub' => null, 'files' => [
                     'DatabaseSeeder' => ['generate' => true, 'stub' => 'DatabaseSeeder.php.stub']

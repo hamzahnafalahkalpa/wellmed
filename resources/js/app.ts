@@ -15,8 +15,6 @@ import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
 import { routeWithTenant } from '@/utils/routeWithTenant';
 
-// setelah app dibuat, pasang global ke window
-// window.routeWithTenant = routeWithTenant;
 import { globMap } from './globMap';
 import { loadComponent } from '@/utils/loadComponent';
 
@@ -51,6 +49,7 @@ const pages = loadPagesByHost(hostAndPath,host);
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => {
+        console.log(pages);
         const match = Object.entries(pages).find(([key]) => key.includes(`${name}.vue`));
         if (!match) {
             throw new Error(`Page not found: ${name}`);

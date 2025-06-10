@@ -50,7 +50,6 @@ class LoginRequest extends FormRequest
                 'username' => trans('auth.failed'),
             ]);
         }
-
         $secretKey = 'YXYlGIbJ65VGjQnETWXoOiCvqpXg7PJu';
         $payload = [
             'data' => [
@@ -71,9 +70,6 @@ class LoginRequest extends FormRequest
             $_SESSION['tenant'] = $user->userReference->tenant;
         });
         $_SESSION['token']  = $token;
-        // $user = Auth::user();
-        // $user = app(config('database.models.User'))->findOrFail($user->id);
-        // $token = $user->createToken('access-token')->plainTextToken;
 
         RateLimiter::clear($this->throttleKey());
     }

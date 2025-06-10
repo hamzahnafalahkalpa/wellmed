@@ -25,7 +25,7 @@ return Application::configure(basePath: dirname(__DIR__))
             HandleInertiaRequests::class,
             AddLinkHeadersForPreloadedAssets::class,
         ]);
-        $middleware->prepend(PayloadMonitoring::class);
+        // $middleware->prepend(PayloadMonitoring::class);
         $middleware->prepend(LaravelSupportResponse::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {

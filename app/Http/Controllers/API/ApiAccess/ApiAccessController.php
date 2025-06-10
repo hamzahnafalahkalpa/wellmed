@@ -11,6 +11,7 @@ use Hanafalah\MicroTenant\Facades\MicroTenant;
 use Illuminate\Support\Facades\Auth;
 
 class ApiAccessController extends EnvironmentController{
+    
     public function store(StoreRequest $request){
         $token = $this->generateToken();
         if (isset($token) && request()->headers->has('AppCode')) {
@@ -25,8 +26,6 @@ class ApiAccessController extends EnvironmentController{
 
     public function destroy(DeleteRequest $request){
         Auth::logout();
-        // $request->session()->invalidate();
-        // $request->session()->regenerateToken();
-        return response()->noContent();
+        return true;
     }
 }
