@@ -1,1 +1,0 @@
-.parallelogram{background-color:var(--foreground);overflow:hidden}.parallelogram .image{transform:skew(20deg);width:80vw;height:100vh;background-size:cover;filter:grayscale(100%);position:relative;left:-30%}.login-container:before{content:"";position:fixed;top:0;left:0;background-color:#0003;width:100vw;height:100vh;z-index:40}
