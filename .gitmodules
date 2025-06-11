@@ -34,9 +34,6 @@
 [submodule "repositories/module-encoding"]
 	path = repositories/module-encoding
 	url = https://gitlab.com/micro-tenant/module-encoding.git
-[submodule "repositories/klinik-starterpack"]
-	path = repositories/klinik-starterpack
-	url = git@gitlab.com:bundling-features/klinik-starterpack.git
 [submodule "repositories/module-patient"]
 	path = repositories/module-patient
 	url = https://gitlab.com/micro-tenant/module-patient.git
@@ -163,3 +160,6 @@
 [submodule "repositories/api-helper"]
 	path = repositories/api-helper
 	url = https://gitlab.com/micro-tenant/api-helper.git
+[submodule "repositories/klinik-starterpack"]
+	path = repositories/klinik-starterpack
+	url = https://gitlab.com/bundling-features/klinik-starterpack.git
