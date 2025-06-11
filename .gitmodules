@@ -13,9 +13,6 @@
 [submodule "repositories/laravel-feature"]
 	path = repositories/laravel-feature
 	url = https://gitlab.com/micro-tenant/laravel-feature.git
-[submodule "repositories/api-helper"]
-	path = repositories/api-helper
-	url = https://gitlab.com/micro-tenant/api-helper.git
 [submodule "repositories/laravel-stub"]
 	path = repositories/laravel-stub
 	url = https://gitlab.com/micro-tenant/laravel-stub.git
@@ -163,3 +160,6 @@
 [submodule "app/Projects/klinik"]
 	path = app/Projects/klinik
 	url = https://gitlab.com/micro-tenant/initial-klinik.git
+[submodule "repositories/api-helper"]
+	path = repositories/api-helper
+	url = https://gitlab.com/micro-tenant/api-helper.git
