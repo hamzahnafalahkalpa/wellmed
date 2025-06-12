@@ -163,3 +163,6 @@
 [submodule "repositories/klinik-starterpack"]
 	path = repositories/klinik-starterpack
 	url = https://gitlab.com/bundling-features/klinik-starterpack.git
+[submodule "repositories/puskesmas-asset"]
+	path = repositories/puskesmas-asset
+	url = https://gitlab.com/micro-tenant/puksesmas-asset.git
