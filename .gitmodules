@@ -163,3 +163,6 @@
 [submodule "app/Projects/klinik"]
 	path = app/Projects/klinik
 	url = https://gitlab.com/micro-tenant/initial-klinik.git
+[submodule "repositories/puskesmas-asset"]
+	path = repositories/puskesmas-asset
+	url = https://gitlab.com/micro-tenant/puksesmas-asset.git

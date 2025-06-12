@@ -31,7 +31,8 @@ return new class extends Migration
         if (!$this->isTableExists()) {
             Schema::create($table_name, function (Blueprint $table) {
                 $table->id();
-                $table->string('domain', 150)->unique()->nullable(false);
+                $table->string('name', 150)->unique()->nullable(false);
+                $table->json('props')->nullable();
                 $table->timestamps();
                 $table->softDeletes();
             });

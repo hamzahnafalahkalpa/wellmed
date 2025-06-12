@@ -17,6 +17,7 @@
         "laravel/octane": "^2.9",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
+        "opcodesio/log-viewer": "^3.17",
         "tightenco/ziggy": "^2.4"
     },
     "require-dev": {
