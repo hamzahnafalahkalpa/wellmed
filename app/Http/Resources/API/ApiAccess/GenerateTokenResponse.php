@@ -40,13 +40,7 @@ class GenerateTokenResponse extends ApiResource
                                         'name' => $reference->name
                                     ];
                                 }),
-                                'domain'    => $tenant->relationValidation('domain',function() use ($tenant){
-                                    $domain = $tenant->domain;
-                                    return [
-                                        'id'   => $domain->id,
-                                        'name' => $domain->name
-                                    ];
-                                })
+                                'domain'    => $tenant->prop_domain
                             ];
                         }),
                         'role' => $userReference->prop_role,
