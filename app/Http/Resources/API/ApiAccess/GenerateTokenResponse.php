@@ -34,7 +34,7 @@ class GenerateTokenResponse extends ApiResource
                                 'name'      => $tenant->name,
                                 'workspace' => $tenant->relationValidation('reference',function() use ($tenant){
                                     $reference = $tenant->reference;
-                                    return [
+                                    return [    
                                         'id'   => $reference->id,
                                         'uuid' => $reference->uuid,
                                         'name' => $reference->name
