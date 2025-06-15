@@ -6,7 +6,7 @@ use Hanafalah\LaravelSupport\Supports\PackageManagement;
 
 class Base{{CLASS_BASENAME}} extends PackageManagement
 {
-    /** @var array */
+    protected $__config_name = "{{SNAKE_CLASS_BASENAME}}";
     protected $__{{SNAKE_LOWER_CLASS_BASENAME}}_config = [];
 
     /**
@@ -18,6 +18,6 @@ class Base{{CLASS_BASENAME}} extends PackageManagement
      */
     public function __construct()
     {
-        $this->setConfig('{{SNAKE_LOWER_CLASS_BASENAME}}', $this->__{{SNAKE_LOWER_CLASS_BASENAME}}_config);
+        $this->setConfig($this->__config_name, $this->__{{SNAKE_LOWER_CLASS_BASENAME}}_config);
     }
 }

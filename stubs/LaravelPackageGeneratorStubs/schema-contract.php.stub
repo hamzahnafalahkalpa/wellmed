@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @see \{{NAMESPACE}}\{{schema_namespace}}\{{CONTRACT_NAME}}
+ * @method mixed export(string $type)
  * @method self conditionals(mixed $conditionals)
  * @method array update{{CONTRACT_NAME}}(?{{CONTRACT_NAME}}Data ${{SNAKE_LOWER_CONTRACT_NAME}}_dto = null)
  * @method Model prepareUpdate{{CONTRACT_NAME}}({{CONTRACT_NAME}}Data ${{SNAKE_LOWER_CONTRACT_NAME}}_dto)

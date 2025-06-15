@@ -14,6 +14,7 @@ class {{SCHEMA_NAME}} extends Base{{CLASS_BASENAME}} implements Contracts{{SCHEM
 {
     protected string $__entity = '{{SCHEMA_NAME}}';
     public static ${{SNAKE_LOWER_SCHEMA_NAME}}_model;
+    //protected mixed $__order_by_created_at = false; //asc, desc, false
 
     protected array $__cache = [
         'index' => [
@@ -24,11 +25,19 @@ class {{SCHEMA_NAME}} extends Base{{CLASS_BASENAME}} implements Contracts{{SCHEM
     ];
 
     public function prepareStore{{SCHEMA_NAME}}({{SCHEMA_NAME}}Data ${{SNAKE_LOWER_SCHEMA_NAME}}_dto): Model{
-        ${{SNAKE_LOWER_SCHEMA_NAME}} = $this->usingEntity()->updateOrCreate([
-                        'id' => ${{SNAKE_LOWER_SCHEMA_NAME}}_dto->id ?? null
-                    ], [
-                        'name' => ${{SNAKE_LOWER_SCHEMA_NAME}}_dto->name
-                    ]);
+        $add = [
+            'name' => ${{SNAKE_LOWER_SCHEMA_NAME}}_dto->name
+        ];
+        $guard  = ['id' => ${{SNAKE_LOWER_SCHEMA_NAME}}_dto->id];
+        $create = [$guard, $add];
+        // if (isset(${{SNAKE_LOWER_SCHEMA_NAME}}_dto->id)){
+        //     $guard  = ['id' => ${{SNAKE_LOWER_SCHEMA_NAME}}_dto->id];
+        //     $create = [$guard, $add];
+        // }else{
+        //     $create = [$add];
+        // }
+
+        ${{SNAKE_LOWER_SCHEMA_NAME}} = $this->usingEntity()->updateOrCreate(...$create);
         $this->fillingProps(${{SNAKE_LOWER_SCHEMA_NAME}},${{SNAKE_LOWER_SCHEMA_NAME}}_dto->props);
         ${{SNAKE_LOWER_SCHEMA_NAME}}->save();
         return static::${{SNAKE_LOWER_SCHEMA_NAME}}_model = ${{SNAKE_LOWER_SCHEMA_NAME}};
