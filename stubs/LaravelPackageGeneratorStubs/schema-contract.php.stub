@@ -23,8 +23,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method array view{{CONTRACT_NAME}}List()
  * @method LengthAwarePaginator prepareView{{CONTRACT_NAME}}Paginate(PaginateData $paginate_dto)
  * @method array view{{CONTRACT_NAME}}Paginate(?PaginateData $paginate_dto = null)
- * @method array store{{CONTRACT_NAME}}(?{{CONTRACT_NAME}}Data ${{SNAKE_LOWER_CONTRACT_NAME}}_dto = null);
- * @method Builder {{CAMEL_CONTRACT_NAME}}(mixed $conditionals = null);
+ * @method array store{{CONTRACT_NAME}}(?{{CONTRACT_NAME}}Data ${{SNAKE_LOWER_CONTRACT_NAME}}_dto = null)
+ * @method Collection prepareStoreMultiple{{CONTRACT_NAME}}(array $datas)
+ * @method array storeMultiple{{CONTRACT_NAME}}(array $datas)
  */
 
 interface {{CONTRACT_NAME}} extends DataManagement
