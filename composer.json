@@ -18,8 +18,10 @@
         "laravel/octane": "^2.9",
         "laravel/prompts": "^0.3.5",
         "laravel/sanctum": "^4.0",
+        "laravel/telescope": "^5.9",
         "laravel/tinker": "^2.10.1",
         "opcodesio/log-viewer": "^3.17",
+        "predis/predis": "^3.0",
         "tightenco/ziggy": "^2.4"
     },
     "require-dev": {
