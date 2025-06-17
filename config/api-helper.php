@@ -36,7 +36,7 @@ return [
         'password'  => 'password'
     ],
 
-    'expiration' => 3600,
+    'expiration' => null,
 
     /*
      * Supported algorithms.
