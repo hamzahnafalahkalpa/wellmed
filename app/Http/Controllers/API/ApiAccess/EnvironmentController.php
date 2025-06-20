@@ -6,6 +6,8 @@ use App\Http\Controllers\ApiController;
 use Illuminate\Database\Eloquent\Model;
 use Hanafalah\ApiHelper\Facades\ApiAccess;
 
+use function PHPSTORM_META\map;
+
 class EnvironmentController extends ApiController{
 
     protected Model $__user;
@@ -26,6 +28,14 @@ class EnvironmentController extends ApiController{
     protected function getUser(){
         $this->__user->load([
             'userReference'=>function($query){
+                $query->with([
+                    'roles',
+                    'tenant'   => function($query){
+                        $query->with(['domain','reference']);
+                    }
+                ]);
+            },
+            'userReferences'=>function($query){
                 $query->with([
                     'roles',
                     'tenant'   => function($query){

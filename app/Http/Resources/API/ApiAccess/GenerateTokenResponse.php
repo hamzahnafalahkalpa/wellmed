@@ -23,42 +23,50 @@ class GenerateTokenResponse extends ApiResource
                 'username'       => $this->username,
                 'email'          => $this->email,
                 'user_reference' => $this->relationValidation('userReference',function(){
-                    $userReference = $this->userReference;
-                    return [
-                        'id'             => $userReference->id,
-                        'uuid'           => $userReference->uuid,
-                        'reference_type' => $userReference->reference_type,
-                        'reference_id'   => $userReference->reference_id,
-                        'uuid'           => $userReference->uuid,
-                        'tenant'    => $userReference->relationValidation('tenant',function() use ($userReference){
-                            $tenant = $userReference->tenant;
-                            return [
-                                'id'        => $tenant->id,
-                                'name'      => $tenant->name,
-                                'workspace' => $tenant->relationValidation('reference',function() use ($tenant){
-                                    $reference = $tenant->reference;
-                                    return [    
-                                        'id'   => $reference->id,
-                                        'uuid' => $reference->uuid,
-                                        'name' => $reference->name
-                                    ];
-                                }),
-                                'domain'    => $tenant->prop_domain
-                            ];
-                        }),
-                        'role' => $userReference->prop_role,
-                        'roles' => $userReference->relationValidation('roles',function() use ($userReference){
-                            $roles = $userReference->roles;
-                            return $roles->transform(function($role){
-                                return [
-                                    'id'   => $role->id,
-                                    'name' => $role->name
-                                ];
-                            });
-                        })
-                    ];
+                    return $this->chooseReference($this->userReference);
+                }),
+                'user_references' => $this->relationValidation('userReferences',function(){
+                    return $this->userReferences->transform(function($userReference){
+                        return $this->chooseReference($userReference);
+                    });
                 })
             ]
+        ];
+    }
+
+    private function chooseReference($userReference){
+        return [
+            'id'             => $userReference->id,
+            'uuid'           => $userReference->uuid,
+            'reference_type' => $userReference->reference_type,
+            'reference_id'   => $userReference->reference_id,
+            'current'        => $userReference->current,
+            'tenant'    => $userReference->relationValidation('tenant',function() use ($userReference){
+                $tenant = $userReference->tenant;
+                return [
+                    'id'        => $tenant->id,
+                    'name'      => $tenant->name,
+                    'workspace' => $tenant->relationValidation('reference',function() use ($tenant){
+                        $reference = $tenant->reference;
+                        return [    
+                            'id'   => $reference->id,
+                            'uuid' => $reference->uuid,
+                            'name' => $reference->name
+                        ];
+                    }),
+                    'domain'    => $tenant->prop_domain
+                ];
+            }),
+            'role' => $userReference->prop_role,
+            'roles' => $userReference->relationValidation('roles',function() use ($userReference){
+                $roles = $userReference->roles;
+                return $roles->transform(function($role){
+                    return [
+                        'id'   => $role->id,
+                        'name' => $role->name
+                    ];
+                });
+            })
         ];
     }
 }
