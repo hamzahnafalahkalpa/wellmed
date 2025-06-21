@@ -108,6 +108,13 @@
                 "symlink": true
             }
         },
+        "hanafalah/module-service": {
+            "type": "path",
+            "url": "repositories/module-service",
+            "optimize": {
+                "symlink": true
+            }
+        },
         "hanafalah/microtenant": {
             "type": "path",
             "url": "repositories/microtenant",
