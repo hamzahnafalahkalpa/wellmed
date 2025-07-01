@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Model::automaticallyEagerLoadRelationships();
+        Model::automaticallyEagerLoadRelationships();
         Inertia::share('tenant', fn () => session('tenant'));
     }
 }
