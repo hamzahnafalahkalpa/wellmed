@@ -67,6 +67,17 @@ return [
             //THIS SETUP DEFAULT FOR MYSQL
             'central_connection' => [
                 'driver'         => env('DB_DRIVER', 'pgsql'),
+                'read' => [
+                    'host' => [
+                        env('DB_READ_HOST_1','192.168.1.1'),
+                        env('DB_READ_HOST_2','192.168.1.2')
+                    ],
+                ],
+                'write' => [
+                    'host' => [
+                        env('DB_WRITE_HOST_1','192.168.1.3')
+                    ],
+                ],
                 'url'            => env('DB_URL'),
                 'host'           => env('DB_HOST', '127.0.0.1'),
                 'port'           => env('DB_PORT', '3306'),

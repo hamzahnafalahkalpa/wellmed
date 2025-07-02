@@ -40,9 +40,19 @@ return [
             'journal_mode' => null,
             'synchronous' => null,
         ],
-
         'mysql' => [
             'driver' => 'mysql',
+            'read' => [
+                'host' => [
+                    '192.168.1.1',
+                    '196.168.1.2',
+                ],
+            ],
+            'write' => [
+                'host' => [
+                    '196.168.1.3',
+                ],
+            ],
             'url' => env('DB_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
