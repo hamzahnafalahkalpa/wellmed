@@ -26,6 +26,7 @@ return [
     // 'encryption' => Encryptions\DefaultEncryptor::class,
 
     'authorizing'   => Validators\JWTTokenValidator::class,
+    'validation'    => 'Token',
 
     'authorization_model' => [
         // this is the setup for authentication user,
