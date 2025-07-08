@@ -7,3 +7,5 @@ export const globMap: Record<string, Record<string, () => Promise<DefineComponen
     ...import.meta.glob<DefineComponent>('@projects/klinik/src/Resources/js/pages/**/*.vue'),
   }
 };
+
+
