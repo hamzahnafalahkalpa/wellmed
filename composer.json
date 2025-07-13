@@ -152,6 +152,13 @@
                 "symlink": true
             }
         },
+        "hanafalah/module-transaction": {
+            "type": "path",
+            "url": "repositories/module-transaction",
+            "options": {
+                "symlink": true
+            }
+        },
         "hanafalah/module-workspace": {
             "type": "path",
             "url": "repositories/module-workspace",
