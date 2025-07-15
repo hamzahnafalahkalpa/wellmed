@@ -10,8 +10,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.4",
-        "hanafalah/klinik-starterpack": "1.x-dev as 1.0",
-        "hanafalah/microtenant": "1.x-dev as 1.0",
+        "hanafalah/klinik-starterpack": "dev-main",
+        "hanafalah/microtenant": "dev-main",
         "inertiajs/inertia-laravel": "^2.0",
         "knuckleswtf/scribe": "*",
         "kreait/laravel-firebase": "^6.0",
