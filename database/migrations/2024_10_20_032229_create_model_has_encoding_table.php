@@ -23,7 +23,7 @@ return new class extends Migration
             Schema::create($table_name, function (Blueprint $table) {
                 $encoding   = app(config('database.models.Encoding', Encoding::class));
 
-                $table->id();
+                $table->ulid('id')->primary();
                 $table->string('reference_id', 36);
                 $table->string('reference_type', 60);
                 $table->string('value')->nullable();

@@ -25,7 +25,7 @@ return new class extends Migration
         $table_name = $this->__table->getTable();
         if (!$this->isTableExists()) {
             Schema::create($table_name, function (Blueprint $table) {
-                $table->id();
+                $table->ulid('id')->primary();
                 $table->string('tokenable_type', 50)->nullable(false);
                 $table->string('tokenable_id', 36)->nullable(false);
                 $table->string('name');

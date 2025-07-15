@@ -30,7 +30,7 @@ return new class extends Migration
         $table_name = $this->__table->getTableName();
         if (!$this->isTableExists()) {
             Schema::create($table_name, function (Blueprint $table) {
-                $table->id();
+                $table->ulid('id')->primary();
                 $table->string('name', 150)->unique()->nullable(false);
                 $table->json('props')->nullable();
                 $table->timestamps();

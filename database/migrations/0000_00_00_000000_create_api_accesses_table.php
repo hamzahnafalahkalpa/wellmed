@@ -27,7 +27,7 @@ return new class extends Migration
     $table_name = $this->__table->getTable();
     if (!$this->isTableExists()) {
       Schema::create($table_name, function (Blueprint $table) {
-        $table->id();
+        $table->ulid('id')->primary();
         $table->mediumInteger('app_code')->unique();
         $table->string('reference_type', 50)->nullable();
         $table->string('reference_id', 36)->nullable();
