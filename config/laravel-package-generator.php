@@ -12,7 +12,7 @@ return [
     ],
     'patterns'        => [
         'repository' => [
-            'published_at' => base_path('repositories'),
+            'published_at' => 'repositories',
             //files has same structure with main generate
             'generates' => [
                 'asset'             => ['type' => 'dir','path' => '../assets', 'generate' => true, 'stub' => null, 'files'=>[]],
@@ -80,7 +80,7 @@ return [
             ]
         ],
         'project'     => [
-            'published_at' => app_path('Projects'),
+            'published_at' => 'app/Projects',
             'generates'    => [
                 'migration'       => ['type' => 'dir','path' => 'Database/Migrations', 'generate' => true, 'stub' => null, 'files' => []],
                 'model'           => ['type' => 'dir','path' => 'Models','generate' => true, 'stub' => 'model.php.stub', 'files'=>[]],

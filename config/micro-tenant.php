@@ -145,7 +145,7 @@ return [
                 ]
             ],
             'group'     => [
-                'published_at' => app_path('Groups'),
+                'published_at' => 'app/Groups',
                 'generates'    => [
                     'migration'       => ['type' => 'dir','path' => 'Database/Migrations', 'generate' => true, 'stub' => null, 'files' => []],
                     'model'             => ['type' => 'dir','path' => 'Models','generate' => true, 'stub' => 'model.php.stub', 'files'=>[]],
@@ -201,7 +201,7 @@ return [
                 ],
             ],
             'tenant'     => [
-                'published_at' => app_path('Tenants'),
+                'published_at' => 'app/Tenants',
                 'generates'    => [
                     'migration'       => ['type' => 'dir','path' => 'Database/Migrations', 'generate' => true, 'stub' => null, 'files' => []],
                     'model'             => ['type' => 'dir','path' => 'Models','generate' => true, 'stub' => 'model.php.stub', 'files'=>[]],
