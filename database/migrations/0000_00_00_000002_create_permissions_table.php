@@ -28,8 +28,7 @@ return new class extends Migration
             Schema::create($table_name, function (Blueprint $table) {
                 $table->ulid('id')->primary();
                 $table->string('name', 200)->nullable(false);
-                $table->string('alias', 100)->nullable(false);
-                $table->string('root', 255)->nullable(true);
+                $table->string('alias', 255)->nullable(false);
                 $table->enum('type', array_column(Type::cases(), 'value'))->default(Type::PERMISSION->value);
                 $table->boolean('visibility')->default(1);
                 $table->unsignedMediumInteger('ordering')->default(1)->nullable(false);
