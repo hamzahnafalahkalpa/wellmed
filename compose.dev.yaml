@@ -8,6 +8,12 @@ services:
       args:
         UID: ${UID:-1000}
         GID: ${GID:-1000}
+        XDEBUG_ENABLED: ${XDEBUG_ENABLED:-true}
+        XDEBUG_MODE: develop,coverage,debug,profile
+        XDEBUG_HOST: ${XDEBUG_HOST:-host.docker.internal}
+        XDEBUG_IDE_KEY: ${XDEBUG_IDE_KEY:-DOCKER}
+        XDEBUG_LOG: /dev/stdout
+        XDEBUG_LOG_LEVEL: 0
     entrypoint: php artisan octane:frankenphp --port=80 --workers=1 --max-requests=1
     ports:
       - "8002:80"
@@ -17,90 +23,13 @@ services:
       - klinik-project
     env_file:
       - .env
+    environment:
+      SUPERVISOR_PHP_COMMAND: "/usr/bin/php -d variables_order=EGPCS /var/www/html/artisan octane:start --server=frankenphp --host=0.0.0.0 --admin-port=2019 --port='${APP_PORT:-80}'" 
+      XDG_CONFIG_HOME:  /var/www/html/config 
+      XDG_DATA_HOME:  /var/www/html/data 
     depends_on:
       - postgres
       - redis
-
-  # frankenphp:
-  #   container_name: klinik
-  #   image: laravel-klinik-app
-  #   build:
-  #     context: .
-  #     args:
-  #       UID: ${UID:-1000}
-  #       GID: ${GID:-1000}
-  #   entrypoint: php artisan octane:frankenphp --port=80 --workers=1 --max-requests=1
-  #   ports:
-  #     - 8002:80
-  #   volumes:
-  #     - ./:/app
-  #   networks:
-  #     - klinik-project
-  #   env_file:
-  #     - .env
-  #   depends_on:
-  #     - postgres
-  #     - redis
-
-  vite:
-      container_name: vite
-      build:
-        context: .
-        dockerfile: Dockerfile.vite
-      working_dir: /app
-      command: npm run dev -- --host
-      ports:
-        - "5173:5173"
-      volumes:
-        - ./:/app
-      environment:
-        - VITE_API_URL=http://frankenphp:80
-      networks:
-        - klinik-project
-      depends_on:
-        - frankenphp
-
-
-  #     context: .
-  #     dockerfile: ./docker/development/workspace/Dockerfile
-  #     args:
-  #       UID: ${UID:-1000}
-  #       GID: ${GID:-1000}
-  #       XDEBUG_ENABLED: ${XDEBUG_ENABLED:-true}
-  #       XDEBUG_MODE: develop,coverage,debug,profile
-  #       XDEBUG_HOST: ${XDEBUG_HOST:-host.docker.internal}
-  #       XDEBUG_IDE_KEY: ${XDEBUG_IDE_KEY:-DOCKER}
-  #       XDEBUG_LOG: /dev/stdout
-  #       XDEBUG_LOG_LEVEL: 0
-  #   tty: true
-  #   stdin_open: true
-  #   env_file:
-  #     - .env
-  #   volumes:
-  #     - ./klinik:/var/www/laravel-projects/projects/klinik
-  #   working_dir: /var/www/laravel-projects/projects/klinik
-  #   networks:
-  #     - klinik-project
-
-  # mysql:
-  #   image: mysql:8.0
-  #   restart: unless-stopped
-  #   ports:
-  #     - "${DB_PORT}:3306"
-  #   environment:
-  #     - MYSQL_DATABASE=${DB_DATABASE}
-  #     - MYSQL_USER=${DB_USERNAME}
-  #     - MYSQL_PASSWORD=${DB_PASSWORD}
-  #     - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
-  #   volumes:
-  #     - mysql-data:/var/lib/mysql
-  #   networks:
-  #     - klinik-project
-  #   healthcheck:
-  #     test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 5
 
   # PostgreSQL Service
   postgres:
@@ -145,5 +74,3 @@ networks:
 volumes:
   postgres-data:
     driver: local
-  # mysql-data:
-  #   driver: local

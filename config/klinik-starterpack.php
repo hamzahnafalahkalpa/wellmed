@@ -103,5 +103,6 @@ return [
         "hanafalah/module-manufacture"          => ['repository' =>'micro-tenant/module-manufacture'],
         "hanafalah/module-handwriting"          => ['repository' =>'micro-tenant/module-handwriting'],
         "hanafalah/puskesmas-asset"             => ['repository' =>'micro-tenant/puskesmas-asset'],
+        "hanafalah/module-monitoring"           => ['repository' =>'micro-tenant/module-monitoring']
     ]
 ];

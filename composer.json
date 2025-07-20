@@ -16,7 +16,7 @@
         "knuckleswtf/scribe": "*",
         "kreait/laravel-firebase": "^6.0",
         "laravel/framework": "^12.0",
-        "laravel/octane": "^2.9",
+        "laravel/octane": "^2.11",
         "laravel/prompts": "^0.3.5",
         "laravel/sanctum": "^4.0",
         "laravel/telescope": "^5.9",

@@ -166,3 +166,6 @@
 [submodule "repositories/puskesmas-asset"]
 	path = repositories/puskesmas-asset
 	url = https://gitlab.com/micro-tenant/puskesmas-asset.git
+[submodule "repositories/module-monitoring"]
+	path = repositories/module-monitoring
+	url = https://gitlab.com/micro-tenant/module-monitoring.git

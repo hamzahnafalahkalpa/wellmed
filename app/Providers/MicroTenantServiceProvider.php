@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Stancl\JobPipeline\JobPipeline;
@@ -12,7 +11,10 @@ use Stancl\Tenancy\Events;
 use Stancl\Tenancy\Jobs;
 use Stancl\Tenancy\Listeners;
 use Stancl\Tenancy\Middleware;
+use Hanafalah\ApiHelper\Facades\ApiAccess;
 use Hanafalah\MicroTenant\Facades\MicroTenant;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 
 class MicroTenantServiceProvider extends ServiceProvider
 {

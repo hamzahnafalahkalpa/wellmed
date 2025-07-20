@@ -1,5 +1,5 @@
 # Base image
-FROM dunglas/frankenphp:php8.2 AS builder
+FROM dunglas/frankenphp:php8.4 AS builder
 
 # Set server port
 ENV SERVER_NAME=":80"
@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev libonig-dev libssl-dev libxml2-dev \
     libcurl4-openssl-dev libicu-dev libzip-dev libexif-dev \
     libjpeg-dev libpng-dev libfreetype6-dev \
- \
+ \ 
  # Install Node.js & npm
  && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
  && apt-get install -y nodejs \
