@@ -3,22 +3,22 @@ import { onMounted, ref } from 'vue';
 type Appearance = 'light' | 'dark' | 'system';
 
 export function updateTheme(value: Appearance) {
-    if (typeof window === 'undefined') {
+    if (typeof window == 'undefined') {
         return;
     }
 
-    if (value === 'system') {
+    if (value == 'system') {
         const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
         const systemTheme = mediaQueryList.matches ? 'dark' : 'light';
 
-        document.documentElement.classList.toggle('dark', systemTheme === 'dark');
+        document.documentElement.classList.toggle('dark', systemTheme == 'dark');
     } else {
-        document.documentElement.classList.toggle('dark', value === 'dark');
+        document.documentElement.classList.toggle('dark', value == 'dark');
     }
 }
 
 const setCookie = (name: string, value: string, days = 365) => {
-    if (typeof document === 'undefined') {
+    if (typeof document == 'undefined') {
         return;
     }
 
@@ -28,7 +28,7 @@ const setCookie = (name: string, value: string, days = 365) => {
 };
 
 const mediaQuery = () => {
-    if (typeof window === 'undefined') {
+    if (typeof window == 'undefined') {
         return null;
     }
 
@@ -36,7 +36,7 @@ const mediaQuery = () => {
 };
 
 const getStoredAppearance = () => {
-    if (typeof window === 'undefined') {
+    if (typeof window == 'undefined') {
         return null;
     }
 
@@ -50,7 +50,7 @@ const handleSystemThemeChange = () => {
 };
 
 export function initializeTheme() {
-    if (typeof window === 'undefined') {
+    if (typeof window == 'undefined') {
         return;
     }
 

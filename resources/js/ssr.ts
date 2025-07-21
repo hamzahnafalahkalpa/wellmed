@@ -29,7 +29,7 @@ createServer((page) =>
             app.config.globalProperties.route = route;
 
             // Make route function available globally for SSR...
-            if (typeof window === 'undefined') {
+            if (typeof window == 'undefined') {
                 global.route = route;
             }
 

@@ -9,7 +9,7 @@ import { beautifyObjectName, maybeBooleanishToBoolean } from './utils'
 
 const props = defineProps<FieldProps>()
 
-const booleanComponent = computed(() => props.config?.component === 'switch' ? Switch : Checkbox)
+const booleanComponent = computed(() => props.config?.component == 'switch' ? Switch : Checkbox)
 </script>
 
 <template>

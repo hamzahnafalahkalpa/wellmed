@@ -26,7 +26,7 @@ export default function useDependencies(
   const overrideOptions = ref<EnumValues | undefined>()
 
   const currentFieldDependencies = computed(() => dependencies.value?.filter(
-    dependency => dependency.targetField === currentFieldName,
+    dependency => dependency.targetField == currentFieldName,
   ))
 
   function getSourceValue(dep: Dependency<any>) {
@@ -35,7 +35,7 @@ export default function useDependencies(
     const [sourceLast, ...sourceInitial] = source.split('.').toReversed()
     const [_targetLast, ...targetInitial] = (dep.targetField as string).split('.').toReversed()
 
-    if (index >= 0 && sourceInitial.join(',') === targetInitial.join(',')) {
+    if (index >= 0 && sourceInitial.join(',') == targetInitial.join(',')) {
       const [_currentLast, ...currentInitial] = fieldName.split('.').toReversed()
       return getFromPath(form.value, currentInitial.join('.') + sourceLast)
     }

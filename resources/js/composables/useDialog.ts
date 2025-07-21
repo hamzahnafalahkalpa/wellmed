@@ -14,8 +14,8 @@ export function useDialog() {
         selected.value = null;
     };
 
-    const isEditDialogOpen = computed(() => dialogType.value === 'edit');
-    const isDeleteDialogOpen = computed(() => dialogType.value === 'delete');
+    const isEditDialogOpen = computed(() => dialogType.value == 'edit');
+    const isDeleteDialogOpen = computed(() => dialogType.value == 'delete');
 
     return {
         dialogType,

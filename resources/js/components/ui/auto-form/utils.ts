@@ -66,7 +66,7 @@ export function getDefaultValueInZodStack(schema: z.ZodAny): any {
     z.ZodNumber | z.ZodString
   >
 
-  if (typedSchema._def.typeName === 'ZodDefault')
+  if (typedSchema._def.typeName == 'ZodDefault')
     return typedSchema._def.defaultValue()
 
   if ('innerType' in typedSchema._def) {
@@ -86,7 +86,7 @@ export function getDefaultValueInZodStack(schema: z.ZodAny): any {
 export function getObjectFormSchema(
   schema: ZodObjectOrWrapped,
 ): z.ZodObject<any, any> {
-  if (schema?._def.typeName === 'ZodEffects') {
+  if (schema?._def.typeName == 'ZodEffects') {
     const typedSchema = schema as z.ZodEffects<z.ZodObject<any, any>>
     return getObjectFormSchema(typedSchema._def.schema)
   }
@@ -125,7 +125,7 @@ export function isNotNestedPath(path: string) {
   return /^\[.+\]$/.test(path)
 }
 function isObject(obj: unknown): obj is Record<string, unknown> {
-  return obj !== null && !!obj && typeof obj === 'object' && !Array.isArray(obj)
+  return obj !== null && !!obj && typeof obj == 'object' && !Array.isArray(obj)
 }
 function isContainerValue(value: unknown): value is Record<string, unknown> {
   return isObject(value) || Array.isArray(value)
