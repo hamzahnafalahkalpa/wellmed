@@ -124,9 +124,6 @@
 [submodule "repositories/module-pharmacy"]
 	path = repositories/module-pharmacy
 	url = https://gitlab.com/micro-tenant/module-pharmacy.git
-[submodule "app/Tenants/tenant-klinik"]
-	path = app/Tenants/tenant-klinik
-	url = https://gitlab.com/micro-tenant/tenant-klinik.git
 [submodule "repositories/module-tax"]
 	path = repositories/module-tax
 	url = https://gitlab.com/micro-tenant/module-tax.git
@@ -169,3 +166,6 @@
 [submodule "repositories/module-monitoring"]
 	path = repositories/module-monitoring
 	url = https://gitlab.com/micro-tenant/module-monitoring.git
+[submodule "app/Tenants/tenant-klinik"]
+	path = app/Tenants/tenant-klinik
+	url = https://gitlab.com/micro-tenant/tenant-klinik.git
