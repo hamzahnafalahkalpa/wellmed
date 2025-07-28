@@ -60,7 +60,7 @@ class MigrateCommand extends Command
 
             // Ambil output dari Artisan dan tampilkan langsung
             $outputString = Artisan::output();
-            if (strpos($outputString, 'Nothing to migrate') === false) {
+            if (strpos($outputString, 'Nothing to migrate') == false) {
                 $this->info("Running migration: $file");
                 $output->write($outputString);
             }

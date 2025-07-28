@@ -42,11 +42,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
  # Clean up
  && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENTRYPOINT ["php", "artisan", "octane:frankenphp"]
-CMD ["--port=80", "--workers=1", "--max-requests=1"]
-
 # Copy composer
-COPY --from=composer:2.2 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 
 # Set file permission untuk /app agar bisa ditulis
 RUN chown -R appuser:appgroup /app
@@ -55,3 +52,7 @@ RUN chown -R appuser:appgroup /app
 USER appuser
 
 EXPOSE 80 443
+
+# Run Laravel Octane with FrankenPHP
+ENTRYPOINT ["php", "artisan", "octane:frankenphp"]
+CMD ["--port=80", "--workers=4", "--max-requests=1000"]

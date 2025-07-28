@@ -30,7 +30,7 @@ const shapes = computed(() => {
     const item = shape[name] as ZodAny
     const baseItem = getBaseSchema(item) as ZodAny
     let options = (baseItem && 'values' in baseItem._def) ? baseItem._def.values as string[] : undefined
-    if (!Array.isArray(options) && typeof options === 'object')
+    if (!Array.isArray(options) && typeof options == 'object')
       options = Object.values(options)
 
     val[name as keyof T] = {

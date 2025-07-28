@@ -10,7 +10,7 @@ export function resolveIcon(name: string): Component {
     const fallback = icons.LayoutGrid
 
     // pastikan hasilnya adalah komponen Vue (bukan fungsi biasa seperti createLucideIcon)
-    if (typeof maybeComponent === 'function' || typeof maybeComponent === 'object') {
+    if (typeof maybeComponent == 'function' || typeof maybeComponent == 'object') {
       return maybeComponent as Component
     }
 

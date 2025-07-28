@@ -27,7 +27,7 @@ const modelValue = useVModel(props, 'modelValue', emits, {
 
 <template>
   <textarea
-    v-if="props.type === 'textarea'"
+    v-if="props.type == 'textarea'"
     v-model="modelValue"
     data-slot="input"
     :class="cn(

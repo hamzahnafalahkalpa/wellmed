@@ -23,7 +23,7 @@ const openMobile = ref(false)
 
 const open = useVModel(props, 'open', emits, {
   defaultValue: props.defaultOpen ?? false,
-  passive: (props.open === undefined) as false,
+  passive: (props.open == undefined) as false,
 }) as Ref<boolean>
 
 function setOpen(value: boolean) {
@@ -43,7 +43,7 @@ function toggleSidebar() {
 }
 
 useEventListener('keydown', (event: KeyboardEvent) => {
-  if (event.key === SIDEBAR_KEYBOARD_SHORTCUT && (event.metaKey || event.ctrlKey)) {
+  if (event.key == SIDEBAR_KEYBOARD_SHORTCUT && (event.metaKey || event.ctrlKey)) {
     event.preventDefault()
     toggleSidebar()
   }

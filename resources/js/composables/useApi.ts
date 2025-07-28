@@ -37,7 +37,7 @@ export async function api<T = any>(
   const { meta, data: responseData } = result;
 
   if (!meta.success) {
-    if (meta.code === 201) {
+    if (meta.code == 201) {
       window.location.href = '/login';
       return Promise.reject({
         code: 201,

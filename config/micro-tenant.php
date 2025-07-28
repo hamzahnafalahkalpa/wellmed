@@ -149,7 +149,7 @@ return [
                 'generates'    => [
                     'migration'       => ['type' => 'dir','path' => 'Database/Migrations', 'generate' => true, 'stub' => null, 'files' => []],
                     'model'             => ['type' => 'dir','path' => 'Models','generate' => true, 'stub' => 'model.php.stub', 'files'=>[]],
-                    'controller'        => ['type' => 'dir','path' => 'Controllers','generate' => false, 'stub' => null, 'files'=>[
+                    'controller'        => ['type' => 'dir','path' => 'Controllers','generate' => true, 'stub' => null, 'files'=>[
                         'ApiController' => ['generate' => true, 'path' => 'API', 'stub' => 'project-api-controller.php.stub']
                     ]],
                     'provider'        => ['type' => 'dir','path' => 'Providers','generate' => true, 'stub' => null, 'files' => [

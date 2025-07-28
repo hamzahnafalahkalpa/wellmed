@@ -44,13 +44,13 @@ return [
             'driver' => 'mysql',
             'read' => [
                 'host' => [
-                    '192.168.1.1',
-                    '196.168.1.2',
+                    env('DB_READ_HOST_1', '192.168.1.1'),
+                    env('DB_READ_HOST_2', '192.168.1.2'),
                 ],
             ],
             'write' => [
                 'host' => [
-                    '196.168.1.3',
+                    env('DB_WRITE_HOST_1', '192.168.1.3'),
                 ],
             ],
             'url' => env('DB_URL'),
@@ -95,6 +95,17 @@ return [
             'driver' => 'pgsql',
             'url' => env('DB_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
+            'read' => [
+                'host' => [
+                    env('DB_READ_HOST_1', '192.168.1.1'),
+                    env('DB_READ_HOST_2', '192.168.1.2'),
+                ],
+            ],
+            'write' => [
+                'host' => [
+                    env('DB_WRITE_HOST_1', '192.168.1.3'),
+                ],
+            ],
             'port' => env('DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'laravel'),
             'username' => env('DB_USERNAME', 'root'),
