@@ -1,18 +1,8 @@
-localhost:85 {
-    reverse_proxy 127.0.0.1:8002 {
+:80 {
+    reverse_proxy 172.18.0.2:8002 {
         header_up Host {host}
         header_up X-Real-IP {remote_host}
         header_up X-Forwarded-For {remote_host}
         header_up X-Forwarded-Proto {scheme}
     }
 }
-
-gir-api-dev.dinamissolusi.id {
-    reverse_proxy gir:8002 {
-        header_up Host {host}
-        header_up X-Real-IP {remote_host}
-        header_up X-Forwarded-For {remote_host}
-        header_up X-Forwarded-Proto {scheme}
-    }
-}
-
