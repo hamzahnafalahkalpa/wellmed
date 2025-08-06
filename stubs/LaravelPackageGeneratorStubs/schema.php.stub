@@ -13,7 +13,7 @@ use {{NAMESPACE}}\{{contract_namespace}}\Data\{{SCHEMA_NAME}}Data;
 class {{SCHEMA_NAME}} extends Base{{CLASS_BASENAME}} implements Contracts{{SCHEMA_NAME}}
 {
     protected string $__entity = '{{SCHEMA_NAME}}';
-    public static ${{SNAKE_LOWER_SCHEMA_NAME}}_model;
+    public ${{SNAKE_LOWER_SCHEMA_NAME}}_model;
     //protected mixed $__order_by_created_at = false; //asc, desc, false
 
     protected array $__cache = [
@@ -40,6 +40,6 @@ class {{SCHEMA_NAME}} extends Base{{CLASS_BASENAME}} implements Contracts{{SCHEM
         ${{SNAKE_LOWER_SCHEMA_NAME}} = $this->usingEntity()->updateOrCreate(...$create);
         $this->fillingProps(${{SNAKE_LOWER_SCHEMA_NAME}},${{SNAKE_LOWER_SCHEMA_NAME}}_dto->props);
         ${{SNAKE_LOWER_SCHEMA_NAME}}->save();
-        return static::${{SNAKE_LOWER_SCHEMA_NAME}}_model = ${{SNAKE_LOWER_SCHEMA_NAME}};
+        return $this->{{SNAKE_LOWER_SCHEMA_NAME}}_model = ${{SNAKE_LOWER_SCHEMA_NAME}};
     }
 }

@@ -122,7 +122,11 @@ return [
             'driver' => 'monolog',
             'handler' => NullHandler::class,
         ],
-
+        'deprecations' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/laravel-deprecations.log'),
+            'level' => 'notice',
+        ],
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],

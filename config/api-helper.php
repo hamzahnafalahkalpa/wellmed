@@ -6,7 +6,7 @@ use Hanafalah\ApiHelper\{
     Encryptions,
     Validators
 };
-use Hanafalah\ModuleUser\Models\User\User;
+use App\Models\User;
 
 return [
     'commands' => [

@@ -108,6 +108,13 @@
                 "symlink": true
             }
         },
+        "hanafalah/laravel-has-props": {
+            "type": "path",
+            "url": "repositories/laravel-has-props",
+            "optimize": {
+                "symlink": true
+            }
+        },
         "hanafalah/laravel-support": {
             "type": "path",
             "url": "repositories/laravel-support",
