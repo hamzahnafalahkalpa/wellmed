@@ -27,3 +27,4 @@ composer.lock
 **/caddy
 frankenphp
 frankenphp-worker.php
+Caddyfile
