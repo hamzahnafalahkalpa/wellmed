@@ -1,0 +1,49 @@
+services:
+  puskesmas-v2-api:
+    container_name: puskesmas-v2-api
+    image: puskesmas-v2-api
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    entrypoint: php artisan octane:start --server=frankenphp --host=0.0.0.0 --port=${FRANKEN_PORT:-8002} --workers=4 --max-requests=1000
+    ports:
+      - "${FRANKEN_PORT:-8002}:${FRANKEN_PORT:-8002}"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./:/app
+    networks:
+      - puskemas-v2-database-duzjvz
+
+    env_file:
+      - .env.development
+    environment:
+      XDG_CONFIG_HOME: /var/www/html/config
+      XDG_DATA_HOME: /var/www/html/data
+
+  caddy:
+    image: caddy:latest
+    container_name: klinik_caddy
+    restart: always
+    ports:
+      - "84:80"    # port host 8081 ke container 80
+      - "8443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - puskesmas-v2-api
+    networks:
+      - puskemas-v2-database-duzjvz
+
+networks:
+  puskemas-v2-database-duzjvz:
+    name: puskemas-v2-database-duzjvz
+    external: true
+
+volumes:
+  caddy_data:
+  caddy_config:

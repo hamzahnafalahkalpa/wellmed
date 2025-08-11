@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev libonig-dev libssl-dev libxml2-dev \
     libcurl4-openssl-dev libicu-dev libzip-dev libexif-dev \
     libjpeg-dev libpng-dev libfreetype6-dev \
- \ 
+ \
  # Install Node.js & npm
  && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
  && apt-get install -y nodejs \
@@ -44,7 +44,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Copy composer
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
+# Copy only composer files first for cache
+COPY composer.json composer.lock ./
 
+# Install dependencies
+RUN composer install \
+    --no-dev \
+    --optimize-autoloader \
+    --no-interaction \
+    --prefer-dist
 # Set file permission untuk /app agar bisa ditulis
 RUN chown -R appuser:appgroup /app
 
