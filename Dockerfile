@@ -43,16 +43,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
  && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Copy composer
-COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.8.10 /usr/bin/composer /usr/bin/composer
 # Copy only composer files first for cache
 COPY composer.json ./
 
-# Install dependencies
-RUN composer install \
-    --no-dev \
-    --optimize-autoloader \
-    --no-interaction \
-    --prefer-dist
 # Set file permission untuk /app agar bisa ditulis
 RUN chown -R appuser:appgroup /app
 
