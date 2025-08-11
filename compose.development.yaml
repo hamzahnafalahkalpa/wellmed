@@ -1,12 +1,24 @@
 services:
+  php-cli:
+    image: php:8.4-cli-alpine
+    volumes:
+      - ../:/app
+    working_dir: /app
+    entrypoint: >
+      sh -c "apk add --no-cache curl unzip &&
+             curl -sS https://getcomposer.org/installer | php &&
+             mv composer.phar /usr/local/bin/composer &&
+             composer install"
+    restart: always
   puskesmas-v2-api:
     container_name: puskesmas-v2-api
-    image: puskesmas-v2-api
-    build:
-      context: .
-      args:
-        UID: ${UID:-1000}
-        GID: ${GID:-1000}
+    image: dauntearl/php:8.4-franken
+    working_dir: /app
+    # build:
+    #   context: .
+    #   args:
+    #     UID: ${UID:-1000}
+    #     GID: ${GID:-1000}
     entrypoint: php artisan octane:start --server=frankenphp --host=0.0.0.0 --port=${FRANKEN_PORT:-8002} --workers=4 --max-requests=1000
     ports:
       - "${FRANKEN_PORT:-8002}:${FRANKEN_PORT:-8002}"
