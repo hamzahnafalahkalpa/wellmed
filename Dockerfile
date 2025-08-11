@@ -45,7 +45,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Copy composer
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 # Copy only composer files first for cache
-COPY composer.json composer.lock ./
+COPY composer.json ./
 
 # Install dependencies
 RUN composer install \
