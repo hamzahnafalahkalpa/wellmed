@@ -19,7 +19,8 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
-      - ./:/app
+      - ./:/app:cached
+      - /app/vendor
     networks:
       - klinik-project
     env_file:
