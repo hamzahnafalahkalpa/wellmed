@@ -9,7 +9,6 @@ use Hanafalah\LaravelSupport\{
     Supports\PathRegistry
 };
 use Illuminate\Support\Str;
-use Hanafalah\ModuleWorkspace\Contracts\Data as WorkspaceDTO;
 use {{NAMESPACE}}\{
     {{CLASS_BASENAME}},
     Contracts,
@@ -23,7 +22,7 @@ class {{CLASS_BASENAME}}ServiceProvider extends {{CLASS_BASENAME}}Environment
 
     public function register()
     {
-        $this->registerMainClass({{CLASS_BASENAME}}::class)
+        $this->registerMainClass({{CLASS_BASENAME}}::class,false)
              ->registerCommandService(CommandServiceProvider::class)
              ->registerServices(function(){
                  $this->binds([
@@ -37,37 +36,40 @@ class {{CLASS_BASENAME}}ServiceProvider extends {{CLASS_BASENAME}}Environment
 
     public function boot(Kernel $kernel){
         $kernel->pushMiddleware(PayloadMonitoring::class);
-
         $this->app->booted(function(){
+            // codes that will be run after the package booted
             $model   = Facades\{{CLASS_BASENAME}}::myModel($this->TenantModel()->find({{CLASS_BASENAME}}::ID));
-            $this->deferredProviders($model);
+            if (isset($model)){
+                $this->deferredProviders($model);
 
-            tenancy()->initialize({{CLASS_BASENAME}}::ID);
-            $tenant = tenancy()->tenant;
-            $tenant->save();
+                tenancy()->initialize({{CLASS_BASENAME}}::ID);
+                $tenant = tenancy()->tenant;
+                $tenant->save();
 
-            $config_name = Str::kebab($model->name); 
+                $config_name = Str::kebab($model->name); 
 
-            $this->registers([
-                '*',
-                'Config' => function() {
-                    $this->__config_{{SNAKE_LOWER_CLASS_BASENAME}} = config('{{SNAKE_CLASS_BASENAME}}');
-                },
-                'Provider' => function() use ($model,$config_name){
-                    $this->bootedRegisters($model->packages, $config_name, __DIR__.'/../'.$this->__config_{{SNAKE_LOWER_CLASS_BASENAME}}['libs']['migration'] ?? 'Migrations');
-                    $this->registerOverideConfig($config_name,__DIR__.'/../'.$this->__config_{{SNAKE_LOWER_CLASS_BASENAME}}['libs']['config']);
-                },
-                'Model', 'Database'
-            ]);
-            $this->registerRouteService(RouteServiceProvider::class);
+                $this->registers([
+                    '*',
+                    'Config' => function() {
+                        $this->__config_{{SNAKE_LOWER_CLASS_BASENAME}} = config('{{SNAKE_CLASS_BASENAME}}');
+                    },
+                    'Provider' => function() use ($model,$config_name){
+                        $this->bootedRegisters($model->packages, $config_name, __DIR__.'/../'.$this->__config_{{SNAKE_LOWER_CLASS_BASENAME}}['libs']['migration'] ?? 'Migrations');
+                        $this->registerOverideConfig($config_name,__DIR__.'/../'.$this->__config_{{SNAKE_LOWER_CLASS_BASENAME}}['libs']['config']);
+                    },
+                    'Model', 'Database'
+                ]);
+                $this->autoBinds();
+                $this->registerRouteService(RouteServiceProvider::class);
 
-            $this->app->singleton(PathRegistry::class, function () {
-                $registry = new PathRegistry();
+                $this->app->singleton(PathRegistry::class, function () {
+                    $registry = new PathRegistry();
 
-                $config = config("{{SNAKE_LOWER_CLASS_BASENAME}}");
-                foreach ($config['libs'] as $key => $lib) $registry->set($key, '{{LOCAL_PATH}}'.$lib);
-                return $registry;
-            });
+                    $config = config("{{SNAKE_CLASS_BASENAME}}");
+                    foreach ($config['libs'] as $key => $lib) $registry->set($key, '{{LOCAL_PATH}}'.$lib);
+                    return $registry;
+                });
+            }
         });
     }
 }

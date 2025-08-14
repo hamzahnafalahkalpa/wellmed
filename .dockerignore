@@ -13,6 +13,7 @@
 !resources/
 !routes/
 !vendor/
+!stubs/
 
 # allow seluruh app termasuk Projects, Groups, Tenants
 !app/

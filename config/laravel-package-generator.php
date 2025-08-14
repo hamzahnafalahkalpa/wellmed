@@ -64,7 +64,7 @@ return [
                 ]],
                 'gitignore'         => ['filename' => '.gitignore','type' => 'file','path' => '../', 'generate' => true, 'stub' => '.gitignore.stub', 'files'=>[]],
                 'composer'          => ['type' => 'file','path' => '../', 'generate' => true, 'stub' => 'repo-composer.json.stub', 'files'=>[]],
-                'helpers'           => ['type' => 'file','path' => '', 'generate' => true, 'stub' => 'helpers.php.stub', 'files'=>[]],
+                'helpers'           => ['type' => 'file','path' => '', 'generate' => true, 'stub' => 'helper.php.stub', 'files'=>[]],
 
                 //FILE
                 //`{{` `}}` SAMA KAN DENGAN STUB SEPARATOR (open, close)
@@ -132,7 +132,7 @@ return [
                     'config'        => ['generate' => true, 'stub' => 'project-config.php.stub']
                 ]],
                 'composer'          => ['type' => 'file','path' => '../', 'generate' => true, 'stub' => 'project-composer.json.stub', 'files'=>[]],
-                'helpers'           => ['type' => 'file','path' => '', 'generate' => true, 'stub' => 'helpers.php.stub', 'files'=>[]],
+                'helpers'           => ['type' => 'file','path' => '', 'generate' => true, 'stub' => 'helper.php.stub', 'files'=>[]],
 
                 //FILE
                 'gitignore'          => ['filename' => '.gitignore','type' => 'file','path' => '', 'generate' => true, 'stub' => '.gitignore.stub'],

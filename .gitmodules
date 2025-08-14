@@ -168,4 +168,4 @@
 	url = https://gitlab.com/micro-tenant/tenant-klinik.git
 [submodule "projects/klinik"]
 	path = projects/klinik
-	url = https://gitlab.com/micro-tenant/klinik.git
+	url = https://gitlab.com/micro-tenant/initial-klinik.git

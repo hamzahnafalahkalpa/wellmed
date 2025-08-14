@@ -1,5 +1,5 @@
 services:
-  klinik_franken:
+  frankenphp:
     container_name: klinik
     image: klinik-app
     build:
@@ -13,22 +13,19 @@ services:
         XDEBUG_IDE_KEY: ${XDEBUG_IDE_KEY:-DOCKER}
         XDEBUG_LOG: /dev/stdout
         XDEBUG_LOG_LEVEL: 0
-    entrypoint: ["/bin/bash", "-c", "/entrypoint.sh php artisan octane:start --server=frankenphp --host=0.0.0.0 --port=${FRANKEN_PORT:-8002} --workers=4 --max-requests=1000"]
-    #entrypoint: php artisan octane:start --server=frankenphp --host=0.0.0.0 --port=${FRANKEN_PORT:-8002} --workers=4 --max-requests=1000
+    entrypoint: php artisan octane:start --server=frankenphp --host=0.0.0.0 --port=${FRANKEN_PORT:-8002} --workers=4 --max-requests=1000
     ports:
       - "${FRANKEN_PORT:-8002}:${FRANKEN_PORT:-8002}"
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
-      - ./repositories:/app/repositories:cached
-      - ./app:/app/app:cached
-      - ./projects/klinik:/app/projects/klinik:cached
-      - ./groups:/app/groups:cached
-      - ./tenants:/app/tenants:cached
+      - klinik_vendor:/app/vendor
+      - klinik_storage:/app/storage
+      - klinik_cache:/app/bootstrap/cache
       - klinik_storage:/app/storage
     restart: unless-stopped
     networks:
-      - caddy-projects
+      - klinik-project
     env_file:
       - .env
     environment:
@@ -36,9 +33,26 @@ services:
       XDG_DATA_HOME: /var/www/html/data
     user: "${UID:-1000}:${GID:-1000}"
 
-networks:
-  caddy-projects:
-    external: true
+  caddy:
+    image: caddy:latest
+    container_name: klinik_caddy
+    restart: always
+    ports:
+      - "80:80"    # port host 8081 ke container 80
+      - "8444:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - frankenphp
+    networks:
+      - klinik-project
 
-volumes:  
-  klinik_storage:
+networks:
+  klinik-project:
+    driver: bridge
+
+volumes:
+  caddy_data:
+  caddy_config:

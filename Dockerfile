@@ -10,12 +10,12 @@ RUN groupadd -g ${GID} appgroup \
 
 WORKDIR /app
 
-# Install system dependencies & PHP extensions
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl unzip nano git ca-certificates gnupg \
+# Install basic utils & dependencies
+RUN apt-get update --allow-releaseinfo-change && apt-get install -y --no-install-recommends \
+    curl unzip nano git ca-certificates gnupg wget \
     libpq-dev libonig-dev libssl-dev libxml2-dev \
     libcurl4-openssl-dev libicu-dev libzip-dev libexif-dev \
-    libjpeg-dev libpng-dev libfreetype6-dev \
+    libjpeg62-turbo-dev libpng-dev libfreetype6-dev \
  && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
  && apt-get install -y nodejs \
  && docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -25,27 +25,37 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
  && docker-php-ext-enable redis \
  && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Install gosu untuk switch user runtime
+RUN set -eux; \
+    dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
+    wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/1.16/gosu-$dpkgArch"; \
+    chmod +x /usr/local/bin/gosu; \
+    gosu nobody true
+
 # Copy composer binary
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copy all source code (excluded by .dockerignore)
+# Copy source code
 COPY . .
 
 # Set permission agar sesuai user
 RUN chown -R appuser:appgroup /app
 
-# Copy entrypoint script ke container
+# Set permission folder Laravel (sementara root masih bisa chown)
+# RUN mkdir -p /app/storage/logs /app/bootstrap/cache \
+#  && chmod -R 775 /app/storage /app/bootstrap/cache
+
+# Copy entrypoint script
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-# Switch user supaya composer plugins jalan lancar dan permission benar
+# Switch ke appuser untuk runtime
 USER appuser
 
-# Install composer dependencies
+# Install composer dependencies sebagai root supaya tidak error
 RUN composer install --optimize-autoloader --no-interaction
 
 EXPOSE 80 443
 
-# Run Laravel Octane dengan FrankenPHP
-ENTRYPOINT ["/bin/bash", "-c", "/entrypoint.sh php artisan octane:frankenphp"]
-CMD ["--port=80", "--workers=4", "--max-requests=1000"]
+# Jalankan Laravel Octane via entrypoint
+ENTRYPOINT ["/bin/bash", "-c", "/entrypoint.sh php artisan octane:start --server=frankenphp --host=0.0.0.0 --port=${FRANKEN_PORT:-8002} --workers=4 --max-requests=1000"]
