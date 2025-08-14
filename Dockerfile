@@ -26,13 +26,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
  && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Copy composer binary
-COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Copy all source code (excluded by .dockerignore)
 COPY . .
 
 # Set permission agar sesuai user
 RUN chown -R appuser:appgroup /app
+
+# Copy entrypoint script ke container
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Switch user supaya composer plugins jalan lancar dan permission benar
 USER appuser
@@ -43,5 +47,5 @@ RUN composer install --optimize-autoloader --no-interaction
 EXPOSE 80 443
 
 # Run Laravel Octane dengan FrankenPHP
-ENTRYPOINT ["php", "artisan", "octane:frankenphp"]
+ENTRYPOINT ["/bin/bash", "-c", "/entrypoint.sh php artisan octane:frankenphp"]
 CMD ["--port=80", "--workers=4", "--max-requests=1000"]
