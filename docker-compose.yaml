@@ -34,7 +34,7 @@ services:
     container_name: klinik_caddy
     restart: always
     ports:
-      - "86:80"    # port host 8081 ke container 80
+      - "80:80"    # port host 8081 ke container 80
       - "8444:443"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
