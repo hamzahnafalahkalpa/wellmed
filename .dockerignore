@@ -17,8 +17,11 @@
 # allow seluruh app termasuk Projects, Groups, Tenants
 !app/
 
-# allow repositories folder
+# allow repositories, projects, groups, tenants folder
 !repositories/
+!projects/
+!groups/
+!tenants/
 
 !entrypoint.sh
 

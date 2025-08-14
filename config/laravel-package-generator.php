@@ -80,7 +80,7 @@ return [
             ]
         ],
         'project'     => [
-            'published_at' => 'app/Projects',
+            'published_at' => 'projects',
             'generates'    => [
                 'migration'       => ['type' => 'dir','path' => 'Database/Migrations', 'generate' => true, 'stub' => null, 'files' => []],
                 'model'           => ['type' => 'dir','path' => 'Models','generate' => true, 'stub' => 'model.php.stub', 'files'=>[]],
