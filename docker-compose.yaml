@@ -42,3 +42,7 @@ networks:
 
 volumes:  
   klinik_storage:
+
+
+# sudo chown -R 1000:1000 ./repositories ./app ./projects/klinik ./groups ./tenants ./storage
+# lakukan ini sebelum docker compose up -d
