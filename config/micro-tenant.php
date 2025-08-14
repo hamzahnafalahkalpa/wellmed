@@ -5,7 +5,7 @@ use Hanafalah\MicroTenant\Commands as Commands;
 return [
     'enabled'      => true,
     'monolith'     => false,
-    'dev_mode'     => true,
+    'dev_mode'     => false,
     'login_schema' => null,
     'application'  => [
         /**
