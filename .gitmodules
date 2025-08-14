@@ -160,3 +160,9 @@
 [submodule "repositories/module-monitoring"]
 	path = repositories/module-monitoring
 	url = https://gitlab.com/micro-tenant/module-monitoring.git
+[submodule "groups/group-initial-klinik"]
+	path = groups/group-initial-klinik
+	url = https://gitlab.com/micro-tenant/group-initial-klinik.git
+[submodule "tenants/tenant-klinik"]
+	path = tenants/tenant-klinik
+	url = https://gitlab.com/micro-tenant/tenant-klinik.git
