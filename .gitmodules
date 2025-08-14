@@ -166,6 +166,3 @@
 [submodule "tenants/tenant-klinik"]
 	path = tenants/tenant-klinik
 	url = https://gitlab.com/micro-tenant/tenant-klinik.git
-[submodule "projects/klinik"]
-	path = projects/klinik
-	url = https://gitlab.com/micro-tenant/initial-klinik.git
