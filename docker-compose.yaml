@@ -1,7 +1,7 @@
 services:
   frankenphp:
     container_name: klinik
-    image: laravel-klinik-app
+    image: klinik-app
     build:
       context: .
       args:
@@ -19,15 +19,19 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
-      - ./:/app:cached
-      - /app/vendor
+      - klinik_vendor:/app/vendor
+      - klinik_storage:/app/storage
+      - klinik_cache:/app/bootstrap/cache
+      - klinik_storage:/app/storage
+    restart: unless-stopped
     networks:
       - klinik-project
     env_file:
       - .env
     environment:
-      XDG_CONFIG_HOME: /var/www/html/config 
-      XDG_DATA_HOME: /var/www/html/data 
+      XDG_CONFIG_HOME: /var/www/html/config
+      XDG_DATA_HOME: /var/www/html/data
+    user: "${UID:-1000}:${GID:-1000}"
 
   caddy:
     image: caddy:latest
