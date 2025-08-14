@@ -53,7 +53,7 @@ RUN chmod +x /entrypoint.sh
 USER appuser
 
 # Install composer dependencies sebagai root supaya tidak error
-RUN composer install --optimize-autoloader --no-interaction
+RUN composer install --optimize-autoloader --no-interaction --no-scripts
 
 EXPOSE 80 443
 
