@@ -127,9 +127,6 @@
 [submodule "repositories/module-tax"]
 	path = repositories/module-tax
 	url = https://gitlab.com/micro-tenant/module-tax.git
-[submodule "app/Groups/group-initial-klinik"]
-	path = app/Groups/group-initial-klinik
-	url = https://gitlab.com/micro-tenant/group-initial-klinik.git
 [submodule "repositories/module-rencana-anggaran"]
 	path = repositories/module-rencana-anggaran
 	url = https://gitlab.com/micro-tenant/module-rencana-anggaran.git
@@ -151,9 +148,6 @@
 [submodule "repositories/module-payment"]
 	path = repositories/module-payment
 	url = https://gitlab.com/micro-tenant/module-payment.git
-[submodule "app/Projects/klinik"]
-	path = app/Projects/klinik
-	url = https://gitlab.com/micro-tenant/initial-klinik.git
 [submodule "repositories/api-helper"]
 	path = repositories/api-helper
 	url = https://gitlab.com/micro-tenant/api-helper.git
@@ -166,6 +160,3 @@
 [submodule "repositories/module-monitoring"]
 	path = repositories/module-monitoring
 	url = https://gitlab.com/micro-tenant/module-monitoring.git
-[submodule "app/Tenants/tenant-klinik"]
-	path = app/Tenants/tenant-klinik
-	url = https://gitlab.com/micro-tenant/tenant-klinik.git
