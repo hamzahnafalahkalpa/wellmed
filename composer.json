@@ -13,7 +13,7 @@
         "google/protobuf": "*",
         "grpc/grpc": "*",
         "hanafalah/klinik-starterpack": "1.x-dev as 1.0",
-        "hanafalah/microtenant": "1.x-dev as 1.0 as 1.0",
+        "hanafalah/microtenant": "1.x-dev as 1.0",
         "inertiajs/inertia-laravel": "^2.0",
         "knuckleswtf/scribe": "*",
         "kreait/laravel-firebase": "^6.0",
