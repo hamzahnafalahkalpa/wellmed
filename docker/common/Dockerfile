@@ -34,6 +34,7 @@ FROM dunglas/frankenphp:php8.4 AS production
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev libicu-dev libzip-dev libfcgi-bin procps \
+    libpng16-16 libjpeg62-turbo libfreetype6 \
  && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY ./docker/production/entrypoint.sh /usr/local/bin/entrypoint.sh
@@ -47,13 +48,17 @@ COPY --from=builder /usr/local/bin/docker-php-ext-* /usr/local/bin/
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
+# Pastikan storage & bootstrap/cache bisa ditulis
+RUN mkdir -p /app/storage /app/bootstrap/cache \
+    && chown -R www-data:www-data /app/storage /app/bootstrap /app/bootstrap/cache \
+    && chmod -R 775 /app/storage /app/bootstrap/cache
+
 WORKDIR /app
-RUN chown -R www-data:www-data /app
 USER www-data
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-EXPOSE 9000
-CMD ["php", "artisan", "octane:frankenphp", "--port=8004", "--workers=4", "--max-requests=1000"]
+EXPOSE 8004
+# CMD dihapus, nanti diatur di docker-compose
 
 # -------------------------
 # Stage 3: Development
@@ -75,7 +80,7 @@ RUN if [ "${XDEBUG_ENABLED}" = "true" ]; then \
     echo "xdebug.idekey=${XDEBUG_IDE_KEY}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
     echo "xdebug.log=${XDEBUG_LOG}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
     echo "xdebug.log_level=${XDEBUG_LOG_LEVEL}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
-    echo "xdebug.client_host=${XDEBUG_HOST}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini ; \
+    echo "xdebug.client_host=${XDEBUG_HOST}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
     echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini ; \
 fi
 
@@ -95,8 +100,13 @@ COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
 COPY ./docker/development/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
+# Pastikan storage & bootstrap/cache bisa ditulis
+RUN mkdir -p /app/storage /app/bootstrap/cache \
+    && chown -R www-data:www-data /app/storage /app/bootstrap /app/bootstrap/cache \
+    && chmod -R 775 /app/storage /app/bootstrap/cache
+
 WORKDIR /app
 USER www-data
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-EXPOSE 9000
-CMD ["php", "artisan", "octane:frankenphp", "--port=8004", "--workers=4", "--max-requests=1000"]
+EXPOSE 8004
+# CMD dihapus, nanti diatur di docker-compose

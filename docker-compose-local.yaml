@@ -17,17 +17,16 @@ services:
         XDEBUG_LOG_LEVEL: 0
     ports:
       - "${FRANKEN_PORT:-8004}:${FRANKEN_PORT:-8004}"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     volumes:
       - ./repositories:/app/repositories:cached
       - ./app:/app/app:cached
       - ./projects/klinik:/app/projects/klinik:cached
       - ./groups:/app/groups:cached
       - ./tenants:/app/tenants:cached
-      - ./public:/app/public:cached
       - klinik_storage:/app/storage
-    # restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
     networks:
       - caddy-projects
     env_file:
@@ -36,6 +35,12 @@ services:
       XDG_CONFIG_HOME: /var/www/html/config
       XDG_DATA_HOME: /var/www/html/data
     user: "${UID:-1000}:${GID:-1000}"
+    command: >
+      php artisan octane:frankenphp
+      --host=0.0.0.0
+      --port=${FRANKEN_PORT:-8004}
+      --workers=${PHP_CLI_SERVER_WORKERS:-4}
+      --max-requests=1000
 
 networks:
   caddy-projects:
@@ -43,6 +48,3 @@ networks:
 
 volumes:  
   klinik_storage:
-
-# sudo chown -R 1000:1000 ./repositories ./app ./projects/klinik ./groups ./tenants ./storage
-# lakukan ini sebelum docker compose up -d
