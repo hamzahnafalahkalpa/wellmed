@@ -1,0 +1,22 @@
+services:
+  franken:
+    image: dauntearl/php:8.4-franken
+    # entrypoint: >
+    #   sh -c "php artisan octane:frankenphp"
+    ports:
+      - "8003:8000"
+    env_file:
+      - .env
+    networks:
+      - caddy-projects
+    volumes:
+      # - ./.env:/app/.env
+      - klinik_app:/app
+    restart: always
+
+volumes:
+  klinik_app:
+
+networks:
+  caddy-projects:
+    external: true

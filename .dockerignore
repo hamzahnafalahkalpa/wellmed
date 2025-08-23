@@ -1,30 +1,41 @@
-# ignore semua default
-*
+**/.classpath
+**/.dockerignore
+**/.env
+**/.git
+**/.gitignore
+**/.gitattributes
+**/.project
+**/.settings
+**/.toolstarget
+**/.vs
+**/.vscode
+**/.next
+**/.cache
+**/*.*proj.user
+**/*.dbmdl
+**/*.jfm
+**/charts
+**/docker-compose*
+**/compose.y*ml
+**/compose.*.y*ml
+!**/composer.json
+!**/composer.lock
+**/Dockerfile*
+**/node_modules
+**/npm-debug.log
+**/obj
+**/secrets.dev.yaml
+**/values.dev.yaml
+**/vendor
+**/.DS_Store
+.editorconfig
+.env.example
+LICENSE
+README.md
 
-# allow core Laravel + vendor
-!artisan
-!composer.json
-!composer.lock
-!bootstrap/
-!config/
-!database/
-!lang/
+tests/
+phpunit.xml
+phpunit.xml.dist
+
+# Jangan ignore public
 !public/
-!resources/
-!routes/
-!vendor/
-!stubs/
-
-# allow seluruh app termasuk Projects, Groups, Tenants
-!app/
-
-# allow repositories, projects, groups, tenants folder
-!repositories/
-!projects/
-!groups/
-!tenants/
-
-!entrypoint.sh
-
-# optional env
-!.env.production
