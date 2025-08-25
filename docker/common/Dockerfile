@@ -84,18 +84,6 @@ RUN if [ "${XDEBUG_ENABLED}" = "true" ]; then \
     echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini ; \
 fi
 
-ARG UID=33
-ARG GID=33
-
-RUN if getent group ${GID}; then \
-      group_name=$(getent group ${GID} | cut -d: -f1); \
-      useradd -m -u ${UID} -g ${GID} -s /bin/bash www; \
-    else \
-      groupadd -g ${GID} www && \
-      useradd -m -u ${UID} -g www -s /bin/bash www; \
-      group_name=www; \
-    fi
-
 COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
 COPY ./docker/development/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
@@ -106,7 +94,7 @@ RUN mkdir -p /app/storage /app/bootstrap/cache \
     && chmod -R 775 /app/storage /app/bootstrap/cache
 
 WORKDIR /app
-USER ${UID}:${GID}
+USER www-data:www-data
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 EXPOSE 8004
 # CMD dihapus, nanti diatur di docker-compose
