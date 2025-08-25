@@ -7,8 +7,6 @@ services:
       dockerfile: ./docker/common/Dockerfile
       target: development
       args:
-        UID: ${UID:-33}
-        GID: ${GID:-33}
         XDEBUG_ENABLED: ${XDEBUG_ENABLED:-true}
         XDEBUG_MODE: develop,coverage,debug,profile
         XDEBUG_HOST: ${XDEBUG_HOST:-host.docker.internal}
@@ -36,7 +34,6 @@ services:
     environment:
       XDG_CONFIG_HOME: /var/www/html/config
       XDG_DATA_HOME: /var/www/html/data
-    user: "${UID:-33}:${GID:-33}"
     command: >
       php artisan octane:frankenphp
       --host=0.0.0.0

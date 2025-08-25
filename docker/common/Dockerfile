@@ -18,7 +18,7 @@ RUN apt-get update --allow-releaseinfo-change && apt-get install -y --no-install
  && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /app
-COPY . /app
+COPY . .
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && if [ "$APP_ENV" = "production" ]; then \
@@ -27,10 +27,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
         composer install --optimize-autoloader --no-interaction --no-progress --prefer-dist --no-scripts; \
     fi
 
-# -------------------------
-# Stage 2: Production
-# -------------------------
-FROM dunglas/frankenphp:php8.4 AS production
+# # -------------------------
+# # Stage 2: Production
+# # -------------------------
+FROM builder AS production
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev libicu-dev libzip-dev libfcgi-bin procps \
@@ -60,9 +60,9 @@ ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 EXPOSE 8004
 # CMD dihapus, nanti diatur di docker-compose
 
-# -------------------------
-# Stage 3: Development
-# -------------------------
+# # -------------------------
+# # Stage 3: Development
+# # -------------------------
 FROM production AS development
 
 ARG XDEBUG_ENABLED=true
@@ -88,13 +88,6 @@ COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
 COPY ./docker/development/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-#Pastikan storage & bootstrap/cache bisa ditulis
-RUN mkdir -p /app/storage /app/bootstrap/cache \
-    && chown -R www-data:www-data /app/storage /app/bootstrap /app/bootstrap/cache \
-    && chmod -R 775 /app/storage /app/bootstrap/cache
-
-WORKDIR /app
-USER www-data:www-data
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 EXPOSE 8004
 # CMD dihapus, nanti diatur di docker-compose
