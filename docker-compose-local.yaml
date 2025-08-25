@@ -22,7 +22,9 @@ services:
       - ./app:/app/app:cached
       - ./projects/klinik:/app/projects/klinik:cached
       - ./groups:/app/groups:cached
+      - ./config:/app/config:cached
       - ./tenants:/app/tenants:cached
+      - ./public:/app/public:cached
       - klinik_storage:/app/storage
     extra_hosts:
       - "host.docker.internal:host-gateway"
