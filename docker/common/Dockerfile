@@ -106,7 +106,7 @@ RUN mkdir -p /app/storage /app/bootstrap/cache \
     && chmod -R 775 /app/storage /app/bootstrap/cache
 
 WORKDIR /app
-USER www-data
+USER ${UID}:${GID}
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 EXPOSE 8004
 # CMD dihapus, nanti diatur di docker-compose
