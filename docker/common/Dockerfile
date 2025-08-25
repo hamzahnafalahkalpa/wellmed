@@ -84,8 +84,8 @@ RUN if [ "${XDEBUG_ENABLED}" = "true" ]; then \
     echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini ; \
 fi
 
-ARG UID=1000
-ARG GID=1000
+ARG UID=33
+ARG GID=33
 
 RUN if getent group ${GID}; then \
       group_name=$(getent group ${GID} | cut -d: -f1); \
