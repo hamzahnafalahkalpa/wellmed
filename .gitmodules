@@ -1,171 +1,171 @@
 [submodule "repositories/laravel-support"]
 	path = repositories/laravel-support
-	url = https://gitlab.com/micro-tenant/laravel-support.git
+	url = https://github.com/hamzahnafalahkalpa/laravel-support.git
 [submodule "repositories/microtenant"]
 	path = repositories/microtenant
-	url = https://gitlab.com/micro-tenant/microtenant.git
+	url = https://github.com/hamzahnafalahkalpa/microtenant.git
 [submodule "repositories/laravel-permission"]
 	path = repositories/laravel-permission
-	url = https://gitlab.com/micro-tenant/laravel-permission.git
+	url = https://github.com/hamzahnafalahkalpa/laravel-permission.git
 [submodule "repositories/laravel-package-generator"]
 	path = repositories/laravel-package-generator
-	url = https://gitlab.com/micro-tenant/laravel-package-generator.git
+	url = https://github.com/hamzahnafalahkalpa/laravel-package-generator.git
 [submodule "repositories/laravel-feature"]
 	path = repositories/laravel-feature
-	url = https://gitlab.com/micro-tenant/laravel-feature.git
+	url = https://github.com/hamzahnafalahkalpa/laravel-feature.git
 [submodule "repositories/laravel-stub"]
 	path = repositories/laravel-stub
-	url = https://gitlab.com/micro-tenant/laravel-stub.git
+	url = https://github.com/hamzahnafalahkalpa/laravel-stub.git
 [submodule "repositories/laravel-has-props"]
 	path = repositories/laravel-has-props
-	url = https://gitlab.com/micro-tenant/laravel-has-props.git
+	url = https://github.com/hamzahnafalahkalpa/laravel-has-props.git
 [submodule "repositories/module-workspace"]
 	path = repositories/module-workspace
-	url = https://gitlab.com/micro-tenant/module-workspace.git
+	url = https://github.com/hamzahnafalahkalpa/module-workspace.git
 [submodule "repositories/module-warehouse"]
 	path = repositories/module-warehouse
-	url = https://gitlab.com/micro-tenant/module-warehouse.git
+	url = https://github.com/hamzahnafalahkalpa/module-warehouse.git
 [submodule "repositories/module-regional"]
 	path = repositories/module-regional
-	url = https://gitlab.com/micro-tenant/module-regional.git
+	url = https://github.com/hamzahnafalahkalpa/module-regional.git
 [submodule "repositories/module-user"]
 	path = repositories/module-user
-	url = https://gitlab.com/micro-tenant/module-user.git
+	url = https://github.com/hamzahnafalahkalpa/module-user.git
 [submodule "repositories/module-encoding"]
 	path = repositories/module-encoding
-	url = https://gitlab.com/micro-tenant/module-encoding.git
+	url = https://github.com/hamzahnafalahkalpa/module-encoding.git
 [submodule "repositories/module-patient"]
 	path = repositories/module-patient
-	url = https://gitlab.com/micro-tenant/module-patient.git
+	url = https://github.com/hamzahnafalahkalpa/module-patient.git
 [submodule "repositories/module-agent"]
 	path = repositories/module-agent
-	url = https://gitlab.com/micro-tenant/module-agent.git
+	url = https://github.com/hamzahnafalahkalpa/module-agent.git
 [submodule "repositories/module-employee"]
 	path = repositories/module-employee
-	url = https://gitlab.com/micro-tenant/module-employee.git
+	url = https://github.com/hamzahnafalahkalpa/module-employee.git
 [submodule "repositories/module-funding"]
 	path = repositories/module-funding
-	url = https://gitlab.com/micro-tenant/module-funding.git
+	url = https://github.com/hamzahnafalahkalpa/module-funding.git
 [submodule "repositories/module-lab-radiology"]
 	path = repositories/module-lab-radiology
-	url = https://gitlab.com/micro-tenant/module-lab-radiology.git
+	url = https://github.com/hamzahnafalahkalpa/module-lab-radiology.git
 [submodule "repositories/module-medic-service"]
 	path = repositories/module-medic-service
-	url = https://gitlab.com/micro-tenant/module-medic-service.git
+	url = https://github.com/hamzahnafalahkalpa/module-medic-service.git
 [submodule "repositories/module-medical-treatment"]
 	path = repositories/module-medical-treatment
-	url = https://gitlab.com/micro-tenant/module-medical-treatment.git
+	url = https://github.com/hamzahnafalahkalpa/module-medical-treatment.git
 [submodule "repositories/module-organization"]
 	path = repositories/module-organization
-	url = https://gitlab.com/micro-tenant/module-organization.git
+	url = https://github.com/hamzahnafalahkalpa/module-organization.git
 [submodule "repositories/module-payer"]
 	path = repositories/module-payer
-	url = https://gitlab.com/micro-tenant/module-payer.git
+	url = https://github.com/hamzahnafalahkalpa/module-payer.git
 [submodule "repositories/module-people"]
 	path = repositories/module-people
-	url = https://gitlab.com/micro-tenant/module-people.git
+	url = https://github.com/hamzahnafalahkalpa/module-people.git
 [submodule "repositories/module-profession"]
 	path = repositories/module-profession
-	url = https://gitlab.com/micro-tenant/module-profession.git
+	url = https://github.com/hamzahnafalahkalpa/module-profession.git
 [submodule "repositories/module-service"]
 	path = repositories/module-service
-	url = https://gitlab.com/micro-tenant/module-service.git
+	url = https://github.com/hamzahnafalahkalpa/module-service.git
 [submodule "repositories/module-summary"]
 	path = repositories/module-summary
-	url = https://gitlab.com/micro-tenant/module-summary.git
+	url = https://github.com/hamzahnafalahkalpa/module-summary.git
 [submodule "repositories/module-transaction"]
 	path = repositories/module-transaction
-	url = https://gitlab.com/micro-tenant/module-transaction.git
+	url = https://github.com/hamzahnafalahkalpa/module-transaction.git
 [submodule "repositories/module-treatment"]
 	path = repositories/module-treatment
-	url = https://gitlab.com/micro-tenant/module-treatment.git
+	url = https://github.com/hamzahnafalahkalpa/module-treatment.git
 [submodule "repositories/module-class-room"]
 	path = repositories/module-class-room
-	url = https://gitlab.com/micro-tenant/module-class-room.git
+	url = https://github.com/hamzahnafalahkalpa/module-class-room.git
 [submodule "repositories/module-mcu"]
 	path = repositories/module-mcu
-	url = https://gitlab.com/micro-tenant/module-mcu.git
+	url = https://github.com/hamzahnafalahkalpa/module-mcu.git
 [submodule "repositories/module-item"]
 	path = repositories/module-item
-	url = https://gitlab.com/micro-tenant/module-item.git
+	url = https://github.com/hamzahnafalahkalpa/module-item.git
 [submodule "repositories/module-medical-item"]
 	path = repositories/module-medical-item
-	url = https://gitlab.com/micro-tenant/module-medical-item.git
+	url = https://github.com/hamzahnafalahkalpa/module-medical-item.git
 [submodule "repositories/module-examination"]
 	path = repositories/module-examination
-	url = https://gitlab.com/micro-tenant/module-examination.git
+	url = https://github.com/hamzahnafalahkalpa/module-examination.git
 [submodule "repositories/module-procurement"]
 	path = repositories/module-procurement
-	url = https://gitlab.com/micro-tenant/module-procurement.git
+	url = https://github.com/hamzahnafalahkalpa/module-procurement.git
 [submodule "repositories/module-medical-procurement"]
 	path = repositories/module-medical-procurement
-	url = https://gitlab.com/micro-tenant/module-medical-procurement.git
+	url = https://github.com/hamzahnafalahkalpa/module-medical-procurement.git
 [submodule "repositories/module-disease"]
 	path = repositories/module-disease
-	url = https://gitlab.com/micro-tenant/module-disease.git
+	url = https://github.com/hamzahnafalahkalpa/module-disease.git
 [submodule "repositories/module-informed-consent"]
 	path = repositories/module-informed-consent
-	url = https://gitlab.com/micro-tenant/module-informed-consent.git
+	url = https://github.com/hamzahnafalahkalpa/module-informed-consent.git
 [submodule "repositories/module-icd"]
 	path = repositories/module-icd
-	url = https://gitlab.com/micro-tenant/module-icd.git
+	url = https://github.com/hamzahnafalahkalpa/module-icd.git
 [submodule "repositories/module-anatomy"]
 	path = repositories/module-anatomy
-	url = https://gitlab.com/micro-tenant/module-anatomy.git
+	url = https://github.com/hamzahnafalahkalpa/module-anatomy.git
 [submodule "repositories/module-physical-examination"]
 	path = repositories/module-physical-examination
-	url = https://gitlab.com/micro-tenant/module-physical-examination.git
+	url = https://github.com/hamzahnafalahkalpa/module-physical-examination.git
 [submodule "repositories/module-opname-stock"]
 	path = repositories/module-opname-stock
-	url = https://gitlab.com/micro-tenant/module-opname-stock.git
+	url = https://github.com/hamzahnafalahkalpa/module-opname-stock.git
 [submodule "repositories/module-distribution"]
 	path = repositories/module-distribution
-	url = https://gitlab.com/micro-tenant/module-distribution.git
+	url = https://github.com/hamzahnafalahkalpa/module-distribution.git
 [submodule "repositories/module-pharmacy"]
 	path = repositories/module-pharmacy
-	url = https://gitlab.com/micro-tenant/module-pharmacy.git
+	url = https://github.com/hamzahnafalahkalpa/module-pharmacy.git
 [submodule "repositories/module-tax"]
 	path = repositories/module-tax
-	url = https://gitlab.com/micro-tenant/module-tax.git
+	url = https://github.com/hamzahnafalahkalpa/module-tax.git
 [submodule "repositories/module-rencana-anggaran"]
 	path = repositories/module-rencana-anggaran
-	url = https://gitlab.com/micro-tenant/module-rencana-anggaran.git
+	url = https://github.com/hamzahnafalahkalpa/module-rencana-anggaran.git
 [submodule "repositories/module-event"]
 	path = repositories/module-event
-	url = https://gitlab.com/micro-tenant/module-event.git
+	url = https://github.com/hamzahnafalahkalpa/module-event.git
 [submodule "repositories/module-manufacture"]
 	path = repositories/module-manufacture
-	url = https://gitlab.com/micro-tenant/module-manufacture.git
+	url = https://github.com/hamzahnafalahkalpa/module-manufacture.git
 [submodule "repositories/module-handwriting"]
 	path = repositories/module-handwriting
-	url = https://gitlab.com/micro-tenant/module-handwriting.git
+	url = https://github.com/hamzahnafalahkalpa/module-handwriting.git
 [submodule "repositories/module-support"]
 	path = repositories/module-support
-	url = https://gitlab.com/micro-tenant/module-support.git
+	url = https://github.com/hamzahnafalahkalpa/module-support.git
 [submodule "repositories/module-card-identity"]
 	path = repositories/module-card-identity
-	url = https://gitlab.com/micro-tenant/module-card-identity.git
+	url = https://github.com/hamzahnafalahkalpa/module-card-identity.git
 [submodule "repositories/module-payment"]
 	path = repositories/module-payment
-	url = https://gitlab.com/micro-tenant/module-payment.git
+	url = https://github.com/hamzahnafalahkalpa/module-payment.git
 [submodule "repositories/api-helper"]
 	path = repositories/api-helper
-	url = https://gitlab.com/micro-tenant/api-helper.git
+	url = https://github.com/hamzahnafalahkalpa/api-helper.git
 [submodule "repositories/klinik-starterpack"]
 	path = repositories/klinik-starterpack
-	url = https://gitlab.com/bundling-features/klinik-starterpack.git
+	url = https://github.com/hamzahnafalahkalpa/klinik-starterpack.git
 [submodule "repositories/puskesmas-asset"]
 	path = repositories/puskesmas-asset
-	url = https://gitlab.com/micro-tenant/puskesmas-asset.git
+	url = https://github.com/hamzahnafalahkalpa/puskesmas-asset.git
 [submodule "repositories/module-monitoring"]
 	path = repositories/module-monitoring
-	url = https://gitlab.com/micro-tenant/module-monitoring.git
+	url = https://github.com/hamzahnafalahkalpa/module-monitoring.git
 [submodule "groups/group-initial-klinik"]
 	path = groups/group-initial-klinik
-	url = https://gitlab.com/micro-tenant/group-initial-klinik.git
+	url = https://github.com/hamzahnafalahkalpa/group-initial-klinik.git
 [submodule "tenants/tenant-klinik"]
 	path = tenants/tenant-klinik
-	url = https://gitlab.com/micro-tenant/tenant-klinik.git
+	url = https://github.com/hamzahnafalahkalpa/tenant-klinik.git
 [submodule "projects/klinik"]
 	path = projects/klinik
-	url = https://gitlab.com/micro-tenant/initial-klinik.git
+	url = https://github.com/hamzahnafalahkalpa/initial-klinik.git
