@@ -101,9 +101,9 @@ COPY ./docker/development/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Pastikan storage & bootstrap/cache bisa ditulis
-RUN mkdir -p /app/storage /app/bootstrap/cache \
-    && chown -R www-data:www-data /app/storage /app/bootstrap /app/bootstrap/cache \
-    && chmod -R 775 /app/storage /app/bootstrap/cache
+# RUN mkdir -p /app/storage /app/bootstrap/cache \
+#     && chown -R www-data:www-data /app/storage /app/bootstrap /app/bootstrap/cache \
+#     && chmod -R 775 /app/storage /app/bootstrap/cache
 
 WORKDIR /app
 USER www-data
