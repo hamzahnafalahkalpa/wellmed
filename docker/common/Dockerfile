@@ -32,11 +32,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # # -------------------------
 FROM builder AS production
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    libpq-dev libicu-dev libzip-dev libfcgi-bin procps \
-    libpng16-16 libjpeg62-turbo libfreetype6 \
- && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 COPY ./docker/production/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 

@@ -10,7 +10,11 @@ ApiAccess::secure(function(){
         ->only('store','destroy')
         ->parameters(['token' => 'uuid']);
 }); 
-LaravelSupport::callRoutes(__DIR__.'/api');
+Route::group([
+    'as' => 'api.'
+],function(){
+    LaravelSupport::callRoutes(__DIR__.'/api');
+});
 
     // Route::get('/logModel',function(){
     //     $models = ['ADL','AdministrationVitaminA','Allergy','Alloanamnese','AMT','ANCTerpadu','Anthropometry','Assessment','AudiometriTest','BloodSugarTest','ChildAndPregnancyHistory','ChildGrowth','EarExamination','EyeExamination','EyeRefractionExamination','EyeVisionColor','FamilyPlanningService','FinalConclusionLabor','FoodHandlerExamination','GCS','GDS4','HearingFunction','HearingLossHistory','HemoglobinTest','HIV','HIVAntibodyTest','ImmunizationHistory','ISKJ','KalaIExamination','KalaIIExamination','KalaIIIExamination','KalaIVExamination','LarynxExamination','MCUExamSummary','MCUMedicalHistory','MCUPackageSummary','MCUPresentMedicalHistory',

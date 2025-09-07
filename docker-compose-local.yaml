@@ -1,14 +1,12 @@
 services:
-  klinik_franken:
-    container_name: klinik
-    image: klinik-app
+  wellmed_franken:
+    container_name: wellmed
+    image: wellmed-app
     build:
       context: .
       dockerfile: ./docker/common/Dockerfile
       target: development
       args:
-        UID: ${UID:-1000}
-        GID: ${GID:-1000}
         XDEBUG_ENABLED: ${XDEBUG_ENABLED:-true}
         XDEBUG_MODE: develop,coverage,debug,profile
         XDEBUG_HOST: ${XDEBUG_HOST:-host.docker.internal}
@@ -25,7 +23,7 @@ services:
       - ./config:/app/config:cached
       - ./tenants:/app/tenants:cached
       - ./public:/app/public:cached
-      - klinik_storage:/app/storage
+      - wellmed_storage:/app/storage
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
@@ -36,7 +34,6 @@ services:
     environment:
       XDG_CONFIG_HOME: /var/www/html/config
       XDG_DATA_HOME: /var/www/html/data
-    user: "${UID:-1000}:${GID:-1000}"
     command: >
       php artisan octane:frankenphp
       --host=0.0.0.0
@@ -49,4 +46,4 @@ networks:
     external: true
 
 volumes:  
-  klinik_storage:
+  wellmed_storage:

@@ -5,13 +5,9 @@ use Hanafalah\MicroTenant\Commands as Commands;
 return [
     'enabled'      => true,
     'monolith'     => false,
-    'dev_mode'     => false,
+    'dev_mode'     => true,
     'login_schema' => null,
     'application'  => [
-        /**
-         * pattern for versioning, you can use 1.^, 1.0.^, 1.0.0, 
-         * but avoid using 1.0.0 because it will make schema installation become not optimal
-         */
         'version_pattern' => '1.^'
     ],
     'libs' => [

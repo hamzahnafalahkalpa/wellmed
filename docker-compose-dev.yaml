@@ -1,7 +1,7 @@
 services:
-  klinik_franken:
-    container_name: klinik
-    image: klinik-app
+  wellmed_franken:
+    container_name: wellmed
+    image: wellmed-app
     build:
       context: .
       dockerfile: ./docker/common/Dockerfile
@@ -23,7 +23,7 @@ services:
       - ./config:/app/config:cached
       - ./tenants:/app/tenants:cached
       - ./public:/app/public:cached
-      - klinik_storage:/app/storage
+      - wellmed_storage:/app/storage
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
@@ -46,4 +46,4 @@ networks:
     driver: bridge
 
 volumes:  
-  klinik_storage:
+  wellmed_storage:

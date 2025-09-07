@@ -3,5 +3,5 @@
 while true; do
   inotifywait -r -e modify --exclude '\.git' .
   echo "🔁 Reloading Octane..."
-  docker exec -w /app klinik php artisan octane:reload
+  docker exec -w /app wellmed php artisan octane:reload
 done
