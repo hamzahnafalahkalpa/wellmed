@@ -13,7 +13,7 @@ export default defineConfig({
         // },
         // cors : true,
         cors: {
-            origin: ['http://localhost:8002', 'http://127.0.0.1:5173'], // Daftarkan origins yang benar
+            origin: ['http://localhost:8004', 'http://127.0.0.1:5173'], // Daftarkan origins yang benar
             methods: ['GET', 'POST', 'PUT', 'DELETE'],
             allowedHeaders: ['Content-Type', 'Authorization'],
         },

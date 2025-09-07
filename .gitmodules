@@ -127,9 +127,6 @@
 [submodule "repositories/module-tax"]
 	path = repositories/module-tax
 	url = https://github.com/hamzahnafalahkalpa/module-tax.git
-[submodule "repositories/module-rencana-anggaran"]
-	path = repositories/module-rencana-anggaran
-	url = https://github.com/hamzahnafalahkalpa/module-rencana-anggaran.git
 [submodule "repositories/module-event"]
 	path = repositories/module-event
 	url = https://github.com/hamzahnafalahkalpa/module-event.git

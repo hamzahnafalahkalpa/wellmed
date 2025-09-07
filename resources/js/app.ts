@@ -58,7 +58,7 @@ createInertiaApp({
     },
     setup({ el, App, props, plugin }) {
         const pinia = createPinia();
-        const head = createHead();
+        const head  = createHead();
 
         const app = createApp({ render: () => h(App, props) })
             .use(plugin)

@@ -1,11 +1,6 @@
 {
-    "localhost:8002": [
+    "localhost:8004": [
         "@tenants/tenant-klinik/src/Resources/js/pages/**/*.vue",
-        "@groups/group-initial-klinik/src/Resources/js/pages/**/*.vue",
-        "@projects/klinik/src/Resources/js/pages/**/*.vue"
-    ],
-    "localhost:8002/tenant1": [
-        "@tenants/tenant1/src/Resources/js/pages/**/*.vue",
         "@groups/group-initial-klinik/src/Resources/js/pages/**/*.vue",
         "@projects/klinik/src/Resources/js/pages/**/*.vue"
     ]

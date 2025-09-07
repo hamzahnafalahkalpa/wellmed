@@ -24,7 +24,7 @@ return [
         'enabled' => (bool) env('INERTIA_SSR_ENABLED', true),
 
         // 'url' => env('INERTIA_SSR_URL', 'http://127.0.0.1:13714'),
-        'url' => env('INERTIA_SSR_URL', 'http://localhost:8002'),
+        'url' => env('INERTIA_SSR_URL', 'http://localhost:8004'),
 
         // 'bundle' => base_path('bootstrap/ssr/ssr.mjs'),
 

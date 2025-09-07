@@ -37,7 +37,7 @@ const submit = () => {
 
         <div class="relative mb-[30px] w-full h-fit z-20">
             <div class="relative w-[200px] h-[100px] -translate-x-1/2 left-1/2 mt-[20px] sm:mt-[-20px]" style="left:calc(50% - 10px)">
-                <div class="image bg-no-repeat bg-center bg-contain w-full h-full filter brightness-0" :style="{ backgroundImage: `url(/assets/images/logo.png)` }"></div>
+                <!-- <div class="image bg-no-repeat bg-center bg-contain w-full h-full filter brightness-0" :style="{ backgroundImage: `url(/assets/images/logo.png)` }"></div> -->
             </div>
         </div>
 
