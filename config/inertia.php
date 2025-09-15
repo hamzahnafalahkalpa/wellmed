@@ -19,6 +19,8 @@ return [
     |
     */
 
+    'enabled' => (bool) env('INERTIA_ENABLED', false),
+
     'ssr' => [
 
         'enabled' => (bool) env('INERTIA_SSR_ENABLED', true),

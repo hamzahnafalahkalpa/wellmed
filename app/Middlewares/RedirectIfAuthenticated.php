@@ -9,8 +9,6 @@ class RedirectIfAuthenticated extends MiddlewareRedirectIfAuthenticated
 {
     protected function defaultRedirectUri(): string
     {
-        return route('dashboard',['tenant' => 1]);
-
         $routes = Route::getRoutes()->get('GET');
 
         foreach (['dashboard', 'home'] as $uri) {

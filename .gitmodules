@@ -166,3 +166,9 @@
 [submodule "projects/klinik"]
 	path = projects/klinik
 	url = https://github.com/hamzahnafalahkalpa/initial-klinik.git
+[submodule "projects/wellmed-plus"]
+	path = projects/wellmed-plus
+	url = git@github.com:hamzahnafalahkalpa/wellmed-plus.git
+[submodule "projects/wellmed-lite"]
+	path = projects/wellmed-lite
+	url = git@github.com:hamzahnafalahkalpa/wellmed-lite.git
