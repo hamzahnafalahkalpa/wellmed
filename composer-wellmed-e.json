@@ -12,8 +12,9 @@
         "php": "^8.4",
         "google/protobuf": "*",
         "grpc/grpc": "*",
-        "hanafalah/wellmed-lite-starterpack": "dev-main",
-        "hanafalah/microtenant": "dev-main",
+        "hanafalah/klinik-starterpack": "dev-main",
+        "hanafalah/microtenant": "dev-main as 1.0",
+        "inertiajs/inertia-laravel": "^2.0",
         "knuckleswtf/scribe": "*",
         "kreait/laravel-firebase": "^6.0",
         "laravel/framework": "^12.0",
@@ -28,6 +29,7 @@
         "tightenco/ziggy": "^2.4"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "*",
         "fakerphp/faker": "^1.23",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.18",
@@ -99,13 +101,6 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": {
-        "hanafalah/wellmed-lite-starterpack": {
-            "type": "path",
-            "url": "repositories/wellmed-lite-starterpack",
-            "optimize": {
-                "symlink": true
-            }
-        },
         "hanafalah/klinik-starterpack": {
             "type": "path",
             "url": "repositories/klinik-starterpack",

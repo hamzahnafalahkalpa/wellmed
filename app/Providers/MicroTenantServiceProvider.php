@@ -12,6 +12,7 @@ use Stancl\Tenancy\Jobs;
 use Stancl\Tenancy\Listeners;
 use Stancl\Tenancy\Middleware;
 use Hanafalah\ApiHelper\Facades\ApiAccess;
+use Hanafalah\MicroTenant\Contracts\Supports\ConnectionManager;
 use Hanafalah\MicroTenant\Facades\MicroTenant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
@@ -119,7 +120,6 @@ class MicroTenantServiceProvider extends ServiceProvider
 
     public function register()
     {
-        
     }
 
     public function boot()

@@ -6,7 +6,6 @@ use Hanafalah\MicroTenant\Facades\MicroTenant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
-use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+
     }
 
     /**
@@ -24,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Model::automaticallyEagerLoadRelationships();
-        Inertia::share('tenant', fn () => session('tenant'));
+        // Inertia::share('tenant', fn () => session('tenant'));
         if (config('octane') !== null) MicroTenant::accessOnLogin();
         if (app()->environment('production')) {
             URL::forceScheme('https');

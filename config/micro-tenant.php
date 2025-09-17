@@ -17,8 +17,12 @@ return [
         'database' => 'Database'
     ],
     'database' => [
+        'app_tenant'   => [
+            'prefix' => 'app_tenant_',
+            'suffix' => ''
+        ],
         'central_tenant'   => [
-            'prefix' => 'central_tenant_',
+            'prefix' => 'group_',
             'suffix' => ''
         ],
         'scope'     => [
@@ -95,7 +99,7 @@ return [
 
         ],
         'database_tenant_name' => [
-            'prefix' => 'microtenant_',
+            'prefix' => 'clinic_',
             'suffix' => ''
         ],
 
@@ -117,7 +121,7 @@ return [
          * Disable the pgsql manager above, and enable the one below if you
          * want to separate tenant DBs by schemas rather than databases.
          */
-            'pgsql' => Stancl\Tenancy\TenantDatabaseManagers\PostgreSQLSchemaManager::class, // Separate by schema instead of database
+            'pgsql' => Hanafalah\KlinikStarterpack\Database\Manager\PostgreSQLSchemaManager::class, // Separate by schema instead of database
         ]
     ],
     'domains'  => [
@@ -379,10 +383,10 @@ return [
          * understand which ones you want to enable.
          */
         'features' => [
-            // Stancl\Tenancy\Features\UserImpersonation::class,
+            Stancl\Tenancy\Features\UserImpersonation::class,
             // Stancl\Tenancy\Features\TelescopeTags::class,
-            // Stancl\Tenancy\Features\UniversalRoutes::class,
-            // Stancl\Tenancy\Features\TenantConfig::class, // https://tenancyforlaravel.com/docs/v3/features/tenant-config
+            Stancl\Tenancy\Features\UniversalRoutes::class,
+            Stancl\Tenancy\Features\TenantConfig::class, // https://tenancyforlaravel.com/docs/v3/features/tenant-config
             // Stancl\Tenancy\Features\CrossDomainRedirect::class, // https://tenancyforlaravel.com/docs/v3/features/cross-domain-redirect
             // Stancl\Tenancy\Features\ViteBundler::class,
         ],

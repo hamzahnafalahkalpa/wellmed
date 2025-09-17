@@ -25,7 +25,7 @@ class EnvironmentController extends ApiController{
         return $token;
     }
     
-    protected function getUser(){
+    protected function getUser(){        
         $this->__user->load([
             'userReference'=>function($query){
                 $query->with([

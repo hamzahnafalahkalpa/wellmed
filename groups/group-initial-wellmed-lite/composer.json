@@ -1,0 +1,27 @@
+{
+    "name": "wellmed-lite/group-initial-wellmed-lite",
+    "autoload": {
+        "psr-4": {
+            "WellmedLite\\GroupInitialWellmedLite\\": "src/"
+        },
+        "files":[
+            "src/helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Hamzah Nur Alfalah",
+            "email": "hamzahnafalah@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "WellmedLite\\GroupInitialWellmedLite\\Providers\\GroupInitialWellmedLiteServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "hanafalah/laravel-support": "dev-main"
+    }
+}

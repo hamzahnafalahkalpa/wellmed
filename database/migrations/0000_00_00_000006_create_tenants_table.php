@@ -33,7 +33,7 @@ return new class extends Migration
 
                 $table->id();
                 $table->string('uuid', 36)->nullable(false);
-                $table->string('name', 50)->unique()->nullable(false);
+                $table->string('name', 50)->nullable(false);
                 $table->string('reference_type', 50)->nullable();
                 $table->string('reference_id', 36)->nullable();
                 $table->enum('flag', [
@@ -48,6 +48,7 @@ return new class extends Migration
                 $table->softDeletes();
 
                 $table->index(['reference_id', 'reference_type'], 'tenants_reference_index');
+                $table->unique(['name', 'flag'], 'tenant_unique');
             });
 
             Schema::table($table_name, function (Blueprint $table) use ($table_name) {

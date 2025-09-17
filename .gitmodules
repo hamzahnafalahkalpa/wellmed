@@ -172,3 +172,9 @@
 [submodule "projects/wellmed-lite"]
 	path = projects/wellmed-lite
 	url = git@github.com:hamzahnafalahkalpa/wellmed-lite.git
+[submodule "repositories/wellmed-lite-starterpack"]
+	path = repositories/wellmed-lite-starterpack
+	url = git@github.com:hamzahnafalahkalpa/wellmed-lite-starterpack.git
+[submodule "repositories/wellmed-plus-starterpack"]
+	path = repositories/wellmed-plus-starterpack
+	url = git@github.com:hamzahnafalahkalpa/wellmed-plus-starterpack.git
