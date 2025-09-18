@@ -11,10 +11,7 @@ use Stancl\Tenancy\Events;
 use Stancl\Tenancy\Jobs;
 use Stancl\Tenancy\Listeners;
 use Stancl\Tenancy\Middleware;
-use Hanafalah\ApiHelper\Facades\ApiAccess;
-use Hanafalah\MicroTenant\Contracts\Supports\ConnectionManager;
 use Hanafalah\MicroTenant\Facades\MicroTenant;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
 
 class MicroTenantServiceProvider extends ServiceProvider
@@ -80,7 +77,6 @@ class MicroTenantServiceProvider extends ServiceProvider
             Events\TenancyEnded::class => [
                 Listeners\RevertToCentralContext::class,
             ],
-
             Events\BootstrappingTenancy::class => [],
             Events\TenancyBootstrapped::class => [
                 function(){

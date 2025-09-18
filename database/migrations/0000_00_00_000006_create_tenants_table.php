@@ -39,7 +39,8 @@ return new class extends Migration
                 $table->enum('flag', [
                     $this->__table::FLAG_APP_TENANT,
                     $this->__table::FLAG_CENTRAL_TENANT,
-                    $this->__table::FLAG_TENANT
+                    $this->__table::FLAG_TENANT,
+                    $this->__table::FLAG_CLUSTER
                 ])->default($this->__table::FLAG_TENANT)->nullable(false);
                 $table->foreignIdFor($domain::class)->nullable()->index()
                     ->constrained()->cascadeOnUpdate()->nullOnDelete();

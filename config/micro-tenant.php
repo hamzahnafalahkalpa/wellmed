@@ -35,32 +35,38 @@ return [
         ],
         'model_connections' => [
             "central"        => [
-                "ApiAccess",
-                "Cache",
-                "CacheLock",
-                "Country",
-                "District",
-                "Domain",
-                "FailedJob",
-                "JobBatch",
-                "Job",
-                "PasswordResetToken",
-                "PayloadMonitoring",
-                "PersonalAccessToken",
-                "Province",
-                "Subdistrict",
-                "Tenant",
-                "UserReference",
-                "User",
-                "Village",
-                "Workspace"
+                "models" => [
+                    "ApiAccess",
+                    "Cache",
+                    "CacheLock",
+                    "Country",
+                    "District",
+                    "Domain",
+                    "FailedJob",
+                    "JobBatch",
+                    "Job",
+                    "PasswordResetToken",
+                    "PayloadMonitoring",
+                    "PersonalAccessToken",
+                    "Province",
+                    "Subdistrict",
+                    "Tenant",
+                    "UserReference",
+                    "User",
+                    "Village",
+                    "Workspace"
+                ]
             ],
             "central_app"    => [
-                "Encoding",
-                "MasterFeature",
-                "ModelHasFeature"
+                "models" => [
+                    "Encoding",
+                    "MasterFeature",
+                    "ModelHasFeature"
+                ]
             ],
             "central_tenant" => [
+                "models" => [
+                ]
             ]
         ],
         'connections' => [
@@ -383,10 +389,10 @@ return [
          * understand which ones you want to enable.
          */
         'features' => [
-            Stancl\Tenancy\Features\UserImpersonation::class,
+            // Stancl\Tenancy\Features\UserImpersonation::class,
             // Stancl\Tenancy\Features\TelescopeTags::class,
-            Stancl\Tenancy\Features\UniversalRoutes::class,
-            Stancl\Tenancy\Features\TenantConfig::class, // https://tenancyforlaravel.com/docs/v3/features/tenant-config
+            // Stancl\Tenancy\Features\UniversalRoutes::class,
+            // Stancl\Tenancy\Features\TenantConfig::class, // https://tenancyforlaravel.com/docs/v3/features/tenant-config
             // Stancl\Tenancy\Features\CrossDomainRedirect::class, // https://tenancyforlaravel.com/docs/v3/features/cross-domain-redirect
             // Stancl\Tenancy\Features\ViteBundler::class,
         ],
