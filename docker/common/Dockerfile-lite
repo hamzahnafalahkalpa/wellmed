@@ -15,9 +15,10 @@ RUN apt-get update --allow-releaseinfo-change && apt-get install -y --no-install
     pcntl pdo_mysql pdo_pgsql pgsql opcache intl zip bcmath soap exif gd \
  && pecl install redis \
  && docker-php-ext-enable redis \
- && pecl install grpc \
- && docker-php-ext-enable grpc \
  && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+#  && pecl install grpc \
+#  && docker-php-ext-enable grpc \
 
 WORKDIR /app
 COPY . .
