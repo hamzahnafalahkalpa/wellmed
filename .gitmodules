@@ -178,3 +178,6 @@
 [submodule "repositories/wellmed-plus-starterpack"]
 	path = repositories/wellmed-plus-starterpack
 	url = git@github.com:hamzahnafalahkalpa/wellmed-plus-starterpack.git
+[submodule "projects/hq"]
+	path = projects/hq
+	url = git@github.com:hamzahnafalahkalpa/HQ.git
