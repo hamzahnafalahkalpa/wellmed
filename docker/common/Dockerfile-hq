@@ -35,8 +35,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # # -------------------------
 FROM builder AS production
 
-COPY ./docker/production/entrypoint.lite.sh /usr/local/bin/entrypoint.lite.sh
-RUN chmod +x /usr/local/bin/entrypoint.lite.sh
+COPY ./docker/production/entrypoint.hq.sh /usr/local/bin/entrypoint.hq.sh
+RUN chmod +x /usr/local/bin/entrypoint.hq.sh
 
 COPY ./storage /app/storage-init
 COPY --from=builder /app /app
@@ -54,8 +54,8 @@ RUN mkdir -p /app/storage /app/bootstrap/cache \
 WORKDIR /app
 USER www-data
 
-ENTRYPOINT ["/usr/local/bin/entrypoint.lite.sh"]
-EXPOSE 8005
+ENTRYPOINT ["/usr/local/bin/entrypoint.hq.sh"]
+EXPOSE 8007
 # CMD dihapus, nanti diatur di docker-compose
 
 # # -------------------------
@@ -83,9 +83,9 @@ RUN if [ "${XDEBUG_ENABLED}" = "true" ]; then \
 fi
 
 COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
-COPY ./docker/development/entrypoint.lite.sh /usr/local/bin/entrypoint.lite.sh
-RUN chmod +x /usr/local/bin/entrypoint.lite.sh
+COPY ./docker/development/entrypoint.hq.sh /usr/local/bin/entrypoint.hq.sh
+RUN chmod +x /usr/local/bin/entrypoint.hq.sh
 
-ENTRYPOINT ["/usr/local/bin/entrypoint.lite.sh"]
-EXPOSE 8005
+ENTRYPOINT ["/usr/local/bin/entrypoint.hq.sh"]
+EXPOSE 8007
 # CMD dihapus, nanti diatur di docker-compose
