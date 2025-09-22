@@ -180,7 +180,7 @@
 	url = https://github.com/hamzahnafalahkalpa/wellmed-plus-starterpack.git
 [submodule "projects/hq"]
 	path = projects/hq
-	url = https://github.com/hamzahnafalahkalpa/HQ.git
+	url = https://github.com/hamzahnafalahkalpa/hq.git
 [submodule "features/ms-point-of-sale"]
 	path = features/ms-point-of-sale
 	url = https://github.com/hamzahnafalahkalpa/ms-point-of-sale.git
