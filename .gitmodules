@@ -168,25 +168,25 @@
 	url = https://github.com/hamzahnafalahkalpa/initial-klinik.git
 [submodule "projects/wellmed-plus"]
 	path = projects/wellmed-plus
-	url = git@github.com:hamzahnafalahkalpa/wellmed-plus.git
+	url = https://github.com/hamzahnafalahkalpa/wellmed-plus.git
 [submodule "projects/wellmed-lite"]
 	path = projects/wellmed-lite
-	url = git@github.com:hamzahnafalahkalpa/wellmed-lite.git
+	url = https://github.com/hamzahnafalahkalpa/wellmed-lite.git
 [submodule "repositories/wellmed-lite-starterpack"]
 	path = repositories/wellmed-lite-starterpack
-	url = git@github.com:hamzahnafalahkalpa/wellmed-lite-starterpack.git
+	url = https://github.com/hamzahnafalahkalpa/wellmed-lite-starterpack.git
 [submodule "repositories/wellmed-plus-starterpack"]
 	path = repositories/wellmed-plus-starterpack
-	url = git@github.com:hamzahnafalahkalpa/wellmed-plus-starterpack.git
+	url = https://github.com/hamzahnafalahkalpa/wellmed-plus-starterpack.git
 [submodule "projects/hq"]
 	path = projects/hq
-	url = git@github.com:hamzahnafalahkalpa/HQ.git
+	url = https://github.com/hamzahnafalahkalpa/HQ.git
 [submodule "features/ms-point-of-sale"]
 	path = features/ms-point-of-sale
-	url = git@github.com:hamzahnafalahkalpa/ms-point-of-sale.git
+	url = https://github.com/hamzahnafalahkalpa/ms-point-of-sale.git
 [submodule "features/ms-emr"]
 	path = features/ms-emr
-	url = git@github.com:hamzahnafalahkalpa/ms-emr.git
+	url = https://github.com/hamzahnafalahkalpa/ms-emr.git
 [submodule "features/ms-apotek"]
 	path = features/ms-apotek
-	url = git@github.com:hamzahnafalahkalpa/ms-apotek.git
+	url = https://github.com/hamzahnafalahkalpa/ms-apotek.git
