@@ -57,6 +57,7 @@ return [
         // 'hanafalah/laravel-support'             => ['repository' =>'hamzahnafalahkalpa/laravel-support'],
         // 'hanafalah/microtenant'                 => ['repository' =>'hamzahnafalahkalpa/microtenant'],        
         'hanafalah/module-payer'                => ['repository' =>'hamzahnafalahkalpa/module-payer'],
+        'hanafalah/module-organization'                => ['repository' =>'hamzahnafalahkalpa/module-organization'],
         'hanafalah/module-encoding'             => ['repository' =>'hamzahnafalahkalpa/module-encoding'],
         'hanafalah/module-regional'             => ['repository' =>'hamzahnafalahkalpa/module-regional'],
         'hanafalah/module-user'                 => ['repository' =>'hamzahnafalahkalpa/module-user'],
