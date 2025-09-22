@@ -181,3 +181,12 @@
 [submodule "projects/hq"]
 	path = projects/hq
 	url = git@github.com:hamzahnafalahkalpa/HQ.git
+[submodule "features/ms-point-of-sale"]
+	path = features/ms-point-of-sale
+	url = git@github.com:hamzahnafalahkalpa/ms-point-of-sale.git
+[submodule "features/ms-emr"]
+	path = features/ms-emr
+	url = git@github.com:hamzahnafalahkalpa/ms-emr.git
+[submodule "features/ms-apotek"]
+	path = features/ms-apotek
+	url = git@github.com:hamzahnafalahkalpa/ms-apotek.git
