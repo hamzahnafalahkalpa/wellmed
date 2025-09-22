@@ -19,9 +19,7 @@ services:
       - ./repositories:/app/repositories:cached
       - ./app:/app/app:cached
       - ./projects/klinik:/app/projects/klinik:cached
-      - ./groups:/app/groups:cached
       - ./config:/app/config:cached
-      - ./tenants:/app/tenants:cached
       - ./public:/app/public:cached
       - wellmed_storage:/app/storage
     extra_hosts:
@@ -61,9 +59,7 @@ services:
       - ./repositories:/app/repositories:cached
       - ./app:/app/app:cached
       - ./projects/wellmed-lite:/app/projects/wellmed-lite:cached
-      - ./groups:/app/groups:cached
       - ./config:/app/config:cached
-      - ./tenants:/app/tenants:cached
       - ./public:/app/public:cached
       - ./database:/app/database:cached
       - wellmed_lite_storage:/app/storage
