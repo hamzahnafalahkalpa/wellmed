@@ -19,9 +19,7 @@ services:
       - ./repositories:/app/repositories:cached
       - ./app:/app/app:cached
       - ./projects/wellmed-lite:/app/projects/wellmed-lite:cached
-      - ./groups:/app/groups:cached
       - ./config:/app/config:cached
-      - ./tenants:/app/tenants:cached
       - ./public:/app/public:cached
       - ./database:/app/database:cached
       - ./composer.lite.json:/app/composer.json:cached
