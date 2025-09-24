@@ -97,9 +97,6 @@
 [submodule "repositories/module-procurement"]
 	path = repositories/module-procurement
 	url = https://github.com/hamzahnafalahkalpa/module-procurement.git
-[submodule "repositories/module-medical-procurement"]
-	path = repositories/module-medical-procurement
-	url = https://github.com/hamzahnafalahkalpa/module-medical-procurement.git
 [submodule "repositories/module-disease"]
 	path = repositories/module-disease
 	url = https://github.com/hamzahnafalahkalpa/module-disease.git
@@ -190,3 +187,12 @@
 [submodule "features/ms-apotek"]
 	path = features/ms-apotek
 	url = https://github.com/hamzahnafalahkalpa/ms-apotek.git
+[submodule "features/ms-scm"]
+	path = features/ms-scm
+	url = https://github.com/hamzahnafalahkalpa/ms-scm.git
+[submodule "features/ms-hr"]
+	path = features/ms-hr
+	url = https://github.com/hamzahnafalahkalpa/ms-hr.git
+[submodule "repositories/wellmed-feature"]
+	path = repositories/wellmed-feature
+	url = https://github.com/hamzahnafalahkalpa/wellmed-feature.git
