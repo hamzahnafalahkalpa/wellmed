@@ -92,5 +92,5 @@ networks:
     driver: bridge
 
 volumes:  
-  wellmed_storage:
   wellmed_lite_storage:
+  wellmed_hq_storage:
