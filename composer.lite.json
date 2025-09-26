@@ -113,6 +113,13 @@
                 "symlink": true
             }
         },
+        "hanafalah/wellmed-feature": {
+            "type": "path",
+            "url": "repositories/wellmed-feature",
+            "optimize": {
+                "symlink": true
+            }
+        },
         "hanafalah/laravel-has-props": {
             "type": "path",
             "url": "repositories/laravel-has-props",
