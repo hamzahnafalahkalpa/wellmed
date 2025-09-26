@@ -134,6 +134,13 @@
                 "symlink": true
             }
         },
+        "hanafalah/wellmed-feature": {
+            "type": "path",
+            "url": "repositories/wellmed-feature",
+            "optimize": {
+                "symlink": true
+            }
+        },
         "hanafalah/microtenant": {
             "type": "path",
             "url": "repositories/microtenant",
