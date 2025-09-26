@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use Hanafalah\MicroTenant\Contracts\Supports\ConnectionManager;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Stancl\JobPipeline\JobPipeline;
@@ -12,6 +13,7 @@ use Stancl\Tenancy\Jobs;
 use Stancl\Tenancy\Listeners;
 use Stancl\Tenancy\Middleware;
 use Hanafalah\MicroTenant\Facades\MicroTenant;
+use Hanafalah\MicroTenant\Listeners\BootstrapTenancy;
 use Illuminate\Support\Facades\Event;
 
 class MicroTenantServiceProvider extends ServiceProvider
@@ -81,10 +83,12 @@ class MicroTenantServiceProvider extends ServiceProvider
             Events\TenancyBootstrapped::class => [
                 function(){
                     $tenant = tenancy()->tenant;
-                    $microtenant = MicroTenant::getMicroTenant();
-                    if (isset($microtenant) && $tenant->getKey() !== $microtenant->tenant->model->getKey()){
-                        MicroTenant::tenantImpersonate($tenant);
-                    }
+                    app(ConnectionManager::class)->handle($tenant);
+
+                    // $microtenant = MicroTenant::getMicroTenant();
+                    // if (isset($microtenant) && $tenant->getKey() !== $microtenant->tenant->model->getKey()){
+                    //     MicroTenant::tenantImpersonate($tenant);
+                    // }
 
                     $workspace = app(config('database.models.Workspace'));
                     if ($tenant->reference_type == $workspace->getMorphClass()){
