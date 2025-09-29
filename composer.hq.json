@@ -12,7 +12,7 @@
         "php": "^8.4",
         "google/protobuf": "*",
         "grpc/grpc": "*",
-        "hanafalah/hq": "dev-main",
+        "projects/hq": "dev-main",
         "hanafalah/microtenant": "dev-main",
         "knuckleswtf/scribe": "*",
         "kreait/laravel-firebase": "^6.0",
@@ -100,16 +100,9 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": {
-        "hanafalah/wellmed-lite-starterpack": {
+        "projects/hq": {
             "type": "path",
-            "url": "repositories/wellmed-lite-starterpack",
-            "optimize": {
-                "symlink": true
-            }
-        },
-        "hanafalah/klinik-starterpack": {
-            "type": "path",
-            "url": "repositories/klinik-starterpack",
+            "url": "projects/hq",
             "optimize": {
                 "symlink": true
             }

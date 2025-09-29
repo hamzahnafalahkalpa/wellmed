@@ -59,15 +59,15 @@ services:
     ports:
       - "${WELLMED_HQ_PORT:-8007}:${WELLMED_HQ_PORT:-8007}"
     volumes:
-      - ./repositories:/app/repositories:cached
-      - ./app:/app/app:cached
-      - ./projects/hq:/app/projects/hq:cached
-      - ./groups:/app/groups:cached
-      - ./config:/app/config:cached
-      - ./tenants:/app/tenants:cached
-      - ./public:/app/public:cached
-      - ./database:/app/database:cached
-      - ./composer.hq.json:/app/composer.json:cached
+      - ./repositories:/app/repositories
+      - ./app:/app/app
+      - ./projects/hq:/app/projects/hq
+      - ./groups:/app/groups
+      - ./config:/app/config
+      - ./tenants:/app/tenants
+      - ./public:/app/public
+      - ./database:/app/database
+      - ./composer.hq.json:/app/composer.json
       - wellmed_hq_storage:/app/storage
     extra_hosts:
       - "host.docker.internal:host-gateway"
