@@ -62,9 +62,7 @@ services:
       - ./repositories:/app/repositories
       - ./app:/app/app
       - ./projects/hq:/app/projects/hq
-      - ./groups:/app/groups
       - ./config:/app/config
-      - ./tenants:/app/tenants
       - ./public:/app/public
       - ./database:/app/database
       - ./composer.hq.json:/app/composer.json
@@ -79,7 +77,6 @@ services:
     environment:
       XDG_CONFIG_HOME: /var/www/html/config
       XDG_DATA_HOME: /var/www/html/data
-    entrypoint: ["/usr/local/bin/entrypoint.hq.sh"]
     command: >
       php artisan octane:frankenphp
       --host=0.0.0.0

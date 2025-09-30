@@ -43,7 +43,7 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "Projects\\HQ\\": "projects/hq/src/",
+            "Projects\\Hq\\": "projects/hq/src/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }

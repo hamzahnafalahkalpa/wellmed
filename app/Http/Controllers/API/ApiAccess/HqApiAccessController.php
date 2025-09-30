@@ -10,7 +10,7 @@ use Hanafalah\ApiHelper\Facades\ApiAccess;
 use Hanafalah\MicroTenant\Facades\MicroTenant;
 use Illuminate\Support\Facades\Auth;
 
-class ApiAccessController extends EnvironmentController{
+class HqApiAccessController extends EnvironmentController{
     
     public function store(StoreRequest $request){
         $token = $this->generateToken();

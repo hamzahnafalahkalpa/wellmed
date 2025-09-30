@@ -36,12 +36,7 @@ return new class extends Migration
                 $table->string('name', 50)->nullable(false);
                 $table->string('reference_type', 50)->nullable();
                 $table->string('reference_id', 36)->nullable();
-                $table->enum('flag', [
-                    $this->__table::FLAG_APP_TENANT,
-                    $this->__table::FLAG_CENTRAL_TENANT,
-                    $this->__table::FLAG_TENANT,
-                    $this->__table::FLAG_CLUSTER
-                ])->default($this->__table::FLAG_TENANT)->nullable(false);
+                $table->string('flag',100)->default($this->__table::FLAG_TENANT)->nullable(false);
                 $table->foreignIdFor($domain::class)->nullable()->index()
                     ->constrained()->cascadeOnUpdate()->nullOnDelete();
                 $table->json('props')->nullable();

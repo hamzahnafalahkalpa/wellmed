@@ -15,6 +15,8 @@ use Stancl\Tenancy\Middleware;
 use Hanafalah\MicroTenant\Facades\MicroTenant;
 use Hanafalah\MicroTenant\Listeners\BootstrapTenancy;
 use Illuminate\Support\Facades\Event;
+use Stancl\Tenancy\Controllers\TenantAssetsController;
+use Stancl\Tenancy\Middleware\InitializeTenancyByDomainOrSubdomain;
 
 class MicroTenantServiceProvider extends ServiceProvider
 {
@@ -127,6 +129,7 @@ class MicroTenantServiceProvider extends ServiceProvider
         $this->bootEvents();
         $this->mapRoutes();
         $this->makeTenancyMiddlewareHighestPriority();
+        // TenantAssetsController::$tenancyMiddleware = InitializeTenancyByDomainOrSubdomain::class;
     }
 
     protected function mapRoutes()
