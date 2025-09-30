@@ -28,5 +28,10 @@ return [
     'commands' => [
         ModuleUserCommands\InstallMakeCommand::class
     ],
-    'workspace' => null //ADD YOUR WORKSPACE MODEL HERE
+    'workspace' => null, //ADD YOUR WORKSPACE MODEL HERE
+    'user_reference_types' => [
+        'employee' => [
+            'schema' => 'Employee',
+        ]
+    ],
 ];

@@ -286,6 +286,13 @@ return [
     'tenancy' => [
         'enabled' => true,
         
+        'central_domains' => [
+            '127.0.0.1',
+            'localhost',
+            'lite.test',
+            'hq.test'
+        ],
+
         /**
          * Tenancy bootstrappers are executed when tenancy is initialized.
          * Their responsibility is making Laravel features tenant-aware.

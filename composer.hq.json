@@ -170,6 +170,13 @@
                 "symlink": true
             }
         },
+        "hanafalah/module-tax": {
+            "type": "path",
+            "url": "repositories/module-tax",
+            "options": {
+                "symlink": true
+            }
+        },
         "hanafalah/module-workspace": {
             "type": "path",
             "url": "repositories/module-workspace",
