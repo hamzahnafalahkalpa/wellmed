@@ -23,7 +23,7 @@ services:
       - ./config:/app/config:cached
       - ./public:/app/public:cached
       - ./database:/app/database:cached
-      - ./composer.lite.json:/app/composer.json:cached
+      - ./composer_lite.json:/app/composer.json:cached
       - wellmed_lite_storage:/app/storage
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -67,7 +67,7 @@ services:
       - ./tenants:/app/tenants:cached
       - ./public:/app/public:cached
       - ./database:/app/database:cached
-      - ./composer.hq.json:/app/composer.json:cached
+      - ./composer_hq.json:/app/composer.json:cached
       - wellmed_hq_storage:/app/storage
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -79,7 +79,6 @@ services:
     environment:
       XDG_CONFIG_HOME: /var/www/html/config
       XDG_DATA_HOME: /var/www/html/data
-    entrypoint: ["/usr/local/bin/entrypoint.hq.sh"]
     command: >
       php artisan octane:frankenphp
       --host=0.0.0.0
