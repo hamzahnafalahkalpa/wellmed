@@ -12,7 +12,7 @@
         "php": "^8.4",
         "google/protobuf": "*",
         "grpc/grpc": "*",
-        "projects/hq": "dev-main",
+	    "projects/hq": "dev-main",
         "hanafalah/microtenant": "dev-main",
         "knuckleswtf/scribe": "*",
         "kreait/laravel-firebase": "^6.0",
@@ -201,6 +201,13 @@
         "hanafalah/module-encoding": {
             "type": "path",
             "url": "repositories/module-encoding",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-payment": {
+            "type": "path",
+            "url": "repositories/module-payment",
             "options": {
                 "symlink": true
             }

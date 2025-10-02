@@ -185,6 +185,11 @@ return [
     'watch' => [
         'app',
         'bootstrap',
+        'repositories',
+        'projects',
+        'features',
+        'groups',
+        'tenants',
         'config/**/*.php',
         'database/**/*.php',
         'public/**/*.php',
@@ -219,5 +224,5 @@ return [
     */
 
     'max_execution_time' => 30,
-
+    'state_file' => storage_path(env('OCTANE_STATE_FILE','logs/octane-server-state.json'))
 ];

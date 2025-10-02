@@ -16,7 +16,7 @@ use Hanafalah\MicroTenant\Facades\MicroTenant;
 use Hanafalah\MicroTenant\Listeners\BootstrapTenancy;
 use Illuminate\Support\Facades\Event;
 use Stancl\Tenancy\Controllers\TenantAssetsController;
-use Stancl\Tenancy\Middleware\InitializeTenancyByDomainOrSubdomain;
+use Stancl\Tenancy\Middleware\InitializeTenancyByPath;
 
 class MicroTenantServiceProvider extends ServiceProvider
 {
@@ -87,24 +87,15 @@ class MicroTenantServiceProvider extends ServiceProvider
                     $tenant = tenancy()->tenant;
                     app(ConnectionManager::class)->handle($tenant);
 
-                    // $microtenant = MicroTenant::getMicroTenant();
-                    // if (isset($microtenant) && $tenant->getKey() !== $microtenant->tenant->model->getKey()){
-                    //     MicroTenant::tenantImpersonate($tenant);
-                    // }
+                    $base = $tenant->getKey().'/assets/';
+                    config([
+                        'filesystems.asset_url' => $base
+                    ]);
 
                     $workspace = app(config('database.models.Workspace'));
                     if ($tenant->reference_type == $workspace->getMorphClass()){
                         config()->set('app.client_timezone', $tenant->reference->timezone ?? 'Asia/Jakarta');
                     }
-                    // MicroTenant::reconfigDatabase(tenancy()->tenant);
-                    // MicroTenant::overrideStoragePath(tenancy()->tenant->name);
-                    // $tenant = tenancy()->tenant;
-                    // $connection_path = "database.connections.{$tenant->getConnectionName()}";
-                    // config([
-                    //     "$connection_path.database" => $tenant->tenancy_db_name,
-                    //     "$connection_path.username" => $tenant->tenancy_db_username,
-                    //     "$connection_path.password" => $tenant->tenancy_db_password
-                    // ]);
                 }
             ],
             Events\RevertingToCentralContext::class => [],
@@ -129,17 +120,15 @@ class MicroTenantServiceProvider extends ServiceProvider
         $this->bootEvents();
         $this->mapRoutes();
         $this->makeTenancyMiddlewareHighestPriority();
-        // TenantAssetsController::$tenancyMiddleware = InitializeTenancyByDomainOrSubdomain::class;
+        TenantAssetsController::$tenancyMiddleware = InitializeTenancyByPath::class;
     }
 
     protected function mapRoutes()
     {
-        $this->app->booted(function () {
             if (file_exists(base_path('routes/tenant.php'))) {
                 Route::namespace(static::$controllerNamespace)
                     ->group(base_path('routes/tenant.php'));
             }
-        });
     }
 
     protected function bootEvents()

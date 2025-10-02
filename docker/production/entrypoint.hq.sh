@@ -10,10 +10,10 @@ set -e
 
 echo "==> Entrypoint Lite running..."
 
-# masuk ke root project
+# # masuk ke root project
 cd /app/projects/hq
 
-# composer install untuk root project
+# # composer install untuk root project
 echo "==> Running composer install in /app..."
 composer install
 

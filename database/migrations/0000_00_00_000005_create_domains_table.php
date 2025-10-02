@@ -30,8 +30,11 @@ return new class extends Migration
         $table_name = $this->__table->getTableName();
         if (!$this->isTableExists()) {
             Schema::create($table_name, function (Blueprint $table) {
+                $tenant = app(config('database.models.Tenant', Tenant::class));
+
                 $table->ulid('id')->primary();
-                $table->string('name', 150)->unique()->nullable(false);
+                $table->string('domain', 150)->unique()->nullable(false);
+                $table->foreignIdFor($tenant::class)->nullable();
                 $table->json('props')->nullable();
                 $table->timestamps();
                 $table->softDeletes();

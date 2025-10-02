@@ -1,8 +1,7 @@
 <?php
 
 if (!function_exists('indo_date')) {
-    function indo_date($date = null, $include_day = false)
-    {
+    function indo_date($date = null, $include_day = false){
         $date = $date ? strtotime($date) : time();
 
         $nama_hari = [

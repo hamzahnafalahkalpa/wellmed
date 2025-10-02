@@ -22,8 +22,9 @@ services:
       - ./features:/app/features:cached
       - ./config:/app/config:cached
       - ./public:/app/public:cached
+      - ./routes:/app/routes:cached
       - ./database:/app/database:cached
-      - ./composer.lite.json:/app/composer.json:cached
+      - ./composer_lite.json:/app/composer.json:cached
       - wellmed_lite_storage:/app/storage
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -40,7 +41,7 @@ services:
       --host=0.0.0.0
       --port=${WELLMED_LITE_PORT:-8005}
       --workers=${PHP_CLI_SERVER_WORKERS:-4}
-      --max-requests=1000
+      --max-requests=1000 --watch
 
   wellmed_hq:
     container_name: wellmed_hq
@@ -59,13 +60,13 @@ services:
     ports:
       - "${WELLMED_HQ_PORT:-8007}:${WELLMED_HQ_PORT:-8007}"
     volumes:
-      - ./repositories:/app/repositories
-      - ./app:/app/app
-      - ./projects/hq:/app/projects/hq
-      - ./config:/app/config
-      - ./public:/app/public
+      - ./repositories:/app/repositories:cached
+      - ./app:/app/app:cached
+      - ./projects/hq:/app/projects/hq:cached
+      - ./config:/app/config:cached
+      - ./public:/app/public:cached
       - ./database:/app/database
-      - ./composer.hq.json:/app/composer.json
+      - ./composer_hq.json:/app/composer.json:cached
       - wellmed_hq_storage:/app/storage
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -82,13 +83,12 @@ services:
       --host=0.0.0.0
       --port=${WELLMED_HQ_PORT:-8007}
       --workers=${PHP_CLI_SERVER_WORKERS:-4}
-      --max-requests=1000
+      --max-requests=1000 --watch
 
 networks:
   caddy-projects:
     external: true
 
 volumes:  
-  # wellmed_storage:
   wellmed_lite_storage:
   wellmed_hq_storage:
