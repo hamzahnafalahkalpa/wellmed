@@ -1,6 +1,7 @@
 <?php
 
 use Hanafalah\MicroTenant\Commands as Commands;
+use Hanafalah\MicroTenant\Contracts\Supports\ConnectionManager;
 
 return [
     'enabled'      => true,
@@ -17,6 +18,7 @@ return [
         'database' => 'Database'
     ],
     'database' => [
+        'connection_manager' => ConnectionManager::class,
         'app_tenant'   => [
             'prefix' => 'app_tenant_',
             'suffix' => ''
@@ -53,15 +55,15 @@ return [
                     "Tenant",
                     "UserReference",
                     "User",
+                    "Encoding",
+                    "MasterFeature",
+                    "ModelHasFeature",
                     "Village",
                     "Workspace"
                 ]
             ],
             "central_app"    => [
-                "models" => [
-                    "Encoding",
-                    "MasterFeature",
-                    "ModelHasFeature"
+                "models" => [                    
                 ]
             ],
             "central_tenant" => [
@@ -70,7 +72,7 @@ return [
             ]
         ],
         'connections' => [
-            //THIS SETUP DEFAULT FOR MYSQL
+            //THIS SETUP DEFAULT FOR PGSQL
             'central_connection' => [
                 'driver'         => env('DB_DRIVER', 'pgsql'),
                 'read' => [
@@ -86,7 +88,7 @@ return [
                 ],
                 'url'            => env('DB_URL'),
                 'host'           => env('DB_HOST', '127.0.0.1'),
-                'port'           => env('DB_PORT', '3306'),
+                'port'           => env('DB_PORT', '5432'),
                 'database'       => env('DB_DATABASE', 'central'),
                 'username'       => env('DB_USERNAME', 'root'),
                 'password'       => env('DB_PASSWORD', ''),

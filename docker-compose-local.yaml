@@ -40,8 +40,9 @@ services:
       php artisan octane:frankenphp
       --host=0.0.0.0
       --port=${WELLMED_LITE_PORT:-8005}
-      --workers=${PHP_CLI_SERVER_WORKERS:-4}
-      --max-requests=1000 --watch
+      --admin-port=9005
+      --workers=${PHP_CLI_SERVER_WORKERS:-2}
+      --max-requests=1000
 
   wellmed_hq:
     container_name: wellmed_hq
@@ -65,6 +66,7 @@ services:
       - ./projects/hq:/app/projects/hq:cached
       - ./config:/app/config:cached
       - ./public:/app/public:cached
+      - ./routes:/app/routes:cached
       - ./database:/app/database
       - ./composer_hq.json:/app/composer.json:cached
       - wellmed_hq_storage:/app/storage
@@ -82,8 +84,9 @@ services:
       php artisan octane:frankenphp
       --host=0.0.0.0
       --port=${WELLMED_HQ_PORT:-8007}
-      --workers=${PHP_CLI_SERVER_WORKERS:-4}
-      --max-requests=1000 --watch
+      --admin-port=9007
+      --workers=${PHP_CLI_SERVER_WORKERS:-2}
+      --max-requests=1000
 
 networks:
   caddy-projects:

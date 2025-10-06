@@ -12,20 +12,16 @@
         "php": "^8.4",
         "google/protobuf": "*",
         "grpc/grpc": "*",
-        "hanafalah/wellmed-lite-starterpack": "dev-main",
+	"projects/hq": "dev-main",
         "hanafalah/microtenant": "dev-main",
-        "knuckleswtf/scribe": "*",
         "kreait/laravel-firebase": "^6.0",
         "laravel/framework": "^12.0",
         "laravel/octane": "^2.11",
         "laravel/prompts": "^0.3.5",
         "laravel/sanctum": "^4.0",
-        "laravel/telescope": "^5.9",
         "laravel/tinker": "^2.10.1",
-        "nunomaduro/pokio": "^0.1.0",
-        "opcodesio/log-viewer": "^3.17",
         "predis/predis": "^3.0",
-        "tightenco/ziggy": "^2.4"
+        "xendit/xendit-php": "^7.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -33,7 +29,6 @@
         "laravel/pint": "^1.18",
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^8.6",
         "pestphp/pest": "^3.8",
         "pestphp/pest-plugin-laravel": "^3.2"
     },
@@ -43,6 +38,7 @@
         ],
         "psr-4": {
             "App\\": "app/",
+            "Projects\\Hq\\": "projects/hq/src/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
@@ -99,17 +95,17 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": {
-        "hanafalah/wellmed-lite-starterpack": {
+        "projects/hq": {
             "type": "path",
-            "url": "repositories/wellmed-lite-starterpack",
+            "url": "projects/hq",
             "optimize": {
                 "symlink": true
             }
         },
-        "hanafalah/klinik-starterpack": {
+        "hanafalah/wellmed-feature": {
             "type": "path",
-            "url": "repositories/klinik-starterpack",
-            "optimize": {
+            "url": "repositories/wellmed-feature",
+            "options": {
                 "symlink": true
             }
         },
@@ -134,9 +130,9 @@
                 "symlink": true
             }
         },
-        "hanafalah/wellmed-feature": {
+        "hanafalah/module-support": {
             "type": "path",
-            "url": "repositories/wellmed-feature",
+            "url": "repositories/module-support",
             "optimize": {
                 "symlink": true
             }
@@ -183,6 +179,13 @@
                 "symlink": true
             }
         },
+        "hanafalah/module-tax": {
+            "type": "path",
+            "url": "repositories/module-tax",
+            "options": {
+                "symlink": true
+            }
+        },
         "hanafalah/module-workspace": {
             "type": "path",
             "url": "repositories/module-workspace",
@@ -207,6 +210,41 @@
         "hanafalah/module-encoding": {
             "type": "path",
             "url": "repositories/module-encoding",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-people": {
+            "type": "path",
+            "url": "repositories/module-people",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-employee": {
+            "type": "path",
+            "url": "repositories/module-employee",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-payment": {
+            "type": "path",
+            "url": "repositories/module-payment",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-payer": {
+            "type": "path",
+            "url": "repositories/module-payer",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-organization": {
+            "type": "path",
+            "url": "repositories/module-organization",
             "options": {
                 "symlink": true
             }

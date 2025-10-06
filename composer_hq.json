@@ -12,20 +12,16 @@
         "php": "^8.4",
         "google/protobuf": "*",
         "grpc/grpc": "*",
-	    "projects/hq": "dev-main",
+        "projects/hq": "dev-main",
         "hanafalah/microtenant": "dev-main",
-        "knuckleswtf/scribe": "*",
         "kreait/laravel-firebase": "^6.0",
         "laravel/framework": "^12.0",
         "laravel/octane": "^2.11",
         "laravel/prompts": "^0.3.5",
         "laravel/sanctum": "^4.0",
-        "laravel/telescope": "^5.9",
         "laravel/tinker": "^2.10.1",
-        "nunomaduro/pokio": "^0.1.0",
-        "opcodesio/log-viewer": "^3.17",
         "predis/predis": "^3.0",
-        "tightenco/ziggy": "^2.4"
+        "xendit/xendit-php": "^7.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -33,7 +29,6 @@
         "laravel/pint": "^1.18",
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^8.6",
         "pestphp/pest": "^3.8",
         "pestphp/pest-plugin-laravel": "^3.2"
     },
@@ -107,6 +102,13 @@
                 "symlink": true
             }
         },
+        "hanafalah/wellmed-feature": {
+            "type": "path",
+            "url": "repositories/wellmed-feature",
+            "options": {
+                "symlink": true
+            }
+        },
         "hanafalah/laravel-has-props": {
             "type": "path",
             "url": "repositories/laravel-has-props",
@@ -124,6 +126,13 @@
         "hanafalah/module-service": {
             "type": "path",
             "url": "repositories/module-service",
+            "optimize": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-support": {
+            "type": "path",
+            "url": "repositories/module-support",
             "optimize": {
                 "symlink": true
             }
@@ -205,9 +214,37 @@
                 "symlink": true
             }
         },
+        "hanafalah/module-people": {
+            "type": "path",
+            "url": "repositories/module-people",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-employee": {
+            "type": "path",
+            "url": "repositories/module-employee",
+            "options": {
+                "symlink": true
+            }
+        },
         "hanafalah/module-payment": {
             "type": "path",
             "url": "repositories/module-payment",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-payer": {
+            "type": "path",
+            "url": "repositories/module-payer",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-organization": {
+            "type": "path",
+            "url": "repositories/module-organization",
             "options": {
                 "symlink": true
             }

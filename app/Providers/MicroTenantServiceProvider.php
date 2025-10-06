@@ -85,7 +85,7 @@ class MicroTenantServiceProvider extends ServiceProvider
             Events\TenancyBootstrapped::class => [
                 function(){
                     $tenant = tenancy()->tenant;
-                    app(ConnectionManager::class)->handle($tenant);
+                    app(config('micro-tenant.database.connection_manager'))->handle($tenant);
 
                     $base = $tenant->getKey().'/assets/';
                     config([
