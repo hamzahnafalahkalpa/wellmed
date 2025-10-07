@@ -196,3 +196,6 @@
 [submodule "repositories/wellmed-feature"]
 	path = repositories/wellmed-feature
 	url = https://github.com/hamzahnafalahkalpa/wellmed-feature.git
+[submodule "repositories/laravel-xendit"]
+	path = repositories/laravel-xendit
+	url = https://github.com/hamzahnafalahkalpa/laravel-xendit.git

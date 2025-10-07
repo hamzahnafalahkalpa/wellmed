@@ -17,7 +17,15 @@ foreach ($hq_domains as $hq_domain) {
             Route::apiResource('token',HqApiAccessController::class)
                 ->only('store','destroy')
                 ->parameters(['token' => 'uuid']);
+                
+            Route::group([
+                'prefix' => 'xendit',
+                'as' => 'xendit.'
+            ],function(){
+                LaravelSupport::callRoutes(__DIR__.'/xendit');
+            });
         }); 
+
     });
 }
 

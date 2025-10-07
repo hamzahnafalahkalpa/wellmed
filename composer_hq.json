@@ -109,6 +109,13 @@
                 "symlink": true
             }
         },
+        "hanafalah/laravel-xendit": {
+            "type": "path",
+            "url": "repositories/laravel-xendit",
+            "options": {
+                "symlink": true
+            }
+        },
         "hanafalah/laravel-has-props": {
             "type": "path",
             "url": "repositories/laravel-has-props",

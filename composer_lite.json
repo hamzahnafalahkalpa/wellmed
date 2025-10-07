@@ -123,6 +123,13 @@
                 "symlink": true
             }
         },
+        "hanafalah/laravel-xendit": {
+            "type": "path",
+            "url": "repositories/laravel-xendit",
+            "options": {
+                "symlink": true
+            }
+        },
         "wellmed-lite/ms-emr": {
             "type": "path",
             "url": "features/ms-emr",
