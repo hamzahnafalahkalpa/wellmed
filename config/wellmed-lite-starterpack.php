@@ -90,6 +90,7 @@ return [
         'hanafalah/module-pharmacy'             => ['repository' =>'hamzahnafalahkalpa/module-pharmacy'],
         'hanafalah/module-tax'                  => ['repository' =>'hamzahnafalahkalpa/module-tax'],
         'hanafalah/module-handwriting'          => ['repository' =>'hamzahnafalahkalpa/module-handwriting'],
-        'hanafalah/wellmed-feature'             => ['repository' =>'hamzahnafalahkalpa/wellmed-feature']
+        'hanafalah/wellmed-feature'             => ['repository' =>'hamzahnafalahkalpa/wellmed-feature'],
+        'hanafalah/satu-sehat'                  => ['repository' =>'hamzahnafalahkalpa/satu-sehat']
     ]
 ];

@@ -130,6 +130,13 @@
                 "symlink": true
             }
         },
+        "hanafalah/satu-sehat": {
+            "type": "path",
+            "url": "repositories/satu-sehat",
+            "options": {
+                "symlink": true
+            }
+        },
         "wellmed-lite/ms-emr": {
             "type": "path",
             "url": "features/ms-emr",

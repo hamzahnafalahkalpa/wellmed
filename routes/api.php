@@ -31,7 +31,8 @@ foreach ($hq_domains as $hq_domain) {
 
 $wellmed_lite_domains = [
     'lite.test',
-    env('WELLMED_CORE_DEV_URL','wellmed-core.kalpahealth.com')
+    '10.100.14.65',
+    env('WELLMED_CORE_DEV_URL','api-dev-wellmed.local')
 ];
 
 foreach ($wellmed_lite_domains as $wellmed_lite_domain) {
@@ -40,6 +41,13 @@ foreach ($wellmed_lite_domains as $wellmed_lite_domain) {
             Route::apiResource('token',ApiAccessController::class)
                 ->only('store','destroy')
                 ->parameters(['token' => 'uuid']);
+
+            Route::group([
+                'prefix' => 'satu-sehat',
+                'as' => 'satu-sehat.'
+            ],function(){
+                LaravelSupport::callRoutes(__DIR__.'/satu-sehat');
+            });
         }); 
     });
 }

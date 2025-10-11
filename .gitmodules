@@ -199,3 +199,6 @@
 [submodule "repositories/laravel-xendit"]
 	path = repositories/laravel-xendit
 	url = https://github.com/hamzahnafalahkalpa/laravel-xendit.git
+[submodule "repositories/satu-sehat"]
+	path = repositories/satu-sehat
+	url = https://github.com/hamzahnafalahkalpa/satu-sehat.git

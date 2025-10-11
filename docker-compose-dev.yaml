@@ -14,7 +14,7 @@ services:
         XDEBUG_LOG: /dev/stdout
         XDEBUG_LOG_LEVEL: 0
     ports:
-      - "${WELLMED_LITE_PORT:-8005}:${WELLMED_LITE_PORT:-8005}"
+      - "${WELLMED_LITE_PORT:-8001}:${WELLMED_LITE_PORT:-8001}"
     volumes:
       - ./repositories:/app/repositories:cached
       - ./app:/app/app:cached
@@ -38,7 +38,7 @@ services:
     command: >
       php artisan octane:frankenphp
       --host=0.0.0.0
-      --port=${WELLMED_LITE_PORT:-8005}
+      --port=${WELLMED_LITE_PORT:-8001}
       --admin-port=9005
       --workers=${PHP_CLI_SERVER_WORKERS:-2}
       --max-requests=1000
