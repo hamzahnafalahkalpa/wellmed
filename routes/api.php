@@ -52,6 +52,10 @@ foreach ($wellmed_lite_domains as $wellmed_lite_domain) {
     });
 }
 
+Route::get('/{tenant}/assets/{path?}', 'App\Http\Controllers\TenantAssetsController@asset')
+    ->where('path', '(.*)')
+    ->name('stancl.tenancy.asset');
+
 Route::group([
     'as' => 'api.'
 ],function(){
