@@ -17,12 +17,13 @@ class ApiAccess
      */
     public function handle($request, Closure $next)
     {
-        Event::listen(\Laravel\Octane\Events\RequestReceived::class, function ($event) {
+        // Event::listen(\Laravel\Octane\Events\RequestReceived::class, function ($event) {
             try {
                 MicroTenant::accessOnLogin();
             } catch (\Throwable $th) {
+                dd('sini');
             }
-        });
+        // });
         return $next($request);
     }
 }
