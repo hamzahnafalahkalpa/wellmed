@@ -7,6 +7,7 @@ return [
     'enabled'      => true,
     'monolith'     => false,
     'dev_mode'     => false,
+    'direct_provider_access' => false,
     'login_schema' => null,
     'application'  => [
         'version_pattern' => '1.^'

@@ -7,27 +7,27 @@ use Illuminate\Support\Facades\Route;
 use Hanafalah\LaravelSupport\Facades\LaravelSupport;
 
 
-$hq_domains = [
-    'hq.test'
-];
+// $hq_domains = [
+//     'hq.test'
+// ];
 
-foreach ($hq_domains as $hq_domain) {
-    Route::domain($hq_domain)->group(function () {
-        ApiAccess::secure(function(){
-            Route::apiResource('token',HqApiAccessController::class)
-                ->only('store','destroy')
-                ->parameters(['token' => 'uuid']);
+// foreach ($hq_domains as $hq_domain) {
+//     Route::domain($hq_domain)->group(function () {
+//         ApiAccess::secure(function(){
+//             Route::apiResource('token',HqApiAccessController::class)
+//                 ->only('store','destroy')
+//                 ->parameters(['token' => 'uuid']);
                 
-            Route::group([
-                'prefix' => 'xendit',
-                'as' => 'xendit.'
-            ],function(){
-                LaravelSupport::callRoutes(__DIR__.'/xendit');
-            });
-        }); 
+//             Route::group([
+//                 'prefix' => 'xendit',
+//                 'as' => 'xendit.'
+//             ],function(){
+//                 LaravelSupport::callRoutes(__DIR__.'/xendit');
+//             });
+//         }); 
 
-    });
-}
+//     });
+// }
 
 $wellmed_lite_domains = [
     'lite.test',
@@ -42,12 +42,12 @@ foreach ($wellmed_lite_domains as $wellmed_lite_domain) {
                 ->only('store','destroy')
                 ->parameters(['token' => 'uuid']);
 
-            Route::group([
-                'prefix' => 'satu-sehat',
-                'as' => 'satu-sehat.'
-            ],function(){
-                LaravelSupport::callRoutes(__DIR__.'/satu-sehat');
-            });
+            // Route::group([
+            //     'prefix' => 'satu-sehat',
+            //     'as' => 'satu-sehat.'
+            // ],function(){
+            //     LaravelSupport::callRoutes(__DIR__.'/satu-sehat');
+            // });
         }); 
     });
 }

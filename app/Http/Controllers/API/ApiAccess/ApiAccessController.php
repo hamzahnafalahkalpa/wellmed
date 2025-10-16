@@ -15,9 +15,11 @@ class ApiAccessController extends EnvironmentController{
     public function store(StoreRequest $request){
         $token = $this->generateToken();
         if (isset($token) && request()->headers->has('AppCode')) {
-            ApiAccess::init($token)->accessOnLogin(function ($api_access) {
-                MicroTenant::onLogin($api_access);
-            });
+            MicroTenant::accessOnLogin($token);
+
+            // ApiAccess::init($token)->accessOnLogin(function ($api_access) {
+            //     MicroTenant::onLogin($api_access);
+            // });
         }
         $user        = $this->getUser();
         $user->token = $token;
