@@ -8,5 +8,5 @@ use Projects\WellmedLite\Controllers\API\SatuSehat\{
 use Projects\WellmedLite\Controllers\API\SatuSehat\Patient\PatientController;
 
 Route::apiResource('/token',AuthController::class)->only('store');
-Route::apiResource('/patient',PatientController::class)->only('store');
+Route::apiResource('/patient',PatientController::class)->only('store','update');
 Route::apiResource('/autolist/{morph}/{type}',AutolistController::class)->only('index');
