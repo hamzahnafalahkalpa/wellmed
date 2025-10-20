@@ -42,12 +42,12 @@ foreach ($wellmed_lite_domains as $wellmed_lite_domain) {
                 ->only('store','destroy')
                 ->parameters(['token' => 'uuid']);
 
-            // Route::group([
-            //     'prefix' => 'satu-sehat',
-            //     'as' => 'satu-sehat.'
-            // ],function(){
-            //     LaravelSupport::callRoutes(__DIR__.'/satu-sehat');
-            // });
+            Route::group([
+                'prefix' => 'satu-sehat',
+                'as' => 'satu-sehat.'
+            ],function(){
+                LaravelSupport::callRoutes(__DIR__.'/satu-sehat');
+            });
         }); 
     });
 }
