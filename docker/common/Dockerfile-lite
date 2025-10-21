@@ -88,6 +88,6 @@ COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
 COPY ./docker/development/entrypoint.lite.sh /usr/local/bin/entrypoint.lite.sh
 RUN chmod +x /usr/local/bin/entrypoint.lite.sh
 
-# ENTRYPOINT ["/usr/local/bin/entrypoint.lite.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.lite.sh"]
 EXPOSE 9000
 # CMD dihapus, nanti diatur di docker-compose
