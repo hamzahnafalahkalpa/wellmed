@@ -1,0 +1,24 @@
+meta {
+  name: GET NOTIFICATION LIST
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/navigation/notification
+  body: none
+  auth: bearer
+}
+
+headers {
+  appcode: {{appcode}}
+  accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}

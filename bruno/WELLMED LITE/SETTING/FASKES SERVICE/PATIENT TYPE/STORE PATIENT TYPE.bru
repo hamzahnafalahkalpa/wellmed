@@ -1,0 +1,39 @@
+meta {
+  name: STORE PATIENT TYPE
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/setting/faskes-service/patient-type
+  body: json
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+  appCode: {{appcode}}
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "id" : null,
+      "parent_id" : null,
+      "name" : "Umum 2",
+      //UMUM, KARYAWAN, MEMBER, CREW, PARTNER
+      "label" : "UMUM" 
+      //"vouchers" : []
+  }
+}
+
+script:post-response {
+  bru.setVar('patient_type_id',res.getBody().data.id)
+}
+
+settings {
+  encodeUrl: true
+}

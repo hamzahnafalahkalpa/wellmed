@@ -1,0 +1,28 @@
+meta {
+  name: GET PERMISSION LIST
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/setting/acl/permission?role_id=1
+  body: none
+  auth: bearer
+}
+
+params:query {
+  role_id: 1
+}
+
+headers {
+  appcode: {{appcode}}
+  accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}

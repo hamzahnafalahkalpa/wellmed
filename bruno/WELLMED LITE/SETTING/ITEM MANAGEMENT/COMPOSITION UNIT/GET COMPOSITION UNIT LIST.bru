@@ -1,0 +1,24 @@
+meta {
+  name: GET COMPOSITION UNIT LIST
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/setting/item-management/composition-unit
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+  appcode: {{appcode}}
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}

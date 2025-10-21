@@ -1,0 +1,24 @@
+meta {
+  name: GET PATIENT TYPE SERVICE
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/setting/faskes-service/patient-type-service
+  body: none
+  auth: bearer
+}
+
+headers {
+  appCode: {{appcode}}
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}

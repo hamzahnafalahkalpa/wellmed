@@ -1,0 +1,29 @@
+meta {
+  name: STORE DIGITAL SIGN
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/navigation/digital-sign
+  body: multipartForm
+  auth: bearer
+}
+
+headers {
+  appcode: {{appcode}}
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:multipart-form {
+  sign: 
+  ~sign: @file(postman-cloud:///1f0108a1-6eed-4ed0-9302-f239bf3e63e4)
+}
+
+settings {
+  encodeUrl: true
+}

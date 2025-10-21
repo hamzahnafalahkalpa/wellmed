@@ -1,0 +1,47 @@
+meta {
+  name: STORE POS TRANSACTION
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{url}}/transaction/point-of-sale
+  body: json
+  auth: bearer
+}
+
+headers {
+  appcode: {{appcode}}
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "id" : "{{transaction_id}}",
+      // "consument": { //FOR NEW TRANSACTION OR NON PATIENT
+      //     "name" : "John Doe",
+      //     "phone": "08192"
+      // },
+      "billing": {
+          "id": null
+          // "author_type": "Employee", //WILL CONSUME FROM LOGIN
+          // "author_id": "{{employee_id}}",//WILL CONSUME FROM LOGIN
+          // "cashier_type": "Room", //LOGIN CURRENT ROOM 
+          // "cashier_id": "{{room_id}}" //LOGIN CURRENT ROOM 
+      } 
+  }
+}
+
+script:post-response {
+  let data = res.getBody();
+  bru.setVar('transaction_id',data.data.id);
+  bru.setVar('billing_id',data.data.billing.id);
+}
+
+settings {
+  encodeUrl: true
+}

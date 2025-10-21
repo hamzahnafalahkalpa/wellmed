@@ -1,0 +1,32 @@
+meta {
+  name: AUTOLIST
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{urlsatusehat}}/autolist/:morph/:type?partof=577e5282-b335-42f8-9406-e2830b2ea2ea
+  body: none
+  auth: bearer
+}
+
+params:query {
+  partof: 577e5282-b335-42f8-9406-e2830b2ea2ea
+}
+
+params:path {
+  morph: organization-satu-sehat
+  type: list
+}
+
+headers {
+  appcode: {{appcode}}
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}

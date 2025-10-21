@@ -1,0 +1,28 @@
+meta {
+  name: GET PATIENT LIST
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{url}}/patient-emr/patient?search_value=
+  body: none
+  auth: bearer
+}
+
+params:query {
+  search_value: 
+}
+
+headers {
+  appCode: {{appcode}}
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,60 @@
+meta {
+  name: STORE MASTER CONSENT
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/setting/faskes-service/master-informed-consent
+  body: json
+  auth: bearer
+}
+
+headers {
+  appcode: {{appcode}}
+  accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "id" : null, //required
+      "name" : "Surat Ketengan Sakit",
+      //Label in : SICK_LATTER,HEALTH_LATTER,APPROVE_TREATMENT,REJECT_TREATMENT
+      "label": "SICK_LATTER", //required
+      //form in "diagnosis_wd", "basic_diagnosis", "medical_procedure","procedure_indications","procedure_steps","objectives","risks","complications","prognosis","alternatives","approve_by"
+      // isian dari formulir menyesuaikan dengan formulir yang di provide
+      "form" : {},
+      "service" : {
+          "id": null,
+          // "name": "Pemberian Vitamin C" //akan di consume dari yang luar
+          //"parent_id": null,
+          // "service_label_id" : "{{service_label_id}}", //nullable, GET FORM AUTOLIST - SERVICE LABEL LIST
+          "status": "ACTIVE", //require, in: ACTIVE, INACTIVE
+          "service_prices": [
+              {
+                  "id": null,
+                  //"service_id": ,required, di consume dari treatment id
+                  //"service_item_type": "TariffComponent", //secara default TariffComponent, nullable
+                  "service_item_id": "{{tariff_component_id}}", //required, GET FROM AUTOLIST - TARIFF COMPONENT LIST
+                  "cogs": 10000,
+                  "tax": 10,
+                  "margin": 40
+                  // "price": , //akan di hitung dari (calc_price = (cogs + cogs*margin/100)) + calc_price*tax/100
+              }
+          ]
+      }
+  }
+}
+
+script:post-response {
+  let data = res.getBody()
+  bru.setVar('marital_status_id',data.data.id)
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,52 @@
+meta {
+  name: GENERATE TOKEN
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/token
+  body: none
+  auth: none
+}
+
+headers {
+  appcode: {{appcode}}
+  accept: application/json
+}
+
+script:pre-request {
+  const timestamp = Date.now() / 1000;
+  bru.setEnvVar("timestamp", timestamp);
+}
+
+script:post-response {
+  var data = res.getBody();
+  bru.setVar("token",data.data.token)
+  bru.setVar("user_reference_uuid",data.data.user.user_reference.uuid)
+  bru.setVar("workspace_uuid",data.data.user.user_reference.tenant.workspace.uuid)
+  bru.setVar("employee_id",data.data.user.user_reference.reference_id)
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  Digunakan untuk memperoleh authentication dalam mengakses api klinik dan puskesmas.
+  
+  Menggunakan metode JWT Bearer dengan algorithm HS256, adapun secret key dapat dihasilkan dengan menggunakan comman _php artisan helper:generate_
+  
+  Berikut contoh payload untuk jwt:
+  
+  ``` json
+  {
+      "iat" : {{timestamp}},
+      "data": {
+          "username":"admin",
+          "password":"password"
+      }
+  }
+  
+   ```
+}

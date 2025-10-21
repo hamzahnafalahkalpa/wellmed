@@ -1,0 +1,28 @@
+meta {
+  name: DELETE SELLING FORM
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{url}}/setting/item-management/selling-form/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: {{selling_form_id}}
+}
+
+headers {
+  appcode: {{appcode}}
+  accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}

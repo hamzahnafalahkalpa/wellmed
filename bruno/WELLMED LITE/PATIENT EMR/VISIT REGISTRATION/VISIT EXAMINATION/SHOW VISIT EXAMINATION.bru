@@ -1,0 +1,29 @@
+meta {
+  name: SHOW VISIT EXAMINATION
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{url}}/patient-emr/visit-registration/:visit_registration_id/visit-examination/:visit_examination_id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  visit_registration_id: {{visit_registration_id}}
+  visit_examination_id: {{visit_examination_id}}
+}
+
+headers {
+  appcode: {{appcode}}
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}

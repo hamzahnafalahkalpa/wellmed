@@ -1,0 +1,28 @@
+meta {
+  name: SHOW BILLING
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{url}}/transaction/billing/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: {{billing_id}}
+}
+
+headers {
+  AppCode: {{appcode}}
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}

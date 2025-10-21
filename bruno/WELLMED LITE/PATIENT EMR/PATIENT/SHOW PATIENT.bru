@@ -1,0 +1,36 @@
+meta {
+  name: SHOW PATIENT
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{url}}/patient-emr/patient/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: {{patient_id}}
+}
+
+headers {
+  appCode: {{appcode}}
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+script:post-response {
+  let data = res.getBody()
+  bru.setVar('patient_id',data.data.id)
+  bru.setVar('medical_record',data.data.medical_record)
+  bru.setVar('people_id',data.data.reference_id)
+  bru.setVar('patient_uuid',data.data.uuid)
+}
+
+settings {
+  encodeUrl: true
+}

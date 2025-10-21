@@ -1,0 +1,28 @@
+meta {
+  name: GET ROLE LIST
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/setting/acl/role
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~search_name: Admin
+}
+
+headers {
+  appcode: {{appcode}}
+  accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}

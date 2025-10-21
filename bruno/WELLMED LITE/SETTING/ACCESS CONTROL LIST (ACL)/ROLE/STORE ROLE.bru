@@ -1,0 +1,47 @@
+meta {
+  name: STORE ROLE
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{url}}/setting/acl/role
+  body: json
+  auth: bearer
+}
+
+headers {
+  appcode: {{appcode}}
+  accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "id": null, //nullable
+      "parent_id" : null, //nullable
+      "name": "test 2", //required
+      //optional jika ingin setup permission dari detail Role
+      //jika key dikirim dan diberi array kosong, maka data permissions akan di flush
+      "permission_ids" : [ 
+          1,2,3,4,5
+      ]
+      // "permissions" : [ //bisa juga format ini
+      //     {
+      //         "id" : 1
+      //     }
+      // ]
+  }
+}
+
+script:post-response {
+  var data = res.getBody();
+  bru.setVar("role_id",data.data.id)
+}
+
+settings {
+  encodeUrl: true
+}

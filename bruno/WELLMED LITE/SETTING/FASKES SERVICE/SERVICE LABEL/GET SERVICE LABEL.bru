@@ -1,0 +1,28 @@
+meta {
+  name: GET SERVICE LABEL
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/setting/faskes-service/service-label
+  body: none
+  auth: bearer
+}
+
+headers {
+  appcode: {{appcode}}
+  accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+script:post-response {
+  bru.setVar('service_label_id',res.getBody().data[0].id)
+}
+
+settings {
+  encodeUrl: true
+}

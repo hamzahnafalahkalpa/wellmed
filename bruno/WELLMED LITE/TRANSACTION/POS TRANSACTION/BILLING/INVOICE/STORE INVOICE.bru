@@ -1,0 +1,67 @@
+meta {
+  name: STORE INVOICE
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{url}}/transaction/point-of-sale/:transaction_id/billing/:billing_id/invoice
+  body: json
+  auth: bearer
+}
+
+params:path {
+  transaction_id: {{transaction_id}}
+  billing_id: {{billing_id}}
+}
+
+headers {
+  appcode: {{appcode}}
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "id" : "{{invoice_id}}",                
+      "payer_id": "{{consument_id}}", 
+      "payer_type" : "Consument", 
+      "reporting": true,
+      "payment_history": {
+          "id": null,
+          "discount": 0,
+          "form": { //THIS FIELD USING ONLY FOR ARTIFICIAL DATA, WILL REMOVE WHEN DATA SETTLED
+              "payment_summaries": [
+                  //YOU CAN USE PAYMENT SUMMARY AND PAYMENT DETAIL RESPONSE WHEN SHOW POS TRANSACTION
+                  {
+                      "id": "{{payment_summary_id}}",
+                      "payment_details" : [
+                          {
+                              "id": "{{payment_detail_id}}"
+                          }
+                      ]
+                  }
+              ]
+          }
+      },
+      "split_payments": [
+          {
+              "id": null,
+              "money_paid": 1000000, //nullable
+              "payment_method_id" : "{{payment_method_id}}" //required, GET FROM AUTOLIST - PAYMENT METHOD LIST                
+          }
+      ]
+  }
+}
+
+script:post-response {
+  let data = res.getBody();
+  bru.setVar('invoice_id',data.data.id);
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,65 @@
+meta {
+  name: STORE TARIFF COMPONENT
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{url}}/setting/finance/tariff-component
+  body: json
+  auth: bearer
+}
+
+headers {
+  appCode: {{appcode}}
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "id": null,
+      "name": "Tarif Layanan",
+      "component_details": [
+          {
+              "flag": "LAB",
+              "coa_id": "{{coa_id}}"
+          }
+          // {
+          //     "flag": "FEE",
+          //     "coa_id": "{{coa_id}}"
+          // },
+          // {
+          //     "flag": "CONSULTATION_FEE",
+          //     "coa_id": "{{coa_id}}"
+          // },
+          // {
+          //     "flag": "SERVICE",
+          //     "coa_id": "{{coa_id}}"
+          // },
+          // {
+          //     "flag": "ADMINISTRATIF",
+          //     "coa_id": "{{coa_id}}"
+          // },
+          // {
+          //     "flag": "RADIOLOGY",
+          //     "coa_id": "{{coa_id}}"
+          // }
+      ]
+  }
+}
+
+script:post-response {
+  bru.setVar('tariff_component_id',res.getBody().data.id)
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  Gets information about the authenticated user.
+}

@@ -1,0 +1,27 @@
+meta {
+  name: SHOW MEDICAL TREATMENT
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{url}}/setting/treatment/medical-treatment/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: {{medical_treatment_id}}
+}
+
+headers {
+  appcode: {{appcode}}
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,24 @@
+meta {
+  name: GET NET UNIT LIST
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/setting/item-management/net-unit
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+  appcode: {{appcode}}
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}

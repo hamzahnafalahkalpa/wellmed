@@ -1,0 +1,52 @@
+meta {
+  name: STORE ENCODING
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/setting/general-setting/encoding
+  body: json
+  auth: bearer
+}
+
+headers {
+  appcode: {{appcode}}
+  accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "flag" : "DEPOSIT",
+      "name" : "Kode Deposit",
+      "model_has_encoding" : {
+          "separator" : {
+              "distance" : 2, // ANGKANYA BEBAS MAU BERAPAPUN,
+              "separator" : "-" // nullable, in '-', '/', '\'
+          },
+          "structure" : [
+              {
+                  "type"   : "alphanumeric",            
+                  "value"  : "RMO" // VALUE ITU DIGIT NYA WAJIB SAMA DENGAN KEY LENGHT, JIKA LENGHT 3, MAKA WAJIB 3 DIGIT JIKA LENGHT 4 MAKA YA VALUE WAJIB DIGIT 4 DST
+              },
+              {
+                  "type"   : "incrementing",
+                  "length" : 5            
+              },
+              {
+                  "type"      : "date",
+                  "format"    : "Y-m-d", // Bisa juga Y-m atau Y 
+                  "resetable" : true // defaultnya true, jadi setiap ganti hari maka angka akan berulang dari 0 pada bagian incrementing
+              }
+          ]
+      }
+  }
+}
+
+settings {
+  encodeUrl: true
+}

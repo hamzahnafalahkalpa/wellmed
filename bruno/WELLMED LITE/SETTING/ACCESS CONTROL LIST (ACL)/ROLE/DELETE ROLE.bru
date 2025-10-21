@@ -1,0 +1,28 @@
+meta {
+  name: DELETE ROLE
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{url}}/setting/acl/role/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: 11
+}
+
+headers {
+  appcode: {{appcode}}
+  accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}

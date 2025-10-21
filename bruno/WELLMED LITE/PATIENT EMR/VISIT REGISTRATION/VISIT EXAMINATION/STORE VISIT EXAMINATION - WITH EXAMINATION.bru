@@ -1,0 +1,505 @@
+meta {
+  name: STORE VISIT EXAMINATION - WITH EXAMINATION
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{url}}/patient-emr/visit-registration/:visit_registration_id/visit-examination
+  body: json
+  auth: bearer
+}
+
+params:path {
+  visit_registration_id: {{visit_registration_id}}
+}
+
+headers {
+  AppCode: {{appcode}}
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "id" : "{{visit_examination_id}}",
+      "practitioner_evaluations": [
+          {
+              "id": null,
+              "practitioner_type" : "Employee", //nullable, default from config
+              "practitioner_id": "{{employee_id}}" //GET FROM EMPLOYEE LIST
+          }
+      ],
+      "examination": {
+          "assessment": {
+              "Anthropometry": {
+                  "data": {
+                      "exam": {
+                          "weight": 68,
+                          "height": 168,
+                          "wrist_circumference": null,
+                          "head_circumference": null,
+                          "chest_circumference": null,
+                          "waist_circumference": null,
+                          "hip_circumference": null,
+                          "arm_circumference": null,
+                          "calf_circumference": null,
+                          "skinfold_thickness": null
+                      }
+                  }
+              },        
+              "VitalSign": {
+                  "data": {
+                      "exam": {
+                          "temperature": 38,
+                          "temperature_type": "EAR",
+                          "systolic": 80,
+                          "diastolic": 120,
+                          "pulse_rate": 60,
+                          "heart_rate": 60,
+                          "respiration_rate": 60,
+                          "oxygen_saturation": 99,
+                          "sars_cov2_rt": false,
+                          "loc_id": "01k7179zd5bcq5anbyy3nrpkcg"
+                      }
+                  }
+              },
+              "ANCTerpadu": {
+                  "data": {
+                      "exam": {
+                          "result": null,
+                          "hpht": "2025-08-04",
+                          "hpl": "2026-06-05",
+                          "detak_jantung_janin": 110,
+                          "lingkar_lengan_atas": 45,
+                          "kehamilan_ke": 1,
+                          "jumlah_persalinan": 2,
+                          "jarak_persalinan_terakhir": 1,
+                          "jumlah_anak_hidup": 2,
+                          "jumlah_anak_lahir_mati": 0,
+                          "umur_helamilan": 6,
+                          "tinggi_fundus": 8,
+                          "kaki_bengkak": false,
+                          "posisi_bayi": "Kepala di bawah",
+                          "surveys": [
+                              {
+                                  "label": "Timbang Berat Badan dan Ukur Tinggi Badan",
+                                  "key": "value",
+                                  "component_name": "RadioButton",
+                                  "default_value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  },
+                                  "attribute": null,
+                                  "rule": null,
+                                  "options": [
+                                      {
+                                          "label": "Dilakukan",
+                                          "value": 0
+                                      },
+                                      {
+                                          "label": "Dilakukan sesuai indikasi",
+                                          "value": 1
+                                      },
+                                      {
+                                          "label": "Tidak dilakukan",
+                                          "value": 2
+                                      }
+                                  ],
+                                  "value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  }
+                              },
+                              {
+                                  "label": "Ukur Tekanan Darah",
+                                  "key": "value",
+                                  "component_name": "RadioButton",
+                                  "default_value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  },
+                                  "attribute": null,
+                                  "rule": null,
+                                  "options": [
+                                      {
+                                          "label": "Dilakukan",
+                                          "value": 0
+                                      },
+                                      {
+                                          "label": "Dilakukan sesuai indikasi",
+                                          "value": 1
+                                      },
+                                      {
+                                          "label": "Tidak dilakukan",
+                                          "value": 2
+                                      }
+                                  ],
+                                  "value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  }
+                              },
+                              {
+                                  "label": "Ukur Lingkar Lengan Atas (LILA)",
+                                  "key": "value",
+                                  "component_name": "RadioButton",
+                                  "default_value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  },
+                                  "attribute": null,
+                                  "rule": null,
+                                  "options": [
+                                      {
+                                          "label": "Dilakukan",
+                                          "value": 0
+                                      },
+                                      {
+                                          "label": "Dilakukan sesuai indikasi",
+                                          "value": 1
+                                      },
+                                      {
+                                          "label": "Tidak dilakukan",
+                                          "value": 2
+                                      }
+                                  ],
+                                  "value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  }
+                              },
+                              {
+                                  "label": "Pemeriksaan Tinggi Fundus (penilaian usia\\/ besar janin)",
+                                  "key": "value",
+                                  "component_name": "RadioButton",
+                                  "default_value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  },
+                                  "attribute": null,
+                                  "rule": null,
+                                  "options": [
+                                      {
+                                          "label": "Dilakukan",
+                                          "value": 0
+                                      },
+                                      {
+                                          "label": "Dilakukan sesuai indikasi",
+                                          "value": 1
+                                      },
+                                      {
+                                          "label": "Tidak dilakukan",
+                                          "value": 2
+                                      }
+                                  ],
+                                  "value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  }
+                              },
+                              {
+                                  "label": "Tentukan Presentase dan Denyut Jantung Janin (DJJ)",
+                                  "key": "value",
+                                  "component_name": "RadioButton",
+                                  "default_value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  },
+                                  "attribute": null,
+                                  "rule": null,
+                                  "options": [
+                                      {
+                                          "label": "Dilakukan",
+                                          "value": 0
+                                      },
+                                      {
+                                          "label": "Dilakukan sesuai indikasi",
+                                          "value": 1
+                                      },
+                                      {
+                                          "label": "Tidak dilakukan",
+                                          "value": 2
+                                      }
+                                  ],
+                                  "value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  }
+                              },
+                              {
+                                  "label": "Pemberian Imunisasi Tetanus Teksoid (TT)",
+                                  "key": "value",
+                                  "component_name": "RadioButton",
+                                  "default_value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  },
+                                  "attribute": null,
+                                  "rule": null,
+                                  "options": [
+                                      {
+                                          "label": "Dilakukan",
+                                          "value": 0
+                                      },
+                                      {
+                                          "label": "Dilakukan sesuai indikasi",
+                                          "value": 1
+                                      },
+                                      {
+                                          "label": "Tidak dilakukan",
+                                          "value": 2
+                                      }
+                                  ],
+                                  "value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  }
+                              },
+                              {
+                                  "label": "Pemberian Tablet Tambah Darah (TTD)",
+                                  "key": "value",
+                                  "component_name": "RadioButton",
+                                  "default_value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  },
+                                  "attribute": null,
+                                  "rule": null,
+                                  "options": [
+                                      {
+                                          "label": "Dilakukan",
+                                          "value": 0
+                                      },
+                                      {
+                                          "label": "Dilakukan sesuai indikasi",
+                                          "value": 1
+                                      },
+                                      {
+                                          "label": "Tidak dilakukan",
+                                          "value": 2
+                                      }
+                                  ],
+                                  "value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  }
+                              },
+                              {
+                                  "label": "Pemeriksaan Laboratorium (Termasuk status Anemia)",
+                                  "key": "value",
+                                  "component_name": "RadioButton",
+                                  "default_value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  },
+                                  "attribute": null,
+                                  "rule": null,
+                                  "options": [
+                                      {
+                                          "label": "Dilakukan",
+                                          "value": 0
+                                      },
+                                      {
+                                          "label": "Dilakukan sesuai indikasi",
+                                          "value": 1
+                                      },
+                                      {
+                                          "label": "Tidak dilakukan",
+                                          "value": 2
+                                      }
+                                  ],
+                                  "value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  }
+                              },
+                              {
+                                  "label": "Tata laksana kasus",
+                                  "key": "value",
+                                  "component_name": "RadioButton",
+                                  "default_value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  },
+                                  "attribute": null,
+                                  "rule": null,
+                                  "options": [
+                                      {
+                                          "label": "Dilakukan",
+                                          "value": 0
+                                      },
+                                      {
+                                          "label": "Dilakukan sesuai indikasi",
+                                          "value": 1
+                                      },
+                                      {
+                                          "label": "Tidak dilakukan",
+                                          "value": 2
+                                      }
+                                  ],
+                                  "value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  }
+                              },
+                              {
+                                  "label": "Temu Wicara\\/konseling",
+                                  "key": "value",
+                                  "component_name": "RadioButton",
+                                  "default_value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  },
+                                  "attribute": null,
+                                  "rule": null,
+                                  "options": [
+                                      {
+                                          "label": "Dilakukan",
+                                          "value": 0
+                                      },
+                                      {
+                                          "label": "Dilakukan sesuai indikasi",
+                                          "value": 1
+                                      },
+                                      {
+                                          "label": "Tidak dilakukan",
+                                          "value": 2
+                                      }
+                                  ],
+                                  "value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  }
+                              },
+                              {
+                                  "label": "USG Obstetri Dasar Terbatas",
+                                  "key": "value",
+                                  "component_name": "RadioButton",
+                                  "default_value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  },
+                                  "attribute": null,
+                                  "rule": null,
+                                  "options": [
+                                      {
+                                          "label": "Dilakukan",
+                                          "value": 0
+                                      },
+                                      {
+                                          "label": "Dilakukan sesuai indikasi",
+                                          "value": 1
+                                      },
+                                      {
+                                          "label": "Tidak dilakukan",
+                                          "value": 2
+                                      }
+                                  ],
+                                  "value": {
+                                      "label": "Tidak dilakukan",
+                                      "value": 2
+                                  }
+                              }
+                          ]
+                      }
+                  }
+              },
+              "PainScale": {
+                  "data": {
+                      "exam": {
+                          "rating_scale": 2,
+                          "scale_result": "Nyeri Ringan (Hurst Little Bit)"
+                      }
+                  }
+              },
+              "Symptom": {
+                  "data": [
+                      {
+                          "exam": {
+                              "id" : null,
+                              "name": "Sakit Kepala"
+                          }
+                      }
+                  ]
+              },
+              "Alloanamnese": {
+                  "data": {
+                      "exam" : {
+                          "is_alloanamnese": true, 
+                          "source_name": "John", 
+                          "family_role_id": "01k716s37fy4txgydrqa8w249r"
+                      }
+                  }
+              },
+              "FamilyIllness": {
+                  "data": [
+                      {
+                          "exam": {
+                              "name": "Penyakit Diare Akut",
+                              "disease_type": null,
+                              "disease_id": null,
+                              "classification_disease_id": null,
+                              "family_role_id": "01k716s37fy4txgydrqa8w249r",
+                              "family_patient_id": null,
+                              "family_name": "John",
+                              "child_position": null
+                          }
+                      }
+                  ]
+              },
+              "TetanusImmunization": {
+                  "data": {
+                      "exam": {
+                          "tetanus_date_1": "2025-10-20",
+                          "tetanus_date_2": null,
+                          "tetanus_date_3": null,
+                          "tetanus_date_4": null,
+                          "tetanus_date_5": null
+                      }
+                  }
+              },
+              // "HistoryIllness": {
+              //     "data": [
+              //         {
+              //             "exam": {
+              //                 "name": "Penyakit Diare Akut",
+              //                 "disease_type": null,
+              //                 "disease_id": null,
+              //                 "classification_disease_id": null,
+              //                 "family_role_id": "01k716s37fy4txgydrqa8w249r",
+              //                 "family_patient_id": null,
+              //                 "family_name": "John",
+              //                 "child_position": null
+              //             }
+              //         }
+              //     ]
+              // },
+              "Allergy": {
+                  "data": [
+                      {
+                          "exam": {
+                              "allergy_type_id": "01k7179wdydwfjpy85a0mesgjg", 
+                              "name": "Udang", 
+                              "allergy_scale": 2, 
+                              "allergen": null, 
+                              "effects": [
+                                  "Bentol - bentol",
+                                  "demam",
+                                  "sesak napas"
+                              ]
+                          }
+                      }
+                  ]
+              }
+          }
+      }
+  }
+}
+
+settings {
+  encodeUrl: true
+}

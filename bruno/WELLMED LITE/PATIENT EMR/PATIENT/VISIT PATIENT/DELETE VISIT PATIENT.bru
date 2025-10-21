@@ -1,0 +1,29 @@
+meta {
+  name: DELETE VISIT PATIENT
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{url}}/patient-emr/patient/:patient_id/visit-patient/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  patient_id: {{patient_id}}
+  id: {{visit_patient_id}}
+}
+
+headers {
+  appcode: {{appcode}}
+  accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}

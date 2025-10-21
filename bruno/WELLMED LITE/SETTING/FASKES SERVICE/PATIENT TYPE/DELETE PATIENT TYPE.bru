@@ -1,0 +1,28 @@
+meta {
+  name: DELETE PATIENT TYPE
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{url}}/setting/faskes-service/patient-type/:id
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: 01jxcbekv5skksgjg0ddfazp6c
+}
+
+headers {
+  Accept: application/json
+  appCode: {{appcode}}
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}

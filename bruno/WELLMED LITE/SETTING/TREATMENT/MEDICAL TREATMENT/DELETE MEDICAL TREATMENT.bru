@@ -1,0 +1,28 @@
+meta {
+  name: DELETE MEDICAL TREATMENT
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{url}}/setting/treatment/medical-treatment/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: {{medical_treatment_id}}
+}
+
+headers {
+  appcode: {{appcode}}
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}

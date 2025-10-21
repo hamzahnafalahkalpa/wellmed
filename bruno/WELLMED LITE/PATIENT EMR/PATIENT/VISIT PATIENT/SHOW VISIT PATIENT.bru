@@ -1,0 +1,36 @@
+meta {
+  name: SHOW VISIT PATIENT
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{url}}/patient-emr/patient/:patient_id/visit-patient/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  patient_id: {{patient_id}}
+  id: {{visit_patient_id}}
+}
+
+headers {
+  AppCode: {{appcode}}
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+script:post-response {
+  let data = res.getBody();
+  bru.setVar('visit_patient_id',data.data.id);
+  bru.setVar('visit_registration_id',data.data.visit_registrations[0].id);
+  bru.setVar('visit_examination_id',data.data.visit_registrations[0].visit_examination.id);
+}
+
+settings {
+  encodeUrl: true
+}

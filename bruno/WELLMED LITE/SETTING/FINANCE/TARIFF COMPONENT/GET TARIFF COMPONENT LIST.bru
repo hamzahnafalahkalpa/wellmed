@@ -1,0 +1,28 @@
+meta {
+  name: GET TARIFF COMPONENT LIST
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/setting/finance/tariff-component
+  body: none
+  auth: bearer
+}
+
+headers {
+  appCode: {{appcode}}
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  Gets information about the authenticated user.
+}

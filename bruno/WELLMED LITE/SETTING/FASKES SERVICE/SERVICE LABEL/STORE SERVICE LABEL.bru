@@ -1,0 +1,38 @@
+meta {
+  name: STORE SERVICE LABEL
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/setting/faskes-service/service-label
+  body: json
+  auth: bearer
+}
+
+headers {
+  appcode: {{appcode}}
+  accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "id" : "{{service_label_id}}", //required
+      "name" : "Audiometri",
+      //Label in : Audiometri,Vaksinasi,ECG,Injeksi,PCR,Tes Swab,Tes Kehamilan,Tes HIV,Tes Glukosa,Tes Mantoux
+      "label": "Audiometry" //required
+  }
+}
+
+script:post-response {
+  let data = res.getBody()
+  bru.setVar('marital_status_id',data.data.id)
+}
+
+settings {
+  encodeUrl: true
+}

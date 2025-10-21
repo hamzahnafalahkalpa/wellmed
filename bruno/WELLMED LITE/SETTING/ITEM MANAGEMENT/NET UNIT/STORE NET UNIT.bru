@@ -1,0 +1,36 @@
+meta {
+  name: STORE NET UNIT
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/setting/item-management/net-unit
+  body: json
+  auth: bearer
+}
+
+headers {
+  appcode: {{appcode}}
+  accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "id" : null,
+      "name" : "m3"
+  }
+}
+
+script:post-response {
+  let data = res.getBody()
+  bru.setVar('net_unit_id',data.data.id)
+}
+
+settings {
+  encodeUrl: true
+}

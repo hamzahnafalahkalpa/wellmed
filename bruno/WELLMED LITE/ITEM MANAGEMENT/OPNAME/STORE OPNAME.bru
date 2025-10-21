@@ -1,0 +1,106 @@
+meta {
+  name: STORE OPNAME
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{url}}/item-management/opname-stock
+  body: json
+  auth: bearer
+}
+
+headers {
+  appcode: {{appcode}}
+  accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "id": "{{opname_stock_id}}",
+      "warehouse_id" : "{{room_id}}",
+      "record_all_item" : true,
+      "reporting": true,
+      "form" : {
+          "items" : [ //FOR FORMULIR ONLY AS DRAFT
+              //EXISTING
+              {
+                  "id" : "{{item_id}}",
+                  "item_stocks": [
+                      {
+                          "id": null, //possible null kalau stock nya belum ada
+                          "funding_id": "{{funding_id}}",
+                          "qty": 20, //required without batch_movements when is_using batch false
+                          "stock_batches": [ //required without qty/is_using_batch true, array
+                              {
+                                  "id": null,
+                                  "batch": {
+                                      "id": null,
+                                      "batch_no": "1111",
+                                      "expired_at": "2024-10-20"
+                                  },
+                                  "qty": 100
+                              }
+                          ]
+                      }
+                  ]
+              }
+              //NEW ITEM
+              // {
+              //     "id" : null,
+              //     "cogs": 1000,
+              //     "margin": 20,
+              //     "unit_id": "{{selling_form_id}}", //GET FROM AUTOLIST > AUTOLIST - USAGE LOCATION
+              //     "tax": 0,
+              //     "item_stocks": [
+              //         {
+              //             "id": null,
+              //             "funding_id": "{{funding_id}}",
+              //             // "qty": 20, //required without batch_movements when is_using batch false
+              //             "batch_movements": [ //required without qty/is_using_batch true, array
+              //                 {
+              //                     "id": null,
+              //                     "batch_no": "1111",
+              //                     "expired_at": "2024-10-20",
+              //                     "qty": 100
+              //                 }
+              //             ]
+              //             //THIS SECTION FOR EXISTING DATA, IT'S OKAY TO NOT INCLUDING THIS STUFFS
+              //             // "supplier_type" :,
+              //             // "supplier_id" :,
+              //             // "procurement_type" :,
+              //             // "procurement_id" :
+              //         }
+              //     ]                
+                  
+              //     //OPTIONAL
+              //     // "min_stock": 150,
+              //     // "barcode": null,
+              //     // "net_unit_id": null,
+              //     // "net_qty": null,
+              //     // "netto": null,
+              //     // "compositions": [
+              //     //     {
+              //     //         "id": null,
+              //     //         "name" : "Paracetamol",
+              //     //         "unit_scale": "500",
+              //     //         "unit_id": "{{composition_unit_id}}" //AUTOLIST - COMPOSITION UNIT LIST
+              //     //     }
+              //     // ]
+              // }
+          ]
+      }
+  }
+}
+
+script:post-response {
+  bru.setVar('opname_stock_id',res.getBody().data.id)
+}
+
+settings {
+  encodeUrl: true
+}

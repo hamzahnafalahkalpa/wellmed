@@ -1,0 +1,28 @@
+meta {
+  name: DELETE PAYMENT METHOD
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{url}}/setting/finance/payment-method/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: {{payment_method_id}}
+}
+
+headers {
+  appcode: {{appcode}}
+  accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}

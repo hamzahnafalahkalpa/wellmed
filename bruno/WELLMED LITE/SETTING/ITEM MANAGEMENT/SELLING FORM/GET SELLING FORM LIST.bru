@@ -1,0 +1,28 @@
+meta {
+  name: GET SELLING FORM LIST
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/setting/item-management/selling-form
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+  appcode: {{appcode}}
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+script:post-response {
+  bru.setVar('selling_form_id',res.getBody().data[0].id)
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,32 @@
+meta {
+  name: SHOW TARIFF COMPONENT
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{url}}/setting/finance/tariff-component/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: {{tariff_component_id}}
+}
+
+headers {
+  appCode: {{appcode}}
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  Gets information about the authenticated user.
+}

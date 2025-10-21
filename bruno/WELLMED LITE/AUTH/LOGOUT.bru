@@ -1,0 +1,37 @@
+meta {
+  name: LOGOUT
+  type: http
+  seq: 2
+}
+
+delete {
+  url: {{url}}/token/:user_reference_uuid
+  body: none
+  auth: bearer
+}
+
+params:path {
+  user_reference_uuid: {{user_reference_uuid}}
+}
+
+headers {
+  appcode: {{appcode}}
+  accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+script:post-response {
+  bru.setVar("token",null)
+  bru.setVar("user_reference_uuid",null)
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  Digunakan untuk mereset token login (logout)
+}
