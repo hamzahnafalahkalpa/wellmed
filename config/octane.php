@@ -104,8 +104,8 @@ return [
         OperationTerminated::class => [
             FlushOnce::class,
             FlushTemporaryContainerInstances::class,
-            // DisconnectFromDatabases::class,
-            // CollectGarbage::class,
+            DisconnectFromDatabases::class,
+            CollectGarbage::class,
         ],
 
         WorkerErrorOccurred::class => [
@@ -130,11 +130,34 @@ return [
     */
 
     'warm' => [
-        ...Octane::defaultServicesToWarm(),
+        // ...Octane::defaultServicesToWarm(),
+        'auth',
+        // 'cache',
+        // 'cache.store',
+        'config',
+        'cookie',
+        // 'db',
+        // 'db.factory',
+        // 'db.transactions',
+        'encrypter',
+        'files',
+        'hash',
+        // 'log',
+        'router',
+        'routes',
+        // 'session',
+        // 'session.store',
+        'translator',
+        'url',
+        // 'view',
     ],
 
     'flush' => [
-        //
+        Hanafalah\MicroTenant\MicroTenant::class,
+        Stancl\Tenancy\Tenancy::class,
+        Illuminate\Foundation\Console\Kernel::class,
+        Hanafalah\KlinikStarterpack\Database\Manager\PostgreSQLSchemaManager::class,
+        Spatie\MediaLibrary\MediaCollections\Filesystem::class,
     ],
 
     /*
