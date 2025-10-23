@@ -12,7 +12,7 @@
         "php": "^8.4",
         "google/protobuf": "*",
         "grpc/grpc": "*",
-	"projects/hq": "dev-main",
+	    "projects/hq": "dev-main",
         "hanafalah/microtenant": "dev-main",
         "kreait/laravel-firebase": "^6.0",
         "laravel/framework": "^12.0",

@@ -5,7 +5,14 @@ use App\Http\Controllers\API\ApiAccess\HqApiAccessController;
 use Hanafalah\ApiHelper\Facades\ApiAccess;
 use Illuminate\Support\Facades\Route;
 use Hanafalah\LaravelSupport\Facades\LaravelSupport;
-
+use Projects\WellmedLite\Controllers\API\SatuSehat\{
+    Autolist\AutolistController,
+    AuthController
+};
+use Projects\WellmedLite\Controllers\API\SatuSehat\{
+    Organization\OrganizationController,
+    Patient\PatientController
+};
 
 // $hq_domains = [
 //     'hq.test'
@@ -46,7 +53,11 @@ foreach ($wellmed_lite_domains as $wellmed_lite_domain) {
                 'prefix' => 'satu-sehat',
                 'as' => 'satu-sehat.'
             ],function(){
-                LaravelSupport::callRoutes(__DIR__.'/satu-sehat');
+                Route::apiResource('/token',AuthController::class)->only('store');
+                Route::apiResource('/patient',PatientController::class)->only('store','update');
+                Route::apiResource('/organization',OrganizationController::class)->only('store','update');
+                Route::apiResource('/autolist/{morph}/{type}',AutolistController::class)->only('index');
+                // LaravelSupport::callRoutes(__DIR__.'/satu-sehat');
             });
         }); 
     });

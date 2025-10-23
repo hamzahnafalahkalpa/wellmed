@@ -34,10 +34,13 @@ services:
     entrypoint: ["/usr/local/bin/entrypoint.lite.sh"]
     env_file:
       - .env.lite
-    # environment:
+    environment:
+        PHP_INI_SCAN_DIR: /usr/local/etc/php/conf.d
+        PHP_UPLOAD_MAX_FILESIZE: 10M
+        PHP_POST_MAX_SIZE: 10M
     #   XDG_CONFIG_HOME: /var/www/html/config
     #   XDG_DATA_HOME: /var/www/html/data
-    # command: >
+    # command: ["/usr/local/bin/entrypoint.lite.sh"]
     #   php artisan octane:frankenphp
     #   --host=0.0.0.0
     #   --port=${WELLMED_LITE_PORT:-8005}

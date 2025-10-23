@@ -37,6 +37,7 @@ fi
 # Jalankan Laravel Octane (FrankenPHP)
 # -------------------------
 echo "==> Starting Laravel Octane..."
+cd "app"
 exec php artisan octane:frankenphp \
     --host=0.0.0.0 \
     --port=8007 \

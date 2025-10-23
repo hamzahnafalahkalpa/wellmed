@@ -37,10 +37,14 @@ fi
 # Jalankan Laravel Octane (FrankenPHP)
 # -------------------------
 echo "==> Starting Laravel Octane..."
-exec php artisan octane:frankenphp \
+echo "upload_max_filesize=10M" > /usr/local/etc/php/conf.d/99-upload.ini
+echo "post_max_size=10M" >> /usr/local/etc/php/conf.d/99-upload.ini
+exec php \
+    -d upload_max_filesize=10M \
+    -d post_max_size=10M \
+     artisan octane:frankenphp \
     --host=0.0.0.0 \
     --port=9000 \
     --admin-port=9005 \
     --workers=4 \
-    --max-requests=1000 \
-    --server=frankenphp
+    --max-requests=1000

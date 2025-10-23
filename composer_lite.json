@@ -13,6 +13,7 @@
         "google/protobuf": "*",
         "grpc/grpc": "*",
         "projects/wellmed-lite": "dev-main",
+        "league/flysystem-aws-s3-v3": "^3.30",
         "hanafalah/wellmed-lite-starterpack": "dev-main",
         "hanafalah/microtenant": "dev-main",
         "kreait/laravel-firebase": "^6.0",
