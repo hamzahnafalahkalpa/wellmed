@@ -17,17 +17,19 @@ RUN apt-get update --allow-releaseinfo-change && apt-get install -y --no-install
  && docker-php-ext-enable redis \
  && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# && pecl install grpc \
-# && docker-php-ext-enable grpc \
+#  && pecl install grpc \
+#  && docker-php-ext-enable grpc \
 
 WORKDIR /app
 COPY . .
 
+
+RUN if [ -f "composer.lock" ]; then rm composer.lock; fi
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && if [ "$APP_ENV" = "production" ]; then \
-        composer install --no-dev --optimize-autoloader --no-interaction --no-progress --prefer-dist --no-scripts; \
+         COMPOSER=composer_lite.json composer install --no-dev --optimize-autoloader --no-interaction --no-progress --prefer-dist --no-scripts; \
     else \
-        composer install --optimize-autoloader --no-interaction --no-progress --prefer-dist --no-scripts; \
+         COMPOSER=composer_lite.json composer install --optimize-autoloader --no-interaction --no-progress --prefer-dist --no-scripts; \
     fi
 
 # # -------------------------
@@ -35,8 +37,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # # -------------------------
 FROM builder AS production
 
-COPY ./docker/production/entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+COPY ./docker/production/entrypoint.lite.sh /usr/local/bin/entrypoint.lite.sh
+RUN chmod +x /usr/local/bin/entrypoint.lite.sh
 
 COPY ./storage /app/storage-init
 COPY --from=builder /app /app
@@ -54,8 +56,8 @@ RUN mkdir -p /app/storage /app/bootstrap/cache \
 WORKDIR /app
 USER www-data
 
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-EXPOSE 8004
+ENTRYPOINT ["/usr/local/bin/entrypoint.lite.sh"]
+EXPOSE 9000
 # CMD dihapus, nanti diatur di docker-compose
 
 # # -------------------------
@@ -83,9 +85,9 @@ USER root
 # fi
 
 COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
-COPY ./docker/development/entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+COPY ./docker/development/entrypoint.lite.sh /usr/local/bin/entrypoint.lite.sh
+RUN chmod +x /usr/local/bin/entrypoint.lite.sh
 
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-EXPOSE 8004
+ENTRYPOINT ["/usr/local/bin/entrypoint.lite.sh"]
+EXPOSE 9000
 # CMD dihapus, nanti diatur di docker-compose

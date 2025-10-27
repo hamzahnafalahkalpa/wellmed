@@ -4,7 +4,7 @@ services:
     image: wellmed-lite
     build:
       context: .
-      dockerfile: ./docker/common/Dockerfile-lite
+      dockerfile: ./docker/common/Dockerfile-lite-dev
       target: development
     ports:
       - "${WELLMED_LITE_PORT:-9000}:${WELLMED_LITE_PORT:-9000}"

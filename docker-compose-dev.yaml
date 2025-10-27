@@ -28,6 +28,8 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9000 || exit 1"]
     networks:
       - wellmed-core
     entrypoint: ["/usr/local/bin/entrypoint.lite.sh"]
