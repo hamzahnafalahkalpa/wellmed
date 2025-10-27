@@ -23,14 +23,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Model::automaticallyEagerLoadRelationships();
-        // Inertia::share('tenant', fn () => session('tenant'));
-        // if (config('octane') !== null) {
-        //     try {
-        //         MicroTenant::accessOnLogin();
-        //     } catch (\Exception $e) {
-        //         //throw $th;
-        //     }
-        // }
         if (app()->environment('production')) {
             URL::forceScheme('https');
         }

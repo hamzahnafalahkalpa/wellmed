@@ -19,10 +19,8 @@ class ApiAccess
     {
         // Event::listen(\Laravel\Octane\Events\RequestReceived::class, function ($event) {
             try {
-                // dd();
                 MicroTenant::accessOnLogin();
             } catch (\Throwable $th) {
-                dd('sini');
             }
         // });
         return $next($request);

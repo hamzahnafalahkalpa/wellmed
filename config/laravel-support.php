@@ -48,6 +48,7 @@ return [
             'fast'    => 100
         ]
     ],
+    'service_cache'  => \Hanafalah\MicroTenant\Supports\ServiceCache::class,
     'cache' => [
         'enabled' => env('USING_CACHE', false)
     ],

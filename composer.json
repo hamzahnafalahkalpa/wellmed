@@ -248,6 +248,41 @@
             "options": {
                 "symlink": true
             }
+        },
+        "wellmed-lite/ms-apotek": {
+            "type": "path",
+            "url": "features/ms-apotek",
+            "options": {
+                "symlink": true
+            }
+        },
+        "wellmed-lite/ms-emr": {
+            "type": "path",
+            "url": "features/ms-emr",
+            "options": {
+                "symlink": true
+            }
+        },
+        "wellmed-lite/ms-hr": {
+            "type": "path",
+            "url": "features/ms-hr",
+            "options": {
+                "symlink": true
+            }
+        },
+        "wellmed-lite/ms-point-of-sale": {
+            "type": "path",
+            "url": "features/ms-point-of-sale",
+            "options": {
+                "symlink": true
+            }
+        },
+        "wellmed-lite/ms-scm": {
+            "type": "path",
+            "url": "features/ms-scm",
+            "options": {
+                "symlink": true
+            }
         }
     }
 }

@@ -46,5 +46,5 @@ exec php \
     --host=0.0.0.0 \
     --port=9000 \
     --admin-port=9005 \
-    --workers=4 \
+    --workers=8 \
     --max-requests=1000

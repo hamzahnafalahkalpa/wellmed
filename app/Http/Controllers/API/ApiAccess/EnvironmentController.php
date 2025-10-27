@@ -34,14 +34,6 @@ class EnvironmentController extends ApiController{
                         $query->with(['domain','reference']);
                     }
                 ]);
-            },
-            'userReferences'=>function($query){
-                $query->with([
-                    'roles',
-                    'tenant'   => function($query){
-                        $query->with(['domain','reference']);
-                    }
-                ]);
             }
         ]);
         if (isset($this->__user->userReference)){

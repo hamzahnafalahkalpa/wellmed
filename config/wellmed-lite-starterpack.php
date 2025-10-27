@@ -91,6 +91,11 @@ return [
         'hanafalah/module-tax'                  => ['repository' =>'hamzahnafalahkalpa/module-tax'],
         'hanafalah/module-handwriting'          => ['repository' =>'hamzahnafalahkalpa/module-handwriting'],
         'hanafalah/wellmed-feature'             => ['repository' =>'hamzahnafalahkalpa/wellmed-feature'],
-        'hanafalah/satu-sehat'                  => ['repository' =>'hamzahnafalahkalpa/satu-sehat']
+        'hanafalah/satu-sehat'                  => ['repository' =>'hamzahnafalahkalpa/satu-sehat'],
+        'wellmed-lite/ms-apotek'                => ['repository' =>'wellmed-lite/ms-apotek'],
+        'wellmed-lite/ms-emr'                   => ['repository' =>'wellmed-lite/ms-emr'],
+        'wellmed-lite/ms-hr'                    => ['repository' =>'wellmed-lite/ms-hr'],
+        'wellmed-lite/ms-point-of-sale'         => ['repository' =>'wellmed-lite/ms-point-of-sale'],
+        'wellmed-lite/ms-scm'                   => ['repository' =>'wellmed-lite/ms-scm']
     ]
 ];

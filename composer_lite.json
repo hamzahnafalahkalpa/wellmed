@@ -10,8 +10,6 @@
     "license": "MIT",
     "require": {
         "php": "^8.4",
-        "google/protobuf": "*",
-        "grpc/grpc": "*",
         "projects/wellmed-lite": "dev-main",
         "league/flysystem-aws-s3-v3": "^3.30",
         "hanafalah/wellmed-lite-starterpack": "dev-main",
@@ -39,7 +37,8 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "Projects\\WellmedLite\\": "projects/wellmed-lite/src/",
+            "Hanafalah\\MicroTenant\\": "repositories/MicroTenant/",
+            "Projects\\WellmedLiteWellmedLite\\": "projects/wellmed-lite/src/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }

@@ -130,6 +130,7 @@ return [
          * Disable the pgsql manager above, and enable the one below if you
          * want to separate tenant DBs by schemas rather than databases.
          */
+            // 'pgsql'  => Stancl\Tenancy\TenantDatabaseManagers\PostgreSQLDatabaseManager::class,
             'pgsql' => Hanafalah\KlinikStarterpack\Database\Manager\PostgreSQLSchemaManager::class, // Separate by schema instead of database
         ]
     ],
@@ -266,6 +267,9 @@ return [
                 ],
             ]
         ],
+    ],
+    'laravel-support' => [
+        'service_cache'  => \Hanafalah\MicroTenant\Supports\ServiceCache::class,
     ],
     'commands' => [
         Commands\Impersonate\ImpersonateCacheCommand::class,
