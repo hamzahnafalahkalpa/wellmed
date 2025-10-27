@@ -4,7 +4,7 @@ services:
     image: wellmed-lite
     build:
       context: .
-      dockerfile: ./docker/common/Dockerfile-lite
+      dockerfile: ./docker/common/Dockerfile-lite-dev
       target: development
       # args:
       #   XDEBUG_ENABLED: ${XDEBUG_ENABLED:-false}
@@ -49,51 +49,51 @@ services:
     #   --workers=${PHP_CLI_SERVER_WORKERS:-2}
     #   --max-requests=1000
 
-  wellmed_hq:
-    container_name: wellmed_hq
-    image: wellmed-hq
-    build:
-      context: .
-      dockerfile: ./docker/common/Dockerfile-hq
-      target: development
-      # args:
-      #   XDEBUG_ENABLED: ${XDEBUG_ENABLED:-true}
-      #   XDEBUG_MODE: develop,coverage,debug,profile
-      #   XDEBUG_HOST: ${XDEBUG_HOST:-host.docker.internal}
-      #   XDEBUG_IDE_KEY: ${XDEBUG_IDE_KEY:-DOCKER}
-      #   XDEBUG_LOG: /dev/stdout
-      #   XDEBUG_LOG_LEVEL: 0
-    ports:
-      - "${WELLMED_HQ_PORT:-8007}:${WELLMED_HQ_PORT:-8007}"
-    volumes:
-      - ./repositories:/app/repositories
-      - ./app:/app/app
-      - ./projects/hq:/app/projects/hq
-      - ./groups:/app/groups
-      - ./config:/app/config
-      - ./tenants:/app/tenants
-      - ./public:/app/public
-      - ./database:/app/database
-      - ./composer_hq.json:/app/composer.json
-      - wellmed_hq_storage:/app/storage
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    restart: unless-stopped
-    networks:
-      - wellmed-core
-    entrypoint: ["/usr/local/bin/entrypoint.hq.sh"]
-    env_file:
-      - .env.hq
-    # environment:
-    #   XDG_CONFIG_HOME: /var/www/html/config
-    #   XDG_DATA_HOME: /var/www/html/data
-    # command: >
-    #   php artisan octane:frankenphp
-    #   --host=0.0.0.0
-    #   --port=${WELLMED_HQ_PORT:-8007}
-    #   --admin-port=9007
-    #   --workers=${PHP_CLI_SERVER_WORKERS:-2}
-    #   --max-requests=1000
+  # wellmed_hq:
+  #   container_name: wellmed_hq
+  #   image: wellmed-hq
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/common/Dockerfile-hq
+  #     target: development
+  #     # args:
+  #     #   XDEBUG_ENABLED: ${XDEBUG_ENABLED:-true}
+  #     #   XDEBUG_MODE: develop,coverage,debug,profile
+  #     #   XDEBUG_HOST: ${XDEBUG_HOST:-host.docker.internal}
+  #     #   XDEBUG_IDE_KEY: ${XDEBUG_IDE_KEY:-DOCKER}
+  #     #   XDEBUG_LOG: /dev/stdout
+  #     #   XDEBUG_LOG_LEVEL: 0
+  #   ports:
+  #     - "${WELLMED_HQ_PORT:-8007}:${WELLMED_HQ_PORT:-8007}"
+  #   volumes:
+  #     - ./repositories:/app/repositories
+  #     - ./app:/app/app
+  #     - ./projects/hq:/app/projects/hq
+  #     - ./groups:/app/groups
+  #     - ./config:/app/config
+  #     - ./tenants:/app/tenants
+  #     - ./public:/app/public
+  #     - ./database:/app/database
+  #     - ./composer_hq.json:/app/composer.json
+  #     - wellmed_hq_storage:/app/storage
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
+  #   restart: unless-stopped
+  #   networks:
+  #     - wellmed-core
+  #   entrypoint: ["/usr/local/bin/entrypoint.hq.sh"]
+  #   env_file:
+  #     - .env.hq
+  #   # environment:
+  #   #   XDG_CONFIG_HOME: /var/www/html/config
+  #   #   XDG_DATA_HOME: /var/www/html/data
+  #   # command: >
+  #   #   php artisan octane:frankenphp
+  #   #   --host=0.0.0.0
+  #   #   --port=${WELLMED_HQ_PORT:-8007}
+  #   #   --admin-port=9007
+  #   #   --workers=${PHP_CLI_SERVER_WORKERS:-2}
+  #   #   --max-requests=1000
 
 networks:
   wellmed-core:
@@ -101,4 +101,4 @@ networks:
 
 volumes:  
   wellmed_lite_storage:
-  wellmed_hq_storage:
+  # wellmed_hq_storage:
