@@ -53,11 +53,7 @@ foreach ($wellmed_lite_domains as $wellmed_lite_domain) {
                 'prefix' => 'satu-sehat',
                 'as' => 'satu-sehat.'
             ],function(){
-                Route::apiResource('/token',AuthController::class)->only('store');
-                Route::apiResource('/patient',PatientController::class)->only('store','update');
-                Route::apiResource('/organization',OrganizationController::class)->only('store','update');
-                Route::apiResource('/autolist/{morph}/{type}',AutolistController::class)->only('index');
-                // LaravelSupport::callRoutes(__DIR__.'/satu-sehat');
+                LaravelSupport::callRoutes(__DIR__.'/satu-sehat');
             });
         }); 
     });
