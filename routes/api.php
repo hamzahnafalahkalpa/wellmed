@@ -15,7 +15,8 @@ use Projects\WellmedLite\Controllers\API\SatuSehat\{
 };
 
 // $hq_domains = [
-//     'hq.test'
+//     'hq.test',
+//     '10.100.26.83'
 // ];
 
 // foreach ($hq_domains as $hq_domain) {
