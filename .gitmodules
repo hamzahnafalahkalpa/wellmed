@@ -199,3 +199,24 @@
 [submodule "repositories/satu-sehat"]
 	path = repositories/satu-sehat
 	url = https://github.com/hamzahnafalahkalpa/satu-sehat.git
+[submodule "features/ms-plus-apotek"]
+	path = features/ms-plus-apotek
+	url = https://github.com/hamzahnafalahkalpa/ms-plus-apotek.git
+[submodule "features/ms-plus-hr"]
+	path = features/ms-plus-hr
+	url = https://github.com/hamzahnafalahkalpa/ms-plus-hr.git
+[submodule "features/ms-plus-point-of-sale"]
+	path = features/ms-plus-point-of-sale
+	url = https://github.com/hamzahnafalahkalpa/ms-plus-point-of-sale.git
+[submodule "features/ms-plus-emr"]
+	path = features/ms-plus-emr
+	url = https://github.com/hamzahnafalahkalpa/ms-plus-emr.git
+[submodule "features/ms-plus-scm"]
+	path = features/ms-plus-scm
+	url = https://github.com/hamzahnafalahkalpa/ms-plus-scm.git
+[submodule "repositories/module-appointment"]
+	path = repositories/module-appointment
+	url = https://github.com/hamzahnafalahkalpa/module-appointment.git
+[submodule "features/ms-plus-organization"]
+	path = features/ms-plus-organization
+	url = https://github.com/hamzahnafalahkalpa/ms-plus-organization.git

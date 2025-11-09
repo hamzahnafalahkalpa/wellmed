@@ -38,7 +38,7 @@
         "psr-4": {
             "App\\": "app/",
             "Hanafalah\\MicroTenant\\": "repositories/MicroTenant/",
-            "Projects\\WellmedLiteWellmedLite\\": "projects/wellmed-lite/src/",
+            "Projects\\WellmedLite\\": "projects/wellmed-lite/src/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }

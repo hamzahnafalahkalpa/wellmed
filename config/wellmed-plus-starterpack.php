@@ -1,0 +1,107 @@
+<?php
+
+use Hanafalah\WellmedPlusStarterpack\{
+    Commands,
+};
+
+return [
+    "namespace"     => "Hanafalah\WellmedPlusStarterpack",
+    "paths"         => [
+        "local_path"   => "repositories",
+        "base_path"    => __DIR__.'/../'
+    ],
+    'app' => [
+        'contracts' => [
+        ],
+    ],
+    'commands'  => [
+        Commands\SeedCommand::class,
+        Commands\MigrateCommand::class,
+        Commands\InstallMakeCommand::class
+    ],
+    'libs' => [
+        'asset' => '../assets',
+        'config' => '../assets/config',
+        'migration' => '../assets/database/migrations',
+        'model' => 'Models',
+        'controller' => 'Controllers',
+        'provider' => 'Providers',
+        'contract' => 'Contracts',
+        'concern' => 'Concerns',
+        'command' => 'Commands',
+        'route' => 'Routes',
+        'import' => 'Imports',
+        'data' => 'Data',
+        'resource' => 'Resources',
+        'seeder' => 'Database/Seeders',
+        'middleware' => 'Middleware',
+        'request' => 'Requests',
+        'support' => 'Supports',
+        'schema' => 'Schemas',
+        'facade' => 'Facades',
+    ],
+    'database' => [
+        'models' => [
+        ]
+    ],
+    "provider" => "Hanafalah\WellmedPlusStarterpack\\Providers\\WellmedPlusStarterpackServiceProvider",
+    'packages' => [
+        'hanafalah/api-helper'                  => ['repository' =>'hamzahnafalahkalpa/api-helper'],
+        'hanafalah/laravel-feature'             => ['repository' =>'hamzahnafalahkalpa/laravel-feature'],
+        'hanafalah/laravel-has-props'           => ['repository' =>'hamzahnafalahkalpa/laravel-has-props'],
+        'hanafalah/laravel-package-generator'   => ['repository' =>'hamzahnafalahkalpa/laravel-package-generator'],
+        'hanafalah/laravel-permission'          => ['repository' =>'hamzahnafalahkalpa/laravel-permission'],
+        'hanafalah/laravel-stub'                => ['repository' =>'hamzahnafalahkalpa/laravel-stub'],
+        'hanafalah/laravel-support'             => ['repository' =>'hamzahnafalahkalpa/laravel-support'],
+        'hanafalah/microtenant'                 => ['repository' =>'hamzahnafalahkalpa/microtenant'],
+        'hanafalah/module-encoding'             => ['repository' =>'hamzahnafalahkalpa/module-encoding'],
+        'hanafalah/module-regional'             => ['repository' =>'hamzahnafalahkalpa/module-regional'],
+        'hanafalah/module-user'                 => ['repository' =>'hamzahnafalahkalpa/module-user'],
+        'hanafalah/module-workspace'            => ['repository' =>'hamzahnafalahkalpa/module-workspace'],
+        'hanafalah/module-patient'              => ['repository' =>'hamzahnafalahkalpa/module-patient'],
+        'hanafalah/module-agent'                => ['repository' =>'hamzahnafalahkalpa/module-agent'],
+        'hanafalah/module-employee'             => ['repository' =>'hamzahnafalahkalpa/module-employee'],
+        'hanafalah/module-funding'              => ['repository' =>'hamzahnafalahkalpa/module-funding'],
+        'hanafalah/module-lab-radiology'        => ['repository' =>'hamzahnafalahkalpa/module-lab-radiology'],
+        'hanafalah/module-medic-service'        => ['repository' =>'hamzahnafalahkalpa/module-medic-service'],
+        'hanafalah/module-medical-treatment'    => ['repository' =>'hamzahnafalahkalpa/module-medical-treatment'],
+        'hanafalah/module-organization'         => ['repository' =>'hamzahnafalahkalpa/module-organization'],
+        'hanafalah/module-payer'                => ['repository' =>'hamzahnafalahkalpa/module-payer'],
+        'hanafalah/module-payment'              => ['repository' =>'hamzahnafalahkalpa/module-payment'],
+        'hanafalah/module-card-identity'        => ['repository' =>'hamzahnafalahkalpa/module-card-identity'],
+        'hanafalah/module-people'               => ['repository' =>'hamzahnafalahkalpa/module-people'],
+        'hanafalah/module-profession'           => ['repository' =>'hamzahnafalahkalpa/module-profession'],
+        'hanafalah/module-service'              => ['repository' =>'hamzahnafalahkalpa/module-service'],
+        'hanafalah/module-summary'              => ['repository' =>'hamzahnafalahkalpa/module-summary'],
+        'hanafalah/module-transaction'          => ['repository' =>'hamzahnafalahkalpa/module-transaction'],
+        'hanafalah/module-treatment'            => ['repository' =>'hamzahnafalahkalpa/module-treatment'],
+        'hanafalah/module-warehouse'            => ['repository' =>'hamzahnafalahkalpa/module-warehouse'],
+        'hanafalah/module-class-room'           => ['repository' =>'hamzahnafalahkalpa/module-class-room'],
+        'hanafalah/module-mcu'                  => ['repository' =>'hamzahnafalahkalpa/module-mcu'],
+        'hanafalah/module-item'                 => ['repository' =>'hamzahnafalahkalpa/module-item'],
+        'hanafalah/module-medical-item'         => ['repository' =>'hamzahnafalahkalpa/module-medical-item'],
+        'hanafalah/module-examination'          => ['repository' =>'hamzahnafalahkalpa/module-examination'],
+        'hanafalah/module-procurement'          => ['repository' =>'hamzahnafalahkalpa/module-procurement'],
+        'hanafalah/module-disease'              => ['repository' =>'hamzahnafalahkalpa/module-disease'],
+        'hanafalah/module-informed-consent'     => ['repository' =>'hamzahnafalahkalpa/module-informed-consent'],
+        'hanafalah/module-icd'                  => ['repository' =>'hamzahnafalahkalpa/module-icd'],
+        'hanafalah/module-anatomy'              => ['repository' =>'hamzahnafalahkalpa/module-anatomy'],
+        'hanafalah/module-physical-examination' => ['repository' =>'hamzahnafalahkalpa/module-physical-examination'],
+        'hanafalah/module-opname-stock'         => ['repository' =>'hamzahnafalahkalpa/module-opname-stock'],
+        'hanafalah/module-appointment'          => ['repository' =>'hamzahnafalahkalpa/module-appointment'],
+        'hanafalah/module-distribution'         => ['repository' =>'hamzahnafalahkalpa/module-distribution'],
+        'hanafalah/module-pharmacy'             => ['repository' =>'hamzahnafalahkalpa/module-pharmacy'],
+        'hanafalah/module-event'                => ['repository' =>'hamzahnafalahkalpa/module-event'],
+        "hanafalah/module-manufacture"          => ['repository' =>'hamzahnafalahkalpa/module-manufacture'],
+        "hanafalah/module-handwriting"          => ['repository' =>'hamzahnafalahkalpa/module-handwriting'],
+        "hanafalah/module-monitoring"           => ['repository' =>'hamzahnafalahkalpa/module-monitoring'],
+        "hanafalah/module-support"              => ['repository' =>'hamzahnafalahkalpa/module-support'],
+        'hanafalah/module-tax'                  => ['repository' =>'hamzahnafalahkalpa/module-tax'],
+        'hanafalah/satu-sehat'                  => ['repository' =>'hamzahnafalahkalpa/satu-sehat'],
+        'wellmed-plus/ms-plus-apotek'           => ['repository' =>'wellmed-plus/ms-plus-apotek'],
+        'wellmed-plus/ms-plus-emr'              => ['repository' =>'wellmed-plus/ms-plus-emr'],
+        'wellmed-plus/ms-plus-hr'               => ['repository' =>'wellmed-plus/ms-plus-hr'],
+        'wellmed-plus/ms-plus-point-of-sale'    => ['repository' =>'wellmed-plus/ms-plus-point-of-sale'],
+        'wellmed-plus/ms-plus-scm'              => ['repository' =>'wellmed-plus/ms-plus-scm']
+    ]
+];

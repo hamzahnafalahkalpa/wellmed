@@ -17,12 +17,11 @@ class ApiAccess
      */
     public function handle($request, Closure $next)
     {
-        // Event::listen(\Laravel\Octane\Events\RequestReceived::class, function ($event) {
-            try {
-                MicroTenant::accessOnLogin();
-            } catch (\Throwable $th) {
-            }
-        // });
+        try {
+            MicroTenant::accessOnLogin();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
         return $next($request);
     }
 }
