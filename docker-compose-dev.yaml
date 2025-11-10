@@ -124,7 +124,7 @@ services:
 
 networks:
   wellmed-core:
-    external: true
+    driver: bridge
 
 volumes:  
   wellmed_lite_storage:
