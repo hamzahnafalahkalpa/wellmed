@@ -122,7 +122,6 @@ services:
     networks:
       - wellmed-core
 
-
   wellmed_redis:
     image: redis:7-alpine
     container_name: redis
@@ -130,7 +129,7 @@ services:
     ports:
       - "6378:6379"
     networks:
-      - caddy-projects
+      - wellmed-core
     volumes:
       - redis_data:/data
 
@@ -143,7 +142,7 @@ services:
     volumes:
       - pgsql_data:/var/lib/postgresql/data
     networks:
-      - caddy-projects
+      - wellmed-core
     ports:
       - "5433:5432"
 
