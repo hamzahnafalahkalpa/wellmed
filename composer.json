@@ -10,9 +10,9 @@
     "license": "MIT",
     "require": {
         "php": "^8.4",
-        "projects/wellmed-plus": "dev-main",
+        "projects/wellmed-lite": "dev-main",
         "league/flysystem-aws-s3-v3": "^3.30",
-        "hanafalah/wellmed-plus-starterpack": "dev-main",
+        "hanafalah/wellmed-lite-starterpack": "dev-main",
         "hanafalah/microtenant": "dev-main",
         "kreait/laravel-firebase": "^6.0",
         "laravel/framework": "^12.0",
@@ -37,8 +37,8 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "Hanafalah\\MicroTenant\\": "repositories/MicroTenant/",
-            "Projects\\WellmedPlus\\": "projects/wellmed-plus/src/",
+            "Hanafalah\\MicroTenant\\": "repositories/MicroTenant/src/",
+            "Projects\\WellmedLite\\": "projects/wellmed-lite/src/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
@@ -95,13 +95,6 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": {
-        "hanafalah/wellmed-plus-starterpack": {
-            "type": "path",
-            "url": "repositories/wellmed-plus-starterpack",
-            "optimize": {
-                "symlink": true
-            }
-        },
         "hanafalah/wellmed-lite-starterpack": {
             "type": "path",
             "url": "repositories/wellmed-lite-starterpack",
@@ -123,13 +116,6 @@
                 "symlink": true
             }
         },
-        "projects/wellmed-plus": {
-            "type": "path",
-            "url": "projects/wellmed-plus",
-            "options": {
-                "symlink": true
-            }
-        },
         "projects/wellmed-lite": {
             "type": "path",
             "url": "projects/wellmed-lite",
@@ -147,48 +133,6 @@
         "hanafalah/satu-sehat": {
             "type": "path",
             "url": "repositories/satu-sehat",
-            "options": {
-                "symlink": true
-            }
-        },
-        "wellmed-plus/ms-plus-emr": {
-            "type": "path",
-            "url": "features/ms-plus-emr",
-            "options": {
-                "symlink": true
-            }
-        },
-        "wellmed-plus/ms-plus-apotek": {
-            "type": "path",
-            "url": "features/ms-plus-apotek",
-            "options": {
-                "symlink": true
-            }
-        },
-        "wellmed-plus/ms-plus-point-of-sale": {
-            "type": "path",
-            "url": "features/ms-plus-point-of-sale",
-            "options": {
-                "symlink": true
-            }
-        },
-        "wellmed-plus/ms-plus-scm": {
-            "type": "path",
-            "url": "features/ms-plus-scm",
-            "options": {
-                "symlink": true
-            }
-        },
-        "wellmed-plus/ms-plus-hr": {
-            "type": "path",
-            "url": "features/ms-plus-hr",
-            "options": {
-                "symlink": true
-            }
-        },
-        "wellmed-plus/ms-plus-organization": {
-            "type": "path",
-            "url": "features/ms-plus-organization",
             "options": {
                 "symlink": true
             }
@@ -224,6 +168,34 @@
         "wellmed-lite/ms-hr": {
             "type": "path",
             "url": "features/ms-hr",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanfalah/wellmed-feature": {
+            "type": "path",
+            "url": "repositories/wellmed-feature",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-funding": {
+            "type": "path",
+            "url": "repositories/module-funding",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-payer": {
+            "type": "path",
+            "url": "repositories/module-payer",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-organization": {
+            "type": "path",
+            "url": "repositories/module-organization",
             "options": {
                 "symlink": true
             }
@@ -319,23 +291,9 @@
                 "symlink": true
             }
         },
-        "hanafalah/module-agent": {
-            "type": "path",
-            "url": "repositories/module-agent",
-            "options": {
-                "symlink": true
-            }
-        },
         "hanafalah/module-employee": {
             "type": "path",
             "url": "repositories/module-employee",
-            "options": {
-                "symlink": true
-            }
-        },
-        "hanafalah/module-funding": {
-            "type": "path",
-            "url": "repositories/module-funding",
             "options": {
                 "symlink": true
             }
@@ -361,30 +319,9 @@
                 "symlink": true
             }
         },
-        "hanafalah/module-organization": {
-            "type": "path",
-            "url": "repositories/module-organization",
-            "options": {
-                "symlink": true
-            }
-        },
-        "hanafalah/module-payer": {
-            "type": "path",
-            "url": "repositories/module-payer",
-            "options": {
-                "symlink": true
-            }
-        },
         "hanafalah/module-payment": {
             "type": "path",
             "url": "repositories/module-payment",
-            "options": {
-                "symlink": true
-            }
-        },
-        "hanafalah/module-card-identity": {
-            "type": "path",
-            "url": "repositories/module-card-identity",
             "options": {
                 "symlink": true
             }
@@ -403,6 +340,13 @@
                 "symlink": true
             }
         },
+        "hanafalah/module-procurement": {
+            "type": "path",
+            "url": "repositories/module-procurement",
+            "options": {
+                "symlink": true
+            }
+        },
         "hanafalah/module-service": {
             "type": "path",
             "url": "repositories/module-service",
@@ -413,13 +357,6 @@
         "hanafalah/module-summary": {
             "type": "path",
             "url": "repositories/module-summary",
-            "options": {
-                "symlink": true
-            }
-        },
-        "hanafalah/module-support": {
-            "type": "path",
-            "url": "repositories/module-support",
             "options": {
                 "symlink": true
             }
@@ -445,16 +382,9 @@
                 "symlink": true
             }
         },
-        "hanafalah/module-class-room": {
+        "hanafalah/module-card-identity": {
             "type": "path",
-            "url": "repositories/module-class-room",
-            "options": {
-                "symlink": true
-            }
-        },
-        "hanafalah/module-mcu": {
-            "type": "path",
-            "url": "repositories/module-mcu",
+            "url": "repositories/module-card-identity",
             "options": {
                 "symlink": true
             }
@@ -476,13 +406,6 @@
         "hanafalah/module-examination": {
             "type": "path",
             "url": "repositories/module-examination",
-            "options": {
-                "symlink": true
-            }
-        },
-        "hanafalah/module-procurement": {
-            "type": "path",
-            "url": "repositories/module-procurement",
             "options": {
                 "symlink": true
             }
@@ -522,13 +445,6 @@
                 "symlink": true
             }
         },
-        "hanafalah/module-opname-stock": {
-            "type": "path",
-            "url": "repositories/module-opname-stock",
-            "options": {
-                "symlink": true
-            }
-        },
         "hanafalah/module-pharmacy": {
             "type": "path",
             "url": "repositories/module-pharmacy",
@@ -536,30 +452,9 @@
                 "symlink": true
             }
         },
-        "hanafalah/module-appointment": {
+        "hanafalah/module-tax": {
             "type": "path",
-            "url": "repositories/module-appointment",
-            "options": {
-                "symlink": true
-            }
-        },
-        "hanafalah/module-distribution": {
-            "type": "path",
-            "url": "repositories/module-distribution",
-            "options": {
-                "symlink": true
-            }
-        },
-        "hanafalah/module-event": {
-            "type": "path",
-            "url": "repositories/module-event",
-            "options": {
-                "symlink": true
-            }
-        },
-        "hanafalah/module-manufacture": {
-            "type": "path",
-            "url": "repositories/module-manufacture",
+            "url": "repositories/module-tax",
             "options": {
                 "symlink": true
             }
@@ -571,16 +466,9 @@
                 "symlink": true
             }
         },
-        "hanafalah/module-monitoring": {
+        "hanafalah/module-support": {
             "type": "path",
-            "url": "repositories/module-monitoring",
-            "options": {
-                "symlink": true
-            }
-        },
-        "hanafalah/module-tax": {
-            "type": "path",
-            "url": "repositories/module-tax",
+            "url": "repositories/module-support",
             "options": {
                 "symlink": true
             }
