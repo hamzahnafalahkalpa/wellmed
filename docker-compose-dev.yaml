@@ -122,6 +122,31 @@ services:
     networks:
       - wellmed-core
 
+
+  wellmed_redis:
+    image: redis:7-alpine
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - "6378:6379"
+    networks:
+      - caddy-projects
+    volumes:
+      - redis_data:/data
+
+  wellmed_postgres:
+    image: postgres:15
+    container_name: pgsql
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Password@123.,
+    volumes:
+      - pgsql_data:/var/lib/postgresql/data
+    networks:
+      - caddy-projects
+    ports:
+      - "5433:5432"
+
 networks:
   wellmed-core:
     driver: bridge
