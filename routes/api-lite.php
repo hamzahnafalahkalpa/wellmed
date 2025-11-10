@@ -27,3 +27,13 @@ ApiAccess::secure(function(){
     });
 }); 
 
+Route::get('/health', function () {
+    return response()->json([
+        'status' => 'ok',
+        'app' => config('app.name'),
+        'env' => config('app.env'),
+        'version' => '1.0.0',
+        'time' => now()->toDateTimeString(),
+    ]);
+});
+

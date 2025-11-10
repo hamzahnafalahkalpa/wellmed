@@ -11,6 +11,16 @@ ApiAccess::secure(function(){
         ->parameters(['token' => 'uuid']);
 }); 
 
+Route::get('/health', function () {
+    return response()->json([
+        'status' => 'ok',
+        'app' => config('app.name'),
+        'env' => config('app.env'),
+        'version' => '1.0.0',
+        'time' => now()->toDateTimeString(),
+    ]);
+});
+
 Route::group([
     'as' => 'api.'
 ],function(){
