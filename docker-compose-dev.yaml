@@ -131,4 +131,3 @@ volumes:
   wellmed_plus_storage:
   wellmed_hq_storage:
   rabbitmq_data:
-  # wellmed_hq_storage:
