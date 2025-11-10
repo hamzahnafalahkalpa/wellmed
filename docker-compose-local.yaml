@@ -15,7 +15,7 @@ services:
       - ./features:/app/features
       - ./config:/app/config
       - ./public:/app/public
-      - ./routes:/app/routes
+      - ./routes/api-lite.php:/app/routes/api.php
       - ./database:/app/database
       - ./.env.lite:/app/.env
       - ./composer_lite.json:/app/composer.json
@@ -71,6 +71,57 @@ services:
         PHP_UPLOAD_MAX_FILESIZE: 10M
         PHP_POST_MAX_SIZE: 10M
 
+  wellmed_hq:
+    container_name: wellmed_hq
+    image: wellmed-hq
+    build:
+      context: .
+      dockerfile: ./docker/common/Dockerfile-hq
+      target: development
+    ports:
+      - "${WELLMED_HQ_PORT:-9001}:${WELLMED_HQ_PORT:-9001}"
+    volumes:
+      - ./repositories:/app/repositories
+      - ./app:/app/app
+      - ./projects/hq:/app/projects/hq
+      - ./features:/app/features
+      - ./config:/app/config
+      - ./public:/app/public
+      - ./routes:/app/routes
+      - ./database:/app/database
+      - ./routes/api-hq.php:/app/routes/api.php
+      - ./.env.hq:/app/.env
+      - ./composer_hq.json:/app/composer.json
+      - wellmed_hq_storage:/app/storage
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9001 || exit 1"]
+    networks:
+      - caddy-projects
+    entrypoint: ["/usr/local/bin/entrypoint.hq.sh"]
+    env_file:
+      - .env.hq
+    environment:
+        PHP_INI_SCAN_DIR: /usr/local/etc/php/conf.d
+        PHP_UPLOAD_MAX_FILESIZE: 10M
+        PHP_POST_MAX_SIZE: 10M
+
+  wellmed_rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - caddy-projects
+
 networks:
   caddy-projects:
     external: true
@@ -78,4 +129,6 @@ networks:
 volumes:  
   wellmed_lite_storage:
   wellmed_plus_storage:
+  wellmed_hq_storage:
+  rabbitmq_data:
   # wellmed_hq_storage:

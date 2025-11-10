@@ -23,7 +23,9 @@ RUN apt-get update --allow-releaseinfo-change && apt-get install -y --no-install
 WORKDIR /app
 COPY . .
 
+
 RUN if [ -f "composer.lock" ]; then rm composer.lock; fi
+RUN if [ -f "composer_hq.lock" ]; then rm composer_hq.lock; fi
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && if [ "$APP_ENV" = "production" ]; then \
          COMPOSER=composer_hq.json composer install --no-dev --optimize-autoloader --no-interaction --no-progress --prefer-dist --no-scripts; \
@@ -56,7 +58,7 @@ WORKDIR /app
 USER www-data
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.hq.sh"]
-EXPOSE 8007
+EXPOSE 9001
 # CMD dihapus, nanti diatur di docker-compose
 
 # # -------------------------
@@ -64,29 +66,29 @@ EXPOSE 8007
 # # -------------------------
 FROM production AS development
 
-ARG XDEBUG_ENABLED=true
-ARG XDEBUG_MODE=develop,coverage,debug,profile
-ARG XDEBUG_HOST=host.docker.internal
-ARG XDEBUG_IDE_KEY=DOCKER
-ARG XDEBUG_LOG=/dev/stdout
-ARG XDEBUG_LOG_LEVEL=0
+# ARG XDEBUG_ENABLED=true
+# ARG XDEBUG_MODE=develop,coverage,debug,profile
+# ARG XDEBUG_HOST=host.docker.internal
+# ARG XDEBUG_IDE_KEY=DOCKER
+# ARG XDEBUG_LOG=/dev/stdout
+# ARG XDEBUG_LOG_LEVEL=0
 
 USER root
-RUN if [ "${XDEBUG_ENABLED}" = "true" ]; then \
-    pecl install xdebug && \
-    docker-php-ext-enable xdebug && \
-    echo "xdebug.mode=${XDEBUG_MODE}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
-    echo "xdebug.idekey=${XDEBUG_IDE_KEY}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
-    echo "xdebug.log=${XDEBUG_LOG}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
-    echo "xdebug.log_level=${XDEBUG_LOG_LEVEL}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
-    echo "xdebug.client_host=${XDEBUG_HOST}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
-    echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini ; \
-fi
+# RUN if [ "${XDEBUG_ENABLED}" = "true" ]; then \
+#     pecl install xdebug && \
+#     docker-php-ext-enable xdebug && \
+#     echo "xdebug.mode=${XDEBUG_MODE}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+#     echo "xdebug.idekey=${XDEBUG_IDE_KEY}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+#     echo "xdebug.log=${XDEBUG_LOG}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+#     echo "xdebug.log_level=${XDEBUG_LOG_LEVEL}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+#     echo "xdebug.client_host=${XDEBUG_HOST}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+#     echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini ; \
+# fi
 
 COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
 COPY ./docker/development/entrypoint.hq.sh /usr/local/bin/entrypoint.hq.sh
 RUN chmod +x /usr/local/bin/entrypoint.hq.sh
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.hq.sh"]
-EXPOSE 8007
+EXPOSE 9001
 # CMD dihapus, nanti diatur di docker-compose

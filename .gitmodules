@@ -220,3 +220,9 @@
 [submodule "features/ms-plus-organization"]
 	path = features/ms-plus-organization
 	url = https://github.com/hamzahnafalahkalpa/ms-plus-organization.git
+[submodule "projects/wellmed-satu-sehat"]
+	path = projects/wellmed-satu-sehat
+	url = https://github.com/hamzahnafalahkalpa/wellmed-satu-sehat.git
+[submodule "projects/hq"]
+	path = projects/hq
+	url = https://github.com/hamzahnafalahkalpa/hq.git

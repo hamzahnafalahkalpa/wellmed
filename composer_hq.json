@@ -1,6 +1,4 @@
 {
-    "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/vue-starter-kit",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
     "keywords": [
@@ -10,9 +8,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.4",
-        "google/protobuf": "*",
-        "grpc/grpc": "*",
         "projects/hq": "dev-main",
+        "league/flysystem-aws-s3-v3": "^3.30",
         "hanafalah/microtenant": "dev-main",
         "kreait/laravel-firebase": "^6.0",
         "laravel/framework": "^12.0",
@@ -99,6 +96,27 @@
             "type": "path",
             "url": "projects/hq",
             "optimize": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-profession": {
+            "type": "path",
+            "url": "repositories/module-profession",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/module-card-identity": {
+            "type": "path",
+            "url": "repositories/module-card-identity",
+            "options": {
+                "symlink": true
+            }
+        },
+        "hanafalah/laravel-stub": {
+            "type": "path",
+            "url": "repositories/laravel-stub",
+            "options": {
                 "symlink": true
             }
         },

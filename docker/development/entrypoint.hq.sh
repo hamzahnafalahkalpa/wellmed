@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "==> Entrypoint Lite running..."
+echo "==> Entrypoint HQ running..."
 
 # -------------------------
 # Opcache setup (CLI untuk Octane)
@@ -24,7 +24,7 @@ fi
 # -------------------------
 # Optional: composer install / migrate / cache
 # -------------------------
-# cd /app/projects/wellmed-lite
+# cd /app/projects/wellmed-HQ
 # echo "==> Installing dependencies..."
 # composer install --no-interaction --prefer-dist --optimize-autoloader
 
@@ -37,10 +37,14 @@ fi
 # Jalankan Laravel Octane (FrankenPHP)
 # -------------------------
 echo "==> Starting Laravel Octane..."
-cd "app"
-exec php artisan octane:frankenphp \
+echo "upload_max_filesize=10M" > /usr/local/etc/php/conf.d/99-upload.ini
+echo "post_max_size=10M" >> /usr/local/etc/php/conf.d/99-upload.ini
+exec php \
+    -d upload_max_filesize=10M \
+    -d post_max_size=10M \
+     artisan octane:frankenphp \
     --host=0.0.0.0 \
-    --port=8007 \
-    --admin-port=9007 \
-    --workers=4 \
+    --port=9001 \
+    --admin-port=9006 \
+    --workers=8 \
     --max-requests=1000
