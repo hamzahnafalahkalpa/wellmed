@@ -154,4 +154,6 @@ volumes:
   wellmed_lite_storage:
   wellmed_plus_storage:
   wellmed_hq_storage:
+  redis_data:
+  pgsql_data:
   rabbitmq_data:
