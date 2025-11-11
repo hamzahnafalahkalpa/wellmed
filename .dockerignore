@@ -1,6 +1,6 @@
 **/.classpath
 **/.dockerignore
-# **/.env
+**/.env
 **/.git
 **/.gitignore
 **/.gitattributes
@@ -26,7 +26,7 @@
 **/obj
 **/secrets.dev.yaml
 **/values.dev.yaml
-**/vendor
+vendor
 **/.DS_Store
 .editorconfig
 .env.example
