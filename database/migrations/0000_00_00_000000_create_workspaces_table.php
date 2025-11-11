@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Hanafalah\ModuleWorkspace\Enums\Workspace\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -26,9 +27,13 @@ return new class extends Migration
         $table_name = $this->__table->getTable();
         if (!$this->isTableExists()){
             Schema::create($table_name, function (Blueprint $table) {
+                $user = app(config('database.models.User',User::class));
+
                 $table->ulid('id')->primary();
                 $table->string('uuid',36);
                 $table->string('name',50)->nullable(false);
+                $table->foreignIdFor($user::class,'owner_id')->nullable(true)
+                      ->index()->constrained()->nullOnDelete();
                 $table->json('props')->nullable(true);
                 $table->enum('status',array_column(Status::cases(),'value'))->default(Status::DRAFT->value);
                 $table->timestamps();

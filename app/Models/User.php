@@ -12,4 +12,12 @@ use Illuminate\Notifications\Notifiable;
 class User extends UserUser
 {
     use HasFactory, Notifiable, HasApiTokens;
+
+    public function workspace(){
+        return $this->hasOneModel('Workspace', 'owner_id');
+    }
+
+    public function workspaces(){
+        return $this->hasManyModel('Workspace', 'owner_id');
+    }
 }
