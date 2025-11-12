@@ -23,13 +23,13 @@ RUN apt-get update --allow-releaseinfo-change && apt-get install -y --no-install
 WORKDIR /app
 COPY . .
 
-
 RUN if [ -f "composer.lock" ]; then rm composer.lock; fi
+RUN if [ -f "composer_backbone.lock" ]; then rm composer_backbone.lock; fi
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && if [ "$APP_ENV" = "production" ]; then \
-         COMPOSER=composer.json composer install --no-dev --optimize-autoloader --no-interaction --no-progress --prefer-dist --no-scripts; \
+         COMPOSER=composer_backbone.json composer install --no-dev --optimize-autoloader --no-interaction --no-progress --prefer-dist --no-scripts; \
     else \
-         COMPOSER=composer.json composer install --optimize-autoloader --no-interaction --no-progress --prefer-dist --no-scripts; \
+         COMPOSER=composer_backbone.json composer install --optimize-autoloader --no-interaction --no-progress --prefer-dist --no-scripts; \
     fi
 
 # # -------------------------
@@ -37,8 +37,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # # -------------------------
 FROM builder AS production
 
-COPY ./docker/production/entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+COPY ./docker/production/entrypoint.backbone.sh /usr/local/bin/entrypoint.backbone.sh
+RUN chmod +x /usr/local/bin/entrypoint.backbone.sh
 
 COPY ./storage /app/storage-init
 COPY --from=builder /app /app
@@ -56,7 +56,7 @@ RUN mkdir -p /app/storage /app/bootstrap/cache \
 WORKDIR /app
 USER www-data
 
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.backbone.sh"]
 EXPOSE 9000
 # CMD dihapus, nanti diatur di docker-compose
 
@@ -68,9 +68,9 @@ FROM production AS development
 USER root
 
 COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
-COPY ./docker/development/entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+COPY ./docker/development/entrypoint.backbone.sh /usr/local/bin/entrypoint.backbone.sh
+RUN chmod +x /usr/local/bin/entrypoint.backbone.sh
 
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.backbone.sh"]
 EXPOSE 9000
 # CMD dihapus, nanti diatur di docker-compose

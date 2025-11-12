@@ -226,3 +226,9 @@
 [submodule "projects/hq"]
 	path = projects/hq
 	url = https://github.com/hamzahnafalahkalpa/hq.git
+[submodule "projects/wellmed-gateway"]
+	path = projects/wellmed-gateway
+	url = https://github.com/hamzahnafalahkalpa/wellmed-gateway.git
+[submodule "projects/wellmed-backbone"]
+	path = projects/wellmed-backbone
+	url = https://github.com/hamzahnafalahkalpa/wellmed-backbone.git

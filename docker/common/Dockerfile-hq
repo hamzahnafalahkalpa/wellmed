@@ -23,7 +23,6 @@ RUN apt-get update --allow-releaseinfo-change && apt-get install -y --no-install
 WORKDIR /app
 COPY . .
 
-
 RUN if [ -f "composer.lock" ]; then rm composer.lock; fi
 RUN if [ -f "composer_hq.lock" ]; then rm composer_hq.lock; fi
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \

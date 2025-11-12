@@ -98,10 +98,10 @@ return [
         "hanafalah/module-support"              => ['repository' =>'hamzahnafalahkalpa/module-support'],
         'hanafalah/module-tax'                  => ['repository' =>'hamzahnafalahkalpa/module-tax'],
         'hanafalah/satu-sehat'                  => ['repository' =>'hamzahnafalahkalpa/satu-sehat'],
-        'wellmed-plus/ms-plus-apotek'           => ['repository' =>'wellmed-plus/ms-plus-apotek'],
-        'wellmed-plus/ms-plus-emr'              => ['repository' =>'wellmed-plus/ms-plus-emr'],
-        'wellmed-plus/ms-plus-hr'               => ['repository' =>'wellmed-plus/ms-plus-hr'],
-        'wellmed-plus/ms-plus-point-of-sale'    => ['repository' =>'wellmed-plus/ms-plus-point-of-sale'],
-        'wellmed-plus/ms-plus-scm'              => ['repository' =>'wellmed-plus/ms-plus-scm']
+        'wellmed-plus/ms-plus-apotek'           => ['repository' =>'hamzahnafalahkalpa/ms-plus-apotek'],
+        'wellmed-plus/ms-plus-emr'              => ['repository' =>'hamzahnafalahkalpa/ms-plus-emr'],
+        'wellmed-plus/ms-plus-hr'               => ['repository' =>'hamzahnafalahkalpa/ms-plus-hr'],
+        'wellmed-plus/ms-plus-point-of-sale'    => ['repository' =>'hamzahnafalahkalpa/ms-plus-point-of-sale'],
+        'wellmed-plus/ms-plus-scm'              => ['repository' =>'hamzahnafalahkalpa/ms-plus-scm']
     ]
 ];

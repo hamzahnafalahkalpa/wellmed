@@ -1,25 +1,25 @@
 services:
-  wellmed_lite:
-    container_name: wellmed_lite
-    image: wellmed-lite
+  wellmed:
+    container_name: wellmed-backbone
+    image: wellmed-backbone
     build:
       context: .
-      dockerfile: ./docker/common/Dockerfile-lite-dev
+      dockerfile: ./docker/common/Dockerfile-backbone-dev
       target: development
     ports:
-      - "${WELLMED_LITE_PORT:-9000}:${WELLMED_LITE_PORT:-9000}"
+      - "${WELLMED_BACKBONE_PORT:-9000}:${WELLMED_BACKBONE_PORT:-9000}"
     volumes:
       - ./repositories:/app/repositories
       - ./app:/app/app
-      - ./projects/wellmed-lite:/app/projects/wellmed-lite
       - ./features:/app/features
       - ./config:/app/config
       - ./public:/app/public
-      - ./routes/api-lite.php:/app/routes/api.php
       - ./database:/app/database
-      - ./.env.lite:/app/.env
-      - ./composer_lite.json:/app/composer.json
-      - wellmed_lite_storage:/app/storage
+      - ./projects/wellmed-backbone:/app/projects/wellmed-backbone
+      - ./projects/wellmed-gateway:/app/projects/wellmed-gateway
+      - ./routes/api-backbone.php:/app/routes/api.php
+      - ./.env.backbone:/app/.env
+      - wellmed_backbone_storage:/app/storage
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
@@ -27,45 +27,9 @@ services:
       test: ["CMD-SHELL", "curl -f http://localhost:9000 || exit 1"]
     networks:
       - caddy-projects
-    entrypoint: ["/usr/local/bin/entrypoint.lite.sh"]
+    entrypoint: ["/usr/local/bin/entrypoint.backbone.sh"]
     env_file:
-      - .env.lite
-    environment:
-        PHP_INI_SCAN_DIR: /usr/local/etc/php/conf.d
-        PHP_UPLOAD_MAX_FILESIZE: 10M
-        PHP_POST_MAX_SIZE: 10M
-
-  wellmed_plus:
-    container_name: wellmed_plus
-    image: wellmed-plus
-    build:
-      context: .
-      dockerfile: ./docker/common/Dockerfile-plus-dev
-      target: development
-    ports:
-      - "${WELLMED_PLUS_PORT:-9002}:${WELLMED_PLUS_PORT:-9002}"
-    volumes:
-      - ./repositories:/app/repositories
-      - ./app:/app/app
-      - ./projects/wellmed-plus:/app/projects/wellmed-plus
-      - ./features:/app/features
-      - ./config:/app/config
-      - ./public:/app/public
-      - ./database:/app/database
-      - ./.env.plus:/app/.env
-      - ./composer_plus.json:/app/composer.json
-      - ./routes/api-plus.php:/app/routes/api.php
-      - wellmed_plus_storage:/app/storage
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:9002 || exit 1"]
-    networks:
-      - caddy-projects
-    entrypoint: ["/usr/local/bin/entrypoint.plus.sh"]
-    env_file:
-      - .env.plus
+      - .env.backbone
     environment:
         PHP_INI_SCAN_DIR: /usr/local/etc/php/conf.d
         PHP_UPLOAD_MAX_FILESIZE: 10M
@@ -127,8 +91,7 @@ networks:
     external: true
 
 volumes:  
-  wellmed_lite_storage:
-  wellmed_plus_storage:
+  wellmed_backbone_storage:
   wellmed_hq_storage:
   rabbitmq_data:
   # wellmed_hq_storage:

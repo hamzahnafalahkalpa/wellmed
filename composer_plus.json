@@ -10,7 +10,6 @@
     "license": "MIT",
     "require": {
         "php": "^8.4",
-        "projects/wellmed-plus": "dev-main",
         "league/flysystem-aws-s3-v3": "^3.30",
         "hanafalah/wellmed-plus-starterpack": "dev-main",
         "hanafalah/microtenant": "dev-main",
@@ -38,7 +37,6 @@
         "psr-4": {
             "App\\": "app/",
             "Hanafalah\\MicroTenant\\": "repositories/MicroTenant/src/",
-            "Projects\\WellmedPlus\\": "projects/wellmed-plus/src/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
