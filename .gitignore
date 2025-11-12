@@ -29,3 +29,4 @@ Caddyfile
 composer.lock
 package
 tenants
+packages
