@@ -113,6 +113,13 @@
                 "symlink": true
             }
         },
+        "hanafalah/wellmed-product": {
+            "type": "path",
+            "url": "repositories/wellmed-product",
+            "options": {
+                "symlink": true
+            }
+        },
         "hanafalah/laravel-stub": {
             "type": "path",
             "url": "repositories/laravel-stub",

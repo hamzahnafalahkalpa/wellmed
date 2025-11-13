@@ -232,3 +232,9 @@
 [submodule "projects/wellmed-backbone"]
 	path = projects/wellmed-backbone
 	url = https://github.com/hamzahnafalahkalpa/wellmed-backbone.git
+[submodule "repositories/module-license"]
+	path = repositories/module-license
+	url = https://github.com/hamzahnafalahkalpa/module-license.git
+[submodule "repositories/wellmed-product"]
+	path = repositories/wellmed-product
+	url = https://github.com/hamzahnafalahkalpa/wellmed-product.git

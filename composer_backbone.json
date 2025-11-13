@@ -158,6 +158,13 @@
                 "symlink": true
             }
         },
+        "hanafalah/module-license": {
+            "type": "path",
+            "url": "repositories/module-license",
+            "options": {
+                "symlink": true
+            }
+        },
         "hanafalah/satu-sehat": {
             "type": "path",
             "url": "repositories/satu-sehat",
