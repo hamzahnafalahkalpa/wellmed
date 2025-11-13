@@ -20,6 +20,7 @@ class ApiAccess
         try {
             MicroTenant::accessOnLogin();
         } catch (\Throwable $th) {
+            dd($th->getMessage());
             throw $th;
         }
         return $next($request);

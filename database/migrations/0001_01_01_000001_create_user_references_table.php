@@ -31,8 +31,8 @@ return new class extends Migration
 
                 $table->ulid('id')->primary();
                 $table->string('uuid', 255)->unique()->nullable(false);
-                $table->string('reference_type', 50)->nullable(false);
-                $table->string('reference_id', 36)->nullable(false);
+                $table->string('reference_type', 50)->nullable(true);
+                $table->string('reference_id', 36)->nullable(true);
                 $table->foreignIdFor($user::class)->nullable(true)->index()
                     ->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->string('workspace_type',50)->nullable();
