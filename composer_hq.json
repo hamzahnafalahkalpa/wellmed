@@ -106,6 +106,13 @@
                 "symlink": true
             }
         },
+        "hanafalah/module-medic-service": {
+            "type": "path",
+            "url": "repositories/module-medic-service",
+            "options": {
+                "symlink": true
+            }
+        },
         "hanafalah/module-card-identity": {
             "type": "path",
             "url": "repositories/module-card-identity",
