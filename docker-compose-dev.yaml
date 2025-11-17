@@ -18,6 +18,7 @@ services:
       - ./projects/wellmed-backbone:/app/projects/wellmed-backbone
       - ./projects/wellmed-gateway:/app/projects/wellmed-gateway
       - ./routes/api-backbone.php:/app/routes/api.php
+      - ./composer_backbone.json:/app/composer.json
       - ./.env.backbone:/app/.env
       - wellmed_backbone_storage:/app/storage
     extra_hosts:
@@ -35,8 +36,37 @@ services:
         PHP_UPLOAD_MAX_FILESIZE: 10M
         PHP_POST_MAX_SIZE: 10M
 
+  wellmed_listener:
+    container_name: wellmed-listener
+    image: wellmed-backbone
+    volumes:
+      - ./repositories:/app/repositories
+      - ./app:/app/app
+      - ./features:/app/features
+      - ./config:/app/config
+      - ./public:/app/public
+      - ./database:/app/database
+      - ./projects/wellmed-backbone:/app/projects/wellmed-backbone
+      - ./projects/wellmed-gateway:/app/projects/wellmed-gateway
+      - ./routes/api-backbone.php:/app/routes/api.php
+      - ./composer_backbone.json:/app/composer.json
+      - ./.env.backbone:/app/.env
+      - wellmed_backbone_listener:/app/storage
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    ports:
+      - "9003:9003"
+    networks:
+      - wellmed-core
+    entrypoint: ["/usr/local/bin/entrypoint.worker.sh"]     # <— WORKER MODE
+    depends_on:
+      - wellmed
+    env_file:
+      - .env.backbone
+
   wellmed_hq:
-    container_name: wellmed_hq
+    container_name: wellmed-hq
     image: wellmed-hq
     build:
       context: .
@@ -86,36 +116,13 @@ services:
     networks:
       - wellmed-core
 
-  wellmed_redis:
-    image: redis:7-alpine
-    container_name: redis
-    restart: unless-stopped
-    ports:
-      - "6378:6379"
-    networks:
-      - wellmed-core
-    volumes:
-      - redis_data:/data
-
-  wellmed_postgres:
-    image: postgres:15
-    container_name: pgsql
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Password@123.,
-    volumes:
-      - pgsql_data:/var/lib/postgresql/data
-    networks:
-      - wellmed-core
-    ports:
-      - "5433:5432"
-
 networks:
   wellmed-core:
     driver: bridge
 
 volumes:  
   wellmed_backbone_storage:
+  wellmed_backbone_listener:
   wellmed_hq_storage:
   redis_data:
   pgsql_data:
