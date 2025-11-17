@@ -10,31 +10,46 @@ RUN apt-get update --allow-releaseinfo-change && apt-get install -y --no-install
     libjpeg62-turbo-dev libpng-dev libfreetype6-dev \
  && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
  && apt-get install -y nodejs \
+ \
+ # -------------------------
+ # 🔥 Tambah ekstensi sockets untuk RabbitMQ
+ # -------------------------
+ && docker-php-ext-install sockets \
+ \
+ # GD & other PHP extensions
  && docker-php-ext-configure gd --with-freetype --with-jpeg \
  && docker-php-ext-install -j$(nproc) \
     pcntl pdo_mysql pdo_pgsql pgsql opcache intl zip bcmath soap exif gd \
+ \
+ # Redis extension
  && pecl install redis \
  && docker-php-ext-enable redis \
+ \
  && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-#  && pecl install grpc \
-#  && docker-php-ext-enable grpc \
 
 WORKDIR /app
 COPY . .
 
 RUN if [ -f "composer.lock" ]; then rm composer.lock; fi
 RUN if [ -f "composer_backbone.lock" ]; then rm composer_backbone.lock; fi
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && if [ "$APP_ENV" = "production" ]; then \
-         COMPOSER=composer_backbone.json composer install --no-dev --optimize-autoloader --no-interaction --no-progress --prefer-dist --no-scripts; \
-    else \
-         COMPOSER=composer_backbone.json composer install --optimize-autoloader --no-interaction --no-progress --prefer-dist --no-scripts; \
-    fi
 
-# # -------------------------
-# # Stage 2: Production
-# # -------------------------
+# Install Composer deps
+RUN curl -sS https://getcomposer.org/installer | php \
+        -- --install-dir=/usr/local/bin --filename=composer \
+    && if [ "$APP_ENV" = "production" ]; then \
+         COMPOSER=composer_backbone.json composer install \
+            --no-dev --optimize-autoloader --no-interaction \
+            --no-progress --prefer-dist --no-scripts; \
+       else \
+         COMPOSER=composer_backbone.json composer install \
+            --optimize-autoloader --no-interaction \
+            --no-progress --prefer-dist --no-scripts; \
+       fi
+
+
+# -------------------------
+# Stage 2: Production
+# -------------------------
 FROM builder AS production
 
 COPY ./docker/production/entrypoint.backbone.sh /usr/local/bin/entrypoint.backbone.sh
@@ -48,7 +63,7 @@ COPY --from=builder /usr/local/bin/docker-php-ext-* /usr/local/bin/
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
-# Pastikan storage & bootstrap/cache bisa ditulis
+# Ensure writable dirs
 RUN mkdir -p /app/storage /app/bootstrap/cache \
     && chown -R www-data:www-data /app/storage /app/bootstrap /app/bootstrap/cache \
     && chmod -R 775 /app/storage /app/bootstrap/cache
@@ -57,20 +72,42 @@ WORKDIR /app
 USER www-data
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.backbone.sh"]
-EXPOSE 9000
-# CMD dihapus, nanti diatur di docker-compose
+EXPOSE 9000 9003
 
-# # -------------------------
-# # Stage 3: Development
-# # -------------------------
+
+# -------------------------
+# Stage 3: Development
+# -------------------------
 FROM production AS development
 
 USER root
 
+# ----------------------------------
+# 🟣 Install Supervisor
+# ----------------------------------
+RUN apt-get update \
+    && apt-get install -y supervisor \
+    && mkdir -p /var/log/supervisor
+
+# ----------------------------------
+# 🟣 Copy Supervisor Config
+# ----------------------------------
+# worker config
+COPY ./docker/development/supervisord.conf /etc/supervisor/supervisord.conf
+COPY ./docker/development/supervisor-worker.conf /etc/supervisor/conf.d/worker.conf
+COPY ./docker/development/supervisor-listener.conf /etc/supervisor/conf.d/listener.conf
+
+# ----------------------------------
+# 🟣 Copy entrypoints
+# ----------------------------------
 COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
 COPY ./docker/development/entrypoint.backbone.sh /usr/local/bin/entrypoint.backbone.sh
-RUN chmod +x /usr/local/bin/entrypoint.backbone.sh
+COPY ./docker/development/entrypoint.worker.sh /usr/local/bin/entrypoint.worker.sh
 
+RUN chmod +x /usr/local/bin/entrypoint.backbone.sh \
+    && chmod +x /usr/local/bin/entrypoint.worker.sh
+
+# Default entrypoint = backbone (web)
 ENTRYPOINT ["/usr/local/bin/entrypoint.backbone.sh"]
-EXPOSE 9000
-# CMD dihapus, nanti diatur di docker-compose
+
+EXPOSE 9000 9003

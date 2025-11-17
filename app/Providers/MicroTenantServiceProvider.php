@@ -93,8 +93,12 @@ class MicroTenantServiceProvider extends ServiceProvider
                     ]);
 
                     $workspace = app(config('database.models.Workspace'));
-                    if ($tenant->reference_type == $workspace->getMorphClass()){
-                        config()->set('app.client_timezone', $tenant->reference->timezone ?? 'Asia/Jakarta');
+                    if ($tenant->reference_type == $workspace->getMorphClass() && config('app.client_timezone') == null){
+                        $workspace = $tenant->reference;
+                        if (isset($workspace->setting['timezone_id'])){
+                            $timezone = $workspace->setting['timezone']['name'];
+                        }
+                        config()->set('app.client_timezone', $timezone ?? 'Asia/Jakarta');
                     }
                 }
             ],

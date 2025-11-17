@@ -9,6 +9,7 @@
     "require": {
         "php": "^8.4",
         "projects/hq": "dev-main",
+        "elasticsearch/elasticsearch": "^9.2",
         "league/flysystem-aws-s3-v3": "^3.30",
         "hanafalah/microtenant": "dev-main",
         "kreait/laravel-firebase": "^6.0",
@@ -18,9 +19,11 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
         "predis/predis": "^3.0",
-        "xendit/xendit-php": "^7.0"
+        "xendit/xendit-php": "^7.0",
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "^14.4"
     },
     "require-dev": {
+        "opcodesio/log-viewer": "^3.21",
         "fakerphp/faker": "^1.23",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.18",

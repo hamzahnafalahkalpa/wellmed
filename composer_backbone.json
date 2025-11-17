@@ -11,6 +11,7 @@
     "require": {
         "php": "^8.4",
         "league/flysystem-aws-s3-v3": "^3.30",
+        "elasticsearch/elasticsearch": "^9.2",
         "projects/wellmed-backbone": "dev-main",
         "hanafalah/wellmed-plus-starterpack": "dev-main",
         "hanafalah/microtenant": "dev-main",
@@ -20,9 +21,11 @@
         "laravel/prompts": "^0.3.5",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "^14.4",
         "predis/predis": "^3.0"
     },
     "require-dev": {
+        "opcodesio/log-viewer": "^3.21",
         "fakerphp/faker": "^1.23",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.18",

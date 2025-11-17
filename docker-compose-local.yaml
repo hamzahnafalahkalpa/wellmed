@@ -18,6 +18,7 @@ services:
       - ./projects/wellmed-backbone:/app/projects/wellmed-backbone
       - ./projects/wellmed-gateway:/app/projects/wellmed-gateway
       - ./routes/api-backbone.php:/app/routes/api.php
+      - ./composer_backbone.json:/app/composer.json
       - ./.env.backbone:/app/.env
       - wellmed_backbone_storage:/app/storage
     extra_hosts:
@@ -35,8 +36,37 @@ services:
         PHP_UPLOAD_MAX_FILESIZE: 10M
         PHP_POST_MAX_SIZE: 10M
 
+  wellmed_listener:
+    container_name: wellmed-listener
+    image: wellmed-backbone
+    volumes:
+      - ./repositories:/app/repositories
+      - ./app:/app/app
+      - ./features:/app/features
+      - ./config:/app/config
+      - ./public:/app/public
+      - ./database:/app/database
+      - ./projects/wellmed-backbone:/app/projects/wellmed-backbone
+      - ./projects/wellmed-gateway:/app/projects/wellmed-gateway
+      - ./routes/api-backbone.php:/app/routes/api.php
+      - ./composer_backbone.json:/app/composer.json
+      - ./.env.backbone:/app/.env
+      - wellmed_backbone_listener:/app/storage
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    ports:
+      - "9003:9003"
+    networks:
+      - caddy-projects
+    entrypoint: ["/usr/local/bin/entrypoint.worker.sh"]     # <— WORKER MODE
+    depends_on:
+      - wellmed
+    env_file:
+      - .env.backbone
+
   wellmed_hq:
-    container_name: wellmed_hq
+    container_name: wellmed-hq
     image: wellmed-hq
     build:
       context: .
@@ -92,6 +122,7 @@ networks:
 
 volumes:  
   wellmed_backbone_storage:
+  wellmed_backbone_listener:
   wellmed_hq_storage:
   rabbitmq_data:
   # wellmed_hq_storage:
