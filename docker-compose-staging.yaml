@@ -1,5 +1,5 @@
 services:
-  wellmed:
+  wellmed_staging:
     container_name: wellmed-backbone-staging
     image: wellmed-backbone
     build:
@@ -37,7 +37,7 @@ services:
       PHP_UPLOAD_MAX_FILESIZE: 10M
       PHP_POST_MAX_SIZE: 10M
 
-  wellmed_listener:
+  wellmed_listener_staging:
     container_name: wellmed-listener-staging
     image: wellmed-backbone
     build:
@@ -72,7 +72,7 @@ services:
     environment:
       APP_ENV: staging
 
-  wellmed_hq:
+  wellmed_hq_staging:
     container_name: wellmed-hq
     image: wellmed-hq
     build:
