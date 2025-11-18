@@ -2,7 +2,17 @@
 set -e
 
 echo "==> Entrypoint HQ running..."
-echo "APP_ENV = ${APP_ENV}"
+
+# -------------------------
+# Load .env if exists
+# -------------------------
+ENV_FILE="/app/.env"
+if [ -f "$ENV_FILE" ]; then
+    echo "==> Loading environment from $ENV_FILE"
+    export $(grep -v '^#' "$ENV_FILE" | xargs)
+fi
+
+echo "APP_ENV = ${APP_ENV:-development}"
 
 # -------------------------
 # Opcache setup (CLI untuk Octane)
@@ -29,9 +39,9 @@ echo "upload_max_filesize=10M" > /usr/local/etc/php/conf.d/99-upload.ini
 echo "post_max_size=10M" >> /usr/local/etc/php/conf.d/99-upload.ini
 
 # -------------------------
-# Environment-based config
+# Environment-based config with fallback
 # -------------------------
-if [ "$APP_ENV" = "staging" ]; then
+if [ "${APP_ENV}" = "staging" ]; then
     APP_PORT=${APP_PORT:-9015}
     ADMIN_PORT=${ADMIN_PORT:-9016}
     WORKERS=${WORKERS:-8}
@@ -51,7 +61,6 @@ echo "==> WORKERS: $WORKERS"
 # Jalankan Laravel Octane (FrankenPHP)
 # -------------------------
 echo "==> Starting Laravel Octane..."
-
 exec php \
     -d upload_max_filesize=10M \
     -d post_max_size=10M \
