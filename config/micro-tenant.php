@@ -107,7 +107,7 @@ return [
 
         ],
         'database_tenant_name' => [
-            'prefix' => 'clinic_',
+            'prefix' => env('CLINIC_DATABASE_PREFIX', 'clinic_'),
             'suffix' => ''
         ],
 
