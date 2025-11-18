@@ -29,6 +29,10 @@ services:
     networks:
       - wellmed-core
     entrypoint: ["/usr/local/bin/entrypoint.backbone.sh"]
+    depends_on:
+      - wellmed_postgres
+      - wellmed_redis
+      - wellmed_rabbitmq
     env_file:
       - .env.backbone
     environment:
@@ -67,6 +71,9 @@ services:
     entrypoint: ["/usr/local/bin/entrypoint.worker.sh"]     # <— WORKER MODE
     depends_on:
       - wellmed
+      - wellmed_postgres
+      - wellmed_redis
+      - wellmed_rabbitmq
     env_file:
       - .env.backbone
     environment:
@@ -102,6 +109,10 @@ services:
     networks:
       - wellmed-core
     entrypoint: ["/usr/local/bin/entrypoint.hq.sh"]
+    depends_on:
+      - wellmed_postgres
+      - wellmed_redis
+      - wellmed_rabbitmq
     env_file:
       - .env.hq
     environment:
@@ -121,6 +132,30 @@ services:
       RABBITMQ_DEFAULT_PASS: admin
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - wellmed-core
+
+  wellmed_postgres:
+    image: postgres:15
+    container_name: wellmed-postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Password@123
+      POSTGRES_DB: wellmed
+    volumes:
+      - pgsql_data:/var/lib/postgresql/data
+    networks:
+      - wellmed-core
+
+  wellmed_redis:
+    image: redis:7
+    container_name: wellmed-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
     networks:
       - wellmed-core
 
