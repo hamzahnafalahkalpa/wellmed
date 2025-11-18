@@ -66,7 +66,7 @@ services:
       - wellmed-core
     entrypoint: ["/usr/local/bin/entrypoint.worker.sh"]     # <— WORKER MODE
     depends_on:
-      - wellmed
+      - wellmed_staging
     env_file:
       - .env.backbone
     environment:
