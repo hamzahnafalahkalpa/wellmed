@@ -72,7 +72,7 @@ WORKDIR /app
 USER www-data
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.hq.sh"]
-EXPOSE 9001
+EXPOSE 9001 9015
 
 
 # -------------------------
@@ -109,4 +109,4 @@ RUN chmod +x /usr/local/bin/entrypoint.hq.sh \
 # Default entrypoint = hq (web)
 ENTRYPOINT ["/usr/local/bin/entrypoint.hq.sh"]
 
-EXPOSE 9001
+EXPOSE 9001 9015

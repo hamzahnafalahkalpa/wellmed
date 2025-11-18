@@ -72,7 +72,7 @@ WORKDIR /app
 USER www-data
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.backbone.sh"]
-EXPOSE 9000 9003
+EXPOSE 9000 9003 9011 9013
 
 
 # -------------------------
@@ -110,4 +110,4 @@ RUN chmod +x /usr/local/bin/entrypoint.backbone.sh \
 # Default entrypoint = backbone (web)
 ENTRYPOINT ["/usr/local/bin/entrypoint.backbone.sh"]
 
-EXPOSE 9000 9003
+EXPOSE 9000 9003 9011 9013

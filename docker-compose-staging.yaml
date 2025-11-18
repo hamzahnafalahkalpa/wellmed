@@ -1,13 +1,13 @@
 services:
   wellmed:
-    container_name: wellmed-backbone
+    container_name: wellmed-backbone-staging
     image: wellmed-backbone
     build:
       context: .
       dockerfile: ./docker/common/Dockerfile-backbone-dev
-      target: development
+      target: production
     ports:
-      - "${WELLMED_BACKBONE_PORT:-9000}:${WELLMED_BACKBONE_PORT:-9000}"
+      - "${WELLMED_BACKBONE_PORT:-9011}:${WELLMED_BACKBONE_PORT:-9011}"
     volumes:
       - ./repositories:/app/repositories
       - ./app:/app/app
@@ -20,30 +20,30 @@ services:
       - ./routes/api-backbone.php:/app/routes/api.php
       - ./composer_backbone.json:/app/composer.json
       - ./.env.backbone:/app/.env
-      - wellmed_backbone_storage:/app/storage
+      - wellmed_backbone_staging_storage:/app/storage
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:9000 || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://localhost:9011 || exit 1"]
     networks:
       - wellmed-core
     entrypoint: ["/usr/local/bin/entrypoint.backbone.sh"]
     env_file:
       - .env.backbone
     environment:
-      APP_ENV: development
+      APP_ENV: staging
       PHP_INI_SCAN_DIR: /usr/local/etc/php/conf.d
       PHP_UPLOAD_MAX_FILESIZE: 10M
       PHP_POST_MAX_SIZE: 10M
 
   wellmed_listener:
-    container_name: wellmed-listener
+    container_name: wellmed-listener-staging
     image: wellmed-backbone
     build:
       context: .
       dockerfile: ./docker/common/Dockerfile-backbone-dev
-      target: development
+      target: production
     volumes:
       - ./repositories:/app/repositories
       - ./app:/app/app
@@ -56,12 +56,12 @@ services:
       - ./routes/api-backbone.php:/app/routes/api.php
       - ./composer_backbone.json:/app/composer.json
       - ./.env.backbone:/app/.env
-      - wellmed_backbone_listener:/app/storage
+      - wellmed_backbone_listener_staging:/app/storage
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
     ports:
-      - "9003:9003"
+      - "9013:9013"
     networks:
       - wellmed-core
     entrypoint: ["/usr/local/bin/entrypoint.worker.sh"]     # <— WORKER MODE
@@ -70,7 +70,7 @@ services:
     env_file:
       - .env.backbone
     environment:
-      APP_ENV: development
+      APP_ENV: staging
 
   wellmed_hq:
     container_name: wellmed-hq
@@ -78,9 +78,9 @@ services:
     build:
       context: .
       dockerfile: ./docker/common/Dockerfile-hq
-      target: development
+      target: production
     ports:
-      - "${WELLMED_HQ_PORT:-9001}:${WELLMED_HQ_PORT:-9001}"
+      - "${WELLMED_HQ_PORT:-9015}:${WELLMED_HQ_PORT:-9015}"
     volumes:
       - ./repositories:/app/repositories
       - ./app:/app/app
@@ -93,19 +93,19 @@ services:
       - ./routes/api-hq.php:/app/routes/api.php
       - ./.env.hq:/app/.env
       - ./composer_hq.json:/app/composer.json
-      - wellmed_hq_storage:/app/storage
+      - wellmed_hq_staging_storage:/app/storage
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:9001 || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://localhost:9015 || exit 1"]
     networks:
       - wellmed-core
     entrypoint: ["/usr/local/bin/entrypoint.hq.sh"]
     env_file:
       - .env.hq
     environment:
-      APP_ENV: development
+      APP_ENV: staging
       PHP_INI_SCAN_DIR: /usr/local/etc/php/conf.d
       PHP_UPLOAD_MAX_FILESIZE: 10M
       PHP_POST_MAX_SIZE: 10M
@@ -129,9 +129,9 @@ networks:
     driver: bridge
 
 volumes:  
-  wellmed_backbone_storage:
-  wellmed_backbone_listener:
-  wellmed_hq_storage:
+  wellmed_backbone_staging_storage:
+  wellmed_backbone_listener_staging:
+  wellmed_hq_staging_storage:
   redis_data:
   pgsql_data:
   rabbitmq_data:

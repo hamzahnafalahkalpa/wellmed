@@ -2,6 +2,7 @@
 set -e
 
 echo "==> Entrypoint HQ running..."
+echo "APP_ENV = ${APP_ENV}"
 
 # -------------------------
 # Opcache setup (CLI untuk Octane)
@@ -22,29 +23,41 @@ EOL
 fi
 
 # -------------------------
-# Optional: composer install / migrate / cache
+# Upload size config
 # -------------------------
-# cd /app/projects/wellmed-HQ
-# echo "==> Installing dependencies..."
-# composer install --no-interaction --prefer-dist --optimize-autoloader
+echo "upload_max_filesize=10M" > /usr/local/etc/php/conf.d/99-upload.ini
+echo "post_max_size=10M" >> /usr/local/etc/php/conf.d/99-upload.ini
 
-# php artisan migrate --force
-# php artisan config:cache
-# php artisan route:cache
-# php artisan view:cache
+# -------------------------
+# Environment-based config
+# -------------------------
+if [ "$APP_ENV" = "staging" ]; then
+    APP_PORT=${APP_PORT:-9015}
+    ADMIN_PORT=${ADMIN_PORT:-9016}
+    WORKERS=${WORKERS:-8}
+    echo "==> Environment: STAGING"
+else
+    APP_PORT=${APP_PORT:-9001}
+    ADMIN_PORT=${ADMIN_PORT:-9006}
+    WORKERS=${WORKERS:-4}
+    echo "==> Environment: DEVELOPMENT"
+fi
+
+echo "==> PORT: $APP_PORT"
+echo "==> ADMIN PORT: $ADMIN_PORT"
+echo "==> WORKERS: $WORKERS"
 
 # -------------------------
 # Jalankan Laravel Octane (FrankenPHP)
 # -------------------------
 echo "==> Starting Laravel Octane..."
-echo "upload_max_filesize=10M" > /usr/local/etc/php/conf.d/99-upload.ini
-echo "post_max_size=10M" >> /usr/local/etc/php/conf.d/99-upload.ini
+
 exec php \
     -d upload_max_filesize=10M \
     -d post_max_size=10M \
-     artisan octane:frankenphp \
+    artisan octane:frankenphp \
     --host=0.0.0.0 \
-    --port=9001 \
-    --admin-port=9006 \
-    --workers=8 \
+    --port=${APP_PORT} \
+    --admin-port=${ADMIN_PORT} \
+    --workers=${WORKERS} \
     --max-requests=1000

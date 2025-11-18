@@ -2,6 +2,7 @@
 set -e
 
 echo "==> Entrypoint Backbone running..."
+echo "APP_ENV = ${APP_ENV}"
 
 # -------------------------
 # Opcache setup (CLI untuk Octane)
@@ -22,29 +23,42 @@ EOL
 fi
 
 # -------------------------
-# Optional: composer install / migrate / cache
+# Upload size config
 # -------------------------
-# cd /app/projects/wellmed-lite
-# echo "==> Installing dependencies..."
-# composer install --no-interaction --prefer-dist --optimize-autoloader
-
-# php artisan migrate --force
-# php artisan config:cache
-# php artisan route:cache
-# php artisan view:cache
-
-# -------------------------
-# Jalankan Laravel Octane (FrankenPHP)
-# -------------------------
-echo "==> Starting Laravel Octane..."
 echo "upload_max_filesize=10M" > /usr/local/etc/php/conf.d/99-upload.ini
 echo "post_max_size=10M" >> /usr/local/etc/php/conf.d/99-upload.ini
+
+# -------------------------
+# ENV-based config
+# -------------------------
+if [ "$APP_ENV" = "staging" ]; then
+    # bisa override dari Docker ENV
+    APP_PORT=${APP_PORT:-9011}
+    ADMIN_PORT=${ADMIN_PORT:-9012}
+    WORKERS=${WORKERS:-8}
+    echo "==> Environment: STAGING"
+else
+    APP_PORT=${APP_PORT:-9000}
+    ADMIN_PORT=${ADMIN_PORT:-9005}
+    WORKERS=${WORKERS:-4}
+    echo "==> Environment: DEVELOPMENT"
+fi
+
+echo "==> PORT: $APP_PORT"
+echo "==> ADMIN PORT: $ADMIN_PORT"
+echo "==> WORKERS: $WORKERS"
+
+# -------------------------
+# Jalankan Laravel Octane
+# -------------------------
+echo "==> Starting Laravel Octane..."
+
 exec php \
     -d upload_max_filesize=10M \
     -d post_max_size=10M \
-     artisan octane:frankenphp \
+    artisan octane:frankenphp \
     --host=0.0.0.0 \
-    --port=9000 \
-    --admin-port=9005 \
-    --workers=8 \
+    --port=${APP_PORT} \
+    --admin-port=${ADMIN_PORT} \
+    --workers=${WORKERS} \
     --max-requests=1000
