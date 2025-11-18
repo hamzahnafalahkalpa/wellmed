@@ -73,7 +73,7 @@ services:
       APP_ENV: staging
 
   wellmed_hq_staging:
-    container_name: wellmed-hq
+    container_name: wellmed-hq-staging
     image: wellmed-hq
     build:
       context: .
