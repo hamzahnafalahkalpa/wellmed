@@ -101,10 +101,8 @@ COPY ./docker/development/supervisor-worker.conf /etc/supervisor/conf.d/worker.c
 # ----------------------------------
 COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
 COPY ./docker/development/entrypoint.hq.sh /usr/local/bin/entrypoint.hq.sh
-COPY ./docker/development/entrypoint.worker.sh /usr/local/bin/entrypoint.worker.sh
 
-RUN chmod +x /usr/local/bin/entrypoint.hq.sh \
-    && chmod +x /usr/local/bin/entrypoint.worker.sh
+RUN chmod +x /usr/local/bin/entrypoint.hq.sh
 
 # Default entrypoint = hq (web)
 ENTRYPOINT ["/usr/local/bin/entrypoint.hq.sh"]

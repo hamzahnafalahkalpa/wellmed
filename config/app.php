@@ -129,4 +129,46 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'elasticsearch' => [
+        'hosts' => [env('ELLASTIC_HOSTS', 'localhost:9200')],
+        'username' => env('ELLASTIC_USERNAME', 'elastic'),
+        'password' => env('ELLASTIC_PASSWORD', 'password'),
+        'index_prefix' => env('APP_ENV'),
+        'index_separator' => '.',
+        'indexes' => [
+            'country' => [
+                'name' => 'country'
+            ],
+            'province' => [
+                'name' => 'province'
+            ],
+            'district' => [
+                'name' => 'district'
+            ],
+            'subdistrict' => [
+                'name' => 'subdistrict'
+            ],
+            'village' => [
+                'name' => 'village'
+            ],
+            'disease' => [
+                'name' => 'disease'
+            ],
+            'visit_patient' => [
+                'name' => 'visit_patient'
+            ],
+            'visit_registration' => [
+                'name' => 'visit_registration'
+            ],
+            'visit_examination' => [
+                'name' => 'visit_examination'
+            ],
+            'patient_illness' => [
+                'name' => 'patient_illness'
+            ],
+            'patient' => [
+                'name' => 'patient'
+            ]
+        ]
+    ]
 ];

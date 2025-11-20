@@ -19,7 +19,7 @@
 **/compose.y*ml
 **/compose.*.y*ml
 !**/composer.json
-!**/composer.lock
+composer.lock
 **/Dockerfile*
 **/node_modules
 **/npm-debug.log
