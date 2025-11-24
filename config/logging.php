@@ -51,7 +51,11 @@ return [
     */
 
     'channels' => [
-
+        'xendit' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/xendit.log'),
+            'level' => 'info',
+        ],
         'stack' => [
             'driver' => 'stack',
             'channels' => explode(',', env('LOG_STACK', 'single')),

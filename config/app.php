@@ -168,6 +168,18 @@ return [
             ],
             'patient' => [
                 'name' => 'patient'
+            ],
+            'billing' => [
+                'name' => 'billing'
+            ],
+            'invoice' => [
+                'name' => 'invoice'
+            ],
+            'refund' => [
+                'name' => 'refund'
+            ],
+            'wallet_transaction' => [
+                'name' => 'wallet_transaction'
             ]
         ]
     ]
