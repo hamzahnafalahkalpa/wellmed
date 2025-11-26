@@ -102,6 +102,13 @@
                 "symlink": true
             }
         },
+        "hanafalah/module-license": {
+            "type": "path",
+            "url": "repositories/module-license",
+            "options": {
+                "symlink": true
+            }
+        },
         "hanafalah/module-profession": {
             "type": "path",
             "url": "repositories/module-profession",
