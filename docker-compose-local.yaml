@@ -102,20 +102,6 @@ services:
         PHP_UPLOAD_MAX_FILESIZE: 10M
         PHP_POST_MAX_SIZE: 10M
 
-  wellmed_rabbitmq:
-    image: rabbitmq:3-management
-    container_name: rabbitmq
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    environment:
-      RABBITMQ_DEFAULT_USER: admin
-      RABBITMQ_DEFAULT_PASS: admin
-    volumes:
-      - rabbitmq_data:/var/lib/rabbitmq
-    networks:
-      - caddy-projects
-
 networks:
   caddy-projects:
     external: true
@@ -124,5 +110,4 @@ volumes:
   wellmed_backbone_storage:
   wellmed_backbone_listener:
   wellmed_hq_storage:
-  rabbitmq_data:
   # wellmed_hq_storage:
