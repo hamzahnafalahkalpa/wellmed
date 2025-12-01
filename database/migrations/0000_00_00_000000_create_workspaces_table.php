@@ -32,7 +32,8 @@ return new class extends Migration
                 $table->ulid('id')->primary();
                 $table->string('uuid',36);
                 $table->string('name',50)->nullable(false);
-                $table->string('product_id',36)->nullable();
+                $table->string('product_id',26)->nullable();
+                $table->string('submission_id',26)->nullable();
                 $table->foreignIdFor($user::class,'owner_id')->nullable(true)
                       ->index()->constrained()->nullOnDelete();
                 $table->json('props')->nullable(true);
