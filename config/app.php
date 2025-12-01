@@ -130,6 +130,7 @@ return [
     ],
 
     'elasticsearch' => [
+        'enabled' => env('ELASTICSEARCH_ENABLED', false),
         'hosts' => [env('ELLASTIC_HOSTS', 'localhost:9200')],
         'username' => env('ELLASTIC_USERNAME', 'elastic'),
         'password' => env('ELLASTIC_PASSWORD', 'password'),
