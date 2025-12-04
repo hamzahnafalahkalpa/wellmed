@@ -56,6 +56,11 @@ return [
             'path' => storage_path('logs/xendit.log'),
             'level' => 'info',
         ],
+        'satu-sehat' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/satu-sehat.log'),
+            'level' => 'info',
+        ],
         'stack' => [
             'driver' => 'stack',
             'channels' => explode(',', env('LOG_STACK', 'single')),
