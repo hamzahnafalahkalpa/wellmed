@@ -51,6 +51,11 @@ return [
     */
 
     'channels' => [
+        'generate_billing' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/generate_billing.log'),
+            'level' => 'info',
+        ],
         'xendit' => [
             'driver' => 'single',
             'path' => storage_path('logs/xendit.log'),
