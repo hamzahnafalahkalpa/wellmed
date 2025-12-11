@@ -128,7 +128,7 @@ services:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: admin
     volumes:
-      - rabbitmq_data:/var/lib/rabbitmq
+      - wellmed_rabbitmq_data:/var/lib/rabbitmq
     networks:
       - wellmed-core
 
@@ -151,4 +151,4 @@ volumes:
   wellmed_backbone_listener:
   wellmed_hq_storage:
   redis_data:
-  rabbitmq_data:
+  wellmed_rabbitmq_data:
