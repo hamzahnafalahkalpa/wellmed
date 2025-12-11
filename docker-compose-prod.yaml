@@ -30,7 +30,6 @@ services:
       - wellmed-core
     entrypoint: ["/usr/local/bin/entrypoint.backbone.sh"]
     depends_on:
-      - wellmed_postgres
       - wellmed_redis
       - wellmed_rabbitmq
     env_file:
@@ -135,20 +134,6 @@ services:
     networks:
       - wellmed-core
 
-  wellmed_postgres:
-    image: postgres:15
-    container_name: wellmed-postgres
-    ports:
-      - "5433:5432"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Password@123
-      POSTGRES_DB: wellmed
-    volumes:
-      - pgsql_data:/var/lib/postgresql/data
-    networks:
-      - wellmed-core
-
   wellmed_redis:
     image: redis:7
     container_name: wellmed-redis
@@ -168,5 +153,4 @@ volumes:
   wellmed_backbone_listener:
   wellmed_hq_storage:
   redis_data:
-  pgsql_data:
   rabbitmq_data:
