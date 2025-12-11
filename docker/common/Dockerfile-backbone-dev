@@ -74,7 +74,9 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 USER root
 RUN apt-get update \
     && apt-get install -y supervisor \
-    && mkdir -p /var/log/supervisor /var/run/supervisor
+    && mkdir -p /app/supervisor/run /var/log/supervisor \
+    && chown -R www-data:www-data /app/supervisor/run /var/log/supervisor \
+    && chmod -R 775 /app/supervisor/run /var/log/supervisor
 
 # Supervisor configs (production)
 COPY ./docker/production/supervisord.conf /etc/supervisor/supervisord.conf
@@ -93,9 +95,9 @@ RUN chmod +x /usr/local/bin/entrypoint.backbone.sh \
 # ----------------------------------
 # 🟣 Set permission untuk writable directories
 # ----------------------------------
-RUN mkdir -p /app/storage /app/bootstrap/cache /var/log/supervisor /var/run/supervisor \
-    && chown -R www-data:www-data /app/storage /app/bootstrap /app/bootstrap/cache /var/log/supervisor /var/run/supervisor \
-    && chmod -R 775 /app/storage /app/bootstrap/cache /var/log/supervisor /var/run/supervisor
+RUN mkdir -p /app/storage /app/bootstrap/cache \
+    && chown -R www-data:www-data /app/storage /app/bootstrap /app/bootstrap/cache \
+    && chmod -R 775 /app/storage /app/bootstrap/cache
 
 # Gunakan user www-data
 USER www-data
@@ -127,5 +129,16 @@ COPY ./docker/development/entrypoint.worker.sh /usr/local/bin/entrypoint.worker.
 RUN chmod +x /usr/local/bin/entrypoint.backbone.sh \
     && chmod +x /usr/local/bin/entrypoint.worker.sh
 
+# ----------------------------------
+# 🟣 Set permission untuk writable directories (DEV)
+# ----------------------------------
+RUN mkdir -p /app/storage /app/bootstrap/cache /app/supervisor/run /var/log/supervisor \
+    && chown -R www-data:www-data /app/storage /app/bootstrap /app/bootstrap/cache /app/supervisor/run /var/log/supervisor \
+    && chmod -R 775 /app/storage /app/bootstrap/cache /app/supervisor/run /var/log/supervisor
+
+# Gunakan user www-data
+USER www-data
+
 ENTRYPOINT ["/usr/local/bin/entrypoint.backbone.sh"]
 EXPOSE 9000 9003 9011 9013
+
