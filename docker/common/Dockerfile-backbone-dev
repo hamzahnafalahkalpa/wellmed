@@ -87,11 +87,15 @@ RUN chmod +x /usr/local/bin/entrypoint.backbone.sh \
     && chmod +x /usr/local/bin/entrypoint.worker.sh
 
 # Ensure writable dirs
-RUN mkdir -p /app/storage /app/bootstrap/cache \
-    && chown -R www-data:www-data /app/storage /app/bootstrap /app/bootstrap/cache \
-    && chmod -R 775 /app/storage /app/bootstrap/cache
+# RUN mkdir -p /app/storage /app/bootstrap/cache \
+#     && chown -R www-data:www-data /app/storage /app/bootstrap /app/bootstrap/cache \
+#     && chmod -R 775 /app/storage /app/bootstrap/cache
 
-WORKDIR /app
+RUN mkdir -p /app/storage /app/bootstrap/cache /var/log/supervisor \
+    && chown -R www-data:www-data /app/storage /app/bootstrap /app/bootstrap/cache /var/log/supervisor \
+    && chmod -R 775 /app/storage /app/bootstrap/cache /var/log/supervisor
+
+# WORKDIR /app
 USER www-data
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.backbone.sh"]
