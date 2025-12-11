@@ -76,6 +76,16 @@ COPY ./docker/production/supervisord.conf /etc/supervisor/supervisord.conf
 COPY ./docker/production/supervisor-worker.conf /etc/supervisor/conf.d/worker.conf
 COPY ./docker/production/supervisor-listener.conf /etc/supervisor/conf.d/listener.conf
 
+# ----------------------------------
+# 🟣 Copy entrypoints (PROD)
+# ----------------------------------
+COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
+COPY ./docker/production/entrypoint.backbone.sh /usr/local/bin/entrypoint.backbone.sh
+COPY ./docker/production/entrypoint.worker.sh /usr/local/bin/entrypoint.worker.sh
+
+RUN chmod +x /usr/local/bin/entrypoint.backbone.sh \
+    && chmod +x /usr/local/bin/entrypoint.worker.sh
+
 # Ensure writable dirs
 RUN mkdir -p /app/storage /app/bootstrap/cache \
     && chown -R www-data:www-data /app/storage /app/bootstrap /app/bootstrap/cache \
