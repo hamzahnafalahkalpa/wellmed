@@ -70,7 +70,6 @@ services:
     entrypoint: ["/usr/local/bin/entrypoint.worker.sh"]     # <— WORKER MODE
     depends_on:
       - wellmed
-      - wellmed_postgres
       - wellmed_redis
       - wellmed_rabbitmq
     env_file:
@@ -109,7 +108,6 @@ services:
       - wellmed-core
     entrypoint: ["/usr/local/bin/entrypoint.hq.sh"]
     depends_on:
-      - wellmed_postgres
       - wellmed_redis
       - wellmed_rabbitmq
     env_file:
