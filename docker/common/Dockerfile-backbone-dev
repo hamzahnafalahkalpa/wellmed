@@ -63,6 +63,19 @@ COPY --from=builder /usr/local/bin/docker-php-ext-* /usr/local/bin/
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
+# ----------------------------------
+# 🟣 Install Supervisor (PRODUCTION ONLY)
+# ----------------------------------
+USER root
+RUN apt-get update \
+    && apt-get install -y supervisor \
+    && mkdir -p /var/log/supervisor
+
+# Supervisor configs (production version)
+COPY ./docker/production/supervisord.conf /etc/supervisor/supervisord.conf
+COPY ./docker/production/supervisor-worker.conf /etc/supervisor/conf.d/worker.conf
+COPY ./docker/production/supervisor-listener.conf /etc/supervisor/conf.d/listener.conf
+
 # Ensure writable dirs
 RUN mkdir -p /app/storage /app/bootstrap/cache \
     && chown -R www-data:www-data /app/storage /app/bootstrap /app/bootstrap/cache \
@@ -83,22 +96,14 @@ FROM production AS development
 USER root
 
 # ----------------------------------
-# 🟣 Install Supervisor
+# 🟣 Override Supervisor Config (DEV ONLY)
 # ----------------------------------
-RUN apt-get update \
-    && apt-get install -y supervisor \
-    && mkdir -p /var/log/supervisor
-
-# ----------------------------------
-# 🟣 Copy Supervisor Config
-# ----------------------------------
-# worker config
 COPY ./docker/development/supervisord.conf /etc/supervisor/supervisord.conf
 COPY ./docker/development/supervisor-worker.conf /etc/supervisor/conf.d/worker.conf
 COPY ./docker/development/supervisor-listener.conf /etc/supervisor/conf.d/listener.conf
 
 # ----------------------------------
-# 🟣 Copy entrypoints
+# 🟣 Copy entrypoints (DEV)
 # ----------------------------------
 COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
 COPY ./docker/development/entrypoint.backbone.sh /usr/local/bin/entrypoint.backbone.sh
@@ -107,7 +112,5 @@ COPY ./docker/development/entrypoint.worker.sh /usr/local/bin/entrypoint.worker.
 RUN chmod +x /usr/local/bin/entrypoint.backbone.sh \
     && chmod +x /usr/local/bin/entrypoint.worker.sh
 
-# Default entrypoint = backbone (web)
 ENTRYPOINT ["/usr/local/bin/entrypoint.backbone.sh"]
-
 EXPOSE 9000 9003 9011 9013

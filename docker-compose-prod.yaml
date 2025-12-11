@@ -1,32 +1,172 @@
 services:
-  wellmed_lite_prod:
-    container_name: wellmed_lite_prod
-    image: wellmed-lite-prod
+  wellmed:
+    container_name: wellmed-backbone
+    image: wellmed-backbone
     build:
       context: .
-      dockerfile: ./docker/common/Dockerfile-lite
+      dockerfile: ./docker/common/Dockerfile-backbone-dev
       target: production
     ports:
-      - "${WELLMED_LITE_PORT:-8081}:${WELLMED_LITE_PORT:-8081}"
+      - "${WELLMED_BACKBONE_PORT:-9000}:${WELLMED_BACKBONE_PORT:-9000}"
     volumes:
-      - wellmed_lite_prod_storage:/app/storage
+      - ./repositories:/app/repositories
+      - ./app:/app/app
+      - ./features:/app/features
+      - ./config:/app/config
+      - ./public:/app/public
+      - ./database:/app/database
+      - ./projects/wellmed-backbone:/app/projects/wellmed-backbone
+      - ./projects/wellmed-gateway:/app/projects/wellmed-gateway
+      - ./routes/api-backbone.php:/app/routes/api.php
+      - ./composer_backbone.json:/app/composer.json
+      - ./.env.backbone:/app/.env
+      - wellmed_backbone_storage:/app/storage
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9000 || exit 1"]
     networks:
       - wellmed-core
+    entrypoint: ["/usr/local/bin/entrypoint.backbone.sh"]
+    depends_on:
+      - wellmed_postgres
+      - wellmed_redis
+      - wellmed_rabbitmq
     env_file:
-      - .env.lite.prod
-    command: >
-      php artisan octane:frankenphp
-      --host=0.0.0.0
-      --port=${WELLMED_LITE_PORT:-8081}
-      --workers=${PHP_CLI_SERVER_WORKERS:-4}
-      --max-requests=1000
+      - .env.backbone
+    environment:
+      APP_ENV: production
+      PHP_INI_SCAN_DIR: /usr/local/etc/php/conf.d
+      PHP_UPLOAD_MAX_FILESIZE: 10M
+      PHP_POST_MAX_SIZE: 10M
+
+  wellmed_listener:
+    container_name: wellmed-listener
+    image: wellmed-backbone
+    build:
+      context: .
+      dockerfile: ./docker/common/Dockerfile-backbone-dev
+      target: production
+    volumes:
+      - ./repositories:/app/repositories
+      - ./app:/app/app
+      - ./features:/app/features
+      - ./config:/app/config
+      - ./public:/app/public
+      - ./database:/app/database
+      - ./projects/wellmed-backbone:/app/projects/wellmed-backbone
+      - ./projects/wellmed-gateway:/app/projects/wellmed-gateway
+      - ./routes/api-backbone.php:/app/routes/api.php
+      - ./composer_backbone.json:/app/composer.json
+      - ./.env.backbone:/app/.env
+      - wellmed_backbone_listener:/app/storage
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    ports:
+      - "9003:9003"
+    networks:
+      - wellmed-core
+    entrypoint: ["/usr/local/bin/entrypoint.worker.sh"]     # <— WORKER MODE
+    depends_on:
+      - wellmed
+      - wellmed_postgres
+      - wellmed_redis
+      - wellmed_rabbitmq
+    env_file:
+      - .env.backbone
+    environment:
+      APP_ENV: production
+
+  wellmed_hq:
+    container_name: wellmed-hq
+    image: wellmed-hq
+    build:
+      context: .
+      dockerfile: ./docker/common/Dockerfile-hq
+      target: production
+    ports:
+      - "${WELLMED_HQ_PORT:-9001}:${WELLMED_HQ_PORT:-9001}"
+    volumes:
+      - ./repositories:/app/repositories
+      - ./app:/app/app
+      - ./projects/hq:/app/projects/hq
+      - ./features:/app/features
+      - ./config:/app/config
+      - ./public:/app/public
+      - ./routes:/app/routes
+      - ./database:/app/database
+      - ./routes/api-hq.php:/app/routes/api.php
+      - ./.env.hq:/app/.env
+      - ./composer_hq.json:/app/composer.json
+      - wellmed_hq_storage:/app/storage
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9001 || exit 1"]
+    networks:
+      - wellmed-core
+    entrypoint: ["/usr/local/bin/entrypoint.hq.sh"]
+    depends_on:
+      - wellmed_postgres
+      - wellmed_redis
+      - wellmed_rabbitmq
+    env_file:
+      - .env.hq
+    environment:
+      APP_ENV: production
+      PHP_INI_SCAN_DIR: /usr/local/etc/php/conf.d
+      PHP_UPLOAD_MAX_FILESIZE: 10M
+      PHP_POST_MAX_SIZE: 10M
+
+  wellmed_rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: wellmed_admin
+      RABBITMQ_DEFAULT_PASS: Password@123.,
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - wellmed-core
+
+  wellmed_postgres:
+    image: postgres:15
+    container_name: wellmed-postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Password@123
+      POSTGRES_DB: wellmed
+    volumes:
+      - pgsql_data:/var/lib/postgresql/data
+    networks:
+      - wellmed-core
+
+  wellmed_redis:
+    image: redis:7
+    container_name: wellmed-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - wellmed-core
 
 networks:
   wellmed-core:
     driver: bridge
 
 volumes:  
-  wellmed_lite_prod_storage:
+  wellmed_backbone_storage:
+  wellmed_backbone_listener:
+  wellmed_hq_storage:
+  redis_data:
+  pgsql_data:
+  rabbitmq_data:
