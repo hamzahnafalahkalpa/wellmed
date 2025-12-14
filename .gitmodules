@@ -100,9 +100,6 @@
 [submodule "repositories/module-disease"]
 	path = repositories/module-disease
 	url = https://github.com/hamzahnafalahkalpa/module-disease.git
-[submodule "repositories/module-informed-consent"]
-	path = repositories/module-informed-consent
-	url = https://github.com/hamzahnafalahkalpa/module-informed-consent.git
 [submodule "repositories/module-icd"]
 	path = repositories/module-icd
 	url = https://github.com/hamzahnafalahkalpa/module-icd.git

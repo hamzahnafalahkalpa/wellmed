@@ -100,7 +100,7 @@ RUN mkdir -p /app/storage /app/bootstrap/cache \
     && chmod -R 775 /app/storage /app/bootstrap/cache
 
 # Gunakan user www-data
-USER www-data
+#USER www-data
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.backbone.sh"]
 EXPOSE 9000 9003 9011 9013
@@ -137,7 +137,7 @@ RUN mkdir -p /app/storage /app/bootstrap/cache /app/supervisor/run /var/log/supe
     && chmod -R 775 /app/storage /app/bootstrap/cache /app/supervisor/run /var/log/supervisor
 
 # Gunakan user www-data
-USER www-data
+#USER www-data
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.backbone.sh"]
 EXPOSE 9000 9003 9011 9013
