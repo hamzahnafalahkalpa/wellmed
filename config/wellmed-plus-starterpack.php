@@ -83,7 +83,6 @@ return [
         // 'hanafalah/module-examination'          => ['repository' =>'hamzahnafalahkalpa/module-examination'],
         // 'hanafalah/module-procurement'          => ['repository' =>'hamzahnafalahkalpa/module-procurement'],
         // 'hanafalah/module-disease'              => ['repository' =>'hamzahnafalahkalpa/module-disease'],
-        // 'hanafalah/module-informed-consent'     => ['repository' =>'hamzahnafalahkalpa/module-informed-consent'],
         // 'hanafalah/module-icd'                  => ['repository' =>'hamzahnafalahkalpa/module-icd'],
         // 'hanafalah/module-anatomy'              => ['repository' =>'hamzahnafalahkalpa/module-anatomy'],
         // 'hanafalah/module-physical-examination' => ['repository' =>'hamzahnafalahkalpa/module-physical-examination'],

@@ -417,13 +417,6 @@
                 "symlink": true
             }
         },
-        "hanafalah/module-informed-consent": {
-            "type": "path",
-            "url": "repositories/module-informed-consent",
-            "options": {
-                "symlink": true
-            }
-        },
         "hanafalah/module-icd": {
             "type": "path",
             "url": "repositories/module-icd",

@@ -89,7 +89,6 @@ return [
         'hanafalah/module-procurement'          => ['repository' =>'micro-tenant/module-procurement'],
         // 'hanafalah/module-medical-procurement'  => ['repository' =>'micro-tenant/module-medical-procurement'],
         'hanafalah/module-disease'              => ['repository' =>'micro-tenant/module-disease'],
-        'hanafalah/module-informed-consent'     => ['repository' =>'micro-tenant/module-informed-consent'],
         'hanafalah/module-icd'                  => ['repository' =>'micro-tenant/module-icd'],
         'hanafalah/module-anatomy'              => ['repository' =>'micro-tenant/module-anatomy'],
         'hanafalah/module-physical-examination' => ['repository' =>'micro-tenant/module-physical-examination'],
