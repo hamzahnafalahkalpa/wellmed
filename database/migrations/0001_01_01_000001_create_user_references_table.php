@@ -38,7 +38,7 @@ return new class extends Migration
                     ->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->string('workspace_type',50)->nullable();
                 $table->string('workspace_id',36)->nullable();
-                $table->unsignedTinyInteger('current')->default(1);
+                $table->timestamp('current')->nullable(true);
                 $table->json('props')->nullable();
                 $table->timestamps();
                 $table->softDeletes();

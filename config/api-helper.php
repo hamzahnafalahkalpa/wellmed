@@ -21,6 +21,7 @@ return [
     'middlewares' => [
         // Middlewares\ApiAccess::class,
         \App\Middlewares\ApiAccess::class,
+        \App\Middlewares\EncodingWrapper::class,
     ],
 
     'encryption'    => Encryptions\JWTEncryptor::class,

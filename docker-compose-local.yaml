@@ -14,6 +14,7 @@ services:
       - ./features:/app/features
       - ./config:/app/config
       - ./public:/app/public
+      - ./bootstrap/app.php:/app/bootstrap/app.php
       - ./database:/app/database
       - ./projects/wellmed-backbone:/app/projects/wellmed-backbone
       - ./projects/wellmed-gateway:/app/projects/wellmed-gateway

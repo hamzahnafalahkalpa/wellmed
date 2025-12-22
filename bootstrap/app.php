@@ -1,5 +1,6 @@
 <?php
 
+use App\Middlewares\EncodingWrapper;
 use Hanafalah\LaravelSupport\Response;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
