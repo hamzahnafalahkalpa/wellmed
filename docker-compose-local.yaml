@@ -21,6 +21,7 @@ services:
       - ./routes/api-backbone.php:/app/routes/api.php
       - ./composer_backbone.json:/app/composer.json
       - ./.env.backbone:/app/.env
+      - ./docker/conf.d/upload.ini:/usr/local/etc/php/conf.d/upload.ini
       - wellmed_backbone_storage:/app/storage
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -34,8 +35,9 @@ services:
       - .env.backbone
     environment:
         PHP_INI_SCAN_DIR: /usr/local/etc/php/conf.d
-        PHP_UPLOAD_MAX_FILESIZE: 10M
-        PHP_POST_MAX_SIZE: 10M
+        PHP_UPLOAD_MAX_FILESIZE: 100M
+        PHP_POST_MAX_SIZE: 100M
+        PHP_MEMORY_LIMIT: -1
 
   wellmed_listener:
     container_name: wellmed-listener

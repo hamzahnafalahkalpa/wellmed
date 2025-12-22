@@ -28,19 +28,25 @@ class EncodingWrapper
     {
         if (isset(tenancy()->tenant) && tenancy()->tenant->flag == 'TENANT'){
             $this->setupEncodingCache();
-        }
-        $response = $next($request);
-        if ($response->getStatusCode() < 400) {
-            $model_has_encodings = SupportCache::getSavedCache('model_has_encoding_configs');
-            foreach ($model_has_encodings['model_has_encodings'] as &$model_has_encoding) {
-                if ($model_has_encoding->isDirty()){
-                    $model_has_encoding->save();
-                }
+            $response = $next($request);
+            if ($response->getStatusCode() < 400) {
+                $model_has_encodings = SupportCache::getSavedCache('model_has_encoding_configs');
+                foreach ($model_has_encodings['model_has_encodings'] as &$model_has_encoding) {
+                    if ($model_has_encoding->isDirty()){
+                        $model_has_encoding->save();
+                    }
             }
-            $this->setCache($this->__cache['model_has_encoding'], function() use ($model_has_encodings) {
-                return $model_has_encodings;
-            }, false, true);
+                $this->setCache($this->__cache['model_has_encoding'], function() use ($model_has_encodings) {
+                    return $model_has_encodings;
+                }, false, true);
+            }else{
+                $this->forgetTags($this->__cache['model_has_encoding']['tags']);
+                $this->forgetTags($this->__cache['encoding']['tags']);
+            }
+        }else{
+            $response = $next($request);
         }
+
         return $response;
     }
 
