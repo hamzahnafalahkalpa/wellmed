@@ -5,16 +5,18 @@ namespace App\Middlewares;
 use Closure;
 use Hanafalah\LaravelSupport\Concerns\Support\HasArray;
 use Hanafalah\LaravelSupport\Concerns\Support\HasCache;
-use Hanafalah\LaravelSupport\Facades\SupportCache;
-use Hanafalah\ModuleSupport\Schemas\Support;
+use Hanafalah\LaravelSupport\Contracts\Supports\SupportCache as SupportsSupportCache;
 
 class EncodingWrapper
 {
     use HasArray, HasCache;
 
+    protected $support_cache;
+
     public function __construct()
     {
         $this->__cache = config('laravel-support.encoding_cache_data');
+        $this->support_cache = app(SupportsSupportCache::class);
     }
 
     /**
@@ -30,12 +32,12 @@ class EncodingWrapper
             $this->setupEncodingCache();
             $response = $next($request);
             if ($response->getStatusCode() < 400) {
-                $model_has_encodings = SupportCache::getSavedCache('model_has_encoding_configs');
+                $model_has_encodings = $this->support_cache->getSavedCache('model_has_encoding_configs');
                 foreach ($model_has_encodings['model_has_encodings'] as &$model_has_encoding) {
                     if ($model_has_encoding->isDirty()){
                         $model_has_encoding->save();
                     }
-            }
+                }
                 $this->setCache($this->__cache['model_has_encoding'], function() use ($model_has_encodings) {
                     return $model_has_encodings;
                 }, false, true);
@@ -60,7 +62,7 @@ class EncodingWrapper
             return $config_encodings;
         },false);
 
-        SupportCache::saveCache('encoding_config', $encoding_config);
+        $this->support_cache->saveCache('encoding_config', $encoding_config);
 
         $model_has_encoding_configs = $this->setCache($this->__cache['model_has_encoding'], function() {
             $model_has_encodings = app(config('database.models.ModelHasEncoding'))->where('reference_type','Workspace')
@@ -71,7 +73,6 @@ class EncodingWrapper
                 'model_has_encoding_ids' => $model_has_encodings->pluck('encoding_id')->toArray()
             ];
         },false);
-        SupportCache::saveCache('model_has_encoding_configs', $model_has_encoding_configs);
-
+        $this->support_cache->saveCache('model_has_encoding_configs', $model_has_encoding_configs);
     }
 }

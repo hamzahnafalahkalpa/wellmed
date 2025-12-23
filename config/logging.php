@@ -61,6 +61,11 @@ return [
             'path' => storage_path('logs/xendit.log'),
             'level' => 'info',
         ],
+        'import' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/import.log'),
+            'level' => 'info',
+        ],
         'satu-sehat' => [
             'driver' => 'single',
             'path' => storage_path('logs/satu-sehat.log'),
