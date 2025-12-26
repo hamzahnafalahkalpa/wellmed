@@ -28,6 +28,7 @@ RUN apt-get update --allow-releaseinfo-change && apt-get install -y --no-install
  && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /app
+
 COPY . .
 
 RUN if [ -f "composer.lock" ]; then rm composer.lock; fi
@@ -45,7 +46,6 @@ RUN curl -sS https://getcomposer.org/installer | php \
             --optimize-autoloader --no-interaction \
             --no-progress --prefer-dist --no-scripts; \
        fi
-
 
 # -------------------------
 # Stage 2: Production

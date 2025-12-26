@@ -1,0 +1,14 @@
+FROM node:20-alpine
+
+# Metadata (opsional tapi rapi)
+LABEL maintainer="Hamzah"
+LABEL role="frontend-builder"
+
+# Install basic tools (optional)
+RUN apk add --no-cache bash git
+
+# Working directory (akan di-bind dari volume)
+WORKDIR /app
+
+# Default command (bisa dioverride di docker-compose)
+CMD ["sh"]

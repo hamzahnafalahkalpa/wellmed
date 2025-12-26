@@ -1,4 +1,27 @@
 services:
+  node:
+    build:
+      context: .
+      dockerfile: ./docker/common/Dockerfile-node
+    container_name: node-builder
+    working_dir: /app
+    volumes:
+      - ./repositories:/app/repositories
+      - ./projects:/app/projects
+      - ./groups:/app/groups
+      - ./tenants:/app/tenants
+      - ./public:/app/public
+      - ./package.json:/app/package.json
+      - ./package-lock.json:/app/package-lock.json
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./tailwind.config.js:/app/tailwind.config.js
+      - ./tailwind.preset.js:/app/tailwind.preset.js
+      - ./docker/common/entrypoint.node.sh:/app/entrypoint.node.sh  # <-- mount file ke container
+      - ./node_modules:/app/node_modules
+    entrypoint: ["/app/entrypoint.node.sh"]
+    networks:
+      - caddy-projects
+
   wellmed:
     container_name: wellmed-backbone
     image: wellmed-backbone
@@ -23,6 +46,9 @@ services:
       - ./.env.backbone:/app/.env
       - ./docker/conf.d/upload.ini:/usr/local/etc/php/conf.d/upload.ini
       - wellmed_backbone_storage:/app/storage
+      - ./node_modules:/app/node_modules
+      - ./package.json:/app/package.json
+      - ./package-lock.json:/app/package-lock.json
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped

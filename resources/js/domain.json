@@ -1,7 +1,0 @@
-{
-    "localhost:8004": [
-        "@tenants/tenant-klinik/src/Resources/js/pages/**/*.vue",
-        "@groups/group-initial-klinik/src/Resources/js/pages/**/*.vue",
-        "@projects/klinik/src/Resources/js/pages/**/*.vue"
-    ]
-}
