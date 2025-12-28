@@ -113,6 +113,9 @@
 .min-h-screen {
   min-height: 100vh;
 }
+.w-1\/2 {
+  width: calc(1/2 * 100%);
+}
 .w-\[18px\] {
   width: 18px;
 }
@@ -148,9 +151,6 @@
 }
 .shrink {
   flex-shrink: 1;
-}
-.table-auto {
-  table-layout: auto;
 }
 .table-fixed {
   table-layout: fixed;
@@ -282,6 +282,9 @@
 }
 .text-center {
   text-align: center;
+}
+.text-justify {
+  text-align: justify;
 }
 .text-left {
   text-align: left;
