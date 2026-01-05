@@ -270,6 +270,7 @@ return [
     'laravel-support' => [
         'service_cache'  => \Hanafalah\MicroTenant\Supports\ServiceCache::class,
     ],
+    'impersonate_command' => 'wellmed-backbone:impersonate-migrate',
     'commands' => [
         Commands\Impersonate\ImpersonateCacheCommand::class,
         Commands\Impersonate\ImpersonateMigrateCommand::class,

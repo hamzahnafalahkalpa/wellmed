@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    use Hanafalah\LaravelSupport\Concerns\NowYouSeeMe;
 
     private $__table;
 
@@ -23,7 +24,7 @@ return new class extends Migration
     public function up()
     {
         $table_name = $this->__table->getTable();
-        if (!Schema::hasTable($table_name)) {
+        if (!$this->isTableExists()) {
             Schema::create($table_name, function (Blueprint $table) {
                 $table->ulid('id')->primary();
                 $table->string('flag',100)->nullable(false);
