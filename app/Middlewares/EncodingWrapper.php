@@ -5,7 +5,7 @@ namespace App\Middlewares;
 use Closure;
 use Hanafalah\LaravelSupport\Concerns\Support\HasArray;
 use Hanafalah\LaravelSupport\Concerns\Support\HasCache;
-use Hanafalah\LaravelSupport\Contracts\Supports\SupportCache as SupportsSupportCache;
+use Hanafalah\LaravelSupport\Facades\SupportCache;
 
 class EncodingWrapper
 {
@@ -16,7 +16,6 @@ class EncodingWrapper
     public function __construct()
     {
         $this->__cache = config('laravel-support.encoding_cache_data');
-        $this->support_cache = app(SupportsSupportCache::class);
     }
 
     /**
@@ -32,7 +31,7 @@ class EncodingWrapper
             $this->setupEncodingCache();
             $response = $next($request);
             if ($response->getStatusCode() < 400) {
-                $model_has_encodings = $this->support_cache->getSavedCache('model_has_encoding_configs');
+                $model_has_encodings = SupportCache::getSavedCache('model_has_encoding_configs');
                 foreach ($model_has_encodings['model_has_encodings'] as &$model_has_encoding) {
                     if ($model_has_encoding->isDirty()){
                         $model_has_encoding->save();
@@ -62,7 +61,7 @@ class EncodingWrapper
             return $config_encodings;
         },false);
 
-        $this->support_cache->saveCache('encoding_config', $encoding_config);
+        SupportCache::saveCache('encoding_config', $encoding_config);
 
         $model_has_encoding_configs = $this->setCache($this->__cache['model_has_encoding'], function() {
             $model_has_encodings = app(config('database.models.ModelHasEncoding'))->where('reference_type','Workspace')
@@ -73,6 +72,6 @@ class EncodingWrapper
                 'model_has_encoding_ids' => $model_has_encodings->pluck('encoding_id')->toArray()
             ];
         },false);
-        $this->support_cache->saveCache('model_has_encoding_configs', $model_has_encoding_configs);
+        SupportCache::saveCache('model_has_encoding_configs', $model_has_encoding_configs);
     }
 }
