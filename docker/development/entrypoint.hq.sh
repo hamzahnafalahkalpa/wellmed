@@ -69,4 +69,5 @@ exec php \
     --port=${APP_PORT} \
     --admin-port=${ADMIN_PORT} \
     --workers=${WORKERS} \
-    --max-requests=1000
+    --max-requests=1000 \
+    --watch

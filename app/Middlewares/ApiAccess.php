@@ -4,6 +4,7 @@ namespace App\Middlewares;
 
 use Closure;
 use Hanafalah\MicroTenant\Facades\MicroTenant;
+use Hanafalah\ModuleWorkspace\Facades\Workspace;
 use Illuminate\Support\Facades\Event;
 
 class ApiAccess
@@ -19,6 +20,11 @@ class ApiAccess
     {
         try {
             MicroTenant::accessOnLogin();
+            if (isset(tenancy()->tenant)){
+                $tenant = tenancy()->tenant;
+                $reference = $tenant->reference;
+                if (isset($reference)) Workspace::setModelWorkspace($reference);
+            }
         } catch (\Throwable $th) {
             throw $th;
         }

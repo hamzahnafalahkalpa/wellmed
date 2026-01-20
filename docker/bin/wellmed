@@ -1,0 +1,228 @@
+#!/usr/bin/env bash
+set -e
+
+PROJECT="wellmed"
+APP_HQ="wellmed-hq"
+APP_BACKBONE="wellmed-backbone"
+
+banner () {
+  echo "========================================"
+  echo " 🚀 WELLMED Deployment CLI"
+  echo "========================================"
+}
+
+container_by_name () {
+  docker ps --filter "name=$1" --format "{{.Names}}" | head -n 1
+}
+
+require_container () {
+  NAME=$(container_by_name "$1")
+  if [ -z "$NAME" ]; then
+    echo "❌ Container not running: $1"
+    exit 1
+  fi
+  echo "$NAME"
+}
+
+exec_hq () { docker exec -it "$(require_container $APP_HQ)" "$@"; }
+exec_backbone () { docker exec -it "$(require_container $APP_BACKBONE)" "$@"; }
+
+# ==============================
+# 🔖 TAGGING HELPERS (FINAL)
+# ==============================
+
+last_tag () {
+  git describe --tags --abbrev=0 2>/dev/null || echo "v1.0.0"
+}
+
+next_patch_tag () {
+  TAG=$(last_tag)
+  VERSION=${TAG#v}
+  MAJOR=$(echo "$VERSION" | awk -F. '{print $1}')
+  MINOR=$(echo "$VERSION" | awk -F. '{print $2}')
+  PATCH=$(echo "$VERSION" | awk -F. '{print $3 + 1}')
+  echo "v$MAJOR.$MINOR.$PATCH"
+}
+
+repo_has_changes_since_last_tag () {
+  TAG=$(last_tag)
+  LAST_TAG_COMMIT=$(git rev-list -n 1 "$TAG" 2>/dev/null || echo "")
+  HEAD_COMMIT=$(git rev-parse HEAD)
+  [ "$LAST_TAG_COMMIT" != "$HEAD_COMMIT" ]
+}
+
+safe_tag_repo () {
+  if repo_has_changes_since_last_tag; then
+    NEW_TAG=$(next_patch_tag)
+    if git rev-parse "$NEW_TAG" >/dev/null 2>&1; then
+      echo "⚠️  Tag already exists: $NEW_TAG — skip"
+    else
+      git tag "$NEW_TAG"
+      echo "✅ Tagged: $NEW_TAG (not pushed)"
+    fi
+  else
+    echo "⏭ Repo unchanged, skip"
+  fi
+}
+
+# ==============================
+# 🚀 COMMAND HANDLER
+# ==============================
+
+case "$1" in
+
+up)
+  banner
+  ENV="$2"
+  [ -z "$ENV" ] && { echo "Usage: wellmed up local|dev|staging|prod"; exit 1; }
+  docker compose -f docker-compose-$ENV.yaml up -d
+  ;;
+
+down)
+  banner
+  ENV="$2"
+  [ -z "$ENV" ] && { echo "Usage: wellmed down local|dev|staging|prod"; exit 1; }
+  docker compose -f docker-compose-$ENV.yaml down
+  ;;
+
+build)
+  banner
+  ENV="$2"
+  [ -z "$ENV" ] && { echo "Usage: wellmed build local|dev|staging|prod"; exit 1; }
+  FILE="docker-compose-$ENV.yaml"
+  docker compose -f $FILE down
+  docker compose -f $FILE up -d --build
+  ;;
+
+hq)
+  banner
+  case "$2" in
+    install)
+      exec_hq php artisan wellmed-hq:install
+      exec_hq php artisan octane:reload
+      ;;
+    reload) exec_hq php artisan octane:reload ;;
+    optimize:clear) exec_hq php artisan optimize:clear ;;
+    migrate) exec_hq php artisan migrate --force ;;
+    container) exec_hq bash ;;
+  esac
+  ;;
+
+backbone)
+  banner
+  case "$2" in
+    install)
+      exec_backbone php -d memory_limit=1G artisan wellmed-backbone:install LITE
+      exec_backbone php artisan octane:reload
+      ;;
+    reload) exec_backbone php artisan octane:reload ;;
+    optimize:clear) exec_backbone php artisan optimize:clear ;;
+    migrate) exec_backbone php artisan migrate --force ;;
+    container) exec_backbone bash ;;
+  esac
+  ;;
+
+# ==============================
+# 🧱 DIRECT CONTAINER ACCESS
+# ==============================
+
+container)
+  banner
+  case "$2" in
+    hq) exec_hq bash ;;
+    backbone) exec_backbone bash ;;
+    *)
+      echo "Usage:"
+      echo " wellmed container hq"
+      echo " wellmed container backbone"
+      exit 1
+      ;;
+  esac
+  ;;
+
+# ==============================
+# 🏷 AUTO TAG (NO PUSH)
+# ==============================
+
+tag)
+  banner
+  echo "🏷 Tagging ROOT repository..."
+  safe_tag_repo
+
+  echo "🏷 Tagging SUBMODULES..."
+  git submodule foreach '
+    echo "📦 $name"
+
+    last_tag () {
+      git describe --tags --abbrev=0 2>/dev/null || echo "v1.0.0"
+    }
+
+    next_patch_tag () {
+      VERSION=$(last_tag | sed "s/^v//")
+      MAJOR=$(echo "$VERSION" | awk -F. "{print \$1}")
+      MINOR=$(echo "$VERSION" | awk -F. "{print \$2}")
+      PATCH=$(echo "$VERSION" | awk -F. "{print \$3 + 1}")
+      echo "v$MAJOR.$MINOR.$PATCH"
+    }
+
+    repo_has_changes_since_last_tag () {
+      TAG=$(last_tag)
+      LAST_TAG_COMMIT=$(git rev-list -n 1 "$TAG" 2>/dev/null || echo "")
+      HEAD_COMMIT=$(git rev-parse HEAD)
+      [ "$LAST_TAG_COMMIT" != "$HEAD_COMMIT" ]
+    }
+
+    if repo_has_changes_since_last_tag; then
+      NEW_TAG=$(next_patch_tag)
+      if git rev-parse "$NEW_TAG" >/dev/null 2>&1; then
+        echo "⚠️  Tag exists: $NEW_TAG — skip"
+      else
+        git tag "$NEW_TAG"
+        echo "✅ Tagged $name → $NEW_TAG (not pushed)"
+      fi
+    else
+      echo "⏭ No changes, skip"
+    fi
+  '
+  ;;
+
+commit)
+  banner
+  MSG="$2"
+  [ -z "$MSG" ] && { echo "Usage: wellmed commit \"message\""; exit 1; }
+  git add . && git commit -m "$MSG" || true
+  git submodule foreach "git add . && git commit -m \"$MSG\" || true"
+  ;;
+
+push)
+  banner
+  git submodule foreach "git push || true"
+  git push || true
+  ;;
+
+logs)
+  banner
+  case "$2" in
+    hq) docker logs -f "$(container_by_name $APP_HQ)" ;;
+    backbone) docker logs -f "$(container_by_name $APP_BACKBONE)" ;;
+  esac
+  ;;
+
+status)
+  banner
+  docker ps --filter "name=wellmed" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+  ;;
+
+*)
+  banner
+  echo "Commands:"
+  echo " wellmed up|down|build <env>"
+  echo " wellmed hq|backbone <action>"
+  echo " wellmed container hq|backbone"
+  echo " wellmed tag"
+  echo " wellmed commit \"message\""
+  echo " wellmed push"
+  echo " wellmed logs hq|backbone"
+  echo " wellmed status"
+  ;;
+esac
