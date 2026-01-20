@@ -196,8 +196,8 @@ commit)
 
 push)
   banner
-  git submodule foreach "git push || true"
-  git push || true
+  sudo git submodule foreach "git push || true"
+  sudo git push || true
   ;;
 
 logs)
