@@ -216,6 +216,7 @@ status)
 *)
   banner
   echo "Commands:"
+  echo " wellmed build <env>"
   echo " wellmed up|down|build <env>"
   echo " wellmed hq|backbone <action>"
   echo " wellmed container hq|backbone"
