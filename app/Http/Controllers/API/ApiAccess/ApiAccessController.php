@@ -10,6 +10,7 @@ use Hanafalah\ApiHelper\Facades\ApiAccess;
 use Hanafalah\LaravelSupport\Concerns\Support\HasCache;
 use Hanafalah\MicroTenant\Facades\MicroTenant;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class ApiAccessController extends EnvironmentController
 {
@@ -32,6 +33,14 @@ class ApiAccessController extends EnvironmentController
         $user = $this->getUser();
         $user->token = $token;
         return (new GenerateTokenResponse($user))->resolve();
+    }
+
+    public function refresh(Request $request)
+    {
+        $token = $this->generateToken();
+        return [
+            'token' => $token
+        ];
     }
 
     public function destroy(DeleteRequest $request)

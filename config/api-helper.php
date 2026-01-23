@@ -40,6 +40,7 @@ return [
     ],
 
     'expiration' => 99999999999999,
+    // 'expiration' => 3*60,
 
     /*
      * Supported algorithms.
