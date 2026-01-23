@@ -61,6 +61,11 @@ return [
             'path' => storage_path('logs/xendit.log'),
             'level' => 'info',
         ],
+        'tracking' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/tracking.log'),
+            'level' => 'info',
+        ],
         'import' => [
             'driver' => 'single',
             'path' => storage_path('logs/import.log'),
