@@ -30,7 +30,7 @@ services:
       dockerfile: ./docker/common/Dockerfile-backbone-dev
       target: development
     ports:
-      - "${WELLMED_BACKBONE_PORT:-9000}:${WELLMED_BACKBONE_PORT:-9000}"
+      - "9000:9000"
     volumes:
       - ./repositories:/app/repositories
       - ./app:/app/app
@@ -107,7 +107,7 @@ services:
       dockerfile: ./docker/common/Dockerfile-hq
       target: development
     ports:
-      - "${WELLMED_HQ_PORT:-9001}:${WELLMED_HQ_PORT:-9001}"
+      - "9001:9001"
     volumes:
       - ./repositories:/app/repositories
       - ./app:/app/app

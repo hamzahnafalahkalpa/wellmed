@@ -8,6 +8,7 @@ RUN apt-get update --allow-releaseinfo-change && apt-get install -y --no-install
     libpq-dev libonig-dev libssl-dev libxml2-dev \
     libcurl4-openssl-dev libicu-dev libzip-dev libexif-dev \
     libjpeg62-turbo-dev libpng-dev libfreetype6-dev \
+    procps \
  && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
  && apt-get install -y nodejs \
  \
@@ -82,6 +83,7 @@ RUN apt-get update \
 COPY ./docker/production/supervisord.conf /etc/supervisor/supervisord.conf
 COPY ./docker/production/supervisor-worker.conf /etc/supervisor/conf.d/worker.conf
 COPY ./docker/production/supervisor-listener.conf /etc/supervisor/conf.d/listener.conf
+COPY ./docker/production/supervisor-octane.conf /etc/supervisor/conf.d/octane.conf
 
 # ----------------------------------
 # 🟣 Copy entrypoints (PROD)
@@ -119,6 +121,7 @@ USER root
 COPY ./docker/development/supervisord.conf /etc/supervisor/supervisord.conf
 COPY ./docker/development/supervisor-worker.conf /etc/supervisor/conf.d/worker.conf
 COPY ./docker/development/supervisor-listener.conf /etc/supervisor/conf.d/listener.conf
+COPY ./docker/development/supervisor-octane.conf /etc/supervisor/conf.d/octane.conf
 
 # ----------------------------------
 # 🟣 Copy entrypoints (DEV)

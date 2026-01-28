@@ -52,6 +52,26 @@ RUN curl -sS https://getcomposer.org/installer | php \
 # -------------------------
 FROM builder AS production
 
+# ----------------------------------
+# 🟣 Install Supervisor
+# ----------------------------------
+RUN apt-get update \
+    && apt-get install -y supervisor \
+    && mkdir -p /var/log/supervisor
+
+# ----------------------------------
+# 🟣 Copy Supervisor Config
+# ----------------------------------
+# worker config
+COPY ./docker/production/supervisord.conf /etc/supervisor/supervisord.conf
+COPY ./docker/production/supervisor-octane-hq.conf /etc/supervisor/conf.d/octane-hq.conf
+
+# ----------------------------------
+# 🟣 Copy entrypoints
+# ----------------------------------
+COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
+COPY ./docker/production/entrypoint.hq.sh /usr/local/bin/entrypoint.hq.sh
+
 COPY ./docker/production/entrypoint.hq.sh /usr/local/bin/entrypoint.hq.sh
 RUN chmod +x /usr/local/bin/entrypoint.hq.sh
 
@@ -94,7 +114,7 @@ RUN apt-get update \
 # ----------------------------------
 # worker config
 COPY ./docker/development/supervisord.conf /etc/supervisor/supervisord.conf
-COPY ./docker/development/supervisor-worker.conf /etc/supervisor/conf.d/worker.conf
+COPY ./docker/development/supervisor-octane-hq.conf /etc/supervisor/conf.d/octane-hq.conf
 
 # ----------------------------------
 # 🟣 Copy entrypoints
