@@ -251,5 +251,6 @@ return [
     'state_file' => storage_path(env('OCTANE_STATE_FILE','logs/octane-server-state.json')),
     'frankenphp' => [
         'max_execution_time' => 30,
-    ]
+    ],
+    'max_requests' => 1000,
 ];
