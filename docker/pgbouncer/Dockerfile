@@ -1,4 +1,4 @@
-FROM pgbouncer/pgbouncer:latest
+FROM edoburu/pgbouncer:latest
 
 # Switch to root to install files and set permissions
 USER root
