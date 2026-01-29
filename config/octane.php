@@ -81,6 +81,7 @@ return [
 
         RequestTerminated::class => [
             FlushUploadedFiles::class,
+            \App\Listeners\Octane\FlushTenantState::class,
         ],
 
         TaskReceived::class => [
@@ -153,9 +154,9 @@ return [
     ],
 
     'flush' => [
-        // Hanafalah\LaravelSupport\LaravelSupport::class,
-        // Hanafalah\MicroTenant\MicroTenant::class,
-        // Stancl\Tenancy\Tenancy::class,
+        // CRITICAL: Flush these services to prevent tenant state leakage
+        Hanafalah\MicroTenant\MicroTenant::class,
+        Stancl\Tenancy\Tenancy::class,
         // Illuminate\Foundation\Console\Kernel::class,
         // Hanafalah\KlinikStarterpack\Database\Manager\PostgreSQLSchemaManager::class,
         // Spatie\MediaLibrary\MediaCollections\Filesystem::class,

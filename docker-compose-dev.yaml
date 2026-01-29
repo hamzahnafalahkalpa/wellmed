@@ -49,7 +49,7 @@ services:
 
   wellmed_listener:
     container_name: wellmed-listener
-    image: wellmed-backbone
+    image: wellmed-listener
     build:
       context: .
       dockerfile: ./docker/common/Dockerfile-backbone-dev

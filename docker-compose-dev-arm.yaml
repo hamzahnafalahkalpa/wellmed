@@ -1,7 +1,7 @@
 services:
   wellmed:
     container_name: wellmed-backbone
-    image: wellmed-backbone-arm
+    image: wellmed-backbone
     build:
       context: .
       dockerfile: ./docker-arm/app/Dockerfile
@@ -45,7 +45,7 @@ services:
 
   wellmed_listener:
     container_name: wellmed-listener
-    image: wellmed-backbone-arm
+    image: wellmed-listener
     build:
       context: .
       dockerfile: ./docker-arm/app/Dockerfile
