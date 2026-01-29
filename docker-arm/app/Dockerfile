@@ -3,7 +3,7 @@
 # -------------------------
 # Stage 1: Builder
 # -------------------------
-FROM --platform=linux/arm64 dunglas/frankenphp:php8.4 AS builder
+FROM dunglas/frankenphp:php8.4 AS builder
 
 RUN apt-get update --allow-releaseinfo-change && apt-get install -y --no-install-recommends \
     curl unzip nano git ca-certificates gnupg wget \
@@ -53,7 +53,7 @@ RUN curl -sS https://getcomposer.org/installer | php \
 # -------------------------
 # Stage 2: Production
 # -------------------------
-FROM --platform=linux/arm64 builder AS production
+FROM builder AS production
 
 # Copy entrypoint backbone
 COPY ./docker/production/entrypoint.backbone.sh /usr/local/bin/entrypoint.backbone.sh
@@ -113,7 +113,7 @@ EXPOSE 9000 9003 9011 9013
 # -------------------------
 # Stage 3: Development
 # -------------------------
-FROM --platform=linux/arm64 production AS development
+FROM production AS development
 
 USER root
 
