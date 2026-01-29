@@ -118,24 +118,6 @@ services:
       PHP_UPLOAD_MAX_FILESIZE: 10M
       PHP_POST_MAX_SIZE: 10M
 
-  wellmed_pgbouncer:
-    container_name: wellmed-pgbouncer-arm
-    image: wellmed-pgbouncer-arm
-    build:
-      context: .
-      dockerfile: ./docker-arm/database/Dockerfile
-      platform: linux/arm64
-    ports:
-      - "6432:6432"
-    networks:
-      - wellmed-core
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD-SHELL", "psql -h localhost -p 6432 -U postgres -d pgbouncer -c 'SHOW POOLS;' || exit 1"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
 networks:
   wellmed-core:
     driver: bridge
