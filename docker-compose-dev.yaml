@@ -34,10 +34,6 @@ services:
     networks:
       - wellmed-core
     entrypoint: ["/usr/local/bin/entrypoint.backbone.sh"]
-    depends_on:
-      - wellmed_postgres
-      - wellmed_redis
-      - wellmed_rabbitmq
     env_file:
       - .env.backbone
     environment:
@@ -77,9 +73,6 @@ services:
     entrypoint: ["/usr/local/bin/entrypoint.worker.sh"]     # <— WORKER MODE
     depends_on:
       - wellmed
-      - wellmed_postgres
-      - wellmed_redis
-      - wellmed_rabbitmq
     env_file:
       - .env.backbone
     environment:
@@ -115,10 +108,6 @@ services:
     networks:
       - wellmed-core
     entrypoint: ["/usr/local/bin/entrypoint.hq.sh"]
-    depends_on:
-      - wellmed_postgres
-      - wellmed_redis
-      - wellmed_rabbitmq
     env_file:
       - .env.hq
     environment:
@@ -126,96 +115,6 @@ services:
       PHP_INI_SCAN_DIR: /usr/local/etc/php/conf.d
       PHP_UPLOAD_MAX_FILESIZE: 10M
       PHP_POST_MAX_SIZE: 10M
-
-  wellmed_rabbitmq:
-    image: rabbitmq:3-management
-    container_name: rabbitmq
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    environment:
-      RABBITMQ_DEFAULT_USER: admin
-      RABBITMQ_DEFAULT_PASS: admin
-    volumes:
-      - rabbitmq_data:/var/lib/rabbitmq
-    networks:
-      - wellmed-core
-
-  wellmed_postgres:
-    image: postgres:15
-    container_name: wellmed-postgres
-    ports:
-      - "5433:5432"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Password@123
-      POSTGRES_DB: wellmed
-    command: >
-      postgres
-        -c password_encryption=md5
-        -c shared_preload_libraries=pg_stat_statements
-        -c max_connections=200
-        -c shared_buffers=256MB
-        -c effective_cache_size=1GB
-        -c maintenance_work_mem=64MB
-        -c checkpoint_completion_target=0.9
-        -c wal_buffers=16MB
-        -c default_statistics_target=100
-        -c random_page_cost=1.1
-        -c effective_io_concurrency=200
-        -c work_mem=4MB
-        -c min_wal_size=1GB
-        -c max_wal_size=4GB
-        -c max_worker_processes=4
-        -c max_parallel_workers_per_gather=2
-        -c max_parallel_workers=4
-        -c max_parallel_maintenance_workers=2
-        -c statement_timeout=60000
-        -c idle_in_transaction_session_timeout=300000
-        -c deadlock_timeout=1000
-        -c log_lock_waits=on
-        -c log_statement=ddl
-    volumes:
-      - pgsql_data:/var/lib/postgresql/data
-      - ./docker/postgres/init:/docker-entrypoint-initdb.d
-    networks:
-      - wellmed-core
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-  wellmed_pgbouncer:
-    image: pgbouncer/pgbouncer:latest
-    container_name: wellmed-pgbouncer-dev
-    ports:
-      - "6432:6432"
-    volumes:
-      - ./docker/pgbouncer/development/pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini:ro
-      - ./docker/pgbouncer/development/userlist.txt:/etc/pgbouncer/userlist.txt:ro
-      - ./docker/pgbouncer/shared:/etc/pgbouncer/shared:ro
-    networks:
-      - wellmed-core
-    depends_on:
-      wellmed_postgres:
-        condition: service_healthy
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD-SHELL", "psql -h localhost -p 6432 -U postgres -d pgbouncer -c 'SHOW POOLS;' || exit 1"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  wellmed_redis:
-    image: redis:7
-    container_name: wellmed-redis
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-    networks:
-      - wellmed-core
 
 networks:
   wellmed-core:
