@@ -1,0 +1,14 @@
+# PgBouncer User List for Staging Environment
+# Format: "username" "password_hash"
+# Generate hash with: echo -n "passwordUSERNAME" | md5sum
+# Then prepend "md5" to the hash
+
+# Example:
+# "postgres" "md55e68e8c8ac6ee5d8b6e3263708ca5cea"
+# "app_user" "md5XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+# SECURITY:
+# 1. Copy this file to userlist.txt (without .example)
+# 2. Replace with actual credentials
+# 3. Ensure userlist.txt is NOT committed to git (.gitignore)
+# 4. Set permissions: chmod 600 userlist.txt

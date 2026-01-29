@@ -1,7 +1,9 @@
 # -------------------------
+# ARM64 Compatible Dockerfile for Wellmed Backbone
+# -------------------------
 # Stage 1: Builder
 # -------------------------
-FROM dunglas/frankenphp:php8.4 AS builder
+FROM --platform=linux/arm64 dunglas/frankenphp:php8.4 AS builder
 
 RUN apt-get update --allow-releaseinfo-change && apt-get install -y --no-install-recommends \
     curl unzip nano git ca-certificates gnupg wget \
@@ -13,7 +15,7 @@ RUN apt-get update --allow-releaseinfo-change && apt-get install -y --no-install
  && apt-get install -y nodejs \
  \
  # -------------------------
- # 🔥 Tambah ekstensi sockets untuk RabbitMQ
+ # Install sockets extension for RabbitMQ
  # -------------------------
  && docker-php-ext-install sockets \
  \
@@ -51,7 +53,7 @@ RUN curl -sS https://getcomposer.org/installer | php \
 # -------------------------
 # Stage 2: Production
 # -------------------------
-FROM builder AS production
+FROM --platform=linux/arm64 builder AS production
 
 # Copy entrypoint backbone
 COPY ./docker/production/entrypoint.backbone.sh /usr/local/bin/entrypoint.backbone.sh
@@ -70,7 +72,7 @@ COPY --from=builder /usr/local/bin/docker-php-ext-* /usr/local/bin/
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # ----------------------------------
-# 🟣 Install Supervisor (PRODUCTION ONLY)
+# Install Supervisor (PRODUCTION ONLY)
 # ----------------------------------
 USER root
 RUN apt-get update \
@@ -87,7 +89,7 @@ COPY ./docker/production/supervisor-octane.conf /etc/supervisor/conf.d/octane.co
 COPY ./docker/production/supervisor-octane-monitor.conf /etc/supervisor/conf.d/octane-monitor.conf
 
 # ----------------------------------
-# 🟣 Copy entrypoints & scripts (PROD)
+# Copy entrypoints & scripts (PROD)
 # ----------------------------------
 COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
 COPY ./docker/production/entrypoint.backbone.sh /usr/local/bin/entrypoint.backbone.sh
@@ -98,14 +100,11 @@ RUN chmod +x /usr/local/bin/entrypoint.backbone.sh \
     && chmod +x /app/docker/bin/octane-healthcheck.sh
 
 # ----------------------------------
-# 🟣 Set permission untuk writable directories
+# Set permission untuk writable directories
 # ----------------------------------
 RUN mkdir -p /app/storage /app/bootstrap/cache \
     && chown -R www-data:www-data /app/storage /app/bootstrap /app/bootstrap/cache \
     && chmod -R 775 /app/storage /app/bootstrap/cache
-
-# Gunakan user www-data
-#USER www-data
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.backbone.sh"]
 EXPOSE 9000 9003 9011 9013
@@ -114,12 +113,12 @@ EXPOSE 9000 9003 9011 9013
 # -------------------------
 # Stage 3: Development
 # -------------------------
-FROM production AS development
+FROM --platform=linux/arm64 production AS development
 
 USER root
 
 # ----------------------------------
-# 🟣 Override Supervisor Config (DEV ONLY)
+# Override Supervisor Config (DEV ONLY)
 # ----------------------------------
 COPY ./docker/development/supervisord.conf /etc/supervisor/supervisord.conf
 COPY ./docker/development/supervisor-worker.conf /etc/supervisor/conf.d/worker.conf
@@ -128,7 +127,7 @@ COPY ./docker/development/supervisor-octane.conf /etc/supervisor/conf.d/octane.c
 COPY ./docker/development/supervisor-octane-monitor.conf /etc/supervisor/conf.d/octane-monitor.conf
 
 # ----------------------------------
-# 🟣 Copy entrypoints & scripts (DEV)
+# Copy entrypoints & scripts (DEV)
 # ----------------------------------
 COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
 COPY ./docker/development/entrypoint.backbone.sh /usr/local/bin/entrypoint.backbone.sh
@@ -139,15 +138,11 @@ RUN chmod +x /usr/local/bin/entrypoint.backbone.sh \
     && chmod +x /app/docker/bin/octane-healthcheck.sh
 
 # ----------------------------------
-# 🟣 Set permission untuk writable directories (DEV)
+# Set permission untuk writable directories (DEV)
 # ----------------------------------
 RUN mkdir -p /app/storage /app/bootstrap/cache /app/supervisor/run /var/log/supervisor \
     && chown -R www-data:www-data /app/storage /app/bootstrap /app/bootstrap/cache /app/supervisor/run /var/log/supervisor \
     && chmod -R 775 /app/storage /app/bootstrap/cache /app/supervisor/run /var/log/supervisor
 
-# Gunakan user www-data
-#USER www-data
-
 ENTRYPOINT ["/usr/local/bin/entrypoint.backbone.sh"]
 EXPOSE 9000 9003 9011 9013
-

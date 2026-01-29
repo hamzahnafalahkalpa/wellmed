@@ -11,7 +11,7 @@
     "require": {
         "php": "^8.4",
         "barryvdh/laravel-dompdf": "^3.1",
-        "elasticsearch/elasticsearch": "^9.2",
+        "elasticsearch/elasticsearch": "^8.19",
         "hanafalah/microtenant": "dev-main",
         "hanafalah/wellmed-plus-starterpack": "dev-main",
         "kreait/laravel-firebase": "^6.0",

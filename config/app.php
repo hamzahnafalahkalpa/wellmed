@@ -131,9 +131,9 @@ return [
 
     'elasticsearch' => [
         'enabled' => env('ELASTICSEARCH_ENABLED', false),
-        'hosts' => [env('ELLASTIC_HOSTS', 'localhost:9200')],
-        'username' => env('ELLASTIC_USERNAME', 'elastic'),
-        'password' => env('ELLASTIC_PASSWORD', 'password'),
+        'hosts' => [env('ELASTICSEARCH_HOSTS', 'localhost:9200')],
+        'username' => env('ELASTICSEARCH_USERNAME', 'elastic'),
+        'password' => env('ELASTICSEARCH_PASSWORD', 'password'),
         'index_prefix' => env('APP_ENV'),
         'index_separator' => '.',
         'indexes' => [

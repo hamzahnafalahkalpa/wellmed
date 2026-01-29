@@ -95,55 +95,58 @@ return [
             'driver' => 'pgsql',
             'url' => env('DB_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
-            'read' => [
-                'host' => [
-                    env('DB_READ_HOST_1', '192.168.1.1'),
-                    env('DB_READ_HOST_2', '192.168.1.2'),
-                ],
-            ],
-            'write' => [
-                'host' => [
-                    env('DB_WRITE_HOST_1', '192.168.1.3'),
-                ],
-            ],
-            'port' => env('DB_PORT', '5432'),
+            'port' => env('DB_PORT', '6432'), // PgBouncer port
             'database' => env('DB_DATABASE', 'laravel'),
-            'username' => env('DB_USERNAME', 'root'),
+            'username' => env('DB_USERNAME', 'postgres'),
             'password' => env('DB_PASSWORD', ''),
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,
-            'search_path' => 'public',
-            'sslmode' => 'prefer',
-                'options' => extension_loaded('pdo_pgsql') ? [
-                PDO::ATTR_PERSISTENT => true, 
+            'search_path' => env('DB_SCHEMA', 'public'),
+            'sslmode' => env('DB_SSLMODE', 'prefer'),
+            'options' => extension_loaded('pdo_pgsql') ? [
+                // Disable persistent connections - PgBouncer handles pooling
+                PDO::ATTR_PERSISTENT => false,
+                // Set statement timeout (60 seconds)
+                PDO::ATTR_TIMEOUT => 60,
+                // Enable error mode
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                // Set default fetch mode
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                // Emulate prepares for better compatibility
+                PDO::ATTR_EMULATE_PREPARES => false,
             ] : [],
+            'connect_timeout' => 10,
+            'application_name' => env('APP_NAME', 'Laravel'),
         ],
 
         'central' => [
             'driver' => 'pgsql',
             'url' => env('DB_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
-            'read' => [
-                'host' => [
-                    env('DB_READ_HOST_1', '192.168.1.1'),
-                    env('DB_READ_HOST_2', '192.168.1.2'),
-                ],
-            ],
-            'write' => [
-                'host' => [
-                    env('DB_WRITE_HOST_1', '192.168.1.3'),
-                ],
-            ],
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'laravel'),
-            'username' => env('DB_USERNAME', 'root'),
+            'port' => env('DB_PORT', '6432'), // PgBouncer port
+            'database' => env('DB_DATABASE', 'wellmed'),
+            'username' => env('DB_USERNAME', 'postgres'),
             'password' => env('DB_PASSWORD', ''),
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,
-            'search_path' => 'public',
-            'sslmode' => 'prefer',
+            'search_path' => env('DB_SCHEMA', 'public'),
+            'sslmode' => env('DB_SSLMODE', 'prefer'),
+            'options' => extension_loaded('pdo_pgsql') ? [
+                // Disable persistent connections - PgBouncer handles pooling
+                PDO::ATTR_PERSISTENT => false,
+                // Set statement timeout (60 seconds)
+                PDO::ATTR_TIMEOUT => 60,
+                // Enable error mode
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                // Set default fetch mode
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                // Emulate prepares for better compatibility
+                PDO::ATTR_EMULATE_PREPARES => false,
+            ] : [],
+            'connect_timeout' => 10,
+            'application_name' => env('APP_NAME', 'Laravel'),
         ],
 
         'sqlsrv' => [
@@ -184,8 +187,7 @@ return [
     | Redis Databases
     |--------------------------------------------------------------------------
     |
-    | Redis is an open source, fast, and advanced key-value store that also
-    | provides a richer body of commands than a typical key-value system
+    | Redis is an open source, fast, and advanced key-value system
     | such as Memcached. You may define your connection settings here.
     |
     */

@@ -80,7 +80,7 @@ return [
         ],
 
         RequestTerminated::class => [
-            // FlushUploadedFiles::class,
+            FlushUploadedFiles::class,
         ],
 
         TaskReceived::class => [
@@ -232,9 +232,11 @@ return [
     | up before being cleared by PHP. You can force Octane to run garbage
     | collection if your application consumes this amount of megabytes.
     |
+    | Increased from 50 to 256 to prevent frequent GC but still manage memory
+    |
     */
 
-    'garbage' => 50,
+    'garbage' => env('OCTANE_GARBAGE_COLLECTION', 256),
 
     /*
     |--------------------------------------------------------------------------
@@ -247,10 +249,23 @@ return [
     |
     */
 
-    'max_execution_time' => 30,
+    'max_execution_time' => env('OCTANE_MAX_EXECUTION_TIME', 60),
     'state_file' => storage_path(env('OCTANE_STATE_FILE','logs/octane-server-state.json')),
     'frankenphp' => [
-        'max_execution_time' => 30,
+        'max_execution_time' => env('OCTANE_MAX_EXECUTION_TIME', 60),
     ],
-    'max_requests' => 1000,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Maximum Requests Per Worker
+    |--------------------------------------------------------------------------
+    |
+    | This setting configures the maximum number of requests a worker will
+    | handle before it is restarted. This helps prevent memory leaks from
+    | accumulating over time. Set to 0 to disable worker recycling.
+    |
+    | Reduced from 1000 to 500 to recycle workers more frequently
+    |
+    */
+    'max_requests' => env('OCTANE_MAX_REQUESTS', 500),
 ];

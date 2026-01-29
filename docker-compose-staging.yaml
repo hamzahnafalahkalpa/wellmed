@@ -110,6 +110,34 @@ services:
       PHP_UPLOAD_MAX_FILESIZE: 10M
       PHP_POST_MAX_SIZE: 10M
 
+  wellmed_pgbouncer_staging:
+    image: pgbouncer/pgbouncer:latest
+    container_name: wellmed-pgbouncer-staging
+    ports:
+      - "6432:6432"
+    volumes:
+      - ./docker/pgbouncer/staging/pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini:ro
+      - ./docker/pgbouncer/shared:/etc/pgbouncer/shared:ro
+    secrets:
+      - pgbouncer_userlist_staging
+    networks:
+      - wellmed-core
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "psql -h localhost -p 6432 -U postgres -d pgbouncer -c 'SHOW POOLS;' || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '1.0'
+
+secrets:
+  pgbouncer_userlist_staging:
+    file: ./docker/pgbouncer/staging/userlist.txt
+
 networks:
   wellmed-core:
     driver: bridge

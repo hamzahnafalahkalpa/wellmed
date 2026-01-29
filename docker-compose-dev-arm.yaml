@@ -1,11 +1,12 @@
 services:
   wellmed:
     container_name: wellmed-backbone
-    image: wellmed-backbone
+    image: wellmed-backbone-arm
     build:
       context: .
-      dockerfile: ./docker/common/Dockerfile-backbone-dev
-      target: production
+      dockerfile: ./docker-arm/app/Dockerfile
+      target: development
+      platform: linux/arm64
     ports:
       - "${WELLMED_BACKBONE_PORT:-9000}:${WELLMED_BACKBONE_PORT:-9000}"
     volumes:
@@ -14,13 +15,18 @@ services:
       - ./features:/app/features
       - ./config:/app/config
       - ./public:/app/public
+      - ./bootstrap/app.php:/app/bootstrap/app.php
       - ./database:/app/database
       - ./projects/wellmed-backbone:/app/projects/wellmed-backbone
       - ./projects/wellmed-gateway:/app/projects/wellmed-gateway
       - ./routes/api-backbone.php:/app/routes/api.php
       - ./composer_backbone.json:/app/composer.json
       - ./.env.backbone:/app/.env
+      - ./docker/conf.d/upload.ini:/usr/local/etc/php/conf.d/upload.ini
       - wellmed_backbone_storage:/app/storage
+      - ./node_modules:/app/node_modules
+      - ./package.json:/app/package.json
+      - ./package-lock.json:/app/package-lock.json
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
@@ -29,24 +35,23 @@ services:
     networks:
       - wellmed-core
     entrypoint: ["/usr/local/bin/entrypoint.backbone.sh"]
-    depends_on:
-      - wellmed_redis
-      - wellmed_rabbitmq
     env_file:
       - .env.backbone
     environment:
-      APP_ENV: production
+      APP_ENV: development
       PHP_INI_SCAN_DIR: /usr/local/etc/php/conf.d
-      PHP_UPLOAD_MAX_FILESIZE: 10M
-      PHP_POST_MAX_SIZE: 10M
+      PHP_UPLOAD_MAX_FILESIZE: 100M
+      PHP_POST_MAX_SIZE: 100M
+      PHP_MEMORY_LIMIT: -1
 
   wellmed_listener:
     container_name: wellmed-listener
-    image: wellmed-backbone
+    image: wellmed-backbone-arm
     build:
       context: .
-      dockerfile: ./docker/common/Dockerfile-backbone-dev
-      target: production
+      dockerfile: ./docker-arm/app/Dockerfile
+      target: development
+      platform: linux/arm64
     volumes:
       - ./repositories:/app/repositories
       - ./app:/app/app
@@ -70,12 +75,10 @@ services:
     entrypoint: ["/usr/local/bin/entrypoint.worker.sh"]     # <— WORKER MODE
     depends_on:
       - wellmed
-      - wellmed_redis
-      - wellmed_rabbitmq
     env_file:
       - .env.backbone
     environment:
-      APP_ENV: production
+      APP_ENV: development
 
   wellmed_hq:
     container_name: wellmed-hq
@@ -83,7 +86,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/common/Dockerfile-hq
-      target: production
+      target: development
     ports:
       - "${WELLMED_HQ_PORT:-9001}:${WELLMED_HQ_PORT:-9001}"
     volumes:
@@ -107,69 +110,31 @@ services:
     networks:
       - wellmed-core
     entrypoint: ["/usr/local/bin/entrypoint.hq.sh"]
-    depends_on:
-      - wellmed_redis
-      - wellmed_rabbitmq
     env_file:
       - .env.hq
     environment:
-      APP_ENV: production
+      APP_ENV: development
       PHP_INI_SCAN_DIR: /usr/local/etc/php/conf.d
       PHP_UPLOAD_MAX_FILESIZE: 10M
       PHP_POST_MAX_SIZE: 10M
 
-  wellmed_rabbitmq:
-    image: rabbitmq:3-management
-    container_name: rabbitmq
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    environment:
-      RABBITMQ_DEFAULT_USER: admin
-      RABBITMQ_DEFAULT_PASS: admin
-    volumes:
-      - wellmed_rabbitmq_data:/var/lib/rabbitmq
-    networks:
-      - wellmed-core
-
-  wellmed_redis:
-    image: redis:7
-    container_name: wellmed-redis
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-    networks:
-      - wellmed-core
-
-  wellmed_pgbouncer_prod:
-    image: pgbouncer/pgbouncer:latest
-    container_name: wellmed-pgbouncer-prod
+  wellmed_pgbouncer:
+    container_name: wellmed-pgbouncer-arm
+    image: wellmed-pgbouncer-arm
+    build:
+      context: .
+      dockerfile: ./docker-arm/database/Dockerfile
+      platform: linux/arm64
     ports:
       - "6432:6432"
-    volumes:
-      - ./docker/pgbouncer/production/pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini:ro
-      - ./docker/pgbouncer/production/rds-ca-bundle.pem:/etc/pgbouncer/rds-ca-bundle.pem:ro
-      - ./docker/pgbouncer/shared:/etc/pgbouncer/shared:ro
-    secrets:
-      - pgbouncer_userlist
     networks:
       - wellmed-core
-    restart: always
+    restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "psql -h localhost -p 6432 -U postgres -d pgbouncer -c 'SHOW POOLS;' || exit 1"]
       interval: 30s
       timeout: 10s
-      retries: 5
-    deploy:
-      resources:
-        limits:
-          memory: 768M
-          cpus: '1.5'
-
-secrets:
-  pgbouncer_userlist:
-    file: ./docker/pgbouncer/production/userlist.txt
+      retries: 3
 
 networks:
   wellmed-core:
@@ -179,5 +144,3 @@ volumes:
   wellmed_backbone_storage:
   wellmed_backbone_listener:
   wellmed_hq_storage:
-  redis_data:
-  wellmed_rabbitmq_data:

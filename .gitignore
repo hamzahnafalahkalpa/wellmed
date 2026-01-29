@@ -8,7 +8,7 @@
 /storage/pail
 /vendor
 .env
-.env.*
+.env*
 !.env.example
 .phpactor.json
 .phpunit.result.cache
@@ -31,3 +31,7 @@ package
 tenants
 package
 wellmed-27c3f-firebase-adminsdk-fbsvc-062288c27f.json
+# PgBouncer sensitive files
+docker/pgbouncer/production/userlist.txt
+docker/pgbouncer/production/rds-ca-bundle.pem
+docker/pgbouncer/staging/userlist.txt

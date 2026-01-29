@@ -9,7 +9,7 @@
     "require": {
         "php": "^8.4",
         "projects/hq": "dev-main",
-        "elasticsearch/elasticsearch": "^9.2",
+        "elasticsearch/elasticsearch": "^8.19",
         "league/flysystem-aws-s3-v3": "^3.30",
         "hanafalah/microtenant": "dev-main",
         "kreait/laravel-firebase": "^6.0",

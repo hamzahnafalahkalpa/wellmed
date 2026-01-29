@@ -1,0 +1,22 @@
+# PgBouncer User List for Production Environment
+# Format: "username" "password_hash"
+# Generate hash with: echo -n "passwordUSERNAME" | md5sum
+# Then prepend "md5" to the hash
+
+# Example:
+# "postgres" "md5XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+# "app_user" "md5XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+# CRITICAL SECURITY:
+# 1. Copy this file to userlist.txt (without .example)
+# 2. Replace with actual production credentials
+# 3. Use strong, unique passwords (minimum 20 characters)
+# 4. Ensure userlist.txt is NOT committed to git (.gitignore)
+# 5. Set permissions: chmod 600 userlist.txt
+# 6. Consider using Docker secrets or AWS Secrets Manager
+
+# Generate MD5 hash example:
+# For user "postgres" with password "MySecurePassword123":
+# echo -n "MySecurePassword123postgres" | md5sum
+# Output: a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6
+# Then add "md5" prefix: md5a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6
