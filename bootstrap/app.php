@@ -1,11 +1,11 @@
 <?php
 
-use App\Middlewares\EncodingWrapper;
 use Hanafalah\LaravelSupport\Response;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Hanafalah\LaravelSupport\Middlewares\LaravelSupportResponse;
 use Illuminate\Foundation\Configuration\Middleware;
+use Sentry\Laravel\Integration;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -21,6 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
     })
     ->withExceptions(function (Exceptions $exceptions) {
+        Integration::handles($exceptions);
         if (app()->isBooted()) {
             (new Response)->exceptionRespond($exceptions);
         }

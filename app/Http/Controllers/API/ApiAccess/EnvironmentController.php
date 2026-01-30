@@ -19,23 +19,24 @@ class EnvironmentController extends ApiController{
      */
     protected function generateToken(){
         $token = ApiAccess::generateToken(function($api_access){
-            $this->__user = $api_access->getUser();
+            $this->__user = auth()->user();
             $this->__user = $this->UserModel()->findOrFail($this->__user->getKey());
         });
         return $token;
     }
     
     protected function getUser(){        
-        $this->__user->load([
-            'userReference'=>function($query){
-                $query->with([
-                    'roles',
-                    'tenant'   => function($query){
-                        $query->with(['domain','reference']);
-                    }
-                ]);
-            }
-        ]);
+        $this->__user->userReference->load('roles');
+        // $this->__user->load([
+        //     'userReference'=>function($query){
+        //         $query->with([
+        //             'roles',
+        //             'tenant'   => function($query){
+        //                 $query->with(['domain','reference']);
+        //             }
+        //         ]);
+        //     }
+        // ]);
         if (isset($this->__user->userReference)){
             $user_reference = &$this->__user->userReference;
             if (!isset($user_reference->role)){

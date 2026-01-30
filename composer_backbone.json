@@ -26,6 +26,7 @@
         "php-amqplib/php-amqplib": "^3.7",
         "predis/predis": "^3.0",
         "projects/wellmed-backbone": "dev-main",
+        "sentry/sentry-laravel": "^4.20",
         "vladimir-yuldashev/laravel-queue-rabbitmq": "^14.4"
     },
     "require-dev": {

@@ -19,18 +19,24 @@ class ApiAccessController extends EnvironmentController
     public function store(StoreRequest $request)
     {
         $token = $this->generateToken();
-
         if (isset($token) && $request->headers->has('AppCode')) {
+            $this->__user->load([
+                'userReference.tenant' => function($query){
+                    $query->with(['domain','reference']);
+                }
+            ]);
             if (config('octane') !== null) {
-                MicroTenant::accessOnLogin($token);
+                $tenant = $this->__user->userReference->tenant;
+                MicroTenant::tenantImpersonate($tenant);
+                // MicroTenant::accessOnLogin($token);
             } else {
                 ApiAccess::init($token)->accessOnLogin(function ($api_access) {
                     MicroTenant::onLogin($api_access);
                 });
             }
         }
-        // Jika mau return token
         $user = $this->getUser();
+        // Jika mau return token
         $user->token = $token;
         return (new GenerateTokenResponse($user))->resolve();
     }

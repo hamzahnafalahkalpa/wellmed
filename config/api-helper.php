@@ -17,7 +17,6 @@ return [
     'routes' => [
         'prefix' => 'api'
     ],
-
     'middlewares' => [
         // Middlewares\ApiAccess::class,
         \App\Middlewares\ApiAccess::class,
@@ -38,7 +37,7 @@ return [
         'keys'      => ['username'],
         'password'  => 'password'
     ],
-
+    'single_login' => true,
     'expiration' => 99999999999999,
     // 'expiration' => 3*60,
 

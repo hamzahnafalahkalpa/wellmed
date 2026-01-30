@@ -33,6 +33,9 @@ class FlushTenantState
 
         // 5. Clear any tenant-specific cached data
         $this->clearTenantCache();
+
+        // 6. Clear api-helper request-scoped state
+        $this->clearApiHelperState();
     }
 
     /**
@@ -62,5 +65,44 @@ class FlushTenantState
     {
         // Clear any tenant-specific cache tags if you're using them
         // Example: Cache::tags(['tenant_' . $tenantId])->flush();
+    }
+
+    /**
+     * Clear api-helper request-scoped state
+     * This prevents API access data from leaking between requests
+     */
+    protected function clearApiHelperState(): void
+    {
+        // Clear static properties in api-helper that are request-scoped
+        // These use reflection to reset static properties without causing errors
+
+        $classesToFlush = [
+            \Hanafalah\ApiHelper\Supports\BaseApiAccess::class,
+        ];
+
+        foreach ($classesToFlush as $class) {
+            if (class_exists($class)) {
+                try {
+                    $reflection = new \ReflectionClass($class);
+                    $properties = $reflection->getProperties(\ReflectionProperty::IS_STATIC);
+
+                    foreach ($properties as $property) {
+                        $property->setAccessible(true);
+                        $propertyName = $property->getName();
+
+                        // Reset specific properties to their default values
+                        if (in_array($propertyName, ['__api_access', '__generated_token'])) {
+                            if ($propertyName === '__generated_token') {
+                                $property->setValue(null, ['token' => null, 'expires_at' => null]);
+                            } else {
+                                $property->setValue(null, null);
+                            }
+                        }
+                    }
+                } catch (\ReflectionException $e) {
+                    // Class doesn't exist or couldn't be reflected, skip
+                }
+            }
+        }
     }
 }
