@@ -33,7 +33,7 @@ Each application has its own:
 
 **Multi-Tenancy:**
 - Uses `hanafalah/microtenant` package for tenant isolation
-- Each tenant has a separate database (e.g., `clinic_4`, `clinic_5`)
+- Hybrid architecture with both separate databases AND schemas (see detailed section below)
 - Tenant context is determined per-request and must be properly isolated in Octane
 - Critical: Tenant state MUST be flushed between requests to prevent data leakage (see Octane section)
 
@@ -42,6 +42,100 @@ Each application has its own:
 - PgBouncer for connection pooling (port 6432 exposed, connects to PostgreSQL internally)
 - Redis for caching and sessions
 - RabbitMQ for queue management
+
+### Multi-Tenant Database Architecture (CRITICAL)
+
+Wellmed uses a **hybrid multi-tenant architecture** that combines both separate databases and schemas within databases. Understanding this is critical for proper tenant isolation and avoiding "Database does not exist" errors.
+
+#### Database Structure
+
+**1. Core Database: `wellmed`**
+- Contains central data: users, tenants table, central configuration
+- Contains **schemas** for APP-level and CENTRAL_TENANT-level tenants:
+  - `app_2` - Wellmed Lite APP (schema within wellmed database)
+  - `hq_1` - HQ APP (schema within wellmed database)
+  - `group_3` - CENTRAL_TENANT (schema within wellmed database)
+  - `public` - Default PostgreSQL schema
+
+**2. Tenant Databases: `clinic_4`, `clinic_5`, etc.**
+- **Separate PostgreSQL databases** for each TENANT-level tenant
+- Each tenant database contains multiple schemas for yearly data partitioning:
+  - `emr_2026` - Electronic Medical Records for 2026
+  - `pos_2026` - Point of Sale for 2026
+  - `scm_2026` - Supply Chain Management for 2026
+  - `public` - Default schema
+- This allows for efficient data archiving and performance optimization
+
+#### Tenant Hierarchy and Database Assignment
+
+```
+Tenant ID 1: "Hq" (flag='APP')
+  └─> Uses schema 'hq_1' in 'wellmed' database
+
+Tenant ID 2: "Wellmed Lite" (flag='APP')
+  └─> Uses schema 'app_2' in 'wellmed' database
+      └─> Tenant ID 3: "Wellmed Lite" (flag='CENTRAL_TENANT', parent=2)
+          └─> Uses schema 'group_3' in 'wellmed' database
+              └─> Tenant ID 4: "Tenant Wellmed Lite" (flag='TENANT', parent=3)
+                  └─> Uses separate database 'clinic_4' with schemas (emr_2026, pos_2026, etc.)
+```
+
+#### Database Naming Convention
+
+Configured in `config/micro-tenant.php`:
+- **APP tenants**: `app_tenant_` prefix + tenant_id → `app_2`
+- **CENTRAL_TENANT**: `group_` prefix + tenant_id → `group_3`
+- **TENANT**: `clinic_` prefix + tenant_id → `clinic_4`
+
+#### Critical Implementation Detail: PostgreSQLSchemaManager
+
+The `repositories/klinik-starterpack/src/Database/Manager/PostgreSQLSchemaManager.php` file manages database/schema creation and existence checks.
+
+**IMPORTANT:** The `databaseExists()` method MUST check BOTH:
+1. `pg_database` catalog (for separate TENANT databases like `clinic_4`)
+2. `information_schema.schemata` (for APP/CENTRAL_TENANT schemas like `app_2`, `group_3`)
+
+**Common Bug:** If `databaseExists()` only checks schemas, it will fail to find TENANT-level databases and throw "Database clinic_X does not exist" errors during sign-in.
+
+**Correct Implementation:**
+```php
+public function databaseExists(string $name): bool
+{
+    // Check if it's a database first (for TENANT-level tenants)
+    $databaseExists = (bool) $this->database()->select("SELECT datname FROM pg_database WHERE datname = '$name'");
+
+    if ($databaseExists) {
+        return true;
+    }
+
+    // If not a database, check if it's a schema (for APP/CENTRAL_TENANT)
+    return (bool) $this->database()->select("SELECT schema_name FROM information_schema.schemata WHERE schema_name = '$name'");
+}
+```
+
+#### Cluster Schemas for Yearly Partitioning
+
+Within each tenant database (e.g., `clinic_4`), yearly schemas are created dynamically:
+- Configuration in `config/database.php` defines clusters
+- Each cluster has a `search_path` (schema name) based on the year
+- Jobs can generate cluster schemas asynchronously
+- This allows historical data to be partitioned by year for better performance
+
+#### PgBouncer Configuration
+
+PgBouncer (`docker/pgbouncer/local/pgbouncer.ini`) is configured to handle both:
+- Explicit database routing (e.g., `wellmed`, `clinic_4`)
+- Wildcard routing (`*`) for dynamic tenant databases
+- Transaction pooling mode for search_path switching within sessions
+
+**Wildcard configuration:**
+```ini
+[databases]
+wellmed = host=host.docker.internal port=5432 dbname=wellmed
+* = host=host.docker.internal port=5432
+```
+
+This allows PgBouncer to route connections to any tenant database without explicit configuration.
 
 ## Common Development Commands
 
