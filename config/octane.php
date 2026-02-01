@@ -155,8 +155,8 @@ return [
 
     'flush' => [
         // CRITICAL: Flush these services to prevent tenant state leakage
-        // Hanafalah\MicroTenant\MicroTenant::class,
-        // Stancl\Tenancy\Tenancy::class,
+        Hanafalah\MicroTenant\MicroTenant::class,
+        Stancl\Tenancy\Tenancy::class,
         // Illuminate\Foundation\Console\Kernel::class,
         // Hanafalah\KlinikStarterpack\Database\Manager\PostgreSQLSchemaManager::class,
         // Spatie\MediaLibrary\MediaCollections\Filesystem::class,
