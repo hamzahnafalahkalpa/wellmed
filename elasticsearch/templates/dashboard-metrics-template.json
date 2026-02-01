@@ -1,0 +1,246 @@
+{
+  "index_patterns": ["dashboard-metrics-*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 3,
+      "number_of_replicas": 1,
+      "index.refresh_interval": "5s",
+      "analysis": {
+        "analyzer": {
+          "dashboard_analyzer": {
+            "type": "standard",
+            "stopwords": "_none_"
+          }
+        }
+      }
+    },
+    "mappings": {
+      "properties": {
+        "tenant_id": {
+          "type": "keyword"
+        },
+        "workspace_id": {
+          "type": "keyword"
+        },
+        "period_type": {
+          "type": "keyword",
+          "fields": {
+            "text": {
+              "type": "text"
+            }
+          }
+        },
+        "timestamp": {
+          "type": "date",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "date": {
+          "type": "date",
+          "format": "strict_date"
+        },
+        "year": {
+          "type": "integer"
+        },
+        "month": {
+          "type": "integer"
+        },
+        "day": {
+          "type": "integer"
+        },
+        "statistics": {
+          "properties": {
+            "patients": {
+              "properties": {
+                "count": {
+                  "type": "integer"
+                },
+                "change": {
+                  "type": "integer"
+                },
+                "change_type": {
+                  "type": "keyword"
+                },
+                "percentage_change": {
+                  "type": "float"
+                }
+              }
+            },
+            "new_patients": {
+              "properties": {
+                "count": {
+                  "type": "integer"
+                },
+                "change": {
+                  "type": "integer"
+                },
+                "change_type": {
+                  "type": "keyword"
+                },
+                "percentage_change": {
+                  "type": "float"
+                }
+              }
+            },
+            "revenue": {
+              "properties": {
+                "count": {
+                  "type": "long"
+                },
+                "change": {
+                  "type": "long"
+                },
+                "change_type": {
+                  "type": "keyword"
+                },
+                "percentage_change": {
+                  "type": "float"
+                }
+              }
+            },
+            "unfinished": {
+              "properties": {
+                "count": {
+                  "type": "integer"
+                },
+                "change": {
+                  "type": "integer"
+                },
+                "change_type": {
+                  "type": "keyword"
+                },
+                "percentage_change": {
+                  "type": "float"
+                }
+              }
+            }
+          }
+        },
+        "motivational_stats": {
+          "properties": {
+            "today": {
+              "type": "integer"
+            },
+            "yesterday": {
+              "type": "integer"
+            },
+            "target": {
+              "type": "integer"
+            },
+            "percentage": {
+              "type": "float"
+            }
+          }
+        },
+        "pending_items": {
+          "properties": {
+            "unsigned_visits": {
+              "type": "integer"
+            },
+            "unsynced_patients": {
+              "type": "integer"
+            },
+            "incomplete_diagnosis": {
+              "type": "integer"
+            }
+          }
+        },
+        "queue_services": {
+          "type": "nested",
+          "properties": {
+            "service_id": {
+              "type": "keyword"
+            },
+            "service_name": {
+              "type": "keyword",
+              "fields": {
+                "text": {
+                  "type": "text"
+                }
+              }
+            },
+            "current_queue": {
+              "type": "integer"
+            },
+            "waiting": {
+              "type": "integer"
+            },
+            "serving": {
+              "type": "integer"
+            }
+          }
+        },
+        "diagnosis_treatment": {
+          "type": "nested",
+          "properties": {
+            "patient_id": {
+              "type": "keyword"
+            },
+            "patient_name": {
+              "type": "keyword",
+              "fields": {
+                "text": {
+                  "type": "text"
+                }
+              }
+            },
+            "code": {
+              "type": "keyword"
+            },
+            "type": {
+              "type": "keyword"
+            },
+            "description": {
+              "type": "text",
+              "analyzer": "dashboard_analyzer"
+            },
+            "poli": {
+              "type": "keyword"
+            },
+            "doctor_id": {
+              "type": "keyword"
+            },
+            "doctor_name": {
+              "type": "keyword"
+            }
+          }
+        },
+        "aggregation_period": {
+          "properties": {
+            "start_date": {
+              "type": "date"
+            },
+            "end_date": {
+              "type": "date"
+            },
+            "label": {
+              "type": "keyword"
+            }
+          }
+        },
+        "metadata": {
+          "properties": {
+            "created_at": {
+              "type": "date"
+            },
+            "updated_at": {
+              "type": "date"
+            },
+            "created_by": {
+              "type": "keyword"
+            },
+            "version": {
+              "type": "keyword"
+            }
+          }
+        }
+      }
+    }
+  },
+  "version": 1,
+  "priority": 100,
+  "_meta": {
+    "description": "Dashboard metrics template for daily, monthly, and yearly aggregations",
+    "created_by": "Wellmed System",
+    "created_at": "2026-01-31"
+  }
+}

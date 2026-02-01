@@ -18,7 +18,6 @@ return Application::configure(basePath: dirname(__DIR__))
         // $middleware->encryptCookies(except: ['appearance', 'sidebar_state']);
         $middleware->prepend(LaravelSupportResponse::class);
         $middleware->group('universal', []);
-
     })
     ->withExceptions(function (Exceptions $exceptions) {
         Integration::handles($exceptions);

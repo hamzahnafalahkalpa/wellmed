@@ -1,0 +1,238 @@
+<script setup lang="ts">
+const value = ref()
+
+const filterOptions = ref([
+    { label: 'Today', value: 'today' },
+    { label: 'This Week', value: 'this-week' },
+    { label: 'This Month', value: 'this-month' },
+])
+const filter = ref('this-month')
+
+// Motivational Statistics - Booking Comparison
+const motivationalStats = ref({
+    today: 40,
+    yesterday: 38
+})
+
+// Computed motivational message based on progress
+const motivationalMessage = computed(() => {
+    const current = motivationalStats.value.today
+    const target = motivationalStats.value.yesterday
+    const remaining = target - current
+    const percentage = (current / target) * 100
+
+    if (current >= target) {
+        return {
+            icon: 'mdi:trophy-variant',
+            message: 'Luar biasa! Target tercapai!',
+            subMessage: 'Pertahankan performa hebat ini! 🎉'
+        }
+    } else if (percentage >= 90) {
+        return {
+            icon: 'mdi:rocket-launch',
+            message: `Hampir sampai! Tinggal ${remaining} pasien lagi!`,
+            subMessage: 'Sedikit lagi mencapai target! 💪'
+        }
+    } else if (percentage >= 75) {
+        return {
+            icon: 'mdi:fire',
+            message: `Semangat! ${remaining} pasien lagi ke target!`,
+            subMessage: 'Kamu bisa mencapainya! 🔥'
+        }
+    } else if (percentage >= 50) {
+        return {
+            icon: 'mdi:chart-line',
+            message: `Ayo! Masih ${remaining} pasien ke ${target}`,
+            subMessage: 'Terus tingkatkan! 📈'
+        }
+    } else {
+        return {
+            icon: 'mdi:arm-flex',
+            message: `Ayo semangat! ${remaining} pasien lagi!`,
+            subMessage: 'Setiap pasien membawa kita lebih dekat! 💙'
+        }
+    }
+})
+
+const progressPercentage = computed(() => {
+    return Math.min((motivationalStats.value.today / motivationalStats.value.yesterday) * 100, 100)
+})
+
+// Statistics data
+const stats = ref([
+    {
+        id: 'patients',
+        label: 'Jumlah Pasien',
+        count: 18,
+        change: 4,
+        changeType: 'increase',
+        changeLabel: 'Dari kemarin',
+        icon: 'mdi:account-group',
+        color: 'blue',
+        gradient: 'from-blue-500 to-cyan-400',
+        bgLight: 'bg-blue-50',
+        textColor: 'text-blue-600',
+        borderColor: 'border-blue-200'
+    },
+    {
+        id: 'new-patients',
+        label: 'Pasien Baru',
+        count: 4,
+        change: 1,
+        changeType: 'increase',
+        changeLabel: 'Dari kemarin',
+        icon: 'mdi:account-plus',
+        color: 'purple',
+        gradient: 'from-purple-500 to-pink-400',
+        bgLight: 'bg-purple-50',
+        textColor: 'text-purple-600',
+        borderColor: 'border-purple-200'
+    },
+    {
+        id: 'revenue',
+        label: 'Omzet',
+        count: 21250000,
+        change: 250000,
+        changeType: 'increase',
+        changeLabel: 'Dari kemarin',
+        icon: 'mdi:cash-multiple',
+        color: 'emerald',
+        gradient: 'from-emerald-500 to-teal-400',
+        bgLight: 'bg-emerald-50',
+        textColor: 'text-emerald-600',
+        borderColor: 'border-emerald-200',
+        isCurrency: true
+    },
+    {
+        id: 'unfinished',
+        label: 'Tindakan Dipesankan',
+        count: 31,
+        change: 8,
+        changeType: 'increase',
+        changeLabel: 'Dari kemarin',
+        icon: 'mdi:clipboard-list',
+        color: 'orange',
+        gradient: 'from-orange-500 to-amber-400',
+        bgLight: 'bg-orange-50',
+        textColor: 'text-orange-600',
+        borderColor: 'border-orange-200'
+    }
+])
+
+// Pending items
+const pendingItems = ref([
+    { label: '4 unsigned visits', icon: 'mdi:file-document-edit-outline', color: 'text-orange-600', link: '/patient-emr/unsigned-visits' },
+    { label: '9 patients unsynced to Satu Sehat', icon: 'mdi:sync-alert', color: 'text-red-600', link: '/satu-sehat/dashboard' },
+    { label: '11 visits without ICD diagnosis', icon: 'mdi:alert-circle', color: 'text-amber-600', link: '/patient-emr/incomplete-diagnosis' },
+])
+
+// Queue Service Data - Antrian Layanan
+const queueServices = ref([
+    {
+        id: 1,
+        service: 'Poli Umum',
+        currentQueue: 12,
+        waiting: 8,
+        serving: 4,
+        icon: 'mdi:stethoscope',
+        color: 'blue',
+        bgColor: 'bg-blue-50',
+        textColor: 'text-blue-600',
+        borderColor: 'border-blue-200'
+    },
+    // {
+    //     id: 2,
+    //     service: 'Poli Gigi',
+    //     currentQueue: 5,
+    //     waiting: 3,
+    //     serving: 2,
+    //     icon: 'mdi:tooth',
+    //     color: 'cyan',
+    //     bgColor: 'bg-cyan-50',
+    //     textColor: 'text-cyan-600',
+    //     borderColor: 'border-cyan-200'
+    // },
+    // {
+    //     id: 3,
+    //     service: 'Laboratorium',
+    //     currentQueue: 8,
+    //     waiting: 6,
+    //     serving: 2,
+    //     icon: 'mdi:flask',
+    //     color: 'purple',
+    //     bgColor: 'bg-purple-50',
+    //     textColor: 'text-purple-600',
+    //     borderColor: 'border-purple-200'
+    // },
+    // {
+    //     id: 4,
+    //     service: 'Radiologi',
+    //     currentQueue: 3,
+    //     waiting: 2,
+    //     serving: 1,
+    //     icon: 'mdi:image-multiple',
+    //     color: 'indigo',
+    //     bgColor: 'bg-indigo-50',
+    //     textColor: 'text-indigo-600',
+    //     borderColor: 'border-indigo-200'
+    // }
+])
+
+// Diagnosis/Treatment Data with Filters
+const diagnosisFilters = ref([
+    { label: 'Semua', value: 'all' },
+    { label: 'Diagnosa', value: 'diagnosis' },
+    { label: 'Tindakan', value: 'treatment' }
+])
+const selectedDiagnosisFilter = ref('all')
+
+const diagnosisTreatmentData = ref([
+    {
+        patient: 'Budi Santoso',
+        code: 'A09',
+        type: 'Diagnosa',
+        description: 'Gastroenteritis',
+        poli: 'Poli Umum',
+        date: '2024-12-29',
+        doctor: 'Dr. Ahmad'
+    },
+    {
+        patient: 'Siti Nurhaliza',
+        code: 'J00',
+        type: 'Diagnosa',
+        description: 'ISPA',
+        poli: 'Poli Umum',
+        date: '2024-12-29',
+        doctor: 'Dr. Sari'
+    },
+    {
+        patient: 'Andi Wijaya',
+        code: 'T-001',
+        type: 'Tindakan',
+        description: 'Pencabutan Gigi',
+        poli: 'Poli Gigi',
+        date: '2024-12-29',
+        doctor: 'Dr. Dewi'
+    },
+    {
+        patient: 'Rina Kusuma',
+        code: 'E11',
+        type: 'Diagnosa',
+        description: 'Diabetes Mellitus',
+        poli: 'Poli Umum',
+        date: '2024-12-29',
+        doctor: 'Dr. Ahmad'
+    },
+    {
+        patient: 'Joko Susilo',
+        code: 'T-002',
+        type: 'Tindakan',
+        description: 'Rontgen Dada',
+        poli: 'Radiologi',
+        date: '2024-12-29',
+        doctor: 'Dr. Putri'
+    }
+])
+
+
+</script>
