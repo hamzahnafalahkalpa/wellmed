@@ -1,0 +1,1195 @@
+{
+    "data": {
+        "id": "01kgefe1964rcptdgzdvfda885",
+        "visit_registration_code": "",
+        "medic_service": {
+            "id": "01kfz3nfqekk6qsa0pdb4qaret",
+            "name": "Umum",
+            "flag": "MedicService",
+            "label": "UMUM"
+        },
+        "visit_patient_type": "VisitPatient",
+        "visit_patient": {
+            "id": "01kgefe12eepr2eq9kpbe6gn31",
+            "visit_code": "",
+            "reservation_id": null,
+            "queue_number": null,
+            "flag": "VisitPatient",
+            "visited_at": "2026-02-02T06:07:56.000000Z",
+            "reported_at": null,
+            "patient_type_service_id": "01kfz3nfecfe80vefjqzk901rr",
+            "patient_type_service": {
+                "id": "01kfz3nfecfe80vefjqzk901rr",
+                "parent_id": null,
+                "name": "Umum",
+                "flag": "PatientTypeService",
+                "label": "UMUM",
+                "service": null,
+                "created_at": "2026-01-27 06:53:41",
+                "updated_at": "2026-01-27 06:53:41"
+            },
+            "referral": null,
+            "transaction": {
+                "id": "01kgefe134a95svd70eraz6wy2",
+                "uuid": "a0fb507d-b772-47f5-9f58-c8eba0508d4c",
+                "transaction_code": "",
+                "consument_id": "01kg1k7mvns09jqwt3pjg1xtzj",
+                "reference_type": "VisitPatient",
+                "reference": null,
+                "payment_summary": null,
+                "created_at": "2026-02-02 06:07:56",
+                "updated_at": "2026-02-02 06:07:56",
+                "consument": {
+                    "id": "01kg1k7mvbve8hg5anyn54w0ac",
+                    "uuid": "a0f1403e-9619-4fbb-ac8c-f29c373e1b08",
+                    "name": "Hamz Zah",
+                    "medical_record": null,
+                    "profile": "https://wellmed-dev.s3.ap-southeast-1.amazonaws.com/profiles/a0f1420e-72cd-4b7d-9aff-d1acabdf3425.jpeg",
+                    "patient_type_id": "01kfz3nf4m8zwfcevjt4km11dt",
+                    "patient_type": {
+                        "id": "01kfz3nf4m8zwfcevjt4km11dt",
+                        "name": "Umum",
+                        "flag": "PatientType",
+                        "label": "UMUM"
+                    },
+                    "people": {
+                        "id": "01kg1tkrqy8befpbnj5w8ps732",
+                        "uuid": "a0f16e5c-af7d-4d9f-9385-4a45b012371b",
+                        "name": "Hamz Zah",
+                        "first_name": "Hamz",
+                        "last_name": "Zah",
+                        "dob": "2020-07-07",
+                        "pob": "Bandung",
+                        "age": 5,
+                        "sex": "Male",
+                        "card_identity": {
+                            "nik": "3601328981231238",
+                            "sim": null,
+                            "passport": null,
+                            "visa": null,
+                            "kk": null,
+                            "npwp": null
+                        },
+                        "phone_1": "324238478327483",
+                        "phone_2": null
+                    },
+                    "card_identity": {
+                        "medical_record": null,
+                        "old_medical_record": null,
+                        "ihs_number": "P20395541001",
+                        "bpjs": null
+                    },
+                    "payer_id": null,
+                    "payer": null,
+                    "consument": null,
+                    "integration": {
+                        "satu_sehat": {
+                            "flag": null,
+                            "label": null,
+                            "progress": 0,
+                            "last_updated_at": "2026-01-28 06:04:14",
+                            "from": 0,
+                            "to": 0,
+                            "syncs": [
+                                {
+                                    "flag": "encounter",
+                                    "label": "Kunjungan",
+                                    "progress": 0,
+                                    "last_updated_at": "2026-01-28 06:04:14",
+                                    "from": 0,
+                                    "to": 0,
+                                    "syncs": []
+                                },
+                                {
+                                    "flag": "dispense",
+                                    "label": "Resep",
+                                    "progress": 0,
+                                    "last_updated_at": "2026-01-28 06:04:14",
+                                    "from": 0,
+                                    "to": 0,
+                                    "syncs": []
+                                },
+                                {
+                                    "flag": "condition",
+                                    "label": "Diagnosa",
+                                    "progress": 0,
+                                    "last_updated_at": "2026-01-28 06:04:14",
+                                    "from": 0,
+                                    "to": 0,
+                                    "syncs": []
+                                }
+                            ]
+                        },
+                        "bpjs": {
+                            "flag": null,
+                            "label": null,
+                            "progress": 0,
+                            "last_updated_at": "2026-01-28 06:04:14",
+                            "from": 0,
+                            "to": 0,
+                            "syncs": [
+                                {
+                                    "flag": "encounter",
+                                    "label": "Kunjungan",
+                                    "progress": 0,
+                                    "last_updated_at": "2026-01-28 06:04:14",
+                                    "from": 0,
+                                    "to": 0,
+                                    "syncs": []
+                                },
+                                {
+                                    "flag": "dispense",
+                                    "label": "Resep",
+                                    "progress": 0,
+                                    "last_updated_at": "2026-01-28 06:04:14",
+                                    "from": 0,
+                                    "to": 0,
+                                    "syncs": []
+                                },
+                                {
+                                    "flag": "condition",
+                                    "label": "Diagnosa",
+                                    "progress": 0,
+                                    "last_updated_at": "2026-01-28 06:04:14",
+                                    "from": 0,
+                                    "to": 0,
+                                    "syncs": []
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "reference": null,
+            "practitioner_evaluation": null,
+            "status": "ACTIVE",
+            "payer_id": null,
+            "payer": null,
+            "agent_id": null,
+            "agent": null,
+            "organization": null,
+            "visit_registration": null,
+            "services": [],
+            "patient": {
+                "id": "01kg1k7mvbve8hg5anyn54w0ac",
+                "uuid": "a0f1403e-9619-4fbb-ac8c-f29c373e1b08",
+                "name": "Hamz Zah",
+                "medical_record": null,
+                "profile": "https://wellmed-dev.s3.ap-southeast-1.amazonaws.com/profiles/a0f1420e-72cd-4b7d-9aff-d1acabdf3425.jpeg",
+                "patient_type_id": "01kfz3nf4m8zwfcevjt4km11dt",
+                "patient_type": {
+                    "id": "01kfz3nf4m8zwfcevjt4km11dt",
+                    "name": "Umum",
+                    "flag": "PatientType",
+                    "label": "UMUM"
+                },
+                "people": {
+                    "id": "01kg1k7mn15kpxn88kdcbbkxdf",
+                    "uuid": "a0f1403e-4ba0-4125-ae52-aeeaeec37d91",
+                    "name": "Hamz Zah",
+                    "first_name": "Hamz",
+                    "last_name": "Zah",
+                    "dob": "2020-07-07",
+                    "pob": "Bandung",
+                    "age": 5,
+                    "sex": "Male",
+                    "card_identity": {
+                        "nik": "3601328981231238",
+                        "sim": null,
+                        "passport": null,
+                        "visa": null,
+                        "kk": null,
+                        "npwp": null
+                    },
+                    "phone_1": "324238478327483",
+                    "phone_2": null,
+                    "profile": "http://10.100.16.70/",
+                    "blood_type": null,
+                    "last_education_id": null,
+                    "last_education": {
+                        "id": null,
+                        "name": null,
+                        "flag": null,
+                        "label": null
+                    },
+                    "religion_id": null,
+                    "religion": {
+                        "id": null,
+                        "name": null,
+                        "flag": null,
+                        "label": null
+                    },
+                    "marital_status_id": null,
+                    "marital_status": {
+                        "id": null,
+                        "name": null,
+                        "flag": null,
+                        "label": null
+                    },
+                    "total_children": null,
+                    "email": null,
+                    "father_name": null,
+                    "mother_name": null,
+                    "is_nationality": false,
+                    "nationality": true,
+                    "country": {
+                        "id": null,
+                        "name": null
+                    },
+                    "family_relationship": null,
+                    "phones": [
+                        "324238478327483"
+                    ],
+                    "address": []
+                },
+                "card_identity": {
+                    "medical_record": null,
+                    "old_medical_record": null,
+                    "ihs_number": "P20395541001",
+                    "bpjs": null
+                },
+                "payer_id": null,
+                "payer": null,
+                "consument": null,
+                "integration": {
+                    "satu_sehat": {
+                        "flag": null,
+                        "label": null,
+                        "progress": 0,
+                        "last_updated_at": "2026-01-28 06:04:14",
+                        "from": 0,
+                        "to": 0,
+                        "syncs": [
+                            {
+                                "flag": "encounter",
+                                "label": "Kunjungan",
+                                "progress": 0,
+                                "last_updated_at": "2026-01-28 06:04:14",
+                                "from": 0,
+                                "to": 0,
+                                "syncs": []
+                            },
+                            {
+                                "flag": "dispense",
+                                "label": "Resep",
+                                "progress": 0,
+                                "last_updated_at": "2026-01-28 06:04:14",
+                                "from": 0,
+                                "to": 0,
+                                "syncs": []
+                            },
+                            {
+                                "flag": "condition",
+                                "label": "Diagnosa",
+                                "progress": 0,
+                                "last_updated_at": "2026-01-28 06:04:14",
+                                "from": 0,
+                                "to": 0,
+                                "syncs": []
+                            }
+                        ]
+                    },
+                    "bpjs": {
+                        "flag": null,
+                        "label": null,
+                        "progress": 0,
+                        "last_updated_at": "2026-01-28 06:04:14",
+                        "from": 0,
+                        "to": 0,
+                        "syncs": [
+                            {
+                                "flag": "encounter",
+                                "label": "Kunjungan",
+                                "progress": 0,
+                                "last_updated_at": "2026-01-28 06:04:14",
+                                "from": 0,
+                                "to": 0,
+                                "syncs": []
+                            },
+                            {
+                                "flag": "dispense",
+                                "label": "Resep",
+                                "progress": 0,
+                                "last_updated_at": "2026-01-28 06:04:14",
+                                "from": 0,
+                                "to": 0,
+                                "syncs": []
+                            },
+                            {
+                                "flag": "condition",
+                                "label": "Diagnosa",
+                                "progress": 0,
+                                "last_updated_at": "2026-01-28 06:04:14",
+                                "from": 0,
+                                "to": 0,
+                                "syncs": []
+                            }
+                        ]
+                    }
+                },
+                "patient_occupation_id": null,
+                "patient_occupation": {
+                    "id": null,
+                    "name": null,
+                    "flag": null,
+                    "label": null
+                },
+                "patient_summary": null,
+                "visit_examination": null,
+                "patient_satu_sehat_lists": null
+            },
+            "activity": {
+                "adm_visit": {
+                    "adm_start": {
+                        "status": 1,
+                        "message": "Administrasi dibuat",
+                        "at": "2026-02-02 06:07:56"
+                    }
+                },
+                "life_cycle": [
+                    {
+                        "adm_start": {
+                            "status": 1,
+                            "message": "Administrasi dibuat",
+                            "at": "2026-02-02 06:07:56"
+                        }
+                    }
+                ]
+            },
+            "created_at": "2026-02-02T06:07:56.000000Z",
+            "updated_at": "2026-02-02T06:07:56.000000Z",
+            "visit_registrations": [],
+            "family_relationship": null,
+            "organizations": []
+        },
+        "practitioner_evaluation": {
+            "id": "01kgefe1b9g0cwc7n584arqq35",
+            "name": "admin",
+            "practitioner_id": "01kfz3p7k4y3qgsj4grmgkkenk",
+            "practitioner": {
+                "id": "01kfz3p7k4y3qgsj4grmgkkenk",
+                "name": "admin"
+            },
+            "profession_id": "01kfz3nhck2cjt98w4b8p6m8yn",
+            "profession": {
+                "id": "01kfz3nhck2cjt98w4b8p6m8yn",
+                "name": "Dokter Umum",
+                "flag": "Profession",
+                "label": "Doctor"
+            },
+            "as_pic": false,
+            "role_as": "DPJP",
+            "created_at": "2026-02-02T06:07:56.000000Z",
+            "updated_at": "2026-02-02T06:07:56.000000Z",
+            "practitioner_reference": null
+        },
+        "visit_examination": null,
+        "item_rents": [],
+        "status": "COMPLETED",
+        "activity": {
+            "poli_exam": {
+                "POLI_EXAM_END": {
+                    "at": "2026-02-02 07:02:56",
+                    "status": 3,
+                    "message": "Pemeriksaan selesai"
+                }
+            }
+        },
+        "service_labels": [],
+        "warehouse_type": null,
+        "warehouse_id": null,
+        "assessments": [],
+        "examination_summary": {
+            "id": "01kgejjqex2snvsdxrapw8k4p0",
+            "parent_id": null,
+            "patient_id": "01kg1k7mvbve8hg5anyn54w0ac",
+            "reference_type": "VisitRegistration",
+            "reference_id": "01kgefe1964rcptdgzdvfda885",
+            "emr": {
+                "SubjectNote": {
+                    "id": "01kgehygqbqr2may4f28b6mzmn",
+                    "morph": "SubjectNote",
+                    "examination_type": "VisitExamination",
+                    "examination_id": "01kgefe1cbnfke6tjc09kqqvke",
+                    "exam": {
+                        "note": "Test subjective"
+                    },
+                    "dynamic_form": null,
+                    "practitioner_evaluations": [
+                        {
+                            "id": "01kgehxbjggd23bjqc0v90kcrm",
+                            "name": "Baktianto Kuswoyo",
+                            "updated_at": "2026-02-02 06:51:53"
+                        }
+                    ],
+                    "is_settled": false,
+                    "addendums": null,
+                    "created_at": "2026-02-02 06:51:53",
+                    "updated_at": "2026-02-02 06:51:53",
+                    "patient_summary": null
+                },
+                "PainScale": {
+                    "id": "01kgehygrjhvmqypexh71pv0fn",
+                    "morph": "PainScale",
+                    "examination_type": "VisitExamination",
+                    "examination_id": "01kgefe1cbnfke6tjc09kqqvke",
+                    "exam": {
+                        "rating_scale": "3",
+                        "scale_result": "Nyeri Sedang (Hurst Little More)"
+                    },
+                    "dynamic_form": null,
+                    "practitioner_evaluations": [
+                        {
+                            "id": "01kgehxbjggd23bjqc0v90kcrm",
+                            "name": "Baktianto Kuswoyo",
+                            "updated_at": "2026-02-02 06:51:54"
+                        }
+                    ],
+                    "is_settled": false,
+                    "addendums": null,
+                    "created_at": "2026-02-02 06:51:54",
+                    "updated_at": "2026-02-02 06:51:54",
+                    "patient_summary": null
+                },
+                "ObjectNote": {
+                    "id": "01kgehygtc051nnzpxhh4dj8jd",
+                    "morph": "ObjectNote",
+                    "examination_type": "VisitExamination",
+                    "examination_id": "01kgefe1cbnfke6tjc09kqqvke",
+                    "exam": {
+                        "note": "test"
+                    },
+                    "dynamic_form": null,
+                    "practitioner_evaluations": [
+                        {
+                            "id": "01kgehxbjggd23bjqc0v90kcrm",
+                            "name": "Baktianto Kuswoyo",
+                            "updated_at": "2026-02-02 06:51:54"
+                        }
+                    ],
+                    "is_settled": false,
+                    "addendums": null,
+                    "created_at": "2026-02-02 06:51:54",
+                    "updated_at": "2026-02-02 06:51:54",
+                    "patient_summary": null
+                },
+                "AssessmentNote": {
+                    "id": "01kgehygvqgytsjfvwzet8yqdg",
+                    "morph": "AssessmentNote",
+                    "examination_type": "VisitExamination",
+                    "examination_id": "01kgefe1cbnfke6tjc09kqqvke",
+                    "exam": {
+                        "note": "test"
+                    },
+                    "dynamic_form": null,
+                    "practitioner_evaluations": [
+                        {
+                            "id": "01kgehxbjggd23bjqc0v90kcrm",
+                            "name": "Baktianto Kuswoyo",
+                            "updated_at": "2026-02-02 06:51:54"
+                        }
+                    ],
+                    "is_settled": false,
+                    "addendums": null,
+                    "created_at": "2026-02-02 06:51:54",
+                    "updated_at": "2026-02-02 06:51:54",
+                    "patient_summary": null
+                },
+                "PlanNote": {
+                    "id": "01kgehygx0wt557g5hsc112znb",
+                    "morph": "PlanNote",
+                    "examination_type": "VisitExamination",
+                    "examination_id": "01kgefe1cbnfke6tjc09kqqvke",
+                    "exam": {
+                        "note": "test"
+                    },
+                    "dynamic_form": null,
+                    "practitioner_evaluations": [
+                        {
+                            "id": "01kgehxbjggd23bjqc0v90kcrm",
+                            "name": "Baktianto Kuswoyo",
+                            "updated_at": "2026-02-02 06:51:54"
+                        }
+                    ],
+                    "is_settled": false,
+                    "addendums": null,
+                    "created_at": "2026-02-02 06:51:54",
+                    "updated_at": "2026-02-02 06:51:54",
+                    "patient_summary": null
+                },
+                "VitalSign": {
+                    "id": "01kgehygyan7v0e16bvy6hn31f",
+                    "morph": "VitalSign",
+                    "examination_type": "VisitExamination",
+                    "examination_id": "01kgefe1cbnfke6tjc09kqqvke",
+                    "exam": {
+                        "temperature": "39",
+                        "temperature_type": "EAR",
+                        "systolic": "500",
+                        "diastolic": "80",
+                        "pulse_rate": "70",
+                        "heart_rate": null,
+                        "respiration_rate": "16",
+                        "oxygen_saturation": "99",
+                        "sars_cov2_rt": null,
+                        "loc_id": "01kfz3nk09hwvarxe43nkmcfd7",
+                        "loc": {
+                            "id": "01kfz3nk09hwvarxe43nkmcfd7",
+                            "name": "Compos Mentis",
+                            "flag": "VitalSignStuff",
+                            "label": "COMPOS MENTIS"
+                        },
+                        "temperature_status": "FEVER",
+                        "temperature_level": "MODERATE",
+                        "oxygen_status": "NORMAL",
+                        "oxygen_level": null,
+                        "blood_pressure_status": "HYPERTENSIVE_CRISIS",
+                        "hypertension_level": "CRITICAL"
+                    },
+                    "dynamic_form": null,
+                    "practitioner_evaluations": [
+                        {
+                            "id": "01kgehxbjggd23bjqc0v90kcrm",
+                            "name": "Baktianto Kuswoyo",
+                            "updated_at": "2026-02-02 06:51:54"
+                        }
+                    ],
+                    "is_settled": false,
+                    "addendums": null,
+                    "created_at": "2026-02-02 06:51:54",
+                    "updated_at": "2026-02-02 06:51:54",
+                    "patient_summary": null
+                },
+                "Anthropometry": {
+                    "id": "01kgehygzx0rrnfa18mx4kj6x5",
+                    "morph": "Anthropometry",
+                    "examination_type": "VisitExamination",
+                    "examination_id": "01kgefe1cbnfke6tjc09kqqvke",
+                    "exam": {
+                        "weight": "90",
+                        "height": "170",
+                        "wrist_circumference": "16",
+                        "head_circumference": "52",
+                        "chest_circumference": "90",
+                        "waist_circumference": "75",
+                        "hip_circumference": "95",
+                        "arm_circumference": "28",
+                        "calf_circumference": "35",
+                        "skinfold_thickness": "12",
+                        "bmi": 31.14,
+                        "bmi_category": "Obese II",
+                        "whr": 0.79,
+                        "whr_risk": "Low Risk",
+                        "body_frame": "Small",
+                        "ideal_weight": 63
+                    },
+                    "dynamic_form": null,
+                    "practitioner_evaluations": [
+                        {
+                            "id": "01kgehxbjggd23bjqc0v90kcrm",
+                            "name": "Baktianto Kuswoyo",
+                            "updated_at": "2026-02-02 06:51:54"
+                        }
+                    ],
+                    "is_settled": false,
+                    "addendums": null,
+                    "created_at": "2026-02-02 06:51:54",
+                    "updated_at": "2026-02-02 06:51:54",
+                    "patient_summary": null
+                },
+                "Symptom": [
+                    {
+                        "id": "01kgehygagtma8xg4pa4wwz4qk",
+                        "morph": "Symptom",
+                        "examination_type": "VisitExamination",
+                        "examination_id": "01kgefe1cbnfke6tjc09kqqvke",
+                        "exam": {
+                            "name": "Pusing"
+                        },
+                        "dynamic_form": null,
+                        "practitioner_evaluations": [
+                            {
+                                "id": "01kgehxbjggd23bjqc0v90kcrm",
+                                "name": "Baktianto Kuswoyo",
+                                "updated_at": "2026-02-02 06:51:53"
+                            }
+                        ],
+                        "is_settled": false,
+                        "addendums": null,
+                        "created_at": "2026-02-02T06:51:53.000000Z",
+                        "updated_at": "2026-02-02T06:51:53.000000Z",
+                        "patient_summary": null
+                    },
+                    {
+                        "id": "01kgehygcnpd58wdt5xfczx4jm",
+                        "morph": "Symptom",
+                        "examination_type": "VisitExamination",
+                        "examination_id": "01kgefe1cbnfke6tjc09kqqvke",
+                        "exam": {
+                            "name": "Mual"
+                        },
+                        "dynamic_form": null,
+                        "practitioner_evaluations": [
+                            {
+                                "id": "01kgehxbjggd23bjqc0v90kcrm",
+                                "name": "Baktianto Kuswoyo",
+                                "updated_at": "2026-02-02 06:51:53"
+                            }
+                        ],
+                        "is_settled": false,
+                        "addendums": null,
+                        "created_at": "2026-02-02T06:51:53.000000Z",
+                        "updated_at": "2026-02-02T06:51:53.000000Z",
+                        "patient_summary": null
+                    },
+                    {
+                        "id": "01kgehyge4f8420n96tavgt9cq",
+                        "morph": "Symptom",
+                        "examination_type": "VisitExamination",
+                        "examination_id": "01kgefe1cbnfke6tjc09kqqvke",
+                        "exam": {
+                            "name": "Muntah"
+                        },
+                        "dynamic_form": null,
+                        "practitioner_evaluations": [
+                            {
+                                "id": "01kgehxbjggd23bjqc0v90kcrm",
+                                "name": "Baktianto Kuswoyo",
+                                "updated_at": "2026-02-02 06:51:53"
+                            }
+                        ],
+                        "is_settled": false,
+                        "addendums": null,
+                        "created_at": "2026-02-02T06:51:53.000000Z",
+                        "updated_at": "2026-02-02T06:51:53.000000Z",
+                        "patient_summary": null
+                    }
+                ],
+                "Allergy": [
+                    {
+                        "id": "01kgehygfkwpf2mg0409xc32za",
+                        "morph": "Allergy",
+                        "examination_type": "VisitExamination",
+                        "examination_id": "01kgefe1cbnfke6tjc09kqqvke",
+                        "exam": {
+                            "allergy_type_id": "01kfz3njt795aqqaxnqwxm026z",
+                            "name": "Alergi kuning telur",
+                            "allergy_scale": "1",
+                            "allergen": "protein molase",
+                            "effects": [
+                                null
+                            ],
+                            "allergy_type": {
+                                "id": "01kfz3njt795aqqaxnqwxm026z",
+                                "name": "Egg",
+                                "flag": "AllergyStuff",
+                                "label": "FOOD"
+                            },
+                            "allergy_scale_spell": "Ringan"
+                        },
+                        "dynamic_form": null,
+                        "practitioner_evaluations": [
+                            {
+                                "id": "01kgehxbjggd23bjqc0v90kcrm",
+                                "name": "Baktianto Kuswoyo",
+                                "updated_at": "2026-02-02 06:51:53"
+                            }
+                        ],
+                        "is_settled": false,
+                        "addendums": null,
+                        "created_at": "2026-02-02T06:51:53.000000Z",
+                        "updated_at": "2026-02-02T06:51:53.000000Z",
+                        "patient_summary": null
+                    }
+                ],
+                "PatientFamilyIllness": [
+                    {
+                        "id": "01kgehygh362y1szryma9d1cp3",
+                        "morph": "PatientFamilyIllness",
+                        "exam": {
+                            "name": "Examination for normal comparison and control in clinical research programme",
+                            "disease_type": "NON_CONTAGIOUS",
+                            "disease_id": "01ka1fmmhh28nyr7aqxb433ajb",
+                            "type": "HistoryIllness"
+                        },
+                        "practitioner_evaluations": [
+                            {
+                                "id": "01kgehxbjggd23bjqc0v90kcrm",
+                                "name": "Baktianto Kuswoyo",
+                                "updated_at": "2026-02-02 06:51:53"
+                            }
+                        ],
+                        "created_at": "2026-02-02T06:51:53.000000Z",
+                        "updated_at": "2026-02-02T06:51:53.000000Z"
+                    },
+                    {
+                        "id": "01kgehygkqkxvk499fv9je6apc",
+                        "morph": "PatientFamilyIllness",
+                        "exam": {
+                            "name": "Insulin and oral hypoglycaemic [antidiabetic] drugs",
+                            "disease_type": "HEREDITARY",
+                            "disease_id": "01ka1jbtsyxg53vb4jt37ys4mp",
+                            "family_role_id": "01kfz3nepdqz9129hyfrc00b56",
+                            "family_name": "Ayah",
+                            "child_position": "1",
+                            "type": "FamilyIllness"
+                        },
+                        "practitioner_evaluations": [
+                            {
+                                "id": "01kgehxbjggd23bjqc0v90kcrm",
+                                "name": "Baktianto Kuswoyo",
+                                "updated_at": "2026-02-02 06:51:53"
+                            }
+                        ],
+                        "created_at": "2026-02-02T06:51:53.000000Z",
+                        "updated_at": "2026-02-02T06:51:53.000000Z"
+                    }
+                ],
+                "HistoryIllness": [
+                    {
+                        "id": "01kgehygjden181n2cnqmaag9s",
+                        "morph": "HistoryIllness",
+                        "examination_type": "VisitExamination",
+                        "examination_id": "01kgefe1cbnfke6tjc09kqqvke",
+                        "exam": {
+                            "name": "Examination for normal comparison and control in clinical research programme",
+                            "disease_type": "NON_CONTAGIOUS",
+                            "disease_id": "01ka1fmmhh28nyr7aqxb433ajb",
+                            "classification_disease_id": "01ka1fmc5vcp416ke2n3jg1ama",
+                            "since_type": null,
+                            "since": [],
+                            "code": "Z00.6",
+                            "classification_disease": {
+                                "id": "01ka1fmc5vcp416ke2n3jg1ama",
+                                "parent_id": "01ka1fmazfa3bq93nhagr64rzq",
+                                "name": "General examination and investigation of persons without complaint and reported diagnosis",
+                                "flag": "Icd10",
+                                "local_name": "Pemeriksaan umum dan investigasi orang tanpa keluhan dan diagnosis yang dilaporkan",
+                                "code": "Z00",
+                                "version": "Icd10_2019",
+                                "classification_disease_id": null
+                            },
+                            "disease_code": "Z00.6"
+                        },
+                        "dynamic_form": null,
+                        "practitioner_evaluations": [
+                            {
+                                "id": "01kgehxbjggd23bjqc0v90kcrm",
+                                "name": "Baktianto Kuswoyo",
+                                "updated_at": "2026-02-02 06:51:53"
+                            }
+                        ],
+                        "is_settled": false,
+                        "addendums": null,
+                        "created_at": "2026-02-02T06:51:53.000000Z",
+                        "updated_at": "2026-02-02T06:51:53.000000Z",
+                        "patient_summary": null
+                    }
+                ],
+                "FamilyIllness": [
+                    {
+                        "id": "01kgehygn0ygt164by1gndbhy6",
+                        "morph": "FamilyIllness",
+                        "examination_type": "VisitExamination",
+                        "examination_id": "01kgefe1cbnfke6tjc09kqqvke",
+                        "exam": {
+                            "name": "Insulin and oral hypoglycaemic [antidiabetic] drugs",
+                            "disease_type": "HEREDITARY",
+                            "disease_id": "01ka1jbtsyxg53vb4jt37ys4mp",
+                            "classification_disease_id": "01ka1jbnmrdrvwqthxkt3h5xnp",
+                            "family_role_id": "01kfz3nepdqz9129hyfrc00b56",
+                            "family_role_name": null,
+                            "family_name": "Ayah",
+                            "child_position": "1",
+                            "code": "Y42.3",
+                            "classification_disease": {
+                                "id": "01ka1jbnmrdrvwqthxkt3h5xnp",
+                                "parent_id": "01ka1javhn4nw8zmepsxy9qd3j",
+                                "name": "Hormones and their synthetic substitutes and antagonists, not elsewhere classified",
+                                "flag": "Icd10",
+                                "local_name": "Hormon dan pengganti sintetiknya serta antagonisnya, tidak diklasifikasikan di tempat lain",
+                                "code": "Y42",
+                                "version": "Icd10_2019",
+                                "classification_disease_id": null
+                            },
+                            "disease_code": "Y42.3"
+                        },
+                        "dynamic_form": null,
+                        "practitioner_evaluations": [
+                            {
+                                "id": "01kgehxbjggd23bjqc0v90kcrm",
+                                "name": "Baktianto Kuswoyo",
+                                "updated_at": "2026-02-02 06:51:53"
+                            }
+                        ],
+                        "is_settled": false,
+                        "addendums": null,
+                        "created_at": "2026-02-02T06:51:53.000000Z",
+                        "updated_at": "2026-02-02T06:51:53.000000Z",
+                        "patient_summary": null
+                    }
+                ],
+                "BasicDiagnose": [
+                    {
+                        "id": "01kgehyh1k5n01v1f2dddccm5h",
+                        "morph": "BasicDiagnose",
+                        "exam": {
+                            "initial_diagnose": null,
+                            "primary_diagnose": null,
+                            "secondary_diagnose": null,
+                            "type": "InitialDiagnose",
+                            "name": "Examination for normal comparison and control in clinical research programme",
+                            "disease_code": "Z00.6",
+                            "disease_id": "01ka1fmmhh28nyr7aqxb433ajb",
+                            "disease_type": "Disease",
+                            "code": "Z00.6",
+                            "classification_disease_id": "01ka1fmc5vcp416ke2n3jg1ama",
+                            "classification_disease": {
+                                "id": "01ka1fmc5vcp416ke2n3jg1ama",
+                                "parent_id": "01ka1fmazfa3bq93nhagr64rzq",
+                                "name": "General examination and investigation of persons without complaint and reported diagnosis",
+                                "flag": "Icd10",
+                                "local_name": "Pemeriksaan umum dan investigasi orang tanpa keluhan dan diagnosis yang dilaporkan",
+                                "code": "Z00",
+                                "version": "Icd10_2019",
+                                "classification_disease_id": null
+                            }
+                        },
+                        "practitioner_evaluations": [
+                            {
+                                "id": "01kgehxbjggd23bjqc0v90kcrm",
+                                "name": "Baktianto Kuswoyo",
+                                "updated_at": "2026-02-02 06:51:54"
+                            }
+                        ],
+                        "created_at": "2026-02-02T06:51:54.000000Z",
+                        "updated_at": "2026-02-02T06:51:54.000000Z"
+                    },
+                    {
+                        "id": "01kgehyh43qn9tn35qtdhrae0f",
+                        "morph": "BasicDiagnose",
+                        "exam": {
+                            "initial_diagnose": null,
+                            "primary_diagnose": null,
+                            "secondary_diagnose": null,
+                            "type": "PrimaryDiagnose",
+                            "name": "Insulin and oral hypoglycaemic [antidiabetic] drugs",
+                            "disease_code": "Y42.3",
+                            "disease_id": "01ka1jbtsyxg53vb4jt37ys4mp",
+                            "disease_type": "Disease",
+                            "code": "Y42.3",
+                            "classification_disease_id": "01ka1jbnmrdrvwqthxkt3h5xnp",
+                            "classification_disease": {
+                                "id": "01ka1jbnmrdrvwqthxkt3h5xnp",
+                                "parent_id": "01ka1javhn4nw8zmepsxy9qd3j",
+                                "name": "Hormones and their synthetic substitutes and antagonists, not elsewhere classified",
+                                "flag": "Icd10",
+                                "local_name": "Hormon dan pengganti sintetiknya serta antagonisnya, tidak diklasifikasikan di tempat lain",
+                                "code": "Y42",
+                                "version": "Icd10_2019",
+                                "classification_disease_id": null
+                            }
+                        },
+                        "practitioner_evaluations": [
+                            {
+                                "id": "01kgehxbjggd23bjqc0v90kcrm",
+                                "name": "Baktianto Kuswoyo",
+                                "updated_at": "2026-02-02 06:51:54"
+                            }
+                        ],
+                        "created_at": "2026-02-02T06:51:54.000000Z",
+                        "updated_at": "2026-02-02T06:51:54.000000Z"
+                    },
+                    {
+                        "id": "01kgehyh6f2k88wy6kb4hz1qek",
+                        "morph": "BasicDiagnose",
+                        "exam": {
+                            "initial_diagnose": null,
+                            "primary_diagnose": null,
+                            "secondary_diagnose": null,
+                            "type": "SecondaryDiagnose",
+                            "name": "Work-related condition",
+                            "disease_code": "Y96",
+                            "disease_id": "01ka1jtyg6batmzwx6rr0s4z2m",
+                            "disease_type": "Disease",
+                            "code": "Y96",
+                            "classification_disease_id": "01ka1jt6wdqyh9s3zafxv1qxfz",
+                            "classification_disease": {
+                                "id": "01ka1jt6wdqyh9s3zafxv1qxfz",
+                                "parent_id": "01ka1fjbwd9a60r24xewx3e68e",
+                                "name": "Supplementary factors related to causes of morbidity and mortality classified elsewhere",
+                                "flag": "Icd10",
+                                "local_name": "Faktor pelengkap yang berkaitan dengan penyebab kesakitan dan kematian diklasifikasikan di tempat lain",
+                                "code": "Y90-Y98",
+                                "version": "Icd10_2019",
+                                "classification_disease_id": null
+                            }
+                        },
+                        "practitioner_evaluations": [
+                            {
+                                "id": "01kgehxbjggd23bjqc0v90kcrm",
+                                "name": "Baktianto Kuswoyo",
+                                "updated_at": "2026-02-02 06:51:54"
+                            }
+                        ],
+                        "created_at": "2026-02-02T06:51:54.000000Z",
+                        "updated_at": "2026-02-02T06:51:54.000000Z"
+                    },
+                    {
+                        "id": "01kgehyh8srb7n2v8d6pfyvx7m",
+                        "morph": "BasicDiagnose",
+                        "exam": {
+                            "initial_diagnose": null,
+                            "primary_diagnose": null,
+                            "secondary_diagnose": null,
+                            "type": "SecondaryDiagnose",
+                            "name": "Nosocomial condition",
+                            "disease_code": "Y95",
+                            "disease_id": "01ka1jtxcmrdxxt6x0x773wzn0",
+                            "disease_type": "Disease",
+                            "code": "Y95",
+                            "classification_disease_id": "01ka1jt6wdqyh9s3zafxv1qxfz",
+                            "classification_disease": {
+                                "id": "01ka1jt6wdqyh9s3zafxv1qxfz",
+                                "parent_id": "01ka1fjbwd9a60r24xewx3e68e",
+                                "name": "Supplementary factors related to causes of morbidity and mortality classified elsewhere",
+                                "flag": "Icd10",
+                                "local_name": "Faktor pelengkap yang berkaitan dengan penyebab kesakitan dan kematian diklasifikasikan di tempat lain",
+                                "code": "Y90-Y98",
+                                "version": "Icd10_2019",
+                                "classification_disease_id": null
+                            }
+                        },
+                        "practitioner_evaluations": [
+                            {
+                                "id": "01kgehxbjggd23bjqc0v90kcrm",
+                                "name": "Baktianto Kuswoyo",
+                                "updated_at": "2026-02-02 06:51:54"
+                            }
+                        ],
+                        "created_at": "2026-02-02T06:51:54.000000Z",
+                        "updated_at": "2026-02-02T06:51:54.000000Z"
+                    }
+                ],
+                "BasicPrescription": [
+                    {
+                        "id": "01kgehyhb7tc96v02e5w9hn8h8",
+                        "morph": "BasicPrescription",
+                        "exam": {
+                            "medicine_prescription": null,
+                            "medic_tool_prescription": null,
+                            "mix_prescription": null,
+                            "type": "MedicinePrescription",
+                            "card_stock": {
+                                "item_id": "01kfz932cx3b5d7tpj34sjjcpe",
+                                "stock_movement": {
+                                    "qty": "10"
+                                },
+                                "name": "Paracetamol 500mg"
+                            },
+                            "card_stocks": [
+                                null
+                            ],
+                            "frequency_qty": "3",
+                            "frequency_division": "8",
+                            "dosage_instruction": {
+                                "attentions": [
+                                    null
+                                ],
+                                "divided_times": [
+                                    "Pagi",
+                                    "Siang",
+                                    "Malam"
+                                ],
+                                "consume_at": {
+                                    "value": "Sebelum Makan",
+                                    "interval_consume": "60"
+                                },
+                                "others": [
+                                    null
+                                ]
+                            },
+                            "iteration": "1",
+                            "indication": "Untuk menurunkan demam",
+                            "warehouse_type": "Room",
+                            "pharmacy_type": "Room",
+                            "warehouse_id": null,
+                            "pharmacy_id": null,
+                            "price": 1100,
+                            "cogs": 1000,
+                            "name": "Paracetamol 500mg",
+                            "qty": "10",
+                            "treatment_duration": 2
+                        },
+                        "practitioner_evaluations": [
+                            {
+                                "id": "01kgehxbjggd23bjqc0v90kcrm",
+                                "name": "Baktianto Kuswoyo",
+                                "updated_at": "2026-02-02 06:51:54"
+                            }
+                        ],
+                        "created_at": "2026-02-02T06:51:54.000000Z",
+                        "updated_at": "2026-02-02T06:51:54.000000Z"
+                    }
+                ],
+                "ClinicalTreatment": [
+                    {
+                        "id": "01kgehyhd319d8hs44tg8r16js",
+                        "morph": "ClinicalTreatment",
+                        "examination_type": "VisitExamination",
+                        "examination_id": "01kgefe1cbnfke6tjc09kqqvke",
+                        "exam": {
+                            "name": "Konsultasi Dokter",
+                            "treatment_id": "01kg1n415s1pc3ept3ytvh3xng",
+                            "treatment_at": "2026-02-02T06:51:54.656484Z",
+                            "note": null,
+                            "status": "DRAFT",
+                            "medications": [],
+                            "form": null,
+                            "paths": [],
+                            "qty": "1",
+                            "files": [],
+                            "interpretation": null,
+                            "result": "Baik",
+                            "service_label_id": null,
+                            "service_label": {
+                                "id": null,
+                                "name": null,
+                                "flag": null,
+                                "label": null
+                            },
+                            "treatment": {
+                                "id": "01kg1n415s1pc3ept3ytvh3xng",
+                                "service_code": null,
+                                "name": "Konsultasi Dokter",
+                                "reference_id": "01kg1n4140sk4a1ym8rrjahf63",
+                                "reference_type": "MedicalTreatment",
+                                "reference": {
+                                    "id": "01kg1n4140sk4a1ym8rrjahf63",
+                                    "name": "Konsultasi Dokter",
+                                    "treatment_code": "",
+                                    "treatment": {
+                                        "id": "01kg1n415s1pc3ept3ytvh3xng",
+                                        "service_code": null,
+                                        "name": "Konsultasi Dokter",
+                                        "reference_id": "01kg1n4140sk4a1ym8rrjahf63",
+                                        "reference_type": "MedicalTreatment",
+                                        "reference": {
+                                            "id": "01kg1n4140sk4a1ym8rrjahf63",
+                                            "name": "Konsultasi Dokter",
+                                            "treatment_code": "",
+                                            "treatment": null,
+                                            "label": null,
+                                            "status": null,
+                                            "created_at": "2026-01-28 06:37:12",
+                                            "updated_at": "2026-01-28 06:37:12"
+                                        },
+                                        "status": "ACTIVE",
+                                        "price": 77000,
+                                        "cogs": 70000,
+                                        "margin": 10,
+                                        "service_label": {
+                                            "id": null,
+                                            "name": null,
+                                            "flag": null,
+                                            "label": null
+                                        },
+                                        "service_items": [],
+                                        "service_prices": [],
+                                        "childs": [],
+                                        "created_at": "2026-01-28 06:37:12",
+                                        "updated_at": "2026-01-28 06:37:12"
+                                    },
+                                    "label": null,
+                                    "status": null,
+                                    "created_at": "2026-01-28 06:37:12",
+                                    "updated_at": "2026-02-02 06:03:15"
+                                },
+                                "status": "ACTIVE",
+                                "price": 159500,
+                                "cogs": 145000,
+                                "margin": 10,
+                                "service_label": {
+                                    "id": null,
+                                    "name": null,
+                                    "flag": null,
+                                    "label": null
+                                },
+                                "service_items": [],
+                                "service_prices": [],
+                                "childs": [],
+                                "created_at": "2026-01-28T06:37:12.000000Z",
+                                "updated_at": "2026-01-28T06:37:12.000000Z"
+                            }
+                        },
+                        "dynamic_form": null,
+                        "practitioner_evaluations": [
+                            {
+                                "id": "01kgehxbjggd23bjqc0v90kcrm",
+                                "name": "Baktianto Kuswoyo",
+                                "updated_at": "2026-02-02 06:51:54"
+                            }
+                        ],
+                        "is_settled": false,
+                        "addendums": null,
+                        "created_at": "2026-02-02T06:51:54.000000Z",
+                        "updated_at": "2026-02-02T06:51:54.000000Z",
+                        "patient_summary": null
+                    }
+                ]
+            }
+        },
+        "encounter_code": "a0fb507e-21da-4646-94c9-13f6e987220d",
+        "ihs_number": null,
+        "created_at": "2026-02-02T06:07:56.000000Z",
+        "updated_at": "2026-02-02T07:02:56.000000Z",
+        "warehouse": null,
+        "practitioner_evaluations": [
+            {
+                "id": "01kgefe1b9g0cwc7n584arqq35",
+                "name": "admin",
+                "practitioner_id": "01kfz3p7k4y3qgsj4grmgkkenk",
+                "practitioner": {
+                    "id": "01kfz3p7k4y3qgsj4grmgkkenk",
+                    "name": "admin"
+                },
+                "profession_id": "01kfz3nhck2cjt98w4b8p6m8yn",
+                "profession": {
+                    "id": "01kfz3nhck2cjt98w4b8p6m8yn",
+                    "name": "Dokter Umum",
+                    "flag": "Profession",
+                    "label": "Doctor"
+                },
+                "as_pic": false,
+                "role_as": "DPJP",
+                "created_at": "2026-02-02T06:07:56.000000Z",
+                "updated_at": "2026-02-02T06:07:56.000000Z",
+                "practitioner_reference": null
+            }
+        ],
+        "services": [],
+        "visit_registrations": [],
+        "accessibility": null
+    },
+    "meta": {
+        "code": 200,
+        "success": true,
+        "messages": []
+    },
+    "acl": {
+        "id": "01kfz3n71zbh68ppmxmd7wtbcq",
+        "name": "Detail Kunjungan Pasien Poli",
+        "parent_id": "01kfz3n70rn86m36qcqj8r80mw",
+        "alias": "show",
+        "original_alias": "api.patient-emr.visit-registration.show",
+        "type": "PERMISSION",
+        "access": true,
+        "directory": null,
+        "method": "GET",
+        "slug": "api/patient-emr/visit-registration/{id}",
+        "accessibility": [],
+        "modules": {
+            "referral.index": true
+        }
+    }
+}
