@@ -204,6 +204,9 @@
 .flex-row-reverse {
   flex-direction: row-reverse;
 }
+.flex-wrap {
+  flex-wrap: wrap;
+}
 .items-baseline {
   align-items: baseline;
 }

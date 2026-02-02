@@ -112,7 +112,7 @@ return [
                     'verify_peer' => env('RABBITMQ_SSL_VERIFY_PEER', true),
                     'passphrase' => env('RABBITMQ_SSL_PASSPHRASE', null),
                 ],
-                'heartbeat' => 60,
+                'heartbeat' => env('RABBITMQ_HEARTBEAT', 60),
                 'consumer_tag' => '',
                 'timeout' => false,
                 'persistent' => false,

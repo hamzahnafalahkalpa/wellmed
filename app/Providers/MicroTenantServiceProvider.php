@@ -95,6 +95,18 @@ class MicroTenantServiceProvider extends ServiceProvider
 
                     $workspace = app(config('database.models.Workspace'));
                     $workspace = $tenant->reference;
+                    if (isset($workspace)){
+                        $integration = $workspace->integration;
+                        if (!isset($integration)) {
+                            if (method_exists($workspace,'getIntegrationPayload')){
+                                $integration = $workspace->getIntegrationPayload();
+                            }
+                        }
+                        if (isset($integration)){
+                            $ihs_number = $integration['satu_sehat']['general']['ihs_number'];
+                            config(['satu-sehat.client_organization_id' => $ihs_number]);
+                        }
+                    }
                     config([
                         'app.workspace_model' => $workspace
                     ]);
