@@ -35,7 +35,7 @@ class EncodingWrapper
             $response = $next($request);
             if ($response->getStatusCode() < 400) {
                 $model_has_encodings = SupportCache::getSavedCache('model_has_encoding_configs');
-                if (isset($model_has_encodings) && isset($model_has_encoding['model_has_encodings'])){
+                if (isset($model_has_encodings) && isset($model_has_encodings['model_has_encodings'])){
                     foreach ($model_has_encodings['model_has_encodings'] as &$model_has_encoding) {
                         if ($model_has_encoding->isDirty()){
                             $model_has_encoding->save();
