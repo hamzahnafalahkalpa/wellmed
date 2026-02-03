@@ -82,8 +82,14 @@ return [
         Commands\InstallMakeCommand::class,
         Commands\AddPackageCommand::class,
         Commands\ElasticsearchIndexCommand::class,
-        Commands\GetElasticsearchIndexCommand::class
+        Commands\GetElasticsearchIndexCommand::class,
+        Commands\CleanupExpiredExportsCommand::class,
     ],
     // Add models from the desired namespaces to 'package_model_list' to keep track of providers
-    'package_model_list' => null
+    'package_model_list' => null,
+
+    // Export handlers configuration
+    'exports' => [
+        'VisitRegistrationEmr' => \Projects\WellmedBackbone\Exports\VisitRegistrationEmrExport::class,
+    ],
 ];
