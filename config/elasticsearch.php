@@ -13,7 +13,7 @@ return [
     |
     */
     // 'enabled' => env('ELASTICSEARCH_ENABLED', true),
-    'enabled' => false,
+    'enabled' => true,
 
     'job_class' => ElasticJob::class,
 

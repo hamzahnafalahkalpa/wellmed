@@ -1,0 +1,200 @@
+<script setup lang="ts">
+// Mock data for Satu Sehat integration
+const selectedMonth = ref()
+const showDetailDialog = ref(false)
+const selectedDetail = ref<any>(null)
+
+// Mock data structure
+interface IntegrationStat {
+    id: string
+    category: 'Prerequisites' | 'Interoperability'
+    name: string
+    icon: string
+    color: string
+    wellMedCount: number
+    satuSehatCount: number
+    unsignedCount: number
+    signedCount: number
+    syncPercentage: number
+    lastSync: string
+    loggerPath?: string
+    description: string
+}
+
+const integrationStats = ref<IntegrationStat[]>([
+    // Prerequisites
+    {
+        id: 'organization',
+        category: 'Prerequisites',
+        name: 'Organization',
+        icon: 'mdi:domain',
+        color: 'blue',
+        wellMedCount: 1,
+        satuSehatCount: 1,
+        unsignedCount: 0,
+        signedCount: 1,
+        syncPercentage: 100,
+        lastSync: '2025-01-28 10:30',
+        description: 'Data organisasi/fasilitas kesehatan'
+    },
+    {
+        id: 'location',
+        category: 'Prerequisites',
+        name: 'Location',
+        icon: 'mdi:map-marker',
+        color: 'indigo',
+        wellMedCount: 15,
+        satuSehatCount: 15,
+        unsignedCount: 0,
+        signedCount: 15,
+        syncPercentage: 100,
+        lastSync: '2025-01-28 10:30',
+        description: 'Data lokasi layanan kesehatan'
+    },
+    {
+        id: 'practitioners',
+        category: 'Prerequisites',
+        name: 'Practitioners',
+        icon: 'mdi:doctor',
+        color: 'teal',
+        wellMedCount: 24,
+        satuSehatCount: 24,
+        unsignedCount: 0,
+        signedCount: 24,
+        syncPercentage: 100,
+        lastSync: '2025-01-28 10:25',
+        description: 'Data tenaga medis dan praktisi'
+    },
+    {
+        id: 'patients',
+        category: 'Prerequisites',
+        name: 'Patients',
+        icon: 'mdi:account-group',
+        color: 'green',
+        wellMedCount: 1547,
+        satuSehatCount: 1489,
+        unsignedCount: 43,
+        signedCount: 1489,
+        syncPercentage: 96.2,
+        lastSync: '2025-01-28 10:25',
+        loggerPath: '/satu-sehat/data-logger/non-medical',
+        description: 'Data pasien yang terdaftar'
+    },
+    // Interoperability
+    {
+        id: 'encounter',
+        category: 'Interoperability',
+        name: 'Encounter',
+        icon: 'mdi:calendar-check',
+        color: 'purple',
+        wellMedCount: 3842,
+        satuSehatCount: 3654,
+        unsignedCount: 142,
+        signedCount: 3654,
+        syncPercentage: 95.1,
+        lastSync: '2025-01-28 10:20',
+        loggerPath: '/satu-sehat/data-logger/medical',
+        description: 'Data kunjungan pasien'
+    },
+    {
+        id: 'condition',
+        category: 'Interoperability',
+        name: 'Condition',
+        icon: 'mdi:medical-bag',
+        color: 'red',
+        wellMedCount: 2341,
+        satuSehatCount: 2198,
+        unsignedCount: 98,
+        signedCount: 2198,
+        syncPercentage: 93.9,
+        lastSync: '2025-01-28 10:10',
+        loggerPath: '/satu-sehat/data-logger/medical',
+        description: 'Data diagnosa dan kondisi medis'
+    },
+    {
+        id: 'observation',
+        category: 'Interoperability',
+        name: 'Observation',
+        icon: 'mdi:clipboard-pulse',
+        color: 'orange',
+        wellMedCount: 8965,
+        satuSehatCount: 8432,
+        unsignedCount: 398,
+        signedCount: 8432,
+        syncPercentage: 94.1,
+        lastSync: '2025-01-28 10:15',
+        loggerPath: '/satu-sehat/data-logger/medical',
+        description: 'Data hasil pemeriksaan dan observasi'
+    }
+])
+
+// Month options for filter
+const monthOptions = computed(() => {
+    const months = []
+    const currentDate = new Date()
+    for (let i = 0; i < 12; i++) {
+        const date = new Date(currentDate.getFullYear(), currentDate.getMonth() - i, 1)
+        months.push({
+            value: date.toISOString().slice(0, 7),
+            label: date.toLocaleDateString('id-ID', { year: 'numeric', month: 'long' })
+        })
+    }
+    return months
+})
+
+// Color mapping
+const getColorClasses = (color: string) => {
+    const colorMap: Record<string, any> = {
+        blue: { bg: 'bg-blue-50', border: 'border-blue-300', text: 'text-blue-700', icon: 'text-blue-600', badge: 'bg-blue-100', bar: 'bg-blue-500' },
+        indigo: { bg: 'bg-indigo-50', border: 'border-indigo-300', text: 'text-indigo-700', icon: 'text-indigo-600', badge: 'bg-indigo-100', bar: 'bg-indigo-500' },
+        teal: { bg: 'bg-teal-50', border: 'border-teal-300', text: 'text-teal-700', icon: 'text-teal-600', badge: 'bg-teal-100', bar: 'bg-teal-500' },
+        green: { bg: 'bg-green-50', border: 'border-green-300', text: 'text-green-700', icon: 'text-green-600', badge: 'bg-green-100', bar: 'bg-green-500' },
+        purple: { bg: 'bg-purple-50', border: 'border-purple-300', text: 'text-purple-700', icon: 'text-purple-600', badge: 'bg-purple-100', bar: 'bg-purple-500' },
+        red: { bg: 'bg-red-50', border: 'border-red-300', text: 'text-red-700', icon: 'text-red-600', badge: 'bg-red-100', bar: 'bg-red-500' },
+        orange: { bg: 'bg-orange-50', border: 'border-orange-300', text: 'text-orange-700', icon: 'text-orange-600', badge: 'bg-orange-100', bar: 'bg-orange-500' }
+    }
+    return colorMap[color] || colorMap.blue
+}
+
+// Show detail dialog
+const showDetail = (stat: IntegrationStat) => {
+    selectedDetail.value = stat
+    showDetailDialog.value = true
+}
+
+// Navigate to logger
+const navigateToLogger = (path: string | undefined) => {
+    if (path) {
+        navigateTo(path)
+    }
+}
+
+// Get sync status color
+const getSyncStatusColor = (percentage: number) => {
+    if (percentage >= 95) return 'text-green-600'
+    if (percentage >= 85) return 'text-orange-600'
+    return 'text-red-600'
+}
+
+// Summary stats
+const summaryStats = computed(() => {
+    const total = integrationStats.value.reduce((acc, stat) => ({
+        wellMed: acc.wellMed + stat.wellMedCount,
+        satuSehat: acc.satuSehat + stat.satuSehatCount,
+        unsigned: acc.unsigned + stat.unsignedCount,
+        signed: acc.signed + stat.signedCount
+    }), { wellMed: 0, satuSehat: 0, unsigned: 0, signed: 0 })
+
+    const percentage = total.wellMed > 0 ? (total.satuSehat / total.wellMed * 100).toFixed(1) : 0
+
+    return { ...total, percentage }
+})
+
+// Group by category
+const prerequisites = computed(() =>
+    integrationStats.value.filter(s => s.category === 'Prerequisites')
+)
+const interoperability = computed(() =>
+    integrationStats.value.filter(s => s.category === 'Interoperability')
+)
+</script>
