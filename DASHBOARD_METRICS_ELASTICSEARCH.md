@@ -77,7 +77,7 @@ $dashboardData = [
             'change_type' => 'increase',
             'percentage_change' => 1.19
         ],
-        'unfinished' => [
+        'treatment' => [
             'count' => 31,
             'change' => 8,
             'change_type' => 'increase',
@@ -551,7 +551,7 @@ Aggregate statistics for a metric.
 
 **Parameters:**
 - `$periodType` - Period type
-- `$metric` - Metric name (`'patients'`, `'new_patients'`, `'revenue'`, `'unfinished'`)
+- `$metric` - Metric name (`'patients'`, `'new_patients'`, `'revenue'`, `'treatment'`)
 - `$aggregation` - Aggregation type (`'sum'`, `'avg'`, `'min'`, `'max'`)
 - `$filters` - Filters (year, month, day, etc.)
 

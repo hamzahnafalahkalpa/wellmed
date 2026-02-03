@@ -97,7 +97,7 @@
                 }
               }
             },
-            "unfinished": {
+            "treatment": {
               "properties": {
                 "count": {
                   "type": "integer"

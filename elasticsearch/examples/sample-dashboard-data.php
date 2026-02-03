@@ -28,7 +28,7 @@ return [
                 'change_type' => 'increase',
                 'percentage_change' => 1.19
             ],
-            'unfinished' => [
+            'treatment' => [
                 'count' => 31,
                 'change' => 8,
                 'change_type' => 'increase',
@@ -133,7 +133,7 @@ return [
                 'change_type' => 'increase',
                 'percentage_change' => 8.51
             ],
-            'unfinished' => [
+            'treatment' => [
                 'count' => 65,
                 'change' => 10,
                 'change_type' => 'decrease',
@@ -185,7 +185,7 @@ return [
                 'change_type' => 'increase',
                 'percentage_change' => 9.29
             ],
-            'unfinished' => [
+            'treatment' => [
                 'count' => 120,
                 'change' => 20,
                 'change_type' => 'decrease',

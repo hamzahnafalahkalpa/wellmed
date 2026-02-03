@@ -104,7 +104,7 @@ const stats = ref([
         isCurrency: true
     },
     {
-        id: 'unfinished',
+        id: 'treatment',
         label: 'Tindakan Dipesankan',
         count: 31,
         change: 8,
