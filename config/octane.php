@@ -250,11 +250,34 @@ return [
     |
     */
 
-    'max_execution_time' => env('OCTANE_MAX_EXECUTION_TIME', 60),
+    'max_execution_time' => env('OCTANE_MAX_EXECUTION_TIME', 120),
     'state_file' => storage_path(env('OCTANE_STATE_FILE','logs/octane-server-state.json')),
+
+    /*
+    |--------------------------------------------------------------------------
+    | FrankenPHP Configuration
+    |--------------------------------------------------------------------------
+    |
+    | These settings are specific to FrankenPHP server. Increasing timeouts
+    | helps prevent "missed heartbeat" errors during long-running operations.
+    |
+    */
     'frankenphp' => [
-        'max_execution_time' => env('OCTANE_MAX_EXECUTION_TIME', 60),
+        'max_execution_time' => env('OCTANE_MAX_EXECUTION_TIME', 120),
+        // Number of worker threads - adjust based on CPU cores
+        'num_threads' => env('OCTANE_WORKERS', 4),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Worker Timeout
+    |--------------------------------------------------------------------------
+    |
+    | How long to wait for a worker to finish before killing it (in seconds).
+    | This should be longer than max_execution_time to allow graceful shutdown.
+    |
+    */
+    'worker_timeout' => env('OCTANE_WORKER_TIMEOUT', 180),
 
     /*
     |--------------------------------------------------------------------------

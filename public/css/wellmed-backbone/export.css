@@ -307,6 +307,9 @@
 .capitalize {
   text-transform: capitalize;
 }
+.uppercase {
+  text-transform: uppercase;
+}
 .italic {
   font-style: italic;
 }
