@@ -97,6 +97,17 @@ return [
                 'prefix_indexes' => true,
                 'search_path'    => 'public',
                 'sslmode'        => 'prefer',
+                // PDO options for PgBouncer compatibility
+                'options'        => extension_loaded('pdo_pgsql') ? [
+                    PDO::ATTR_PERSISTENT => false,
+                    PDO::ATTR_TIMEOUT => 60,
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                    // IMPORTANT: Must be TRUE for PgBouncer transaction pooling mode
+                    PDO::ATTR_EMULATE_PREPARES => true,
+                ] : [],
+                'connect_timeout' => 10,
+                'application_name' => env('APP_NAME', 'Laravel'),
             ],
 
             /**

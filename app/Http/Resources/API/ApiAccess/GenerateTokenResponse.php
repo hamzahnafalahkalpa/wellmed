@@ -39,7 +39,7 @@ class GenerateTokenResponse extends ApiResource
             'id'             => $userReference->id,
             'uuid'           => $userReference->uuid,
             'reference_type' => $userReference->reference_type,
-            'reference_id'   => $userReference->reference_id,
+            'reference_id'   => (string) $userReference->reference_id,
             'current'        => $userReference->current,
             'tenant'    => $userReference->relationValidation('tenant',function() use ($userReference){
                 $tenant = $userReference->tenant;

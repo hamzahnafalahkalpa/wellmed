@@ -68,7 +68,7 @@ class EncodingWrapper
         SupportCache::saveCache('encoding_config', $encoding_config);
 
         $model_has_encodings = app(config('database.models.ModelHasEncoding'))->where('reference_type','Workspace')
-            ->where('reference_id',tenancy()->tenant->reference_id)
+            ->where('reference_id',(string) tenancy()->tenant->reference_id)
             ->get();
         $model_has_encoding_configs = [
             'model_has_encodings' => $model_has_encodings,

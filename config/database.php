@@ -113,7 +113,8 @@ return [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 // Set default fetch mode
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                // Emulate prepares for better compatibility
+                // IMPORTANT: Must be TRUE for PgBouncer transaction pooling mode
+                // Server-side prepared statements don't work across pooled connections
                 PDO::ATTR_EMULATE_PREPARES => false,
             ] : [],
             'connect_timeout' => 10,
@@ -142,8 +143,9 @@ return [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 // Set default fetch mode
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                // Emulate prepares for better compatibility
-                PDO::ATTR_EMULATE_PREPARES => false,
+                // IMPORTANT: Must be TRUE for PgBouncer transaction pooling mode
+                // Server-side prepared statements don't work across pooled connections
+                PDO::ATTR_EMULATE_PREPARES => true,
             ] : [],
             'connect_timeout' => 10,
             'application_name' => env('APP_NAME', 'Laravel'),

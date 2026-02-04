@@ -56,6 +56,11 @@ return [
             'path' => storage_path('logs/generate_billing.log'),
             'level' => 'info',
         ],
+        'elasticsearch' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/elasticsearch.log'),
+            'level' => 'info',
+        ],
         'xendit' => [
             'driver' => 'single',
             'path' => storage_path('logs/xendit.log'),

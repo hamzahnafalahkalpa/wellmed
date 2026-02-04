@@ -19,6 +19,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
         "predis/predis": "^3.0",
+        "sentry/sentry-laravel": "^4.20",
         "xendit/xendit-php": "^7.0",
         "vladimir-yuldashev/laravel-queue-rabbitmq": "^14.4"
     },
