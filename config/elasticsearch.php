@@ -12,8 +12,7 @@ return [
     | will fall back to standard database queries.
     |
     */
-    // 'enabled' => env('ELASTICSEARCH_ENABLED', true),
-    'enabled' => true,
+    'enabled' => env('ELASTICSEARCH_ENABLED', true),
 
     'job_class' => ElasticJob::class,
 
