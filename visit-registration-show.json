@@ -406,6 +406,39 @@
             "reference_type": "VisitRegistration",
             "reference_id": "01kgefe1964rcptdgzdvfda885",
             "emr": {
+                "PhysicalExamination": {
+                    "id": "01kgm40y011ws2bcgn9ny5c8re",
+                    "morph": "PhysicalExamination",
+                    "examination_type": "VisitExamination",
+                    "examination_id": "01kgefe1cbnfke6tjc09kqqvke",
+                    "exam": {
+                        "body_form": {
+                            "asset_url": "https:\/\/wellmed-dev.s3.ap-southeast-1.amazonaws.com\/assets\/female_body_form.webp",
+                            "label": "Head to Toe",
+                            "morph": "HeadToToe",
+                            "data": []
+                        },
+                        "muscle_form": {
+                            "asset_url": "https:\/\/wellmed-dev.s3.ap-southeast-1.amazonaws.com\/assets\/female_muscle_form.webp",
+                            "label": "Head to Toe (Muskular)",
+                            "morph": "HeadToToe",
+                            "data": []
+                        },
+                        "odontogram": {
+                            "asset_url": "https:\/\/wellmed-dev.s3.ap-southeast-1.amazonaws.com\/assets\/odontogram.svg",
+                            "label": "Odontogram",
+                            "morph": "DentalAnatomy",
+                            "data": []
+                        }
+                    },
+                    "prop_practitioner_evaluations": [
+                        {
+                            "id": "01kgm3mqh1vfmndmfzm6v2s1z9",
+                            "name": "admin",
+                            "updated_at": "2026-02-04 10:43:59"
+                        }
+                    ]
+                },
                 "SubjectNote": {
                     "id": "01kgehygqbqr2may4f28b6mzmn",
                     "morph": "SubjectNote",
