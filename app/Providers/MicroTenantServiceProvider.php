@@ -120,7 +120,7 @@ class MicroTenantServiceProvider extends ServiceProvider
                         $tenantId = tenancy()->tenant->id;
 
                         if ($tenantId) {
-                            config(['elasticsearch.prefix' => $tenantId]);
+                            config(['elasticsearch.prefix' => env('APP_ENV', 'development').'.'.$tenantId]);
                         }
                     }
                 }
