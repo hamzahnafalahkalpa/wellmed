@@ -1,0 +1,85 @@
+<script setup lang="ts">
+const option: ECOption = {
+  backgroundColor: 'transparent',
+  legend: { bottom: 20 },
+  tooltip: {
+    trigger: 'axis',
+  },
+  dataset: {
+    source: [
+      ['Kunjungan', '24 Des', '25 Des', '26 Des', '27 Des', '28 Des', '29 Des', '30 Des'],
+      ['Laki - Laki', 45, 52, 48, 61, 55, 58, 63],
+      ['Perempuan', 38, 42, 51, 47, 49, 54, 52],
+    ],
+  },
+  xAxis: {
+    type: 'category',
+    triggerEvent: true,
+    tooltip: { show: true },
+  },
+  yAxis: {
+    triggerEvent: true,
+    tooltip: { show: true },
+  },
+  series: [
+    {
+      type: 'line',
+      smooth: true,
+      seriesLayoutBy: 'row',
+      emphasis: { focus: 'series' },
+    },
+    {
+      type: 'line',
+      smooth: true,
+      seriesLayoutBy: 'row',
+      emphasis: { focus: 'series' },
+    },
+    {
+      type: 'line',
+      smooth: true,
+      seriesLayoutBy: 'row',
+      emphasis: { focus: 'series' },
+    },
+    {
+      type: 'line',
+      smooth: true,
+      seriesLayoutBy: 'row',
+      emphasis: { focus: 'series' },
+    },
+  ],
+}
+function getPieOption(params: any) {
+  const option: ECOption = {
+    backgroundColor: 'transparent',
+    dataset: { source: [params[0].dimensionNames, params[0].data] },
+    series: [
+      {
+        type: 'pie',
+        radius: ['60%', '100%'],
+        seriesLayoutBy: 'row',
+        itemStyle: {
+          borderRadius: 5,
+        },
+        padAngle: 5,
+        label: {
+          position: 'center',
+          formatter: params[0].name,
+        },
+      },
+    ],
+  }
+  return option
+}
+const initOptions = {
+  width: 100,
+  height: 100,
+}
+</script>
+
+<template>
+  <VChart :option="option" style="height: 410px; width: 100%">
+    <template #tooltip="params">
+      <VChart :option="getPieOption(params)" :init-options="initOptions" />
+    </template>
+  </VChart>
+</template>
