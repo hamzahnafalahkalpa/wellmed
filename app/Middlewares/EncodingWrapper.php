@@ -34,17 +34,7 @@ class EncodingWrapper
             $this->setupEncodingCache();
             $response = $next($request);
             if ($response->getStatusCode() < 400) {
-                $model_has_encodings = SupportCache::getSavedCache('model_has_encoding_configs');
-                if (isset($model_has_encodings) && isset($model_has_encodings['model_has_encodings'])){
-                    foreach ($model_has_encodings['model_has_encodings'] as &$model_has_encoding) {
-                        if ($model_has_encoding->isDirty()){
-                            $model_has_encoding->save();
-                        }
-                    }
-                    $this->setCache($this->__cache['model_has_encoding'], function() use ($model_has_encodings) {
-                        return $model_has_encodings;
-                    }, false, true);
-                }
+                $this->setup();
             }else{
                 $this->forgetTags($this->__cache['model_has_encoding']['tags']);
                 $this->forgetTags($this->__cache['encoding']['tags']);
@@ -54,6 +44,26 @@ class EncodingWrapper
         }
 
         return $response;
+    }
+
+    public function setup(){
+        $model_has_encodings = SupportCache::getSavedCache('model_has_encoding_configs');
+        if (isset($model_has_encodings) && isset($model_has_encodings['model_has_encodings'])){
+            foreach ($model_has_encodings['model_has_encodings'] as &$model_has_encoding) {
+                if ($model_has_encoding->isDirty()){
+                    $model_has_encoding->save();
+                }
+            }
+            $this->setCache($this->__cache['model_has_encoding'], function() use ($model_has_encodings) {
+                return $model_has_encodings;
+            }, false, true);
+        }
+    }
+
+    public function installationSetup(){
+        $this->tenant = tenancy()->tenant;
+        $this->setupEncodingCache();
+        $this->setup();
     }
 
     private function setupEncodingCache(){
