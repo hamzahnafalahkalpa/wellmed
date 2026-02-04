@@ -121,7 +121,7 @@ const stats = ref([
 
 // Pending items
 const pendingItems = ref([
-    { label: '4 unsigned visits', icon: 'mdi:file-document-edit-outline', color: 'text-orange-600', link: '/patient-emr/unsigned-visits' },
+    { label: '4 unsigned visits', icon: 'mdi:file-document-edit-outline', color: 'text-orange-600', link: '/patient-emr/visit-registration?is_unsigned_visits=1' },
     { label: '9 patients unsynced to Satu Sehat', icon: 'mdi:sync-alert', color: 'text-red-600', link: '/satu-sehat/dashboard' },
     { label: '11 visits without ICD diagnosis', icon: 'mdi:alert-circle', color: 'text-amber-600', link: '/patient-emr/incomplete-diagnosis' },
 ])
