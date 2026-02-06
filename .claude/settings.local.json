@@ -43,7 +43,8 @@
       "Bash(xargs -I {} bash -c \"echo ''''=== {} ==='''' && docker exec {} ls -la /app/storage/logs/octane* 2>/dev/null || echo ''''No octane files''''\")",
       "Bash(git stash:*)",
       "Bash(git checkout:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(done)"
     ]
   }
 }
