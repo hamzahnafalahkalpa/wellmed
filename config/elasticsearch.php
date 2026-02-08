@@ -12,8 +12,8 @@ return [
     | will fall back to standard database queries.
     |
     */
-    'enabled' => env('ELASTICSEARCH_ENABLED', true),
-    // 'enabled' => false,
+    // 'enabled' => env('ELASTICSEARCH_ENABLED', true),
+    'enabled' => false,
 
     'job_class' => ElasticJob::class,
 
@@ -100,5 +100,25 @@ return [
         'enabled' => true,
         'queue' => 'elasticsearch',
         'connection' => 'rabbitmq',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Elasticsearch Logging
+    |--------------------------------------------------------------------------
+    |
+    | Log Elasticsearch operations to the elasticsearch_logs database table.
+    | This allows tracking of all ES sync operations for audit/debugging.
+    |
+    | Dashboard indices (containing 'dashboard') will update the same log record
+    | on each sync. Reporting indices will create new log records.
+    |
+    */
+    'logging' => [
+        'enabled' => env('ELASTICSEARCH_LOGGING_ENABLED', true),
+        'dashboard_prefixes' => [
+            'dashboard-metrics',
+            'dashboard',
+        ],
     ],
 ];
