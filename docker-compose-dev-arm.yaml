@@ -34,8 +34,8 @@ services:
     networks:
       - wellmed-core
     entrypoint: ["/usr/local/bin/entrypoint.backbone.sh"]
-    depends_on:
-      - wellmed_pgbouncer
+    # depends_on:
+    #   - wellmed_pgbouncer
     env_file:
       - .env.backbone
     environment:
@@ -75,7 +75,7 @@ services:
     entrypoint: ["/usr/local/bin/entrypoint.listener.sh"]   # <— LISTENER MODE (NO OCTANE)
     depends_on:
       - wellmed
-      - wellmed_pgbouncer
+      # - wellmed_pgbouncer
     env_file:
       - .env.backbone
     environment:
@@ -112,8 +112,8 @@ services:
     networks:
       - wellmed-core
     entrypoint: ["/usr/local/bin/entrypoint.hq.sh"]
-    depends_on:
-      - wellmed_pgbouncer
+    # depends_on:
+    #   - wellmed_pgbouncer
     env_file:
       - .env.hq
     environment:
@@ -122,27 +122,27 @@ services:
       PHP_UPLOAD_MAX_FILESIZE: 10M
       PHP_POST_MAX_SIZE: 10M
 
-  wellmed_pgbouncer:
-    container_name: wellmed-pgbouncer
-    image: wellmed-pgbouncer-arm
-    build:
-      context: .
-      dockerfile: ./docker-arm/database/Dockerfile
-    ports:
-      - "6432:6432"
-    volumes:
-      - ./docker-arm/database/pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini:ro
-      - ./docker-arm/database/userlist.txt:/etc/pgbouncer/userlist.txt:ro
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    networks:
-      - wellmed-core
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -h localhost -p 6432 -U admin_kalpa || exit 1"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+  # wellmed_pgbouncer:
+  #   container_name: wellmed-pgbouncer
+  #   image: wellmed-pgbouncer-arm
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker-arm/database/Dockerfile
+  #   ports:
+  #     - "6432:6432"
+  #   volumes:
+  #     - ./docker-arm/database/pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini:ro
+  #     - ./docker-arm/database/userlist.txt:/etc/pgbouncer/userlist.txt:ro
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
+  #   networks:
+  #     - wellmed-core
+  #   restart: unless-stopped
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -h localhost -p 6432 -U admin_kalpa || exit 1"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
 
 networks:
   wellmed-core:
