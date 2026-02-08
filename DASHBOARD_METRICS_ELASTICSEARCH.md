@@ -483,7 +483,7 @@ $result = $metricsService->delete('monthly', [
 
 ### DashboardMetricsService Methods
 
-#### `store(array $data, string $periodType = 'daily', ?int $tenantId = null, ?int $workspaceId = null): array`
+#### `store(array $data, string $periodType = 'daily', ?int $tenantId = null, mixed $workspaceId = null): array`
 
 Store dashboard metrics in Elasticsearch.
 

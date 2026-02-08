@@ -28,8 +28,20 @@ chown -R www-data:www-data /app/supervisor
 rm -f /app/storage/logs/octane-server-state*.json 2>/dev/null || true
 
 # Optimize for production
-php artisan config:cache 2>/dev/null || true
-php artisan route:cache 2>/dev/null || true
+# Note: config:cache may fail with Octane due to spread operators calling static methods
+# route:cache may fail if duplicate route names exist - these are non-fatal
+echo "==> Optimizing for production..."
+if php artisan config:cache 2>&1; then
+    echo "    Config cached successfully"
+else
+    echo "    Warning: config:cache failed (non-fatal, app will work without cache)"
+fi
+
+if php artisan route:cache 2>&1; then
+    echo "    Routes cached successfully"
+else
+    echo "    Warning: route:cache failed (non-fatal, app will work without cache)"
+fi
 
 echo "==> Starting supervisord (PID 1)"
 exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf

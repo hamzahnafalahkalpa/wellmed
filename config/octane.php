@@ -157,9 +157,12 @@ return [
         // CRITICAL: Flush these services to prevent tenant state leakage
         Hanafalah\MicroTenant\MicroTenant::class,
         Stancl\Tenancy\Tenancy::class,
-        // Illuminate\Foundation\Console\Kernel::class,
-        // Hanafalah\KlinikStarterpack\Database\Manager\PostgreSQLSchemaManager::class,
-        // Spatie\MediaLibrary\MediaCollections\Filesystem::class,
+        // Flush database schema manager to prevent connection leaks
+        Hanafalah\KlinikStarterpack\Database\Manager\PostgreSQLSchemaManager::class,
+        // Flush Laravel Support services
+        Hanafalah\LaravelSupport\LaravelSupport::class,
+        // Flush API Helper to prevent state accumulation
+        Hanafalah\ApiHelper\ApiHelper::class,
     ],
 
     /*
@@ -237,7 +240,7 @@ return [
     |
     */
 
-    'garbage' => env('OCTANE_GARBAGE_COLLECTION', 256),
+    'garbage' => env('OCTANE_GARBAGE_COLLECTION', 128),
 
     /*
     |--------------------------------------------------------------------------
@@ -291,5 +294,5 @@ return [
     | Reduced from 1000 to 500 to recycle workers more frequently
     |
     */
-    'max_requests' => env('OCTANE_MAX_REQUESTS', 500),
+    'max_requests' => env('OCTANE_MAX_REQUESTS', 300),
 ];

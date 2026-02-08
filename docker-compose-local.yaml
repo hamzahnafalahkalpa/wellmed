@@ -67,7 +67,11 @@ services:
 
   wellmed_listener:
     container_name: wellmed-listener
-    image: wellmed-backbone
+    image: wellmed-listener
+    build:
+      context: .
+      dockerfile: ./docker-arm/app/Dockerfile
+      target: development
     volumes:
       - ./repositories:/app/repositories
       - ./app:/app/app

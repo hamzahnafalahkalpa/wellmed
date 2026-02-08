@@ -7,6 +7,7 @@ USER root
 RUN id -u pgbouncer &>/dev/null || adduser -D -S -G postgres pgbouncer
 
 # Copy configuration files for ARM dev server
+# Note: These are mounted as volumes in docker-compose, but copy for standalone build
 COPY ./docker-arm/database/pgbouncer.ini /etc/pgbouncer/pgbouncer.ini
 COPY ./docker-arm/database/userlist.txt /etc/pgbouncer/userlist.txt
 

@@ -27,9 +27,12 @@ chown -R www-data:www-data /app/supervisor
 # Clear any stale Octane state files
 rm -f /app/storage/logs/octane-server-state*.json 2>/dev/null || true
 
-# Optimize for production
-php artisan config:cache 2>/dev/null || true
-php artisan route:cache 2>/dev/null || true
+# For development: clear caches to ensure code changes are reflected immediately
+# Note: Do NOT use config:cache or route:cache in development
+echo "==> Clearing caches for development..."
+php artisan config:clear 2>/dev/null || true
+php artisan route:clear 2>/dev/null || true
+php artisan view:clear 2>/dev/null || true
 
 echo "==> Starting supervisord (PID 1)"
 exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf

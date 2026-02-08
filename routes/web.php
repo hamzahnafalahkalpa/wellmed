@@ -2,8 +2,5 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\Route;
-
-Route::get('/{tenant}/assets/{path?}', 'App\Http\Controllers\TenantAssetsController@asset')
-    ->where('path', '(.*)')
-    ->name('stancl.tenancy.asset');
+// Tenant asset route is registered in routes/tenant.php by MicroTenantServiceProvider
+// to avoid duplicate route name error with 'stancl.tenancy.asset'

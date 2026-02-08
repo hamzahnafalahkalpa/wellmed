@@ -83,6 +83,7 @@ RUN apt-get update \
 
 # Supervisor configs (production)
 COPY ./docker/production/supervisord.conf /etc/supervisor/supervisord.conf
+COPY ./docker/production/supervisord-listener.conf /etc/supervisor/supervisord-listener.conf
 COPY ./docker/production/supervisor-worker.conf /etc/supervisor/conf.d/worker.conf
 COPY ./docker/production/supervisor-listener.conf /etc/supervisor/conf.d/listener.conf
 COPY ./docker/production/supervisor-octane.conf /etc/supervisor/conf.d/octane.conf
@@ -94,9 +95,11 @@ COPY ./docker/production/supervisor-octane-monitor.conf /etc/supervisor/conf.d/o
 COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
 COPY ./docker/production/entrypoint.backbone.sh /usr/local/bin/entrypoint.backbone.sh
 COPY ./docker/production/entrypoint.worker.sh /usr/local/bin/entrypoint.worker.sh
+COPY ./docker/production/entrypoint.listener.sh /usr/local/bin/entrypoint.listener.sh
 COPY ./docker/bin/octane-healthcheck.sh /app/docker/bin/octane-healthcheck.sh
 RUN chmod +x /usr/local/bin/entrypoint.backbone.sh \
     && chmod +x /usr/local/bin/entrypoint.worker.sh \
+    && chmod +x /usr/local/bin/entrypoint.listener.sh \
     && chmod +x /app/docker/bin/octane-healthcheck.sh
 
 # ----------------------------------
@@ -121,6 +124,7 @@ USER root
 # Override Supervisor Config (DEV ONLY)
 # ----------------------------------
 COPY ./docker/development/supervisord.conf /etc/supervisor/supervisord.conf
+COPY ./docker/development/supervisord-listener.conf /etc/supervisor/supervisord-listener.conf
 COPY ./docker/development/supervisor-worker.conf /etc/supervisor/conf.d/worker.conf
 COPY ./docker/development/supervisor-listener.conf /etc/supervisor/conf.d/listener.conf
 COPY ./docker/development/supervisor-octane.conf /etc/supervisor/conf.d/octane.conf
@@ -132,9 +136,11 @@ COPY ./docker/development/supervisor-octane-monitor.conf /etc/supervisor/conf.d/
 COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
 COPY ./docker/development/entrypoint.backbone.sh /usr/local/bin/entrypoint.backbone.sh
 COPY ./docker/development/entrypoint.worker.sh /usr/local/bin/entrypoint.worker.sh
+COPY ./docker/development/entrypoint.listener.sh /usr/local/bin/entrypoint.listener.sh
 COPY ./docker/bin/octane-healthcheck.sh /app/docker/bin/octane-healthcheck.sh
 RUN chmod +x /usr/local/bin/entrypoint.backbone.sh \
     && chmod +x /usr/local/bin/entrypoint.worker.sh \
+    && chmod +x /usr/local/bin/entrypoint.listener.sh \
     && chmod +x /app/docker/bin/octane-healthcheck.sh
 
 # ----------------------------------
