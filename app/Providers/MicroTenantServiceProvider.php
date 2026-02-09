@@ -95,7 +95,7 @@ class MicroTenantServiceProvider extends ServiceProvider
 
                     $workspace = app(config('database.models.Workspace'));
                     $workspace = $tenant->reference;
-                    if (isset($workspace)){
+                    if (isset($workspace) && $tenant->product_type !== 'Hq'){
                         $integration = $workspace->integration;
                         if (!isset($integration)) {
                             if (method_exists($workspace,'getIntegrationPayload')){
