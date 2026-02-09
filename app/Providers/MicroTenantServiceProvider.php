@@ -103,7 +103,7 @@ class MicroTenantServiceProvider extends ServiceProvider
                             }
                         }
                         if (isset($integration)){
-                            if (isset($integration['satu_sehat'])){
+                            if (isset($integration['satu_sehat']) && config('satu-sehat') !== null){
                                 $ihs_number = $integration['satu_sehat']['general']['ihs_number'];
                                 $client_id = $integration['satu_sehat']['general']['client_id'] ?? config('satu-sehat.client_id',env('SS_CLIENT_ID'));
                                 $client_secret = $integration['satu_sehat']['general']['client_id'] ?? config('satu-sehat.client_secret',env('SS_CLIENT_SECRET'));
