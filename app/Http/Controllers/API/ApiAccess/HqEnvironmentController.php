@@ -22,7 +22,7 @@ class HqEnvironmentController extends ApiController{
      */
     protected function generateToken(){
         $token = ApiAccess::generateToken(function($api_access){
-            $this->__user = $api_access->getUser();
+            $this->__user = auth()->user();
             $this->__user = $this->UserModel()->findOrFail($this->__user->getKey());
         });
         return $token;
