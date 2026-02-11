@@ -45,7 +45,9 @@
       "Bash(git checkout:*)",
       "Bash(git add:*)",
       "Bash(done)",
-      "Bash(php -l:*)"
+      "Bash(php -l:*)",
+      "Bash(php -r:*)",
+      "Bash(php:*)"
     ]
   }
 }
