@@ -47,7 +47,8 @@
       "Bash(done)",
       "Bash(php -l:*)",
       "Bash(php -r:*)",
-      "Bash(php:*)"
+      "Bash(php:*)",
+      "Bash(echo:*)"
     ]
   }
 }

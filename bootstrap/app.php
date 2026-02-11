@@ -6,6 +6,7 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Hanafalah\LaravelSupport\Middlewares\LaravelSupportResponse;
 use Illuminate\Foundation\Configuration\Middleware;
 use Sentry\Laravel\Integration;
+use App\Http\Middleware\RequestProfiler;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -18,6 +19,9 @@ return Application::configure(basePath: dirname(__DIR__))
         // $middleware->encryptCookies(except: ['appearance', 'sidebar_state']);
         $middleware->prepend(LaravelSupportResponse::class);
         $middleware->group('universal', []);
+
+        // Add profiler to API middleware group (runs on all API routes)
+        $middleware->prependToGroup('api', RequestProfiler::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         Integration::handles($exceptions);

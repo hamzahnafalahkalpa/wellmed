@@ -36,6 +36,9 @@ class FlushTenantState
 
         // 6. Clear api-helper request-scoped state
         $this->clearApiHelperState();
+
+        // 7. Clear MicroTenant per-request state (keep provider caches for performance)
+        $this->clearMicroTenantState();
     }
 
     /**
@@ -102,6 +105,27 @@ class FlushTenantState
                 } catch (\ReflectionException $e) {
                     // Class doesn't exist or couldn't be reflected, skip
                 }
+            }
+        }
+    }
+
+    /**
+     * Clear MicroTenant per-request state
+     * Note: We keep $registeredProviders and $loadedAutoloaders cached
+     * as they are valid across requests and improve performance
+     */
+    protected function clearMicroTenantState(): void
+    {
+        if (class_exists(\Hanafalah\MicroTenant\MicroTenant::class)) {
+            // Only clear the per-request tenant state, not the provider caches
+            \Hanafalah\MicroTenant\MicroTenant::$microtenant = null;
+        }
+
+        // Clear response caches (method and FormRequest caches)
+        if (trait_exists(\Hanafalah\LaravelSupport\Concerns\Support\HasResponse::class)) {
+            // Use reflection to call the static method
+            if (method_exists(\Hanafalah\LaravelSupport\Response::class, 'flushResponseCaches')) {
+                \Hanafalah\LaravelSupport\Response::flushResponseCaches();
             }
         }
     }

@@ -222,6 +222,28 @@ return [
             'database' => env('REDIS_CACHE_DB', '1'),
         ],
 
+        /*
+        |--------------------------------------------------------------------------
+        | Setup Cache Connection
+        |--------------------------------------------------------------------------
+        |
+        | Dedicated Redis connection for setup caching. This connection is NOT
+        | affected by tenancy prefix injection, ensuring setup cache is shared
+        | across all tenants at the application level.
+        |
+        | Key format: wellmed-backbone-setup, wellmed-lite-setup, etc.
+        |
+        */
+        'setup' => [
+            'url' => env('REDIS_URL'),
+            'host' => env('REDIS_HOST', '127.0.0.1'),
+            'username' => env('REDIS_USERNAME'),
+            'password' => env('REDIS_PASSWORD'),
+            'port' => env('REDIS_PORT', '6379'),
+            'database' => env('REDIS_SETUP_DB', '15'), // Separate database for setup cache
+            'prefix' => '', // No prefix - not tenant-specific
+        ],
+
     ],
 
 ];
