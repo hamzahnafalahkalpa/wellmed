@@ -131,6 +131,19 @@ class MicroTenantServiceProvider extends ServiceProvider
                         if ($tenantId) {
                             config(['elasticsearch.prefix' => env('APP_ENV', 'development').'.'.$tenantId]);
                         }
+
+                        // Initialize visit registration queue for non-HQ tenants
+                        if ($tenant->product_type !== 'Hq') {
+                            try {
+                                app(\Projects\WellmedBackbone\Services\VisitRegistrationQueueService::class)
+                                    ->initializeForTenant($tenantId);
+                            } catch (\Throwable $e) {
+                                Log::warning('Failed to initialize visit registration queue', [
+                                    'tenant_id' => $tenantId,
+                                    'error' => $e->getMessage()
+                                ]);
+                            }
+                        }
                     }
                 }
             ],
