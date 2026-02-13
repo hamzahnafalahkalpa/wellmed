@@ -85,6 +85,7 @@ COPY ./docker/production/supervisor-worker.conf /etc/supervisor/conf.d/worker.co
 COPY ./docker/production/supervisor-listener.conf /etc/supervisor/conf.d/listener.conf
 COPY ./docker/production/supervisor-octane.conf /etc/supervisor/conf.d/octane.conf
 COPY ./docker/production/supervisor-octane-monitor.conf /etc/supervisor/conf.d/octane-monitor.conf
+COPY ./docker/production/supervisor-scheduler.conf /etc/supervisor/conf.d/scheduler.conf
 
 # ----------------------------------
 # 🟣 Copy entrypoints & scripts (PROD)
@@ -126,6 +127,7 @@ COPY ./docker/development/supervisor-worker.conf /etc/supervisor/conf.d/worker.c
 COPY ./docker/development/supervisor-listener.conf /etc/supervisor/conf.d/listener.conf
 COPY ./docker/development/supervisor-octane.conf /etc/supervisor/conf.d/octane.conf
 COPY ./docker/development/supervisor-octane-monitor.conf /etc/supervisor/conf.d/octane-monitor.conf
+COPY ./docker/development/supervisor-scheduler.conf /etc/supervisor/conf.d/scheduler.conf
 
 # ----------------------------------
 # 🟣 Copy entrypoints & scripts (DEV)
