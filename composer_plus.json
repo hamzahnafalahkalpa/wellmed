@@ -88,6 +88,11 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
+        },
+        "audit": {
+            "ignore": {
+                "PKSA-y2cr-5h3j-g3ys": "kreait/firebase-php still requires firebase/php-jwt ^6.x and has not released a compatible version for php-jwt v7"
+            }
         }
     },
     "minimum-stability": "dev",

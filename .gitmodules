@@ -235,3 +235,6 @@
 [submodule "repositories/wellmed-product"]
 	path = repositories/wellmed-product
 	url = https://github.com/hamzahnafalahkalpa/wellmed-product.git
+[submodule "repositories/module-notification"]
+	path = repositories/module-notification
+	url = https://github.com/hamzahnafalahkalpa/module-notification.git
