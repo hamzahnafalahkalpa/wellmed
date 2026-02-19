@@ -66,7 +66,8 @@
       "Bash(git -C /var/www/projects/wellmed/repositories/api-helper show 88fa322:src/ApiHelperServiceProvider.php)",
       "Bash(git -C /var/www/projects/wellmed/repositories/api-helper show 88fa322:src/Providers/)",
       "Bash(git -C /var/www/projects/wellmed/repositories/api-helper show:*)",
-      "Bash(git -C /var/www/projects/wellmed/repositories/api-helper diff 88fa322..HEAD -- src/)"
+      "Bash(git -C /var/www/projects/wellmed/repositories/api-helper diff 88fa322..HEAD -- src/)",
+      "Bash(composer show:*)"
     ]
   }
 }
