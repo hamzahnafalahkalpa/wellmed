@@ -9,6 +9,9 @@
 .collapse {
   visibility: collapse;
 }
+.invisible {
+  visibility: hidden;
+}
 .visible {
   visibility: visible;
 }
@@ -52,6 +55,9 @@
 }
 .z-20 {
   z-index: 20;
+}
+.order-123 {
+  order: 123;
 }
 .col-span-3 {
   grid-column: span 3 / span 3;

@@ -48,7 +48,25 @@
       "Bash(php -l:*)",
       "Bash(php -r:*)",
       "Bash(php:*)",
-      "Bash(echo:*)"
+      "Bash(echo:*)",
+      "Bash(composer update:*)",
+      "Bash(COMPOSER=composer_backbone.json composer update:*)",
+      "Bash(COMPOSER=composer_backbone.json composer dump-autoload:*)",
+      "Bash(docker cp:*)",
+      "Bash(xargs:*)",
+      "Bash(docker start:*)",
+      "Bash(git commit:*)",
+      "Bash(for f in composer_plus.json composer_lite.json composer-wellmed-e.json)",
+      "Bash(do echo \"=== $f ===\" grep -A 10 '\"\"\"\"config\"\"\"\"' /var/www/projects/wellmed/$f)",
+      "Bash(git -C /var/www/projects/wellmed diff app/Listeners/Octane/FlushTenantState.php)",
+      "Bash(git -C /var/www/projects/wellmed/repositories/api-helper diff)",
+      "Bash(git -C /var/www/projects/wellmed/repositories/api-helper log --oneline -5)",
+      "Bash(git -C /var/www/projects/wellmed/repositories/api-helper diff HEAD~1 -- src/)",
+      "Bash(git -C /var/www/projects/wellmed/repositories/api-helper log --all --oneline -10)",
+      "Bash(git -C /var/www/projects/wellmed/repositories/api-helper show 88fa322:src/ApiHelperServiceProvider.php)",
+      "Bash(git -C /var/www/projects/wellmed/repositories/api-helper show 88fa322:src/Providers/)",
+      "Bash(git -C /var/www/projects/wellmed/repositories/api-helper show:*)",
+      "Bash(git -C /var/www/projects/wellmed/repositories/api-helper diff 88fa322..HEAD -- src/)"
     ]
   }
 }

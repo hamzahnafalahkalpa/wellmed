@@ -20,3 +20,10 @@ if (config('elasticsearch.retention.schedule.enabled', true)) {
         ->onOneServer()
         ->appendOutputTo(storage_path('logs/elasticsearch-flush.log'));
 }
+
+// Notification cleanup - delete notifications older than 3 days
+Schedule::command('notifications:cleanup')
+    ->dailyAt('03:00')
+    ->withoutOverlapping()
+    ->onOneServer()
+    ->appendOutputTo(storage_path('logs/notifications-cleanup.log'));

@@ -128,5 +128,31 @@ class FlushTenantState
                 \Hanafalah\LaravelSupport\Response::flushResponseCaches();
             }
         }
+
+        // Clear DataManagement static caches (fillable, casts, param_logic)
+        $this->clearDataManagementState();
+    }
+
+    /**
+     * Clear DataManagement trait static caches
+     * These are per-entity caches that should be cleared between requests
+     * to prevent stale data when tenant context changes
+     */
+    protected function clearDataManagementState(): void
+    {
+        if (trait_exists(\Hanafalah\LaravelSupport\Concerns\PackageManagement\DataManagement::class)) {
+            // Use a class that uses the trait to call the static method
+            // Since traits can't be called directly, we check for the method existence
+            $classesUsingTrait = [
+                \Hanafalah\LaravelSupport\Supports\PackageManagement::class,
+            ];
+
+            foreach ($classesUsingTrait as $class) {
+                if (class_exists($class) && method_exists($class, 'flushStaticCaches')) {
+                    $class::flushStaticCaches();
+                    break;
+                }
+            }
+        }
     }
 }
