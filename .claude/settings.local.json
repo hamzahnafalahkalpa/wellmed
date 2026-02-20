@@ -67,7 +67,9 @@
       "Bash(git -C /var/www/projects/wellmed/repositories/api-helper show 88fa322:src/Providers/)",
       "Bash(git -C /var/www/projects/wellmed/repositories/api-helper show:*)",
       "Bash(git -C /var/www/projects/wellmed/repositories/api-helper diff 88fa322..HEAD -- src/)",
-      "Bash(composer show:*)"
+      "Bash(composer show:*)",
+      "Bash(for index in \"development.4.dashboard-metrics-yearly\" \"development.4.visit_registration\" \"development.4.4.patient-satu-sehat-integration\" \"development.4.patient\" \"development.4.visit-registration-queue\" \"development.4.dashboard-metrics-daily\" \"development.4.dashboard-metrics-monthly\" \"development.4.dashboard-metrics-weekly\" \"development.4.satu-sehat-dashboard\")",
+      "Bash(do)"
     ]
   }
 }
