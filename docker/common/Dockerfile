@@ -7,10 +7,10 @@ RUN apt-get update --allow-releaseinfo-change && apt-get install -y --no-install
     curl unzip nano git ca-certificates gnupg wget \
     libpq-dev libonig-dev libssl-dev libxml2-dev \
     libcurl4-openssl-dev libicu-dev libzip-dev libexif-dev \
-    libjpeg62-turbo-dev libpng-dev libfreetype6-dev \
+    libjpeg62-turbo-dev libpng-dev libfreetype6-dev libwebp-dev \
  && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
  && apt-get install -y nodejs \
- && docker-php-ext-configure gd --with-freetype --with-jpeg \
+ && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
  && docker-php-ext-install -j$(nproc) \
     pcntl pdo_mysql pdo_pgsql pgsql opcache intl zip bcmath soap exif gd \
  && pecl install redis \
