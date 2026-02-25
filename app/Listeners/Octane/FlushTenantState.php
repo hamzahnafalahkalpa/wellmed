@@ -129,6 +129,11 @@ class FlushTenantState
             }
         }
 
+        // Clear source model and type (for filter metadata)
+        if (method_exists(\Hanafalah\LaravelSupport\Response::class, 'flushSourceModel')) {
+            \Hanafalah\LaravelSupport\Response::flushSourceModel();
+        }
+
         // Clear DataManagement static caches (fillable, casts, param_logic)
         $this->clearDataManagementState();
     }
