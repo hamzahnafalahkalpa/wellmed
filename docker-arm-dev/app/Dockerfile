@@ -1,0 +1,156 @@
+# -------------------------
+# ARM64 Compatible Dockerfile for Wellmed Backbone
+# -------------------------
+# Stage 1: Builder
+# -------------------------
+FROM dunglas/frankenphp:php8.4 AS builder
+
+RUN apt-get update --allow-releaseinfo-change && apt-get install -y --no-install-recommends \
+    curl unzip nano git ca-certificates gnupg wget \
+    libpq-dev libonig-dev libssl-dev libxml2-dev \
+    libcurl4-openssl-dev libicu-dev libzip-dev libexif-dev \
+    libjpeg62-turbo-dev libpng-dev libfreetype6-dev libwebp-dev \
+    procps \
+ && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+ && apt-get install -y nodejs \
+ \
+ # -------------------------
+ # Install sockets extension for RabbitMQ
+ # -------------------------
+ && docker-php-ext-install sockets \
+ \
+ # GD & other PHP extensions
+ && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
+ && docker-php-ext-install -j$(nproc) \
+    pcntl pdo_mysql pdo_pgsql pgsql opcache intl zip bcmath soap exif gd \
+ \
+ # Redis extension
+ && pecl install redis \
+ && docker-php-ext-enable redis \
+ \
+ && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+WORKDIR /app
+
+COPY . .
+
+RUN if [ -f "composer.lock" ]; then rm composer.lock; fi
+RUN if [ -f "composer_backbone.lock" ]; then rm composer_backbone.lock; fi
+
+# Install Composer deps
+RUN curl -sS https://getcomposer.org/installer | php \
+        -- --install-dir=/usr/local/bin --filename=composer \
+    && if [ "$APP_ENV" = "production" ]; then \
+         COMPOSER=composer_backbone.json composer install \
+            --no-dev --optimize-autoloader --no-interaction \
+            --no-progress --prefer-dist --no-scripts; \
+       else \
+         COMPOSER=composer_backbone.json composer install \
+            --optimize-autoloader --no-interaction \
+            --no-progress --prefer-dist --no-scripts; \
+       fi
+
+# -------------------------
+# Stage 2: Production
+# -------------------------
+FROM builder AS production
+
+# Copy entrypoint backbone
+COPY ./docker/production/entrypoint.backbone.sh /usr/local/bin/entrypoint.backbone.sh
+RUN chmod +x /usr/local/bin/entrypoint.backbone.sh
+
+# Copy storage awal
+COPY ./storage /app/storage-init
+
+# Copy hasil build dari stage builder
+COPY --from=builder /app /app
+COPY --from=builder /usr/local/lib/php/extensions/ /usr/local/lib/php/extensions/
+COPY --from=builder /usr/local/etc/php/conf.d/ /usr/local/etc/php/conf.d/
+COPY --from=builder /usr/local/bin/docker-php-ext-* /usr/local/bin/
+
+# Gunakan php.ini production
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+# ----------------------------------
+# Install Supervisor (PRODUCTION ONLY)
+# ----------------------------------
+USER root
+RUN apt-get update \
+    && apt-get install -y supervisor \
+    && mkdir -p /app/supervisor/run /var/log/supervisor \
+    && chown -R www-data:www-data /app/supervisor/run /var/log/supervisor \
+    && chmod -R 775 /app/supervisor/run /var/log/supervisor
+
+# Supervisor configs (production)
+COPY ./docker/production/supervisord.conf /etc/supervisor/supervisord.conf
+COPY ./docker/production/supervisord-listener.conf /etc/supervisor/supervisord-listener.conf
+COPY ./docker/production/supervisor-worker.conf /etc/supervisor/conf.d/worker.conf
+COPY ./docker/production/supervisor-listener.conf /etc/supervisor/conf.d/listener.conf
+COPY ./docker/production/supervisor-octane.conf /etc/supervisor/conf.d/octane.conf
+COPY ./docker/production/supervisor-octane-monitor.conf /etc/supervisor/conf.d/octane-monitor.conf
+COPY ./docker/production/supervisor-scheduler.conf /etc/supervisor/conf.d/scheduler.conf
+
+# ----------------------------------
+# Copy entrypoints & scripts (PROD)
+# ----------------------------------
+COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
+COPY ./docker/production/entrypoint.backbone.sh /usr/local/bin/entrypoint.backbone.sh
+COPY ./docker/production/entrypoint.worker.sh /usr/local/bin/entrypoint.worker.sh
+COPY ./docker/production/entrypoint.listener.sh /usr/local/bin/entrypoint.listener.sh
+COPY ./docker/bin/octane-healthcheck.sh /app/docker/bin/octane-healthcheck.sh
+RUN chmod +x /usr/local/bin/entrypoint.backbone.sh \
+    && chmod +x /usr/local/bin/entrypoint.worker.sh \
+    && chmod +x /usr/local/bin/entrypoint.listener.sh \
+    && chmod +x /app/docker/bin/octane-healthcheck.sh
+
+# ----------------------------------
+# Set permission untuk writable directories
+# ----------------------------------
+RUN mkdir -p /app/storage /app/bootstrap/cache \
+    && chown -R www-data:www-data /app/storage /app/bootstrap /app/bootstrap/cache \
+    && chmod -R 775 /app/storage /app/bootstrap/cache
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.backbone.sh"]
+EXPOSE 9000 9003 9011 9013
+
+
+# -------------------------
+# Stage 3: Development
+# -------------------------
+FROM production AS development
+
+USER root
+
+# ----------------------------------
+# Override Supervisor Config (DEV ONLY)
+# ----------------------------------
+COPY ./docker/development/supervisord.conf /etc/supervisor/supervisord.conf
+COPY ./docker/development/supervisord-listener.conf /etc/supervisor/supervisord-listener.conf
+COPY ./docker/development/supervisor-worker.conf /etc/supervisor/conf.d/worker.conf
+COPY ./docker/development/supervisor-listener.conf /etc/supervisor/conf.d/listener.conf
+COPY ./docker/development/supervisor-octane.conf /etc/supervisor/conf.d/octane.conf
+COPY ./docker/development/supervisor-octane-monitor.conf /etc/supervisor/conf.d/octane-monitor.conf
+COPY ./docker/development/supervisor-scheduler.conf /etc/supervisor/conf.d/scheduler.conf
+
+# ----------------------------------
+# Copy entrypoints & scripts (DEV)
+# ----------------------------------
+COPY ./docker/common/frankenphp-fpm.conf /etc/frankenphp/conf.d/
+COPY ./docker/development/entrypoint.backbone.sh /usr/local/bin/entrypoint.backbone.sh
+COPY ./docker/development/entrypoint.worker.sh /usr/local/bin/entrypoint.worker.sh
+COPY ./docker/development/entrypoint.listener.sh /usr/local/bin/entrypoint.listener.sh
+COPY ./docker/bin/octane-healthcheck.sh /app/docker/bin/octane-healthcheck.sh
+RUN chmod +x /usr/local/bin/entrypoint.backbone.sh \
+    && chmod +x /usr/local/bin/entrypoint.worker.sh \
+    && chmod +x /usr/local/bin/entrypoint.listener.sh \
+    && chmod +x /app/docker/bin/octane-healthcheck.sh
+
+# ----------------------------------
+# Set permission untuk writable directories (DEV)
+# ----------------------------------
+RUN mkdir -p /app/storage /app/bootstrap/cache /app/supervisor/run /var/log/supervisor \
+    && chown -R www-data:www-data /app/storage /app/bootstrap /app/bootstrap/cache /app/supervisor/run /var/log/supervisor \
+    && chmod -R 775 /app/storage /app/bootstrap/cache /app/supervisor/run /var/log/supervisor
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.backbone.sh"]
+EXPOSE 9000 9003 9011 9013

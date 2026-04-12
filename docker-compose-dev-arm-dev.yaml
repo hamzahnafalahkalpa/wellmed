@@ -1,0 +1,183 @@
+services:
+  wellmed_dev:
+    container_name: wellmed-backbone-dev
+    image: wellmed-backbone-dev
+    build:
+      context: .
+      dockerfile: ./docker-arm-dev/app/Dockerfile
+      target: development
+    ports:
+      - "${WELLMED_BACKBONE_PORT:-9010}:${WELLMED_BACKBONE_PORT:-9010}"
+    volumes:
+      - ./repositories:/app/repositories
+      - ./app:/app/app
+      - ./features:/app/features
+      - ./config:/app/config
+      - ./public:/app/public
+      - ./bootstrap/app.php:/app/bootstrap/app.php
+      - ./database:/app/database
+      - ./projects/wellmed-backbone:/app/projects/wellmed-backbone
+      - ./projects/wellmed-gateway:/app/projects/wellmed-gateway
+      - ./routes/api-backbone.php:/app/routes/api.php
+      - ./composer_backbone.json:/app/composer.json
+      - ./.env.backbone:/app/.env
+      - ./docker/conf.d/upload.ini:/usr/local/etc/php/conf.d/upload.ini
+      - wellmed_backbone_storage_dev:/app/storage
+      - ./node_modules:/app/node_modules
+      - ./package.json:/app/package.json
+      - ./package-lock.json:/app/package-lock.json
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9010 || exit 1"]
+    networks:
+      - wellmed-core-dev
+    entrypoint: ["/usr/local/bin/entrypoint.backbone.sh"]
+    # depends_on:
+    #   - wellmed_pgbouncer_dev
+    env_file:
+      - .env.backbone
+    environment:
+      APP_ENV: development
+      PHP_INI_SCAN_DIR: /usr/local/etc/php/conf.d
+      PHP_UPLOAD_MAX_FILESIZE: 100M
+      PHP_POST_MAX_SIZE: 100M
+      PHP_MEMORY_LIMIT: -1
+
+  wellmed_listener_dev:
+    container_name: wellmed-listener-dev
+    image: wellmed-listener-dev
+    build:
+      context: .
+      dockerfile: ./docker-arm-dev/app/Dockerfile
+      target: development
+    volumes:
+      - ./repositories:/app/repositories
+      - ./app:/app/app
+      - ./features:/app/features
+      - ./config:/app/config
+      - ./public:/app/public
+      - ./database:/app/database
+      - ./projects/wellmed-backbone:/app/projects/wellmed-backbone
+      - ./projects/wellmed-gateway:/app/projects/wellmed-gateway
+      - ./routes/api-backbone.php:/app/routes/api.php
+      - ./composer_backbone.json:/app/composer.json
+      - ./.env.backbone:/app/.env
+      - wellmed_backbone_listener_dev:/app/storage
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    ports:
+      - "9013:9013"
+    networks:
+      - wellmed-core-dev
+    entrypoint: ["/usr/local/bin/entrypoint.listener.sh"]   # <— LISTENER MODE (NO OCTANE)
+    depends_on:
+      - wellmed_dev
+      # - wellmed_pgbouncer_dev
+    env_file:
+      - .env.backbone
+    environment:
+      APP_ENV: development
+      PHP_MEMORY_LIMIT: 1024M
+
+  wellmed_hq_dev:
+    container_name: wellmed-hq-dev
+    image: wellmed-hq-dev
+    build:
+      context: .
+      dockerfile: ./docker/common/Dockerfile-hq
+      target: development
+    ports:
+      - "${WELLMED_HQ_PORT:-9011}:${WELLMED_HQ_PORT:-9011}"
+    volumes:
+      - ./repositories:/app/repositories
+      - ./app:/app/app
+      - ./projects/hq:/app/projects/hq
+      - ./features:/app/features
+      - ./config:/app/config
+      - ./public:/app/public
+      - ./routes:/app/routes
+      - ./database:/app/database
+      - ./routes/api-hq.php:/app/routes/api.php
+      - ./.env.hq:/app/.env
+      - ./composer_hq.json:/app/composer.json
+      - wellmed_hq_storage_dev:/app/storage
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9011 || exit 1"]
+    networks:
+      - wellmed-core-dev
+    entrypoint: ["/usr/local/bin/entrypoint.hq.sh"]
+    # depends_on:
+    #   - wellmed_pgbouncer_dev
+    env_file:
+      - .env.hq
+    environment:
+      APP_ENV: development
+      PHP_INI_SCAN_DIR: /usr/local/etc/php/conf.d
+      PHP_UPLOAD_MAX_FILESIZE: 10M
+      PHP_POST_MAX_SIZE: 10M
+
+  # wellmed_pgbouncer_dev:
+  #   container_name: wellmed-pgbouncer-dev
+  #   image: wellmed-pgbouncer-arm-dev
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker-arm-dev/database/Dockerfile
+  #   ports:
+  #     - "6432:6432"
+  #   volumes:
+  #     - ./docker-arm-dev/database/pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini:ro
+  #     - ./docker-arm-dev/database/userlist.txt:/etc/pgbouncer/userlist.txt:ro
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
+  #   networks:
+  #     - wellmed-core-dev
+  #   restart: unless-stopped
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -h localhost -p 6432 -U admin_kalpa || exit 1"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+
+  # RabbitMQ and Redis are hosted externally on the server
+  # Configure connection via .env.backbone and .env.hq files
+  #
+  # wellmed_rabbitmq_dev:
+  #   image: rabbitmq:3-management
+  #   container_name: rabbitmq-dev
+  #   ports:
+  #     - "5672:5672"
+  #     - "15672:15672"
+  #   environment:
+  #     RABBITMQ_DEFAULT_USER: admin
+  #     RABBITMQ_DEFAULT_PASS: admin
+  #   volumes:
+  #     - wellmed_rabbitmq_data_dev:/var/lib/rabbitmq
+  #   networks:
+  #     - wellmed-core-dev
+
+  # wellmed_redis:
+  #   image: redis:7
+  #   container_name: wellmed-redis-dev
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis_data_dev:/data
+  #   networks:
+  #     - wellmed-core-dev
+
+networks:
+  wellmed-core-dev:
+    driver: bridge
+
+volumes:
+  wellmed_backbone_storage_dev:
+  wellmed_backbone_listener_dev:
+  wellmed_hq_storage_dev:
+  # wellmed_rabbitmq_data_dev:  # Not needed, using external RabbitMQ
+  # redis_data_dev:              # Not needed, using external Redis
