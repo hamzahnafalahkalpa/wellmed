@@ -95,9 +95,23 @@ return [
     | Automatically index model changes (create/update/delete) to Elasticsearch
     | using Laravel observers and queued jobs.
     |
+    | sync: When true, indexing happens synchronously (immediate). When false,
+    |       indexing is queued to RabbitMQ (async). Use sync mode for critical
+    |       data that needs immediate consistency (e.g., status changes).
+    |
+    |       Models can override this globally by setting 'sync' in their
+    |       $elastic_config property:
+    |       protected array $elastic_config = [
+    |           'enabled' => true,
+    |           'sync' => true,  // Override global config for this model
+    |           'index_name' => 'my_index',
+    |       ];
+    |
     */
     'auto_index' => [
         'enabled' => true,
+        'sync' => true,  // Default: synchronous mode for immediate consistency
+        // 'sync' => env('ELASTICSEARCH_SYNC', false),  // Use this to control via .env
         'queue' => 'elasticsearch',
         'connection' => 'rabbitmq',
     ],
